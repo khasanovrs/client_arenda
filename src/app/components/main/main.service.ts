@@ -20,4 +20,18 @@ export class MainService {
         );
     });
   }
+
+  public getData2(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-branch', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении данных', error);
+            reject(error);
+          }
+        );
+    });
+  }
 }

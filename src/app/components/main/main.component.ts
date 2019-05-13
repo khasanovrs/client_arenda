@@ -14,4 +14,13 @@ export class AppComponent {
         console.log('Ошибка в компоненте: ', error);
       });
   }
+
+  sendPost() {
+    this.mainService.getData2({branch: 'test'}).then((data: { status: string, data: object }) => {
+        console.log('Результат в компоненте: ', data);
+      },
+      (error) => {
+        console.log('Ошибка в компоненте: ', error);
+      });
+  }
 }

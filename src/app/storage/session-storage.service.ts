@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class SessionStorageService {
 
-    private _pubId = 'D8oDGyU52Hq6sRNCgwjI';
+    private _pubId = '';
 
     constructor() {
     }

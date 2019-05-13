@@ -50,7 +50,7 @@ export class HttpService {
               rez = JSON.parse(rez);
               resolve(rez);
             } else {
-              resolve();
+              resolve(result.status);
             }
 
             if (typeof result.session_id !== 'undefined') {
