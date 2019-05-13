@@ -1,19 +1,15 @@
 <clr-modal [(clrModalOpen)]="data.data.type" [clrModalSize]="'xs'" class="modal-window modal-message">
   <div class="modal-body">
-    <div class="error block text-center" *ngIf="data.data.type==='error'">
-      <div class="block-header t25 cblack">{{data.data.title}}</div>
-      <div class="block-body" [innerHTML]="data.data.body"></div>
-      <div class="block-footer">
-        <div class="btn btn-big btn-error" (click)="clear()">Ок, понял</div>
-      </div>
+    <div class="text-center" *ngIf="data.data.type==='error'">
+      <div>{{data.data.title}}</div>
+      <div>{{data.data.body}}</div>
+      <div class="btn" (click)="clear()">Ок, понял</div>
     </div>
 
-    <div class="success block text-center" *ngIf="data.data.type==='success'">
-      <div class="block-header t25 cblack">{{data.data.title}}</div>
-      <div class="block-body">{{data.data.body}}</div>
-      <div class="block-footer">
-        <div class="btn btn-big btn-header" (click)="clear()">Ок, понял</div>
-      </div>
+    <div class="text-center" *ngIf="data.data.type==='success'">
+      <div>{{data.data.title}}</div>
+      <div>{{data.data.body}}</div>
+      <div class="btn" (click)="clear()">Ок, понял</div>
     </div>
   </div>
 </clr-modal>
