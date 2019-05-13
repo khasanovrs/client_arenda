@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/internal/operators';
 import {GlobalParamsMessage} from '../../components/message_alert/global-params-message';
+import {SessionStorageService} from '../../storage/session-storage.service';
 
 @Injectable()
 export class HttpService {
@@ -31,17 +32,31 @@ export class HttpService {
   }
 
   constructor(private http: HttpClient,
+              private sessionStorage: SessionStorageService,
               private  globalParamsMessage: GlobalParamsMessage) {
   }
 
   public prepareQuery(url: string = 'noUrl', data) {
+    data = JSON.stringify(data);
+    data = btoa(data);
+
     return new Promise((resolve, reject) => {
 
-      this.sendPostQuery(url, data).subscribe((result: { status: string, msg: string, data: object }) => {
+      this.sendPostQuery(url, data).subscribe((result: { status: string, msg: string, session_id: string, data: string }) => {
           console.log('HttpService Ответ получен: ', result);
           if (result.status === 'OK') {
-            console.log('Пришел ответ: ', result);
-            resolve(result);
+            if (typeof result.data !== 'undefined') {
+              let rez = atob(result.data);
+              rez = JSON.parse(rez);
+              resolve(rez);
+            } else {
+              resolve();
+            }
+
+            if (typeof result.session_id !== 'undefined') {
+              this.sessionStorage.pubId = result.session_id;
+            }
+
           } else if (result.status === 'ERROR') {
             this.globalParamsMessage.data = {title: 'Ошибка', body: result.msg, type: 'error'};
             reject();
@@ -60,7 +75,8 @@ export class HttpService {
 
   private sendPostQuery(api, data: any) {
     const request = {
-      data: data
+      sessionId: this.sessionStorage.pubId,
+      prBlock: data
     };
     const headers = new HttpHeaders();
     return this.http.post('http://localhost:8001/' + api, request, {headers: headers})

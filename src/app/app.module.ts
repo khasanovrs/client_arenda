@@ -9,6 +9,7 @@ import {MessageAlertComponent} from './components/message_alert/message_alert.co
 import {ClarityModule} from '@clr/angular';
 import {GlobalParamsMessage} from './components/message_alert/global-params-message';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SessionStorageService} from './storage/session-storage.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   providers: [
     MainService,
     HttpService,
-    GlobalParamsMessage
+    GlobalParamsMessage,
+    SessionStorageService
   ],
   bootstrap: [AppComponent]
 })

@@ -7,7 +7,7 @@ import {MainService} from './main.service';
 })
 export class AppComponent {
   constructor(private mainService: MainService) {
-    this.mainService.getData({phone: '79173936213', password: 'demo'}).then((data: { status: string, data: object }) => {
+    this.mainService.getData({phone: '79173936213', password: 'Demo'}).then((data: { status: string, data: object }) => {
         console.log('Результат в компоненте: ', data);
       },
       (error) => {
