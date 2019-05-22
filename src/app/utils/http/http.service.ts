@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/internal/operators';
 import {GlobalParamsMessage} from '../../components/message_alert/global-params-message';
 import {SessionStorageService} from '../../storage/session-storage.service';
+import {escape, unescape} from 'querystring';
 
 @Injectable()
 export class HttpService {
@@ -36,9 +37,11 @@ export class HttpService {
               private  globalParamsMessage: GlobalParamsMessage) {
   }
 
-  public prepareQuery(url: string = 'noUrl', data) {
-    data = JSON.stringify(data);
-    data = btoa(data);
+  public prepareQuery(url: string = 'noUrl', data = '') {
+    if (data !== '') {
+      data = JSON.stringify(data);
+      data = this.utoa(data);
+    }
 
     return new Promise((resolve, reject) => {
 
@@ -83,5 +86,18 @@ export class HttpService {
       .pipe(
         catchError(HttpService.handlerError)
       );
+  }
+
+  public utoa(str) {
+    return window.btoa(encodeURIComponent(str));
+  }
+
+  public atou(str) {
+    console.log(1, str);
+    str = window.atob(str);
+    console.log(1, str);
+    return str;
+
+    //return decodeURIComponent(escape(window.atob(str)));
   }
 }

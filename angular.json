@@ -24,9 +24,13 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@clr/ui/clr-ui.css"
+              "src/main.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/scripts.min.js",
+              "src/assets/js/html_js.min.js",
+              "src/assets/js/font_face_observer.min.js"
+            ]
           },
           "configurations": {
             "production": {

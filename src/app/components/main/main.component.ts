@@ -1,26 +1,16 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MainService} from './main.service';
+import {DopParamsService} from '../../services/dopParams.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './main.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(private mainService: MainService) {
-    this.mainService.getData({phone: '79173936213', password: 'Demo'}).then((data: { status: string, data: object }) => {
-        console.log('Результат в компоненте: ', data);
-      },
-      (error) => {
-        console.log('Ошибка в компоненте: ', error);
-      });
   }
 
-  sendPost() {
-    this.mainService.getData2({branch: 'test'}).then((data: { status: string, data: object }) => {
-        console.log('Результат в компоненте: ', data);
-      },
-      (error) => {
-        console.log('Ошибка в компоненте: ', error);
-      });
+  ngOnInit() {
+
   }
 }
