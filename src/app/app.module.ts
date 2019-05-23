@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {NgxPaginationModule} from 'ngx-pagination';
-import {AppComponent} from './components/main/main.component';
+import {AppComponent} from './app.component';
 import {MainService} from './components/main/main.service';
 import {HttpService} from './utils/http/http.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -19,12 +19,14 @@ import {DigitsNumbersPipe} from './pipes/digits_numbers.pipe';
 import {TelephoneNumberPipe} from './pipes/telephone_number.pipe';
 import {DopParamsService} from './services/dopParams.service';
 import {FormsModule} from '@angular/forms';
+import {MainComponent} from './components/main/main.component';
 
 @NgModule({
   declarations: [
     DigitsNumbersPipe,
     TelephoneNumberPipe,
     AppComponent,
+    MainComponent,
     MessageAlertComponent,
     MenuComponent,
     HeaderComponent,

@@ -4,7 +4,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/internal/operators';
 import {GlobalParamsMessage} from '../../components/message_alert/global-params-message';
 import {SessionStorageService} from '../../storage/session-storage.service';
-import {unescape} from 'querystring';
 import {Base64} from 'js-base64';
 
 @Injectable()
@@ -87,18 +86,5 @@ export class HttpService {
       .pipe(
         catchError(HttpService.handlerError)
       );
-  }
-
-  public utoa(str) {
-    return window.btoa(unescape(encodeURIComponent(str)));
-  }
-
-  public atou(str) {
-    console.log(1, str);
-    str = window.atob(str);
-    console.log(1, str);
-    return str;
-
-    //return decodeURIComponent(escape(window.atob(str)));
   }
 }

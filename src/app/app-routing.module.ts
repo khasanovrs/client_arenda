@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {AppComponent} from './components/main/main.component';
+import {MainComponent} from './components/main/main.component';
 import {ClientComponent} from './components/client/client.component';
 
 
@@ -9,8 +9,8 @@ const routes: Routes = [
     path: '',
     children: [],
     pathMatch: 'full',
-    component: AppComponent
-  },{
+    component: MainComponent
+  }, {
     path: 'clients',
     component: ClientComponent
   }
@@ -23,5 +23,6 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule {
-  constructor() {}
+  constructor() {
+  }
 }
