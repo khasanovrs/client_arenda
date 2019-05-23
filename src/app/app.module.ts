@@ -20,6 +20,8 @@ import {TelephoneNumberPipe} from './pipes/telephone_number.pipe';
 import {DopParamsService} from './services/dopParams.service';
 import {FormsModule} from '@angular/forms';
 import {MainComponent} from './components/main/main.component';
+import {SettingsComponent} from './components/settings/settings.component';
+import {SettingsService} from './components/settings/settings.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {MainComponent} from './components/main/main.component';
     MessageAlertComponent,
     MenuComponent,
     HeaderComponent,
-    ClientComponent
+    ClientComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import {MainComponent} from './components/main/main.component';
     GlobalParamsMessage,
     SessionStorageService,
     ClientService,
-    DopParamsService
+    DopParamsService,
+    SettingsService
   ],
   bootstrap: [AppComponent]
 })
