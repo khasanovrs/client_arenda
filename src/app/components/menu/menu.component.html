@@ -6,7 +6,7 @@
   </a>
 
   <nav>
-    <a *ngFor="let menu of menuList" href={{menu.link}}>
+    <a *ngFor="let menu of menuList" [routerLinkActiveOptions]="{ exact: true }" routerLink={{menu.link}} routerLinkActive='---is-active'>
       <i class="ifont ---y-pos-abs" ngClass={{menu.class}}></i>
       {{menu.name}}
     </a>
@@ -20,3 +20,5 @@
     <a href="#" class="---btn ---btn--fill-acent ---btn--sm">Создать заявку</a>
   </div>
 </aside>
+
+<!--  -->
