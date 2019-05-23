@@ -601,11 +601,11 @@ app-menu {
   background: #fff;
 }
 
-.---checkbox input {
+/*.---checkbox input {
   display: none;
-}
+}*/
 
-.---checkbox:before {
+/*.---checkbox:before {
   content: '';
   left: 10px;
   width: 17px;
@@ -628,7 +628,7 @@ app-menu {
   top: 50%;
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
-}
+}*/
 
 .---checkbox:hover {
   -webkit-box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);

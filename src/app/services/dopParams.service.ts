@@ -86,4 +86,23 @@ export class DopParamsService {
       }
     });
   }
+
+  public getRights() {
+    return new Promise((resolve, reject) => {
+      if (this.roles.length === 0) {
+        this.httpService.prepareQuery('api/get-rights', '')
+          .then((result: InterFaceDopParamsCheckBox []) => {
+              this.branch = result;
+              resolve(this.branch);
+            },
+            (error) => {
+              console.log('Ошибка при получении прав для пользователя', error);
+              reject();
+            }
+          );
+      } else {
+        resolve(this.branch);
+      }
+    });
+  }
 }

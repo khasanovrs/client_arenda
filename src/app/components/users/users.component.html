@@ -66,7 +66,7 @@
           <div class="---field ---col-12 ---col-xs-6 ---col-xl-12">
             <label>Выберите филиал</label>
             <div>
-              <select class="---select__cur-value" [(ngModel)]="newUser.branch">
+              <select class="---select__cur-value" [(ngModel)]="newUser.branch_id">
                 <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch">
                   {{branch.name}}
                 </option>
@@ -90,51 +90,48 @@
         <div class="---row ---_sm">
           <div class="---field col ---col-12 ---col-xs-6 ---col-md-4 ---col-xl-6">
             <label>Имя</label>
-            <input class="---input ---fill--bg">
+            <input [(ngModel)]="newUser.name" class="---input ---fill--bg">
           </div>
           <div class="---field col ---col-12 ---col-xs-6 ---col-md-4 ---col-xl-6">
             <label>Фамилия</label>
-            <input class="---input ---fill--bg">
+            <input [(ngModel)]="newUser.lastName" class="---input ---fill--bg">
           </div>
           <div class="---field col ---col-12 ---col-xs-6 ---col-md-4 ---col-xl-6">
             <label>Логин</label>
-            <input class="---input ---fill--bg">
+            <input [(ngModel)]="newUser.login" class="---input ---fill--bg">
           </div>
           <div class="---field col ---col-12 ---col-xs-6 ---col-md-4 ---col-xl-6">
             <label>Пароль</label>
-            <input class="---input ---fill--bg">
+            <input [(ngModel)]="newUser.pass" class="---input ---fill--bg">
           </div>
           <div class="---field col ---col-12 ---col-xs-6 ---col-md-4 ---col-xl-6">
             <label>Номер телфона</label>
-            <input type="tel" class="---input ---fill--bg">
+            <input [(ngModel)]="newUser.phone" type="tel" class="---input ---fill--bg">
           </div>
           <div class="---field col ---col-12 ---col-xs-6 ---col-md-4 ---col-xl-6">
             <label>E-mail</label>
-            <input class="---input ---fill--bg">
+            <input [(ngModel)]="newUser.email" class="---input ---fill--bg">
           </div>
         </div>
 
         <div class="---border ---border-mt0"></div>
 
         <div class="---row ---_sm">
-          <div class="---field col ---col-12 ---col-xs-6">
-            <label for="" class="---checkbox"><input> Оплата по счетам</label>
-          </div>
-          <div class="---field col ---col-12 ---col-xs-6">
-            <label for="" class="---checkbox"><input> Добавление товаров</label>
-          </div>
-          <div class="---field col ---col-12 ---col-xs-6">
-            <label for="" class="---checkbox"><input> Добавление товаров</label>
-          </div>
-          <div class="---field col ---col-12 ---col-xs-6">
-            <label for="" class="---checkbox"><input> Оплата по счетам</label>
+          <div class="---field col ---col-12 ---col-xs-6" *ngFor="let right of rights; let i = index">
+            <label for="right_{{right.val}}" class="---checkbox">
+              <input type="checkbox"
+                     id="right_{{right.val}}"
+                     (change)="changeCheckbox(i)"
+                     [checked]="right.checked">
+              {{right.name}}
+            </label>
           </div>
         </div>
       </div>
 
       <div class="---border ---border-mt0"></div>
 
-      <a href="#" class="---btn ---btn--fill-acent">Добавить</a>
+      <a (click)="addNewUser()" class="---btn ---btn--fill-acent">Добавить</a>
     </div>
   </div>
 
