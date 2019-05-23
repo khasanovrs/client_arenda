@@ -1,11 +1,10 @@
 interface InterFaceNewUser {
   name: string;
   lastName: string;
-  login: string;
   pass: string;
-  user_type: number;
-  branch_id: number;
+  user_type: { val: '', name: '' };
+  branch_id: { val: '', name: '' };
   email: string;
-  phone: number;
-  user_right: {};
+  phone: string;
+  user_right: any;
 }

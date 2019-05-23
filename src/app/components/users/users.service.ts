@@ -20,4 +20,18 @@ export class UsersService {
     });
   }
 
+  public addUsers(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-users', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении нового пользователя', error);
+            reject();
+          }
+        );
+    });
+  }
+
 }
