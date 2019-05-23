@@ -25,7 +25,7 @@
         </a>
 
         <div class="---search ---field ---pos-rel">
-          <input class="---input" placeholder="Поиск по клиентам" [(ngModel)]="searchVar" (keydown)="searchUrClient()">
+          <input class="---input" placeholder="Поиск по клиентам" [(ngModel)]="searchVar" (keyup)="searchUrClient(searchVar)">
           <button class="---y-pos-abs ifont ---icon-loop"></button>
         </div>
       </div>

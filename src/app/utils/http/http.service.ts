@@ -4,7 +4,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/internal/operators';
 import {GlobalParamsMessage} from '../../components/message_alert/global-params-message';
 import {SessionStorageService} from '../../storage/session-storage.service';
-import {escape, unescape} from 'querystring';
+import {unescape} from 'querystring';
+import {Base64} from 'js-base64';
 
 @Injectable()
 export class HttpService {
@@ -40,7 +41,7 @@ export class HttpService {
   public prepareQuery(url: string = 'noUrl', data = '') {
     if (data !== '') {
       data = JSON.stringify(data);
-      data = this.utoa(data);
+      data = Base64.encode(data);
     }
 
     return new Promise((resolve, reject) => {
@@ -89,7 +90,7 @@ export class HttpService {
   }
 
   public utoa(str) {
-    return window.btoa(encodeURIComponent(str));
+    return window.btoa(unescape(encodeURIComponent(str)));
   }
 
   public atou(str) {

@@ -42,9 +42,10 @@ export class ClientComponent implements OnInit {
   }
 
   // вывод клиентов по поиску
-  searchUrClient() {
-    this.clientService.searchClientUr({name: this.searchVar}).then((data: IClientsUr[]) => {
-        console.log(1, data);
+  searchUrClient(searchVar) {
+    console.log(1, searchVar);
+    this.clientService.searchClientUr({name: searchVar}).then((data: IClientsUr[]) => {
+        console.log(2, data);
         this.clientsUr = data;
       },
       (error) => {
