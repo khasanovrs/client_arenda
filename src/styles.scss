@@ -4360,3 +4360,57 @@ p {
     display: none !important;
   }
 }
+
+div.modal {
+  position: fixed;
+  *height: 100%;
+  width: 100%;
+  top: 0;
+  *left: 0;
+  z-index: 9;
+  color: #fff;
+  text-align: center;
+
+  .red-modal {
+    background: rgba(255, 0, 0, 0.88);
+    padding: 10px 0;
+    position: relative;
+  }
+
+  .green-modal {
+    background: rgb(254, 211, 79);
+    padding: 10px 0;
+    position: relative;
+    color: #000;
+
+    .btn {
+      color: #000;
+    }
+  }
+
+  .btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: max-content;
+    right: 20px;
+  }
+
+  .modal-header {
+    display: none;
+  }
+
+  /*.modal-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 20%;
+    width: max-content;
+    color: #fff;
+    font-size: 29px;
+  }*/
+}
