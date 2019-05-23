@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
   templateUrl: './menu.component.html',
 })
 export class MenuComponent {
-  menuList: { link: string, name: string, class: string }[];
+  menuList: InterFaceMenu[];
 
   constructor() {
     this.menuList = [
@@ -14,7 +14,7 @@ export class MenuComponent {
       {link: '/base.php', name: 'Склад', class: '---icon-menu-base'},
       {link: '/clients', name: 'Клиенты', class: '---icon-menu-clients'},
       {link: '/reports.php', name: 'Отчеты', class: '---icon-menu-report'},
-      {link: 'settings', name: 'Настройки', class: '---icon-menu-settings'},
+      {link: 'settings/print', name: 'Настройки', class: '---icon-menu-settings'},
       {link: '/finance.php', name: 'Финансы', class: '---icon-menu-finance'},
       {link: '/orders.php', name: 'Заявки', class: '---icon-menu-orders'}
     ];

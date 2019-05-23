@@ -22,6 +22,8 @@ import {FormsModule} from '@angular/forms';
 import {MainComponent} from './components/main/main.component';
 import {UsersComponent} from './components/users/users.component';
 import {UsersService} from './components/users/users.service';
+import {SaleComponent} from './components/sale/sale.component';
+import {PrintFormComponent} from './components/print_form/print_form.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {UsersService} from './components/users/users.service';
     MenuComponent,
     HeaderComponent,
     ClientComponent,
-    UsersComponent
+    UsersComponent,
+    SaleComponent,
+    PrintFormComponent
   ],
   imports: [
     BrowserModule,
