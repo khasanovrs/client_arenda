@@ -9,55 +9,26 @@
 
     <div class="---row">
       <div class="---col-12 ---col-sm-6">
-        <div class="---select">
-          <select>
-            <option value="">Электроинструменты 1</option>
-            <option value="">Электроинструменты 2</option>
-            <option value="">Электроинструменты 3</option>
-            <option value="">Электроинструменты 4</option>
-            <option value="">Электроинструменты 5</option>
+        <div>
+          <select class="---select__cur-value" (change)="selectUsers(currentBranch)" [(ngModel)]="currentBranch">
+            <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch">
+              {{branch.name}}
+            </option>
           </select>
-
-          <div class="---select__cur-value">
-            <span>Электроинструменты</span>
-            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-          </div>
-
-          <div class="---select__list-wrapper">
-            <div class="---select__list">
-              <a href="#" class="---select__list-item">Электроинструменты 1</a>
-              <a href="#" class="---select__list-item">Электроинструменты 2</a>
-              <a href="#" class="---select__list-item">Электроинструменты 3</a>
-              <a href="#" class="---select__list-item">Электроинструменты 4</a>
-              <a href="#" class="---select__list-item">Электроинструменты 5</a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
 
     <div class="---devider"></div>
 
-    <div class="---docs-wrapper">
+    <div class="---docs-wrapper" *ngIf="usersAdmin.length>0">
       <div class="h2 ---font-sbold">Администраторы</div>
 
-      <div class="---doc-item ---doc-item--avatar ---pos-rel ---radius-5">
+      <div class="---doc-item ---doc-item--avatar ---pos-rel ---radius-5" *ngFor="let user of usersAdmin">
         <i class="---icon ifont ---icon-head-linear ---y-pos-abs"></i>
 
-        <div class="---title ---font-sbold">Александр Новиков</div>
-        <div class="---date">+7 (999) 156-1992 / AlexNow@mail.com</div>
-
-        <div class="---icons ---y-pos-abs ---d-flex">
-          <a href="#" class="---history ---d-inline-flex ---align-items-center">История</a>
-          <a href="#" class="ifont ---icon-edit ---acent"></a>
-          <a href="#" class="ifont ---icon-close"></a>
-        </div>
-      </div>
-      <div class="---doc-item ---doc-item--avatar ---pos-rel ---radius-5">
-        <i class="---icon ifont ---icon-head-linear ---y-pos-abs"></i>
-
-        <div class="---title ---font-sbold">Александр Новиков</div>
-        <div class="---date">+7 (999) 156-1992 / AlexNow@mail.com</div>
+        <div class="---title ---font-sbold">{{user.fio}}</div>
+        <div class="---date">{{user.phone|telephoneNumber}} / {{user.email}}</div>
 
         <div class="---icons ---y-pos-abs ---d-flex">
           <a href="#" class="---history ---d-inline-flex ---align-items-center">История</a>
@@ -67,26 +38,13 @@
       </div>
     </div>
 
-    <div class="---docs-wrapper">
+    <div class="---docs-wrapper" *ngIf="usersManager.length>0">
       <div class="h2 ---font-sbold">Менеджеры</div>
-
-      <div class="---doc-item ---doc-item--avatar ---pos-rel ---radius-5">
-        <i class="---icon ifont ---icon-phone-linear ---y-pos-abs"></i>
-
-        <div class="---title ---font-sbold">Александр Новиков</div>
-        <div class="---date">+7 (999) 156-1992 / AlexNow@mail.com</div>
-
-        <div class="---icons ---y-pos-abs ---d-flex">
-          <a href="#" class="---history ---d-inline-flex ---align-items-center">История</a>
-          <a href="#" class="ifont ---icon-edit ---acent"></a>
-          <a href="#" class="ifont ---icon-close"></a>
-        </div>
-      </div>
-      <div class="---doc-item ---doc-item--avatar ---pos-rel ---radius-5">
+      <div class="---doc-item ---doc-item--avatar ---pos-rel ---radius-5" *ngFor="let user of usersManager">
         <i class="---icon ifont ---icon-head-linear ---y-pos-abs"></i>
 
-        <div class="---title ---font-sbold">Александр Новиков</div>
-        <div class="---date">+7 (999) 156-1992 / AlexNow@mail.com</div>
+        <div class="---title ---font-sbold">{{user.fio}}</div>
+        <div class="---date">{{user.phone|telephoneNumber}} / {{user.email}}</div>
 
         <div class="---icons ---y-pos-abs ---d-flex">
           <a href="#" class="---history ---d-inline-flex ---align-items-center">История</a>
@@ -215,5 +173,3 @@
   </div>
 
 </div>
-
-<?php require_once('layouts/footer.php'); ?>
