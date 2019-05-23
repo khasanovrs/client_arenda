@@ -9,6 +9,8 @@ import {UsersService} from './users.service';
 export class UsersComponent implements OnInit {
   // список филиалов
   branches: InterFaceDopParams[] = [];
+  // список ролей
+  roles: InterFaceDopParams[] = [];
   // выбранный филиал
   currentBranch: InterFaceDopParams = {val: null, name: ''};
   // пользователи
@@ -28,10 +30,16 @@ export class UsersComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
       });
+
+    this.dopParamsService.getRoles().then((data: InterFaceDopParams[]) => {
+        this.roles = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении ролей: ', error);
+      });
   }
 
   selectUsers(branch) {
-    console.log(1, branch);
     this.usersService.getUsers({branch: branch.val}).then((data: InterFaceUsers[]) => {
         this.usersAdmin = [];
         this.usersManager = [];

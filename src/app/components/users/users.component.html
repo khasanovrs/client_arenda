@@ -65,56 +65,22 @@
         <div class="---row">
           <div class="---field ---col-12 ---col-xs-6 ---col-xl-12">
             <label>Выберите филиал</label>
-            <div class="---select">
-              <select>
-                <option value="">Электроинструменты 1</option>
-                <option value="">Электроинструменты 2</option>
-                <option value="">Электроинструменты 3</option>
-                <option value="">Электроинструменты 4</option>
-                <option value="">Электроинструменты 5</option>
+            <div>
+              <select class="---select__cur-value" [(ngModel)]="newUser.branch">
+                <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch">
+                  {{branch.name}}
+                </option>
               </select>
-
-              <div class="---select__cur-value">
-                <span>Электроинструменты</span>
-                <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-              </div>
-
-              <div class="---select__list-wrapper">
-                <div class="---select__list">
-                  <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                  <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                  <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                  <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                  <a href="#" class="---select__list-item">Электроинструменты 5</a>
-                </div>
-              </div>
             </div>
           </div>
           <div class="---field ---col-12 ---col-xs-6 ---col-xl-12">
             <label>Выберите роль</label>
-            <div class="---select">
-              <select>
-                <option value="">Электроинструменты 1</option>
-                <option value="">Электроинструменты 2</option>
-                <option value="">Электроинструменты 3</option>
-                <option value="">Электроинструменты 4</option>
-                <option value="">Электроинструменты 5</option>
+            <div>
+              <select class="---select__cur-value" [(ngModel)]="newUser.user_type">
+                <option class="---select__list-item" *ngFor="let role of roles" [ngValue]="role">
+                  {{role.name}}
+                </option>
               </select>
-
-              <div class="---select__cur-value">
-                <span>Электроинструменты</span>
-                <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-              </div>
-
-              <div class="---select__list-wrapper">
-                <div class="---select__list">
-                  <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                  <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                  <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                  <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                  <a href="#" class="---select__list-item">Электроинструменты 5</a>
-                </div>
-              </div>
             </div>
           </div>
         </div>

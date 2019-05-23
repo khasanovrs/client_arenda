@@ -6,6 +6,7 @@ export class DopParamsService {
   source: InterFaceDopParams [] = [];
   status: InterFaceDopParams [] = [];
   branch: InterFaceDopParams [] = [];
+  roles: InterFaceDopParams [] = [];
 
   constructor(private httpService: HttpService) {
   }
@@ -58,6 +59,25 @@ export class DopParamsService {
             },
             (error) => {
               console.log('Ошибка при получении филиалов', error);
+              reject();
+            }
+          );
+      } else {
+        resolve(this.branch);
+      }
+    });
+  }
+
+  public getRoles() {
+    return new Promise((resolve, reject) => {
+      if (this.roles.length === 0) {
+        this.httpService.prepareQuery('api/get-roles', '')
+          .then((result: InterFaceDopParams []) => {
+              this.branch = result;
+              resolve(this.branch);
+            },
+            (error) => {
+              console.log('Ошибка при получении ролей', error);
               reject();
             }
           );
