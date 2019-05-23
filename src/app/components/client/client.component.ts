@@ -50,4 +50,15 @@ export class ClientComponent implements OnInit {
         console.log('Ошибка при поиске клиентов юр. клиентов: ', error);
       });
   }
+
+  // изменение статуса
+  changeStatus(client) {
+    this.clientService.updateStatusClientUr({client_id: client.id, client_status: client.status}).then((data: IClientsUr[]) => {
+        this.clientsUr = data;
+      },
+      (error) => {
+        console.log('Ошибка при изменении статуса у юр. клиента: ', error);
+      });
+  }
+
 }

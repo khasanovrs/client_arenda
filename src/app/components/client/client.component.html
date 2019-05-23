@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <a href="#" class="---btn ---btn--fill-acent">Добавить товар</a>
+      <a href="#" class="---btn ---btn--fill-acent">Добавить клиента</a>
 
     </div>
 
@@ -515,7 +515,7 @@
             <td>{{client.phone | telephoneNumber}}</td>
             <td>
               <div class="---purple ---bg-color">
-                <select class="---select__cur-value" [(ngModel)]="client.status">
+                <select class="---select__cur-value" (change)="changeStatus(client)" [(ngModel)]="client.status">
                   <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status.val">
                     {{status.name}}
                   </option>
