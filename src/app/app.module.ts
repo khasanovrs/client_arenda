@@ -23,6 +23,9 @@ import {MainComponent} from './components/main/main.component';
 import {UsersComponent} from './components/users/users.component';
 import {UsersService} from './components/users/users.service';
 import {SaleComponent} from './components/sale/sale.component';
+import {IConfig, NgxMaskModule} from 'ngx-mask';
+
+export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import {SaleComponent} from './components/sale/sale.component';
     ClarityModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot(options)
   ],
   providers: [
     MainService,

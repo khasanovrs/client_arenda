@@ -39,6 +39,7 @@ export class HttpService {
 
   public prepareQuery(url: string = 'noUrl', data = '') {
     if (data !== '') {
+      console.log('Отправляем данные: ', data);
       data = JSON.stringify(data);
       data = Base64.encode(data);
     }

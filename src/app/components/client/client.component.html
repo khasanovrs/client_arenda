@@ -38,109 +38,69 @@
     <div *ngIf="showFilters" class="---block--bg-white ---block-filter ---radius-5 ---form">
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Статус заказа</label>
+          <label>Источник</label>
           <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
+            <select class="---select__cur-value" [(ngModel)]="filters.source">
+              <option class="---select__list-item" *ngFor="let source of sourceList" [ngValue]="source">
+                {{source.name}}
+              </option>
             </select>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Даты заказа</label>
+          <label>Статус</label>
           <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
+            <select class="---select__cur-value" [(ngModel)]="filters.status">
+              <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status">
+                {{status.name}}
+              </option>
             </select>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Тип изделия</label>
-          <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
+          <label>Дата обращения начало</label>
+          <div>
+            <input type="date" [(ngModel)]="filters.date_start">
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Менеджер</label>
+          <label>Дата обращения конец</label>
           <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
+            <input type="date" [(ngModel)]="filters.date_end">
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Статус заказа</label>
+          <label>Выручка от</label>
           <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
+            <input type="text" mask="separator" [(ngModel)]="filters.dohod_start">
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Даты заказа</label>
+          <label>Выручка до</label>
           <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
+            <input type="text" mask="separator" [(ngModel)]="filters.dohod_end">
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Тип изделия</label>
+          <label>Количество прокатов от</label>
           <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
+            <input type="text" mask="separator" [(ngModel)]="filters.rentals_start">
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Менеджер</label>
+          <label>Количество прокатов до</label>
           <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
+            <input type="text" mask="separator" [(ngModel)]="filters.rentals_end">
           </div>
         </div>
       </div>
 
       <div class="---btns ---d-flex">
-        <a href="#" class="---btn ---btn--fill-acent">Применить фильтры</a>
-        <a href="#" class="---btn ---btn--border-bg">
+        <div (click)="getClients()" class="---btn ---btn--fill-acent">Применить фильтры</div>
+        <div (click)="clearFilter()" class="---btn ---btn--border-bg">
           Сбросить фильры
           <i class="ifont ---icon-close"></i>
-        </a>
+        </div>
       </div>
     </div>
 

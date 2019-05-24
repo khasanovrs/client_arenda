@@ -16,9 +16,17 @@ export class ClientComponent implements OnInit {
   // отображение фильтра
   showActiveFields = false;
   // параметры фильтра для поиска
-  filters = {
+  filters: InterFaceFilter = {
     type: 'all',
-    like: ''
+    like: '',
+    source: {val: null, name: ''},
+    status: {val: null, name: ''},
+    date_start: '',
+    date_end: '',
+    rentals_start: '',
+    rentals_end: '',
+    dohod_start: '',
+    dohod_end: '',
   };
 
   constructor(private clientService: ClientService,
@@ -44,7 +52,18 @@ export class ClientComponent implements OnInit {
   }
 
   getClients() {
-    this.clientService.getClient(this.filters).then((data: IClientsUr[]) => {
+    this.clientService.getClient({
+      type: this.filters.type,
+      like: this.filters.like,
+      source: this.filters.source.val,
+      status: this.filters.status.val,
+      date_start: this.filters.date_start,
+      date_end: this.filters.date_end,
+      rentals_start: this.filters.rentals_start,
+      rentals_end: this.filters.rentals_end,
+      dohod_start: this.filters.dohod_start,
+      dohod_end: this.filters.dohod_end,
+    }).then((data: IClientsUr[]) => {
         this.clients = data;
       },
       (error) => {
@@ -74,6 +93,24 @@ export class ClientComponent implements OnInit {
   // список клиентов
   changeTypeClients(data) {
     this.filters.type = data;
+    this.getClients();
+  }
+
+  // очистка фильтра
+  clearFilter() {
+    this.filters = {
+      type: 'all',
+      like: '',
+      source: {val: null, name: ''},
+      status: {val: null, name: ''},
+      date_start: '',
+      date_end: '',
+      rentals_start: '',
+      rentals_end: '',
+      dohod_start: '',
+      dohod_end: '',
+    };
+
     this.getClients();
   }
 }
