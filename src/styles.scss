@@ -2303,7 +2303,7 @@ p {
 }
 
 .---r-side-add-block {
-  margin-top: 63px;
+  *margin-top: 63px;
   padding: 43px 49px 46px;
 }
 
@@ -4413,4 +4413,8 @@ div.modal {
     color: #fff;
     font-size: 29px;
   }*/
+}
+
+.---page-switchers a {
+  cursor: pointer;
 }

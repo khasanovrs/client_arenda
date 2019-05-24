@@ -3,7 +3,6 @@ import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './components/main/main.component';
 import {ClientComponent} from './components/client/client.component';
 import {UsersComponent} from './components/users/users.component';
-import {PrintFormComponent} from './components/print_form/print_form.component';
 
 
 const routes: Routes = [
@@ -15,16 +14,7 @@ const routes: Routes = [
     component: ClientComponent
   }, {
     path: 'settings',
-    children: [
-      {
-        path: 'users',
-        component: UsersComponent,
-      },
-      {
-        path: 'print',
-        component: PrintFormComponent,
-      }
-    ]
+    component: UsersComponent
   }
 ];
 

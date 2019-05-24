@@ -8,6 +8,8 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
   templateUrl: './users.component.html',
 })
 export class UsersComponent implements OnInit {
+  // текущий таб
+  currentTab = 'users';
   // список филиалов
   branches: InterFaceDopParams[] = [];
   // список ролей
@@ -24,8 +26,8 @@ export class UsersComponent implements OnInit {
     name: '',
     lastName: '',
     pass: '',
-    user_type: null,
-    branch_id: null,
+    user_type: {val: null, name: ''},
+    branch_id: {val: null, name: ''},
     email: '',
     phone: '',
     user_right: []
@@ -40,6 +42,8 @@ export class UsersComponent implements OnInit {
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
         this.branches = data;
         this.currentBranch = data[0];
+        this.newUser.branch_id = data[0];
+
         this.selectUsers(this.currentBranch);
       },
       (error) => {
@@ -48,6 +52,7 @@ export class UsersComponent implements OnInit {
 
     this.dopParamsService.getRoles().then((data: InterFaceDopParams[]) => {
         this.roles = data;
+        this.newUser.user_type = data[0];
       },
       (error) => {
         console.log('Ошибка при получении ролей: ', error);
@@ -153,5 +158,10 @@ export class UsersComponent implements OnInit {
       (error) => {
         console.log('Ошибка при добавлении нового пользователей: ', error);
       });
+  }
+
+  // смена экрана
+  changeTab(data) {
+    this.currentTab = data;
   }
 }
