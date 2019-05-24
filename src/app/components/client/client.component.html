@@ -3,30 +3,30 @@
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
       <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
-        <div class="---tabs__switcher ---is-active" data-tab="1">Все клиенты</div>
-        <div class="---tabs__switcher" data-tab="2">Юр. лица</div>
-        <div class="---tabs__switcher" data-tab="3">Физ. лица</div>
+        <div class="---tabs__switcher ---is-active" (click)="changeTypeClients('all')">Все клиенты</div>
+        <div class="---tabs__switcher" (click)="changeTypeClients('ur')">Юр. лица</div>
+        <div class="---tabs__switcher" (click)="changeTypeClients('fiz')">Физ. лица</div>
       </div>
     </div>
 
     <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
 
       <div class="---d-flex ---form ---align-items-start">
-        <a href="#" class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
-           data-block="#filter">
+        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+             (click)="changeShowFilters()">
           Фильтры
           <i class="ifont ---icon-menu-finance ---d-none ---sm-d-flex"></i>
-        </a>
+        </div>
 
-        <a href="#" class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
-           data-block="#active-field">
+        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+             (click)="changeActiveFields()">
           Активные поля
           <i class="ifont ---icon-list ---d-none ---sm-d-flex"></i>
-        </a>
+        </div>
 
         <div class="---search ---field ---pos-rel">
-          <input class="---input" placeholder="Поиск по клиентам" [(ngModel)]="searchVar"
-                 (keyup)="searchUrClient(searchVar)">
+          <input class="---input" placeholder="Поиск по клиентам" [(ngModel)]="filters.like"
+                 (keyup)="getClients()">
           <button class="---y-pos-abs ifont ---icon-loop"></button>
         </div>
       </div>
@@ -35,222 +35,102 @@
 
     </div>
 
-    <div id="filter" class="---d-none ---block--bg-white ---block-filter ---radius-5 ---form">
+    <div *ngIf="showFilters" class="---block--bg-white ---block-filter ---radius-5 ---form">
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Статус заказа</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Даты заказа</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Тип изделия</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Менеджер</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Статус заказа</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Даты заказа</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Тип изделия</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Менеджер</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -264,222 +144,102 @@
       </div>
     </div>
 
-    <div id="active-field" class="---d-none ---block--bg-white ---block-filter ---radius-5 ---form">
+    <div *ngIf="showActiveFields" id="active-field" class=" ---block--bg-white ---block-filter ---radius-5 ---form">
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Статус заказа</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Даты заказа</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Тип изделия</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Менеджер</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Статус заказа</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Даты заказа</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Тип изделия</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Менеджер</label>
           <div class="---select">
-            <select>
+            <select class="---select__cur-value">
               <option value="">Электроинструменты 1</option>
               <option value="">Электроинструменты 2</option>
               <option value="">Электроинструменты 3</option>
               <option value="">Электроинструменты 4</option>
               <option value="">Электроинструменты 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -499,7 +259,8 @@
         <table>
           <tr>
             <th><label class="---checkbox"></label></th>
-            <th>юр. лицо</th>
+            <th>Наименование организации</th>
+            <th>ФИО</th>
             <th>номер телефона</th>
             <th>Статус</th>
             <th>Добавлен</th>
@@ -510,9 +271,10 @@
             <th>Скидка</th>
           </tr>
 
-          <tr *ngFor="let client of clientsUr | paginate: { itemsPerPage: 10, currentPage: p }">
+          <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }">
             <td><label class="---checkbox"></label></td>
-            <td>{{client.name}}</td>
+            <td>{{client.org}}</td>
+            <td>{{client.fio}}</td>
             <td>{{client.phone | telephoneNumber}}</td>
             <td>
               <div [ngClass]="{
@@ -547,15 +309,9 @@
       <div
         class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
         <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
-      </div>
 
-      <div
-        class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
-        <div class="---pagination__total-count">
-          Всего платежей — <span class="---font-sbold">8 521</span>
-        </div>
+        <div>Всего клиентов — <span class="---font-sbold">{{clients.length | digitsNumbers}}</span></div>
       </div>
-
     </div>
   </div>
 

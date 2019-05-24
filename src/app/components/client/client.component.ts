@@ -7,12 +7,19 @@ import {DopParamsService} from '../../services/dopParams.service';
   templateUrl: './client.component.html',
 })
 export class ClientComponent implements OnInit {
-  clientsUr: IClientsUr[];
+  clients: IClientsUr[] = [];
   p = 1;
   statusList: InterFaceDopParams[] = [];
   sourceList: InterFaceDopParams[] = [];
-  // переменная для поиска клиентов
-  searchVar = '';
+  // отображение фильтра
+  showFilters = false;
+  // отображение фильтра
+  showActiveFields = false;
+  // параметры фильтра для поиска
+  filters = {
+    type: 'all',
+    like: ''
+  };
 
   constructor(private clientService: ClientService,
               private dopParamsService: DopParamsService) {
@@ -33,30 +40,40 @@ export class ClientComponent implements OnInit {
         console.log('Ошибка при получении источников: ', error);
       });
 
-    this.clientService.getClientUr().then((data: IClientsUr[]) => {
-        this.clientsUr = data;
+    this.getClients();
+  }
+
+  getClients() {
+    this.clientService.getClient(this.filters).then((data: IClientsUr[]) => {
+        this.clients = data;
       },
       (error) => {
         console.log('Ошибка при получении списка юр. клиентов: ', error);
       });
   }
 
-  // вывод клиентов по поиску
-  searchUrClient(searchVar) {
-    this.clientService.searchClientUr({name: searchVar}).then((data: IClientsUr[]) => {
-        this.clientsUr = data;
-      },
-      (error) => {
-        console.log('Ошибка при поиске клиентов юр. клиентов: ', error);
-      });
-  }
-
   // изменение статуса
   changeStatus(client) {
-    this.clientService.updateStatusClientUr({client_id: client.id, client_status: client.status}).then(() => {},
+    this.clientService.updateStatusClientUr({client_type: client.type, client_id: client.id, client_status: client.status}).then(() => {
+      },
       (error) => {
         console.log('Ошибка при изменении статуса у юр. клиента: ', error);
       });
   }
 
+  // отображение фильтра
+  changeShowFilters() {
+    this.showFilters = !this.showFilters;
+  }
+
+  // отображение фильтра
+  changeActiveFields() {
+    this.showActiveFields = !this.showActiveFields;
+  }
+
+  // список клиентов
+  changeTypeClients(data) {
+    this.filters.type = data;
+    this.getClients();
+  }
 }

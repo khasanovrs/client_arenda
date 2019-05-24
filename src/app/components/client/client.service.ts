@@ -3,13 +3,14 @@ import {HttpService} from '../../utils/http/http.service';
 
 @Injectable()
 export class ClientService {
+  clients: IClientsUr[] = [];
 
   constructor(private httpService: HttpService) {
   }
 
-  public getClientUr() {
+  public getClient(data) {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/get-ur-client')
+      this.httpService.prepareQuery('api/get-client', data)
         .then((result: any) => {
             resolve(result);
           },
@@ -23,7 +24,7 @@ export class ClientService {
 
   public searchClientUr(data) {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/search-ur-client', data)
+      this.httpService.prepareQuery('api/search-client', data)
         .then((result: any) => {
             resolve(result);
           },

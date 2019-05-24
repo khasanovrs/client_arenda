@@ -51,6 +51,7 @@ export class HttpService {
             if (typeof result.data !== 'undefined') {
               let rez = atob(result.data);
               rez = JSON.parse(rez);
+              console.log('Результат ответа: ', rez);
               resolve(rez);
             } else {
               resolve(result.status);

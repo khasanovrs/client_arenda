@@ -4426,7 +4426,6 @@ select.---select__cur-value {
   position: relative;
   background: #fff;
   border-radius: 5px;
-  width: 285px;
   -webkit-box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);
   box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);
   font-weight: 600;
@@ -4435,6 +4434,7 @@ select.---select__cur-value {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
+  width: 100%;
 }
 
 select.---select__cur-value option {
@@ -4452,10 +4452,6 @@ select.---select__cur-value option:hover, select.---select__cur-value option:act
   outline: none;
   text-decoration: underline;
   background-color: white;
-}
-
-select.---select__cur-value.w-200 {
-  width: 200px;
 }
 
 .select-png {
