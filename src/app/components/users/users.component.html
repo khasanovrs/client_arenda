@@ -21,7 +21,7 @@
     <div class="---col-12 ---col-xl-7">
       <div class="---row">
         <div class="---col-12 ---col-sm-6">
-          <div>
+          <div class="select-png">
             <select class="---select__cur-value" (change)="selectUsers(currentBranch)" [(ngModel)]="currentBranch">
               <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch">
                 {{branch.name}}
@@ -78,7 +78,7 @@
           <div class="---row">
             <div class="---field ---col-12 ---col-xs-6 ---col-xl-12">
               <label>Выберите филиал</label>
-              <div>
+              <div class="select-png">
                 <select class="---select__cur-value" [(ngModel)]="newUser.branch_id">
                   <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch">
                     {{branch.name}}
@@ -88,7 +88,7 @@
             </div>
             <div class="---field ---col-12 ---col-xs-6 ---col-xl-12">
               <label>Выберите роль</label>
-              <div>
+              <div class="select-png">
                 <select class="---select__cur-value" [(ngModel)]="newUser.user_type">
                   <option class="---select__list-item" *ngFor="let role of roles" [ngValue]="role">
                     {{role.name}}

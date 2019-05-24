@@ -25,7 +25,8 @@
         </a>
 
         <div class="---search ---field ---pos-rel">
-          <input class="---input" placeholder="Поиск по клиентам" [(ngModel)]="searchVar" (keyup)="searchUrClient(searchVar)">
+          <input class="---input" placeholder="Поиск по клиентам" [(ngModel)]="searchVar"
+                 (keyup)="searchUrClient(searchVar)">
           <button class="---y-pos-abs ifont ---icon-loop"></button>
         </div>
       </div>
@@ -514,8 +515,15 @@
             <td>{{client.name}}</td>
             <td>{{client.phone | telephoneNumber}}</td>
             <td>
-              <div class="---purple ---bg-color">
-                <select class="---select__cur-value" (change)="changeStatus(client)" [(ngModel)]="client.status">
+              <div [ngClass]="{
+              '---purple':client.status===1,
+              '---dark':client.status===2,
+              '---dark-red':client.status===3,
+              '---light-red':client.status===4
+              }" class="---select ---bg-color select-png bg-white">
+                <select class="---select__cur-value w-200"
+                        (change)="changeStatus(client)"
+                        [(ngModel)]="client.status">
                   <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status.val">
                     {{status.name}}
                   </option>
@@ -536,11 +544,13 @@
         </table>
       </div>
 
-      <div class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
+      <div
+        class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
         <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
       </div>
 
-      <div class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
+      <div
+        class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
         <div class="---pagination__total-count">
           Всего платежей — <span class="---font-sbold">8 521</span>
         </div>

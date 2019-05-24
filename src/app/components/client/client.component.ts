@@ -53,9 +53,7 @@ export class ClientComponent implements OnInit {
 
   // изменение статуса
   changeStatus(client) {
-    this.clientService.updateStatusClientUr({client_id: client.id, client_status: client.status}).then((data: IClientsUr[]) => {
-        this.clientsUr = data;
-      },
+    this.clientService.updateStatusClientUr({client_id: client.id, client_status: client.status}).then(() => {},
       (error) => {
         console.log('Ошибка при изменении статуса у юр. клиента: ', error);
       });
