@@ -106,110 +106,19 @@
 
     <div *ngIf="showActiveFields" id="active-field" class=" ---block--bg-white ---block-filter ---radius-5 ---form">
       <div class="---row">
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Статус заказа</label>
-          <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
-          </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3" *ngFor="let activeField of activeFields">
+          <label for="right_{{activeField.code}}" class="---checkbox">
+            <input type="checkbox"
+                   id="right_{{activeField.code}}"
+                   [checked]="activeField.flag">
+            {{activeField.name}}
+          </label>
         </div>
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Даты заказа</label>
-          <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Тип изделия</label>
-          <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Менеджер</label>
-          <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Статус заказа</label>
-          <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Даты заказа</label>
-          <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Тип изделия</label>
-          <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Менеджер</label>
-          <div class="---select">
-            <select class="---select__cur-value">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
-          </div>
-        </div>
+
       </div>
 
       <div class="---btns ---d-flex">
-        <a href="#" class="---btn ---btn--fill-acent">Применить фильтры</a>
-        <a href="#" class="---btn ---btn--border-bg">
-          Сбросить фильры
-          <i class="ifont ---icon-close"></i>
-        </a>
+        <div (click)="changeFields()"  class="---btn ---btn--fill-acent">Применить фильтры</div>
       </div>
     </div>
 
@@ -218,21 +127,10 @@
       <div class="---t-wrapper">
         <table>
           <tr>
-            <th><label class="---checkbox"></label></th>
-            <th>Наименование организации</th>
-            <th>ФИО</th>
-            <th>номер телефона</th>
-            <th>Статус</th>
-            <th>Добавлен</th>
-            <th>Последний конт.</th>
-            <th>Источник</th>
-            <th>Прокатов</th>
-            <th>Доход</th>
-            <th>Скидка</th>
+            <th *ngFor="let activeField of activeFields">{{activeField.name}}</th>
           </tr>
 
           <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }">
-            <td><label class="---checkbox"></label></td>
             <td>{{client.org}}</td>
             <td>{{client.fio}}</td>
             <td>{{client.phone | telephoneNumber}}</td>

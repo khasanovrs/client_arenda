@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientService} from './client.service';
 import {DopParamsService} from '../../services/dopParams.service';
+import {map, filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-client',
@@ -28,6 +29,8 @@ export class ClientComponent implements OnInit {
     dohod_start: '',
     dohod_end: '',
   };
+  // список активных полей
+  activeFields: InterFaceActiveFields[] = [];
 
   constructor(private clientService: ClientService,
               private dopParamsService: DopParamsService) {
@@ -43,6 +46,16 @@ export class ClientComponent implements OnInit {
 
     this.dopParamsService.getSource().then((data: InterFaceDopParams[]) => {
         this.sourceList = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении источников: ', error);
+      });
+
+
+    this.clientService.getActiveFields().then((data: InterFaceActiveFields[]) => {
+        this.activeFields = data;
+
+        // const arr = data.filter(item => item.flag === 1);
       },
       (error) => {
         console.log('Ошибка при получении источников: ', error);
@@ -94,6 +107,15 @@ export class ClientComponent implements OnInit {
   changeTypeClients(data) {
     this.filters.type = data;
     this.getClients();
+  }
+
+  // изменение списка активных полей
+  changeFields() {
+    this.clientService.changeFields(this.showActiveFields).then(() => {
+      },
+      () => {
+        console.log('Ошибка при изменение списка отображаемых полей');
+      });
   }
 
   // очистка фильтра
