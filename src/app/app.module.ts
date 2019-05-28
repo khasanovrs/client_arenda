@@ -25,6 +25,8 @@ import {UsersService} from './components/users/users.service';
 import {SaleComponent} from './components/sale/sale.component';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
 import {SettingsComponent} from './components/settings/settings.component';
+import {ClientCreateComponent} from './components/client_create/clientCreate.component';
+import {ClientCreateService} from './components/client_create/clientCreate.service';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -40,7 +42,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     ClientComponent,
     UsersComponent,
     SaleComponent,
-    SettingsComponent
+    SettingsComponent,
+    ClientCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     SessionStorageService,
     ClientService,
     DopParamsService,
-    UsersService
+    UsersService,
+    ClientCreateService
   ],
   bootstrap: [AppComponent]
 })

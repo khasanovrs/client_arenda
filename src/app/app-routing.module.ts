@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './components/main/main.component';
 import {ClientComponent} from './components/client/client.component';
 import {SettingsComponent} from './components/settings/settings.component';
+import {ClientCreateComponent} from './components/client_create/clientCreate.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,9 @@ const routes: Routes = [
   }, {
     path: 'clients',
     component: ClientComponent
+  }, {
+    path: 'client-create',
+    component: ClientCreateComponent
   }, {
     path: 'settings',
     component: SettingsComponent

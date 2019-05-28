@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientService} from './client.service';
 import {DopParamsService} from '../../services/dopParams.service';
-import {map, filter} from 'rxjs/operators';
-import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-client',

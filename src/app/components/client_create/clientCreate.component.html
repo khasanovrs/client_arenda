@@ -1,0 +1,125 @@
+<div class="---page-client-in ---row">
+
+  <div class="---col-12 ---col-lg-6 ---form">
+
+    <div class="---data-block">
+      <div class="h2 ---font-sbold">Данные о аренде</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Скидка</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="newClient.sale">
+              <option value="">Электроинструменты 1</option>
+              <option value="">Электроинструменты 2</option>
+              <option value="">Электроинструменты 3</option>
+              <option value="">Электроинструменты 4</option>
+              <option value="">Электроинструменты 5</option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Город аренды</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="newClient.branch">
+              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch">
+                {{branch.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Статус</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="newClient.status">
+              <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status">
+                {{status.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="---data-block">
+      <div class="h2 ---font-sbold">Данные клиента</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Название компании</label>
+          <input class="---input" [(ngModel)]="newClient.name">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Инн</label>
+          <input class="---input" [(ngModel)]="newClient.inn">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Род деятельности</label>
+          <input class="---input" [(ngModel)]="newClient.occupation">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Адрес регистрации</label>
+          <input class="---input" [(ngModel)]="newClient.address">
+        </div>
+
+        <div class="---col-12 ---col-sm-6">
+          <div class="---row ---_sm">
+
+            <div class="---field col ---col-12 ---col-sm-6">
+              <label>ОГРН</label>
+              <input class="---input" [(ngModel)]="newClient.ogrn">
+            </div>
+            <div class="---field col ---col-12 ---col-sm-6">
+              <label>БИК</label>
+              <input class="---input" [(ngModel)]="newClient.bic">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="---col-12 ---col-sm-6">
+          <div class="---row ---_sm">
+
+            <div class="---field col ---col-12 ---col-sm-6">
+              <label>КПП</label>
+              <input class="---input" [(ngModel)]="newClient.kpp">
+            </div>
+            <div class="---field col ---col-12 ---col-sm-6">
+              <label>Р/С</label>
+              <input class="---input" [(ngModel)]="newClient.schet">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="---data-block">
+      <div class="h2 ---font-sbold">Контакты</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Руководитель компании</label>
+          <input class="---input" [(ngModel)]="newClient.name_chief">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Номер телефона руководителя</label>
+          <input type="tel" class="---input" [(ngModel)]="newClient.phone_chief">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Номер телефона ответственного</label>
+          <input class="---input" [(ngModel)]="newClient.phone_2">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Номер телефона ответственного</label>
+          <input type="tel" class="---input" [(ngModel)]="newClient.phone_2">
+        </div>
+      </div>
+    </div>
+
+    <div class="---btns-wrapper">
+      <a href="#" class="---btn ---btn--fill-acent">Сохранить</a>
+    </div>
+
+  </div>
+</div>
