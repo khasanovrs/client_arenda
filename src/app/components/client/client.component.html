@@ -106,10 +106,11 @@
 
     <div *ngIf="showActiveFields" id="active-field" class=" ---block--bg-white ---block-filter ---radius-5 ---form">
       <div class="---row">
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3" *ngFor="let activeField of activeFields">
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3" *ngFor="let activeField of activeFields; let i = index">
           <label for="right_{{activeField.code}}" class="---checkbox">
             <input type="checkbox"
                    id="right_{{activeField.code}}"
+                   (change)="changeCheckbox(i)"
                    [checked]="activeField.flag">
             {{activeField.name}}
           </label>
@@ -118,7 +119,7 @@
       </div>
 
       <div class="---btns ---d-flex">
-        <div (click)="changeFields()"  class="---btn ---btn--fill-acent">Применить фильтры</div>
+        <div (click)="changeFields()" class="---btn ---btn--fill-acent">Применить</div>
       </div>
     </div>
 
@@ -127,14 +128,16 @@
       <div class="---t-wrapper">
         <table>
           <tr>
-            <th *ngFor="let activeField of activeFields">{{activeField.name}}</th>
+            <ng-container *ngFor="let activeField of activeFields">
+              <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
+            </ng-container>
           </tr>
 
           <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }">
-            <td>{{client.org}}</td>
-            <td>{{client.fio}}</td>
-            <td>{{client.phone | telephoneNumber}}</td>
-            <td>
+            <td *ngIf="activeFieldsTables['org']===1">{{client.org}}</td>
+            <td *ngIf="activeFieldsTables['fio']===1">{{client.fio}}</td>
+            <td *ngIf="activeFieldsTables['phone']===1">{{client.phone | telephoneNumber}}</td>
+            <td *ngIf="activeFieldsTables['status']===1">
               <div [ngClass]="{
               '---purple':client.status===1,
               '---dark':client.status===2,
@@ -150,14 +153,14 @@
                 </select>
               </div>
             </td>
-            <td>{{client.date_create}}</td>
-            <td>{{client.last_contact}}</td>
-            <td>{{client.source.name}}</td>
-            <td>{{client.rentals}}</td>
-            <td>
+            <td *ngIf="activeFieldsTables['date_create']===1">{{client.date_create}}</td>
+            <td *ngIf="activeFieldsTables['last_contact']===1">{{client.last_contact}}</td>
+            <td *ngIf="activeFieldsTables['source']===1">{{client.source.name}}</td>
+            <td *ngIf="activeFieldsTables['rentals']===1">{{client.rentals}}</td>
+            <td *ngIf="activeFieldsTables['dohod']===1">
               <div class="---font-sbold">{{client.dohod| digitsNumbers}} ₽</div>
             </td>
-            <td>
+            <td *ngIf="activeFieldsTables['sale']===1">
               <div class="---font-sbold">{{client.sale}} %</div>
             </td>
           </tr>

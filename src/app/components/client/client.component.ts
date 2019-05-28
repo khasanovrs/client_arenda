@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ClientService} from './client.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {map, filter} from 'rxjs/operators';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-client',
@@ -31,6 +32,8 @@ export class ClientComponent implements OnInit {
   };
   // список активных полей
   activeFields: InterFaceActiveFields[] = [];
+  // список активных полей
+  activeFieldsTables = {};
 
   constructor(private clientService: ClientService,
               private dopParamsService: DopParamsService) {
@@ -55,7 +58,7 @@ export class ClientComponent implements OnInit {
     this.clientService.getActiveFields().then((data: InterFaceActiveFields[]) => {
         this.activeFields = data;
 
-        // const arr = data.filter(item => item.flag === 1);
+        this.changeShowFields();
       },
       (error) => {
         console.log('Ошибка при получении источников: ', error);
@@ -109,13 +112,25 @@ export class ClientComponent implements OnInit {
     this.getClients();
   }
 
+  // изменение прав у нового пользователя
+  changeCheckbox(i) {
+    this.activeFields[i].flag = this.activeFields[i].flag === 0 ? 1 : 0;
+    this.changeShowFields();
+  }
+
   // изменение списка активных полей
   changeFields() {
-    this.clientService.changeFields(this.showActiveFields).then(() => {
-      },
+    this.clientService.changeFields({data: this.activeFields}).then(() => {},
       () => {
         console.log('Ошибка при изменение списка отображаемых полей');
       });
+  }
+
+  // изменение отображений записекй у полей
+  changeShowFields() {
+    for (const value of this.activeFields) {
+      this.activeFieldsTables[value.code] = value.flag;
+    }
   }
 
   // очистка фильтра
