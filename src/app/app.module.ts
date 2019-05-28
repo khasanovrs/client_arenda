@@ -24,6 +24,7 @@ import {UsersComponent} from './components/users/users.component';
 import {UsersService} from './components/users/users.service';
 import {SaleComponent} from './components/sale/sale.component';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
+import {SettingsComponent} from './components/settings/settings.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -38,7 +39,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     HeaderComponent,
     ClientComponent,
     UsersComponent,
-    SaleComponent
+    SaleComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

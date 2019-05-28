@@ -8,8 +8,6 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
   templateUrl: './users.component.html',
 })
 export class UsersComponent implements OnInit {
-  // текущий таб
-  currentTab = 'users';
   // список филиалов
   branches: InterFaceDopParams[] = [];
   // список ролей
@@ -158,10 +156,5 @@ export class UsersComponent implements OnInit {
       (error) => {
         console.log('Ошибка при добавлении нового пользователей: ', error);
       });
-  }
-
-  // смена экрана
-  changeTab(data) {
-    this.currentTab = data;
   }
 }
