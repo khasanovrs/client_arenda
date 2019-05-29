@@ -41,7 +41,7 @@
           <label>Филиал</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="filters.branch">
-              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch">
+              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
                 {{branch.name}}
               </option>
             </select>
@@ -51,7 +51,7 @@
           <label>Источник</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="filters.source">
-              <option class="---select__list-item" *ngFor="let source of sourceList" [ngValue]="source">
+              <option class="---select__list-item" *ngFor="let source of sourceList" [ngValue]="source.val">
                 {{source.name}}
               </option>
             </select>
@@ -61,7 +61,7 @@
           <label>Статус</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="filters.status">
-              <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status">
+              <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status.val">
                 {{status.name}}
               </option>
             </select>

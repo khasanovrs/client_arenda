@@ -1,9 +1,9 @@
 interface InterFaceFilter {
   type: string;
   like: string;
-  source: { val: number; name: string };
-  status: { val: number; name: string };
-  branch: { val: number; name: string };
+  source: null;
+  status: null;
+  branch: null;
   date_start: string;
   date_end: string;
   rentals_start: string;
