@@ -31,7 +31,7 @@
         </div>
       </div>
 
-      <a routerLink='/client-create'  class="---btn ---btn--fill-acent">Добавить клиента</a>
+      <a routerLink='/client-create' class="---btn ---btn--fill-acent">Добавить клиента</a>
 
     </div>
 
@@ -143,7 +143,8 @@
             </ng-container>
           </tr>
 
-          <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }">
+          <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer"
+              (click)="clientDetails(client.id,client.type)">
             <td *ngIf="activeFieldsTables['org']===1">{{client.org}}</td>
             <td *ngIf="activeFieldsTables['fio']===1">{{client.fio}}</td>
             <td *ngIf="activeFieldsTables['phone']===1">{{client.phone | telephoneNumber}}</td>

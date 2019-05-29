@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientService} from './client.service';
 import {DopParamsService} from '../../services/dopParams.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-client',
@@ -36,7 +37,8 @@ export class ClientComponent implements OnInit {
   activeFieldsTables = {};
 
   constructor(private clientService: ClientService,
-              private dopParamsService: DopParamsService) {
+              private dopParamsService: DopParamsService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -159,5 +161,9 @@ export class ClientComponent implements OnInit {
     };
 
     this.getClients();
+  }
+
+  clientDetails(id, type) {
+    this.router.navigate(['/clients/' + type + '/' + id]);
   }
 }
