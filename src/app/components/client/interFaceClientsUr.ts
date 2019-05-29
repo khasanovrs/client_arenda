@@ -5,7 +5,7 @@ interface IClientsUr {
   name: string;
   phone: string;
   rentals: number;
-  sale: number;
+  sale: { code: string, name: string };
   source: { name: string, id: number };
   status: number;
 }

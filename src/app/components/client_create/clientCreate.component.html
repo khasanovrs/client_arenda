@@ -10,11 +10,9 @@
           <label>Скидка</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="newClient.sale">
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
+              <option class="---select__list-item" *ngFor="let discount of discounts" [ngValue]="discount">
+                {{discount.name}}
+              </option>
             </select>
           </div>
         </div>
@@ -34,6 +32,16 @@
             <select class="---select__cur-value" [(ngModel)]="newClient.status">
               <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status">
                 {{status.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Источник</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="newClient.source">
+              <option class="---select__list-item" *ngFor="let source of sources" [ngValue]="source">
+                {{source.name}}
               </option>
             </select>
           </div>
@@ -118,7 +126,7 @@
     </div>
 
     <div class="---btns-wrapper">
-      <a href="#" class="---btn ---btn--fill-acent">Сохранить</a>
+      <div (click)="addClient()" class="---btn ---btn--fill-acent">Сохранить</div>
     </div>
 
   </div>

@@ -6,7 +6,9 @@ export class DopParamsService {
   source: InterFaceDopParams [] = [];
   status: InterFaceDopParams [] = [];
   branch: InterFaceDopParams [] = [];
+  rights: InterFaceDopParams [] = [];
   roles: InterFaceDopParams [] = [];
+  discount: InterFaceDopParams [] = [];
 
   constructor(private httpService: HttpService) {
   }
@@ -73,8 +75,8 @@ export class DopParamsService {
       if (this.roles.length === 0) {
         this.httpService.prepareQuery('api/get-roles', '')
           .then((result: InterFaceDopParams []) => {
-              this.branch = result;
-              resolve(this.branch);
+              this.roles = result;
+              resolve(this.roles);
             },
             (error) => {
               console.log('Ошибка при получении ролей', error);
@@ -82,17 +84,17 @@ export class DopParamsService {
             }
           );
       } else {
-        resolve(this.branch);
+        resolve(this.roles);
       }
     });
   }
 
   public getRights() {
     return new Promise((resolve, reject) => {
-      if (this.roles.length === 0) {
+      if (this.rights.length === 0) {
         this.httpService.prepareQuery('api/get-rights', '')
           .then((result: InterFaceDopParamsCheckBox []) => {
-              this.branch = result;
+              this.rights = result;
               resolve(this.branch);
             },
             (error) => {
@@ -101,7 +103,26 @@ export class DopParamsService {
             }
           );
       } else {
-        resolve(this.branch);
+        resolve(this.rights);
+      }
+    });
+  }
+
+  public getDiscount() {
+    return new Promise((resolve, reject) => {
+      if (this.discount.length === 0) {
+        this.httpService.prepareQuery('api/get-discount', '')
+          .then((result: InterFaceDopParams []) => {
+              this.branch = result;
+              resolve(this.branch);
+            },
+            (error) => {
+              console.log('Ошибка при получении списка скидок', error);
+              reject();
+            }
+          );
+      } else {
+        resolve(this.discount);
       }
     });
   }

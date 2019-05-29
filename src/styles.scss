@@ -699,7 +699,7 @@ app-menu {
   cursor: pointer;
   z-index: 1;
   position: relative;
-  background: #fff;
+  background: #fff url("assets/imgs/icons/arrow-down.svg") no-repeat 95% 50%;
   border-radius: 5px;
 }
 
@@ -4451,41 +4451,10 @@ select.---select__cur-value option {
 select.---select__cur-value option:hover, select.---select__cur-value option:active {
   outline: none;
   text-decoration: underline;
-  background-color: white;
 }
 
-.select-png {
-  position: relative;
-  width: min-content;
-}
+select.---select__cur-value {
 
-.select-png::before {
-  content: '\004a';
-  font-family: 'crm-stroyka';
-  font-style: normal;
-  font-weight: normal;
-  font-smoothing: antialiased;
-  font-size: 6px;
-  right: 10px;
-  width: 18px;
-  height: 18px;
-  border-radius: 2.5px;
-  background: #fed34f;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  line-height: 1;
-  position: absolute;
-  z-index: 9;
-  top: 0;
-  bottom: 0;
-  margin: auto;
 }
 
 .bg-white::before {
