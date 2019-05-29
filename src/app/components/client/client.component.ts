@@ -11,6 +11,7 @@ export class ClientComponent implements OnInit {
   p = 1;
   statusList: InterFaceDopParams[] = [];
   sourceList: InterFaceDopParams[] = [];
+  branches: InterFaceDopParams[] = [];
   // отображение фильтра
   showFilters = false;
   // отображение фильтра
@@ -21,6 +22,7 @@ export class ClientComponent implements OnInit {
     like: '',
     source: {val: null, name: ''},
     status: {val: null, name: ''},
+    branch: {val: null, name: ''},
     date_start: '',
     date_end: '',
     rentals_start: '',
@@ -62,6 +64,13 @@ export class ClientComponent implements OnInit {
         console.log('Ошибка при получении источников: ', error);
       });
 
+    this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
+        this.branches = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении филиалов: ', error);
+      });
+
     this.getClients();
   }
 
@@ -71,6 +80,7 @@ export class ClientComponent implements OnInit {
       like: this.filters.like,
       source: this.filters.source.val,
       status: this.filters.status.val,
+      branch: this.filters.branch.val,
       date_start: this.filters.date_start,
       date_end: this.filters.date_end,
       rentals_start: this.filters.rentals_start,
@@ -118,7 +128,8 @@ export class ClientComponent implements OnInit {
 
   // изменение списка активных полей
   changeFields() {
-    this.clientService.changeFields({data: this.activeFields}).then(() => {},
+    this.clientService.changeFields({data: this.activeFields}).then(() => {
+      },
       () => {
         console.log('Ошибка при изменение списка отображаемых полей');
       });
@@ -138,6 +149,7 @@ export class ClientComponent implements OnInit {
       like: '',
       source: {val: null, name: ''},
       status: {val: null, name: ''},
+      branch: {val: null, name: ''},
       date_start: '',
       date_end: '',
       rentals_start: '',
