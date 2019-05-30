@@ -15,4 +15,5 @@ interface InterFaceNewClient {
   phone_chief: string;
   phone: string;
   phone_2: string;
+  email: string;
 }

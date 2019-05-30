@@ -33,7 +33,8 @@ export class ClientCreateComponent implements OnInit {
     name_chief: '',
     phone_chief: '',
     phone: '',
-    phone_2: ''
+    phone_2: '',
+    email: ''
   };
 
   constructor(private clientCreateService: ClientCreateService,
@@ -107,6 +108,7 @@ export class ClientCreateComponent implements OnInit {
       kpp: this.newClient.kpp,
       schet: this.newClient.schet,
       name_chief: this.newClient.name_chief,
+      email: this.newClient.email,
       phone_chief: this.newClient.phone_chief.replace(/[\),\(,\-,+,\s]/g, ''),
       phone: this.newClient.phone.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_2: this.newClient.phone_2.replace(/[\),\(,\-,+,\s]/g, ''),

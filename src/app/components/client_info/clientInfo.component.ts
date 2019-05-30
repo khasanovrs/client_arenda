@@ -33,7 +33,8 @@ export class ClientInfoComponent implements OnInit {
     name_chief: '',
     phone_chief: '',
     phone: '',
-    phone_2: ''
+    phone_2: '',
+    email: ''
   };
 
   // идентификатор клиента
@@ -130,6 +131,7 @@ export class ClientInfoComponent implements OnInit {
       phone: this.client.phone.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_2: this.client.phone_2.replace(/[\),\(,\-,+,\s]/g, ''),
       clientId: this.clientId,
+      email: this.client.email,
       clientType: this.clientType
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Пользователь успешно изменен', type: 'success', body: ''};
