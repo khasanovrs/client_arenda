@@ -95,7 +95,7 @@ export class DopParamsService {
         this.httpService.prepareQuery('api/get-rights', '')
           .then((result: InterFaceDopParamsCheckBox []) => {
               this.rights = result;
-              resolve(this.branch);
+              resolve(this.rights);
             },
             (error) => {
               console.log('Ошибка при получении прав для пользователя', error);
@@ -113,8 +113,8 @@ export class DopParamsService {
       if (this.discount.length === 0) {
         this.httpService.prepareQuery('api/get-discount', '')
           .then((result: InterFaceDopParams []) => {
-              this.branch = result;
-              resolve(this.branch);
+              this.discount = result;
+              resolve(this.discount);
             },
             (error) => {
               console.log('Ошибка при получении списка скидок', error);

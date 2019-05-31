@@ -144,7 +144,7 @@
           </tr>
 
           <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer"
-              (click)="clientDetails(client.id,client.type)">
+              (click)="clientDetails(client.id)">
             <td *ngIf="activeFieldsTables['org']===1">{{client.org}}</td>
             <td *ngIf="activeFieldsTables['fio']===1">{{client.fio}}</td>
             <td *ngIf="activeFieldsTables['phone']===1">{{client.phone | telephoneNumber}}</td>

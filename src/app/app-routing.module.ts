@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'client-create',
     component: ClientCreateComponent
   }, {
-    path: 'clients/:type/:id',
+    path: 'clients/:id',
     component: ClientInfoComponent
   }, {
     path: 'settings',

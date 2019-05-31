@@ -99,7 +99,7 @@ export class ClientComponent implements OnInit {
 
   // изменение статуса
   changeStatus(client) {
-    this.clientService.updateStatusClientUr({client_type: client.type, client_id: client.id, client_status: client.status}).then(() => {
+    this.clientService.updateStatusClientUr({client_id: client.id, client_status: client.status}).then(() => {
       },
       (error) => {
         console.log('Ошибка при изменении статуса у юр. клиента: ', error);
@@ -163,7 +163,7 @@ export class ClientComponent implements OnInit {
     this.getClients();
   }
 
-  clientDetails(id, type) {
-    this.router.navigate(['/clients/' + type + '/' + id]);
+  clientDetails(id) {
+    this.router.navigate(['/clients/' + id]);
   }
 }

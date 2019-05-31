@@ -39,7 +39,6 @@ export class ClientInfoComponent implements OnInit {
 
   // идентификатор клиента
   clientId: null;
-  clientType: '';
 
   constructor(private clientInfoService: ClientInfoService,
               private dopParamsService: DopParamsService,
@@ -50,7 +49,6 @@ export class ClientInfoComponent implements OnInit {
     this.router.params.subscribe(
       (params: Params): void => {
         this.clientId = params.id;
-        this.clientType = params.type;
       }
     );
   }
@@ -84,7 +82,7 @@ export class ClientInfoComponent implements OnInit {
         console.log('Ошибка при получении источников: ', error);
       });
 
-    this.clientInfoService.getClientInfo({clientId: this.clientId, clientType: this.clientType}).then((data: InterFaceNewClient) => {
+    this.clientInfoService.getClientInfo({clientId: this.clientId}).then((data: InterFaceNewClient) => {
         this.client = data;
       },
       (error) => {
@@ -131,8 +129,7 @@ export class ClientInfoComponent implements OnInit {
       phone: this.client.phone.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_2: this.client.phone_2.replace(/[\),\(,\-,+,\s]/g, ''),
       clientId: this.clientId,
-      email: this.client.email,
-      clientType: this.clientType
+      email: this.client.email
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Пользователь успешно изменен', type: 'success', body: ''};
       },
