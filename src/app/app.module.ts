@@ -29,6 +29,8 @@ import {ClientCreateComponent} from './components/client_create/clientCreate.com
 import {ClientCreateService} from './components/client_create/clientCreate.service';
 import {ClientInfoService} from './components/client_info/clientInfo.service';
 import {ClientInfoComponent} from './components/client_info/clientInfo.component';
+import {StockComponent} from './components/stock/stock.component';
+import {StockService} from './components/stock/stock.service';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -46,7 +48,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     SaleComponent,
     SettingsComponent,
     ClientCreateComponent,
-    ClientInfoComponent
+    ClientInfoComponent,
+    StockComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     DopParamsService,
     UsersService,
     ClientCreateService,
-    ClientInfoService
+    ClientInfoService,
+    StockService
   ],
   bootstrap: [AppComponent]
 })

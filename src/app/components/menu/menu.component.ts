@@ -11,7 +11,7 @@ export class MenuComponent {
     this.menuList = [
       {link: '/', name: 'Рабочий стол', class: '---icon-menu-dashboard'},
       {link: '/rent.php', name: 'Прокат', class: '---icon-menu-rent'},
-      {link: '/base.php', name: 'Склад', class: '---icon-menu-base'},
+      {link: '/stock', name: 'Склад', class: '---icon-menu-base'},
       {link: '/clients', name: 'Клиенты', class: '---icon-menu-clients'},
       {link: '/reports.php', name: 'Отчеты', class: '---icon-menu-report'},
       {link: 'settings', name: 'Настройки', class: '---icon-menu-settings'},

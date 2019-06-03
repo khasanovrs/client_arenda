@@ -5,6 +5,7 @@ import {ClientComponent} from './components/client/client.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {ClientCreateComponent} from './components/client_create/clientCreate.component';
 import {ClientInfoComponent} from './components/client_info/clientInfo.component';
+import {StockComponent} from './components/stock/stock.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,9 @@ const routes: Routes = [
   }, {
     path: 'settings',
     component: SettingsComponent
+  }, {
+    path: 'stock',
+    component: StockComponent
   }
 ];
 

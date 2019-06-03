@@ -8,11 +8,13 @@ export class DopParamsService {
   branch: InterFaceDopParams [] = [];
   rights: InterFaceDopParams [] = [];
   roles: InterFaceDopParams [] = [];
+  stock: InterFaceStocks [] = [];
   discount: InterFaceDopParams [] = [];
 
   constructor(private httpService: HttpService) {
   }
 
+  // получение источников
   public getSource() {
     return new Promise((resolve, reject) => {
       if (this.source.length === 0) {
@@ -32,6 +34,7 @@ export class DopParamsService {
     });
   }
 
+  // получение статусов
   public getStatus() {
     return new Promise((resolve, reject) => {
       if (this.status.length === 0) {
@@ -51,6 +54,7 @@ export class DopParamsService {
     });
   }
 
+  // получение филиалов
   public getBranch() {
     return new Promise((resolve, reject) => {
       if (this.branch.length === 0) {
@@ -70,6 +74,27 @@ export class DopParamsService {
     });
   }
 
+  // получение списка складов
+  public getStock() {
+    return new Promise((resolve, reject) => {
+      if (this.stock.length === 0) {
+        this.httpService.prepareQuery('api/get-stock', '')
+          .then((result: InterFaceStocks[]) => {
+              this.stock = result;
+              resolve(this.stock);
+            },
+            (error) => {
+              console.log('Ошибка при получении списка складов', error);
+              reject();
+            }
+          );
+      } else {
+        resolve(this.stock);
+      }
+    });
+  }
+
+  // получение ролей
   public getRoles() {
     return new Promise((resolve, reject) => {
       if (this.roles.length === 0) {
@@ -89,6 +114,7 @@ export class DopParamsService {
     });
   }
 
+  // получение прав
   public getRights() {
     return new Promise((resolve, reject) => {
       if (this.rights.length === 0) {
@@ -108,6 +134,7 @@ export class DopParamsService {
     });
   }
 
+  // получение скидок
   public getDiscount() {
     return new Promise((resolve, reject) => {
       if (this.discount.length === 0) {
