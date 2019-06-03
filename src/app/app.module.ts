@@ -31,6 +31,7 @@ import {ClientInfoService} from './components/client_info/clientInfo.service';
 import {ClientInfoComponent} from './components/client_info/clientInfo.component';
 import {StockComponent} from './components/stock/stock.component';
 import {StockService} from './components/stock/stock.service';
+import {EquipmentsService} from './components/equipments/equipments.service';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -71,7 +72,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     UsersService,
     ClientCreateService,
     ClientInfoService,
-    StockService
+    StockService,
+    EquipmentsService
   ],
   bootstrap: [AppComponent]
 })
