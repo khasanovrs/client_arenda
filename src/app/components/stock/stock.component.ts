@@ -12,10 +12,41 @@ export class StockComponent implements OnInit {
   stocks: InterFaceStocks[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsCategoryList: InterFaceDopParams[] = [];
+  equipmentsAvailabilityList: InterFaceDopParams[] = [];
   equipmentsFieldsList: InterFaceActiveFields[] = [];
 
+  // отображение фильтра
+  showFilters = false;
+  // отображение фильтра
+  showActiveFields = false;
+
   equipmentsList: any = [];
-  filter: any = [];
+  filters: InterFaceFilterEquipments = {
+    type: 'all',
+    branch: null,
+    stock: null,
+    equipmentsType: null,
+    equipmentsCategory: null,
+    equipmentsAvailability: null,
+    count_start: null,
+    count_end: null,
+    selling_price_start: '',
+    selling_price_end: '',
+    price_per_day_start: '',
+    price_per_day_end: '',
+    rentals_start: null,
+    rentals_end: null,
+    repairs_start: null,
+    repairs_end: null,
+    repairs_sum_start: '',
+    repairs_sum_end: '',
+    revenue_start: '',
+    revenue_end: '',
+    profit_start: '',
+    profit_end: '',
+    degree_wear_start: null,
+    degree_wear_end: null,
+  };
 
   constructor(private stockService: StockService,
               private dopParamsService: DopParamsService,
@@ -35,7 +66,7 @@ export class StockComponent implements OnInit {
         this.stocks = data;
       },
       (error) => {
-        console.log('Ошибка при получении филиалов: ', error);
+        console.log('Ошибка при получении складов: ', error);
       });
 
     this.equipmentsService.getEquipmentsType().then((data: InterFaceDopParams[]) => {
@@ -49,14 +80,14 @@ export class StockComponent implements OnInit {
         this.equipmentsCategoryList = data;
       },
       (error) => {
-        console.log('Ошибка при получении списка типов оборудования: ', error);
+        console.log('Ошибка при получении списка категорий оборудования: ', error);
       });
 
-    this.equipmentsService.getEquipments().then((data: InterFaceDopParams[]) => {
-        this.equipmentsList = data;
+    this.equipmentsService.getEquipmentsAvailability().then((data: InterFaceDopParams[]) => {
+        this.equipmentsAvailabilityList = data;
       },
       (error) => {
-        console.log('Ошибка при получении списка оборудования: ', error);
+        console.log('Ошибка при получении списка категорий оборудования: ', error);
       });
 
     this.equipmentsService.getEquipmentsFields().then((data: InterFaceActiveFields[]) => {
@@ -65,6 +96,74 @@ export class StockComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении списка полей оборудования: ', error);
       });
+  }
 
+  // список оборудования
+  changeTypeEquipments(data) {
+    this.filters.type = data;
+  }
+
+  // отображение фильтра
+  changeShowFilters() {
+    this.showFilters = !this.showFilters;
+  }
+
+  // отображение фильтра
+  changeActiveFields() {
+    this.showActiveFields = !this.showActiveFields;
+  }
+
+  // получение списка оборудования
+  getEquipments() {
+    this.equipmentsService.getEquipments({
+      type: 'all',
+      branch: null,
+      stock: null,
+      equipmentsType: null,
+      equipmentsCategory: null,
+      equipmentsAvailability: null,
+      count_start: null,
+      count_end: null,
+      selling_price_start: '',
+      selling_price_end: '',
+      price_per_day_start: '',
+      price_per_day_end: '',
+      rentals_start: null,
+      rentals_end: null,
+      repairs_start: null,
+      repairs_end: null,
+      repairs_sum_start: '',
+      repairs_sum_end: '',
+      revenue_start: '',
+      revenue_end: '',
+      profit_start: '',
+      profit_end: '',
+      degree_wear_start: null,
+      degree_wear_end: this.filters.degree_wear_end,
+    }).then((data: IClientsUr[]) => {
+        this.equipmentsList = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка юр. клиентов: ', error);
+      });
+  }
+
+  // очистка фильтра
+  clearFilter() {
+    this.filters = {
+      type: 'all',
+      like: '',
+      source: null,
+      status: null,
+      branch: null,
+      date_start: '',
+      date_end: '',
+      rentals_start: '',
+      rentals_end: '',
+      dohod_start: '',
+      dohod_end: '',
+    };
+
+    this.getEquipments();
   }
 }

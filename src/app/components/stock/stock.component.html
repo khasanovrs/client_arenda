@@ -1,1 +1,214 @@
-Склады
+<div class="---page-clients">
+
+  <div class="---tabs ---tabs--finance">
+    <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
+      <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
+        <div class="---tabs__switcher ---is-active" (click)="changeTypeEquipments('all')">Все позиции</div>
+        <div class="---tabs__switcher" (click)="changeTypeEquipments('rent')">В аренде</div>
+        <div class="---tabs__switcher" (click)="changeTypeEquipments('repairs')">В ремонте</div>
+      </div>
+    </div>
+
+    <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
+
+      <div class="---d-flex ---form ---align-items-start">
+        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+             (click)="changeShowFilters()">
+          Фильтры
+          <i class="ifont ---icon-menu-finance ---d-none ---sm-d-flex"></i>
+        </div>
+
+        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+             (click)="changeActiveFields()">
+          Активные поля
+          <i class="ifont ---icon-list ---d-none ---sm-d-flex"></i>
+        </div>
+
+        <div class="---search ---field ---pos-rel">
+          <input class="---input" placeholder="Поиск по складу" [(ngModel)]="filters.like"
+                 (keyup)="getEquipments()">
+          <button class="---y-pos-abs ifont ---icon-loop"></button>
+        </div>
+      </div>
+
+      <a routerLink='/client-create' class="---btn ---btn--fill-acent">Добавить товар</a>
+
+    </div>
+
+    <div *ngIf="showFilters" class="---block--bg-white ---block-filter ---radius-5 ---form">
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Филиал</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="filters.branch">
+              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
+                {{branch.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Склад</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="filters.stock">
+              <option class="---select__list-item" *ngFor="let stock of stocks" [ngValue]="stock.val">
+                {{stock.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Доступность</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="filters.equipmentsAvailability">
+              <option class="---select__list-item" *ngFor="let equipmentsAvailability of equipmentsAvailabilityList" [ngValue]="equipmentsAvailability.val">
+                {{equipmentsAvailability.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Тип оборудования</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="filters.equipmentsType">
+              <option class="---select__list-item" *ngFor="let equipmentsType of equipmentsTypeList" [ngValue]="equipmentsType.val">
+                {{equipmentsType.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Категория</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="filters.equipmentsCategory">
+              <option class="---select__list-item" *ngFor="let equipmentsCategory of equipmentsCategoryList" [ngValue]="equipmentsCategory.val">
+                {{equipmentsCategory.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Количество от</label>
+          <div class="---select">
+            <input type="number" [(ngModel)]="filters.count_start">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Количество до</label>
+          <div class="---select">
+            <input type="number" [(ngModel)]="filters.count_end">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Цена продажи от</label>
+          <div class="---select">
+            <input type="text" mask="separator" [(ngModel)]="filters.selling_price_start">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Цена продажи до</label>
+          <div class="---select">
+            <input type="text" mask="separator" [(ngModel)]="filters.selling_price_end">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Цена за сутки от</label>
+          <div class="---select">
+            <input type="text" mask="separator" [(ngModel)]="filters.price_per_day_start">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Цена за сутки до</label>
+          <div class="---select">
+            <input type="text" mask="separator" [(ngModel)]="filters.price_per_day_end">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Количество прокатов от</label>
+          <div class="---select">
+            <input type="number" [(ngModel)]="filters.rentals_start">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Количество прокатов до</label>
+          <div class="---select">
+            <input type="number" [(ngModel)]="filters.rentals_end">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Количество ремонтов от</label>
+          <div class="---select">
+            <input type="number" [(ngModel)]="filters.repairs_start">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Количество ремонтов до</label>
+          <div class="---select">
+            <input type="number" [(ngModel)]="filters.repairs_end">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Сумма ремонтов от</label>
+          <div class="---select">
+            <input type="text" mask="separator" [(ngModel)]="filters.repairs_sum_start">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Сумма ремонтов до</label>
+          <div class="---select">
+            <input type="text" mask="separator" [(ngModel)]="filters.repairs_sum_end">
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Выручка от</label>
+          <div class="---select">
+            <input type="text" mask="separator" [(ngModel)]="filters.revenue_start">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Выручка до</label>
+          <div class="---select">
+            <input type="text" mask="separator" [(ngModel)]="filters.revenue_end">
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Прибыль от</label>
+          <div class="---select">
+            <input type="text" mask="separator" [(ngModel)]="filters.profit_start">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Прибыль до</label>
+          <div class="---select">
+            <input type="text" mask="separator" [(ngModel)]="filters.profit_end">
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Степень износа от</label>
+          <div class="---select">
+            <input type="number" [(ngModel)]="filters.degree_wear_start">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Степень износа до</label>
+          <div class="---select">
+            <input type="number" [(ngModel)]="filters.degree_wear_end">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="---btns ---d-flex">
+        <div (click)="getEquipments()" class="---btn ---btn--fill-acent">Применить фильтры</div>
+        <div (click)="clearFilter()" class="---btn ---btn--border-bg">
+          Сбросить фильры
+          <i class="ifont ---icon-close"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
