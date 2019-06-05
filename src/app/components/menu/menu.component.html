@@ -1,9 +1,9 @@
 <aside class="---left-main-menu">
-  <a href="/" class="---logo ---pos-rel ---d-block">
+  <div class="---logo ---pos-rel ---d-block">
     <img data-src="assets/imgs/logo.svg" alt="" class="---lazyload ---y-pos-abs">
     stroika
     <span class="---d-block">arenda</span>
-  </a>
+  </div>
 
   <nav>
     <a *ngFor="let menu of menuList" [routerLinkActiveOptions]="{ exact: true }" routerLink={{menu.link}} routerLinkActive='---is-active'>

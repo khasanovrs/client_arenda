@@ -6,11 +6,16 @@ import {SettingsComponent} from './components/settings/settings.component';
 import {ClientCreateComponent} from './components/client_create/clientCreate.component';
 import {ClientInfoComponent} from './components/client_info/clientInfo.component';
 import {StockComponent} from './components/stock/stock.component';
+import {AuthComponent} from './components/auth/auth.component';
 
 
 const routes: Routes = [
   {
     path: '',
+    component: AuthComponent
+  },
+  {
+    path: 'main',
     component: MainComponent
   }, {
     path: 'clients',

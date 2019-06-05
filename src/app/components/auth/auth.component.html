@@ -1,0 +1,33 @@
+<div class="---d-flex ---pos-rel">
+  <div id="---page-auth" class="---d-flex">
+    <div class="---text-wrap ---pos-rel ---d-flex ---justify-content-center ---flex-column">
+      <div class="---logo ---d-flex ---align-items-center ---font-ebold">
+        <img data-src="assets/imgs/logo.svg" alt="" class="---lazyload">
+        <span>
+                    stroika<br>
+                    <span class="---acent">arenda</span>
+                </span>
+      </div>
+
+      <div class="---title ---font-sbold">
+        Добро<br>
+        пожаловать!
+      </div>
+
+      <form action="#" class="---form">
+        <div class="---field">
+          <input type="tel" class="---input" placeholder="Ваш телефон" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="---field">
+          <input type="password" class="---input" placeholder="Пароль" [(ngModel)]="pass" [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <div (click)="auth()" class="---btn ---btn--fill-acent">Войти в систему</div>
+      </form>
+    </div>
+
+    <div class="---bg-img ---d-none ---xs-d-block">
+      <img data-src="assets/imgs/bg/auth.png" alt="" class="---lazyload ---img-cover">
+    </div>
+  </div>
+</div>
