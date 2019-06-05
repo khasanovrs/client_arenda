@@ -1,6 +1,6 @@
 <app-message-alert></app-message-alert>
 <app-menu *ngIf="checkAuth===true"></app-menu>
-<div id="---main-content" class="---d-block">
+<div [ngClass]="{'---main-content':checkAuth===true}" class="---d-block">
   <app-header *ngIf="checkAuth===true"></app-header>
   <div [ngClass]="{'---main-wrapper':checkAuth===true}">
     <router-outlet></router-outlet>

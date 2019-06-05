@@ -2216,15 +2216,15 @@ p {
 	Main Content
 *
 **/
-#---main-content {
+.---main-content {
   width: calc(100% - 220px);
 }
 
-#---main-content .---main-wrapper {
+.---main-content .---main-wrapper {
   padding: 50px 60px 0 60px;
 }
 
-#---main-content footer {
+.---main-content footer {
   color: #434d68;
   font-size: 0.72222222rem;
   padding: 20px 0;
@@ -2232,11 +2232,11 @@ p {
   margin-top: 40px;
 }
 
-#---main-content footer .copy {
+.---main-content footer .copy {
   margin-right: 25px;
 }
 
-#---main-content footer a {
+.---main-content footer a {
   text-decoration: underline;
   color: inherit;
 }
@@ -2829,7 +2829,7 @@ p {
 *
 **/
 @media (max-width: 1440px) {
-  #---main-content .---main-wrapper {
+  .---main-content .---main-wrapper {
     padding: 40px 30px 0;
   }
   .---tabs--finance .---tabs__switcher {
@@ -3025,10 +3025,10 @@ p {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
-  #---main-content {
+  .---main-content {
     width: 100%;
   }
-  #---main-content .---main-wrapper {
+  .---main-content .---main-wrapper {
     padding: 40px 15px 0;
   }
   .---page-add-question .---footer {
@@ -3071,7 +3071,7 @@ p {
 }
 
 @media (max-width: 575px) {
-  #---main-content footer {
+  .---main-content footer {
     margin-top: 30px;
     padding: 15px 0;
   }
@@ -4463,4 +4463,10 @@ select.---select__cur-value {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+app-client {
+  display: flex;
+  height: 100%;
+  position: fixed;
 }
