@@ -581,7 +581,7 @@ app-menu {
 }
 
 /* Checkbox */
-.---checkbox {
+/*.---checkbox {
   display: block;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -599,7 +599,7 @@ app-menu {
   -webkit-box-shadow: inset 0 0 0 1px #e7ebf3;
   box-shadow: inset 0 0 0 1px #e7ebf3;
   background: #fff;
-}
+}*/
 
 /*.---checkbox input {
   display: none;
@@ -630,10 +630,6 @@ app-menu {
   transform: translate(0, -50%);
 }*/
 
-.---checkbox:hover {
-  -webkit-box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);
-  box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);
-}
 
 .---checkbox:hover:before {
   border-color: #b1b6be;
@@ -1632,10 +1628,6 @@ p {
   color: #fff;
 }
 
-.---page-settings .---checkbox {
-  margin-top: 13px;
-}
-
 .---page-sale .---tabs__switchers-wrapper {
   padding-bottom: 25px;
 }
@@ -2216,15 +2208,15 @@ p {
 	Main Content
 *
 **/
-#---main-content {
+.---main-content {
   width: calc(100% - 220px);
 }
 
-#---main-content .---main-wrapper {
+.---main-content .---main-wrapper {
   padding: 50px 60px 0 60px;
 }
 
-#---main-content footer {
+.---main-content footer {
   color: #434d68;
   font-size: 0.72222222rem;
   padding: 20px 0;
@@ -2232,11 +2224,11 @@ p {
   margin-top: 40px;
 }
 
-#---main-content footer .copy {
+.---main-content footer .copy {
   margin-right: 25px;
 }
 
-#---main-content footer a {
+.---main-content footer a {
   text-decoration: underline;
   color: inherit;
 }
@@ -2829,7 +2821,7 @@ p {
 *
 **/
 @media (max-width: 1440px) {
-  #---main-content .---main-wrapper {
+  .---main-content .---main-wrapper {
     padding: 40px 30px 0;
   }
   .---tabs--finance .---tabs__switcher {
@@ -3025,10 +3017,10 @@ p {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
-  #---main-content {
+  .---main-content {
     width: 100%;
   }
-  #---main-content .---main-wrapper {
+  .---main-content .---main-wrapper {
     padding: 40px 15px 0;
   }
   .---page-add-question .---footer {
@@ -3071,7 +3063,7 @@ p {
 }
 
 @media (max-width: 575px) {
-  #---main-content footer {
+  .---main-content footer {
     margin-top: 30px;
     padding: 15px 0;
   }
@@ -4463,4 +4455,64 @@ select.---select__cur-value {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+app-client {
+  display: flex;
+  height: 100%;
+  position: fixed;
+}
+
+.---checkbox
+{
+  color: #000;
+}
+
+.checkbox-style {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+
+  label {
+    text-transform: inherit;
+    font-size: 0.72222222rem;
+    line-height: 1.4;
+    letter-spacing: 0.8px;
+  }
+
+  input {
+    margin-right: 15px;
+  }
+
+  label:before {
+    content: " ";
+    left: 10px;
+    width: 17px;
+    height: 17px;
+    display: flex;
+    border-radius: 2.5px;
+    border: 1px solid #d5dbe6;
+     position: absolute !important;
+     top: 50%;
+     -webkit-transform: translate(0, -50%);
+     transform: translate(0, -50%);
+    background: #fff;
+  }
+
+  input:checked + label:before {
+    font-family: 'crm-stroyka';
+    content: '\0056';
+    border-color: #fed34f;
+    background: #fed34f;
+
+  }
+  //!* disabled *!
+  input:disabled {
+    background: #eee;
+    color: #aaa;
+  }
+}
+
+.shadow-style {
+  box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);
 }

@@ -102,14 +102,12 @@
       <div class="---border ---border-mt0"></div>
 
       <div class="---row ---_sm">
-        <div class="---field col ---col-12 ---col-xs-6" *ngFor="let right of rights; let i = index">
-          <label for="right_{{right.val}}" class="---checkbox">
-            <input type="checkbox"
-                   id="right_{{right.val}}"
-                   (change)="changeCheckbox(i)"
-                   [checked]="right.checked">
-            {{right.name}}
-          </label>
+        <div class="col ---col-12 ---col-xs-6 checkbox-style" *ngFor="let right of rights; let i = index">
+          <input type="checkbox"
+                 id="right_{{right.val}}"
+                 (change)="changeCheckbox(i)"
+                 [checked]="right.checked">
+          <label for="right_{{right.val}}" class="---checkbox">{{right.name}}</label>
         </div>
       </div>
     </div>

@@ -14,9 +14,9 @@
         пожаловать!
       </div>
 
-      <form action="#" class="---form">
+      <form action="#" class="---form" (keydown.enter)="auth()">
         <div class="---field">
-          <input type="tel" class="---input" placeholder="Ваш телефон" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}">
+          <input type="text" mask="+0 (000) 000 00 00" class="---input" placeholder="Ваш телефон" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}">
         </div>
         <div class="---field">
           <input type="password" class="---input" placeholder="Пароль" [(ngModel)]="pass" [ngModelOptions]="{standalone: true}">
