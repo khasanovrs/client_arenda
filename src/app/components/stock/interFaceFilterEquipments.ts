@@ -1,10 +1,9 @@
 interface InterFaceFilterEquipments {
-  type: 'all';
-  branch: number;
+  like: string;
   stock: number;
   equipmentsType: number;
   equipmentsCategory: number;
-  equipmentsAvailability: number;
+  status: string;
   count_start: number;
   count_end: number;
   selling_price_start: string;

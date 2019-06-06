@@ -3,9 +3,9 @@
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
       <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
-        <div class="---tabs__switcher ---is-active" (click)="changeTypeEquipments('all')">Все позиции</div>
-        <div class="---tabs__switcher" (click)="changeTypeEquipments('rent')">В аренде</div>
-        <div class="---tabs__switcher" (click)="changeTypeEquipments('repairs')">В ремонте</div>
+        <div class="---tabs__switcher ---is-active" (click)="changeTypeEquipments('')">Все позиции</div>
+        <div class="---tabs__switcher" (click)="changeTypeEquipments('1')">В аренде</div>
+        <div class="---tabs__switcher" (click)="changeTypeEquipments('2')">В ремонте</div>
       </div>
     </div>
 
@@ -38,31 +38,11 @@
     <div *ngIf="showFilters" class="---block--bg-white ---block-filter ---radius-5 ---form">
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Филиал</label>
-          <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.branch">
-              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
-                {{branch.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Склад</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="filters.stock">
               <option class="---select__list-item" *ngFor="let stock of stocks" [ngValue]="stock.val">
                 {{stock.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Доступность</label>
-          <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.equipmentsAvailability">
-              <option class="---select__list-item" *ngFor="let equipmentsAvailability of equipmentsAvailabilityList" [ngValue]="equipmentsAvailability.val">
-                {{equipmentsAvailability.name}}
               </option>
             </select>
           </div>

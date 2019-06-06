@@ -51,11 +51,11 @@ export class EquipmentsService {
     });
   }
 
-  public getEquipmentsAvailability() {
+  public getEquipmentsStatus() {
     // получение списка доступных
     return new Promise((resolve, reject) => {
       if (this.equipmentsAvailabilityList.length === 0) {
-        this.httpService.prepareQuery('api/get-equipments-availability', '')
+        this.httpService.prepareQuery('api/get-equipments-status', '')
           .then((result: InterFaceStocks[]) => {
               this.equipmentsAvailabilityList = result;
               resolve(this.equipmentsAvailabilityList);
@@ -79,7 +79,7 @@ export class EquipmentsService {
             resolve(result);
           },
           (error) => {
-            console.log('Ошибка при получении списка категорий оборудования', error);
+            console.log('Ошибка при получении списка оборудований', error);
             reject();
           }
         );

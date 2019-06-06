@@ -8,11 +8,10 @@ import {EquipmentsService} from '../equipments/equipments.service';
   templateUrl: './stock.component.html',
 })
 export class StockComponent implements OnInit {
-  branches: InterFaceDopParams[] = [];
   stocks: InterFaceStocks[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsCategoryList: InterFaceDopParams[] = [];
-  equipmentsAvailabilityList: InterFaceDopParams[] = [];
+  equipmentsStatusList: InterFaceDopParams[] = [];
   equipmentsFieldsList: InterFaceActiveFields[] = [];
 
   // отображение фильтра
@@ -22,12 +21,11 @@ export class StockComponent implements OnInit {
 
   equipmentsList: any = [];
   filters: InterFaceFilterEquipments = {
-    type: 'all',
-    branch: null,
+    status: '',
+    like: '',
     stock: null,
     equipmentsType: null,
     equipmentsCategory: null,
-    equipmentsAvailability: null,
     count_start: null,
     count_end: null,
     selling_price_start: '',
@@ -54,14 +52,6 @@ export class StockComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
-        this.branches = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении филиалов: ', error);
-      });
-
-
     this.dopParamsService.getStock().then((data: InterFaceStocks[]) => {
         this.stocks = data;
       },
@@ -83,8 +73,8 @@ export class StockComponent implements OnInit {
         console.log('Ошибка при получении списка категорий оборудования: ', error);
       });
 
-    this.equipmentsService.getEquipmentsAvailability().then((data: InterFaceDopParams[]) => {
-        this.equipmentsAvailabilityList = data;
+    this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParams[]) => {
+        this.equipmentsStatusList = data;
       },
       (error) => {
         console.log('Ошибка при получении списка категорий оборудования: ', error);
@@ -96,11 +86,14 @@ export class StockComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении списка полей оборудования: ', error);
       });
+
+    this.getEquipments();
   }
 
   // список оборудования
   changeTypeEquipments(data) {
-    this.filters.type = data;
+    this.filters.status = data;
+    this.getEquipments();
   }
 
   // отображение фильтра
@@ -116,47 +109,45 @@ export class StockComponent implements OnInit {
   // получение списка оборудования
   getEquipments() {
     this.equipmentsService.getEquipments({
-      type: 'all',
-      branch: null,
-      stock: null,
-      equipmentsType: null,
-      equipmentsCategory: null,
-      equipmentsAvailability: null,
-      count_start: null,
-      count_end: null,
-      selling_price_start: '',
-      selling_price_end: '',
-      price_per_day_start: '',
-      price_per_day_end: '',
-      rentals_start: null,
-      rentals_end: null,
-      repairs_start: null,
-      repairs_end: null,
-      repairs_sum_start: '',
-      repairs_sum_end: '',
-      revenue_start: '',
-      revenue_end: '',
-      profit_start: '',
-      profit_end: '',
-      degree_wear_start: null,
+      like: this.filters.like,
+      stock: this.filters.stock,
+      equipmentsType: this.filters.equipmentsType,
+      equipmentsCategory: this.filters.equipmentsCategory,
+      status: this.filters.status,
+      count_start: this.filters.count_start,
+      count_end: this.filters.count_end,
+      selling_price_start: this.filters.selling_price_start,
+      selling_price_end: this.filters.selling_price_end,
+      price_per_day_start: this.filters.price_per_day_start,
+      price_per_day_end: this.filters.price_per_day_end,
+      rentals_start: this.filters.rentals_start,
+      rentals_end: this.filters.rentals_end,
+      repairs_start: this.filters.repairs_start,
+      repairs_end: this.filters.repairs_end,
+      repairs_sum_start: this.filters.repairs_sum_start,
+      repairs_sum_end: this.filters.repairs_sum_end,
+      revenue_start: this.filters.revenue_start,
+      revenue_end: this.filters.revenue_end,
+      profit_start: this.filters.profit_start,
+      profit_end: this.filters.profit_end,
+      degree_wear_start: this.filters.degree_wear_start,
       degree_wear_end: this.filters.degree_wear_end,
     }).then((data: IClientsUr[]) => {
         this.equipmentsList = data;
       },
       (error) => {
-        console.log('Ошибка при получении списка юр. клиентов: ', error);
+        console.log('Ошибка при получении списка оборудований: ', error);
       });
   }
 
   // очистка фильтра
   clearFilter() {
     this.filters = {
-      type: 'all',
-      branch: null,
+      like: '',
       stock: null,
       equipmentsType: null,
       equipmentsCategory: null,
-      equipmentsAvailability: null,
+      status: '',
       count_start: null,
       count_end: null,
       selling_price_start: '',
