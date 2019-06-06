@@ -86,7 +86,6 @@ export class EquipmentsService {
     });
   }
 
-
   public getEquipmentsFields() {
     // получение списка складов
     return new Promise((resolve, reject) => {
@@ -104,6 +103,36 @@ export class EquipmentsService {
       } else {
         resolve(this.equipmentsFieldsList);
       }
+    });
+  }
+
+  // изменение списка активных полей для таблицы
+  public changeFields(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/change-equipments-fields', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при изменение списка отображаемых полей', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // обновление статуса клиента
+  public updateStatus(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-equipments-update-status', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при изменении статуса у оборудования', error);
+            reject(error);
+          }
+        );
     });
   }
 }

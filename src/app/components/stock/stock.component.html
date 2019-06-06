@@ -190,5 +190,48 @@
       </div>
     </div>
 
+    <div *ngIf="showActiveFields" id="active-field" class=" ---block--bg-white ---block-filter ---radius-5 ---form">
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3" *ngFor="let activeField of activeFields; let i = index">
+          <label for="right_{{activeField.code}}" class="---checkbox">
+            <input type="checkbox"
+                   id="right_{{activeField.code}}"
+                   (change)="changeCheckbox(i)"
+                   [checked]="activeField.flag">
+            {{activeField.name}}
+          </label>
+        </div>
+
+      </div>
+
+      <div class="---btns ---d-flex">
+        <div (click)="changeFields()" class="---btn ---btn--fill-acent">Применить</div>
+      </div>
+    </div>
+
+    <div class="---t-wrapper">
+      <table>
+        <tr>
+          <ng-container *ngFor="let activeField of activeFields">
+            <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
+          </ng-container>
+        </tr>
+
+        <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer">
+          <td *ngIf="activeFieldsTables['name']===1">{{equipment.name}}</td>
+          <td *ngIf="activeFieldsTables['status']===1">
+            <div class="---select">
+              <select class="---select__cur-value" [(ngModel)]="equipment.status"
+                      (change)="changeStatus(equipment)">
+                <option class="---select__list-item" *ngFor="let equipmentsStatus of equipmentsStatusList" [ngValue]="equipmentsStatus.val">
+                  {{equipmentsStatus.name}}
+                </option>
+              </select>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
   </div>
 </div>

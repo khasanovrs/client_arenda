@@ -8,16 +8,22 @@ import {EquipmentsService} from '../equipments/equipments.service';
   templateUrl: './stock.component.html',
 })
 export class StockComponent implements OnInit {
+  p = 1;
   stocks: InterFaceStocks[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsCategoryList: InterFaceDopParams[] = [];
   equipmentsStatusList: InterFaceDopParams[] = [];
-  equipmentsFieldsList: InterFaceActiveFields[] = [];
 
   // отображение фильтра
   showFilters = false;
   // отображение фильтра
   showActiveFields = false;
+
+  // список активных полей
+  activeFields: InterFaceActiveFields[] = [];
+  // список активных полей
+  activeFieldsTables = {};
+
 
   equipmentsList: any = [];
   filters: InterFaceFilterEquipments = {
@@ -81,7 +87,9 @@ export class StockComponent implements OnInit {
       });
 
     this.equipmentsService.getEquipmentsFields().then((data: InterFaceActiveFields[]) => {
-        this.equipmentsFieldsList = data;
+        this.activeFields = data;
+
+        this.changeShowFields();
       },
       (error) => {
         console.log('Ошибка при получении списка полей оборудования: ', error);
@@ -101,9 +109,42 @@ export class StockComponent implements OnInit {
     this.showFilters = !this.showFilters;
   }
 
+  // изменение статуса
+  changeStatus(equipment) {
+    this.equipmentsService.updateStatus({equipment_id: equipment.id, equipment_status: equipment.status}).then(() => {
+      },
+      (error) => {
+        console.log('Ошибка при изменении статуса у оборудования: ', error);
+      });
+  }
+
   // отображение фильтра
   changeActiveFields() {
     this.showActiveFields = !this.showActiveFields;
+  }
+
+  // изменение прав у нового пользователя
+  changeCheckbox(i) {
+    this.activeFields[i].flag = this.activeFields[i].flag === 0 ? 1 : 0;
+    this.changeShowFields();
+  }
+
+  // изменение отображений записекй у полей
+  changeShowFields() {
+    for (const value of this.activeFields) {
+      this.activeFieldsTables[value.code] = value.flag;
+      console.log(1,this.activeFieldsTables);
+    }
+  }
+
+  // изменение списка активных полей
+  changeFields() {
+    this.equipmentsService.changeFields({data: this.activeFields}).then(() => {
+        this.showActiveFields = false;
+      },
+      () => {
+        console.log('Ошибка при изменение списка отображаемых полей');
+      });
   }
 
   // получение списка оборудования
