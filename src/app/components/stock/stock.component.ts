@@ -133,7 +133,6 @@ export class StockComponent implements OnInit {
   changeShowFields() {
     for (const value of this.activeFields) {
       this.activeFieldsTables[value.code] = value.flag;
-      console.log(1,this.activeFieldsTables);
     }
   }
 
