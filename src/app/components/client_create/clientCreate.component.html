@@ -10,7 +10,7 @@
           <label>Скидка</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="newClient.sale">
-              <option class="---select__list-item" *ngFor="let discount of discounts" [ngValue]="discount">
+              <option class="---select__list-item" *ngFor="let discount of discounts" [ngValue]="discount.val">
                 {{discount.name}}
               </option>
             </select>
@@ -20,7 +20,7 @@
           <label>Город аренды</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="newClient.branch">
-              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch">
+              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
                 {{branch.name}}
               </option>
             </select>
@@ -30,7 +30,7 @@
           <label>Статус</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="newClient.status">
-              <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status">
+              <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status.val">
                 {{status.name}}
               </option>
             </select>
@@ -40,7 +40,7 @@
           <label>Источник</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="newClient.source">
-              <option class="---select__list-item" *ngFor="let source of sources" [ngValue]="source">
+              <option class="---select__list-item" *ngFor="let source of sources" [ngValue]="source.val">
                 {{source.name}}
               </option>
             </select>

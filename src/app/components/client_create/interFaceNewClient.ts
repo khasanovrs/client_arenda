@@ -1,8 +1,8 @@
 interface InterFaceNewClient {
-  sale: { val: number; name: string };
-  branch: { val: number; name: string };
-  status: { val: number; name: string };
-  source: { val: number; name: string };
+  sale: null;
+  branch: null;
+  status: null;
+  source: null;
   name: string;
   inn: number;
   occupation: string;

@@ -18,10 +18,10 @@ export class ClientCreateComponent implements OnInit {
   // список исчтоников
   sources: InterFaceDopParams[] = [];
   newClient: InterFaceNewClient = {
-    sale: {val: null, name: ''},
-    branch: {val: null, name: ''},
-    status: {val: null, name: ''},
-    source: {val: null, name: ''},
+    sale: null,
+    branch: null,
+    status: null,
+    source: null,
     name: '',
     inn: null,
     occupation: '',
@@ -74,17 +74,17 @@ export class ClientCreateComponent implements OnInit {
   }
 
   addClient() {
-    if (this.newClient.sale.val === null) {
+    if (this.newClient.sale === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать скидку', type: 'error', body: ''};
       return false;
     }
 
-    if (this.newClient.branch.val === null) {
+    if (this.newClient.branch === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать город аренды', type: 'error', body: ''};
       return false;
     }
 
-    if (this.newClient.status.val === null) {
+    if (this.newClient.status === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать статус', type: 'error', body: ''};
       return false;
     }
@@ -95,10 +95,10 @@ export class ClientCreateComponent implements OnInit {
     }
 
     this.clientCreateService.addClient({
-      sale: this.newClient.sale.val,
-      branch: this.newClient.branch.val,
-      status: this.newClient.status.val,
-      source: this.newClient.source.val,
+      sale: this.newClient.sale,
+      branch: this.newClient.branch,
+      status: this.newClient.status,
+      source: this.newClient.source,
       name: this.newClient.name,
       inn: this.newClient.inn,
       occupation: this.newClient.occupation,
