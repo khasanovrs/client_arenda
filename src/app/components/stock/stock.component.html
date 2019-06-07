@@ -219,6 +219,9 @@
 
         <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer">
           <td *ngIf="activeFieldsTables['name']===1">{{equipment.name}}</td>
+          <td *ngIf="activeFieldsTables['category']===1">{{equipment.category}}</td>
+          <td *ngIf="activeFieldsTables['stock']===1">{{equipment.stock}}</td>
+          <td *ngIf="activeFieldsTables['type']===1">{{equipment.type}}</td>
           <td *ngIf="activeFieldsTables['status']===1">
             <div class="---select">
               <select class="---select__cur-value" [(ngModel)]="equipment.status"
@@ -229,6 +232,16 @@
               </select>
             </div>
           </td>
+          <td *ngIf="activeFieldsTables['selling_price']===1">{{equipment.selling_price}}</td>
+          <td *ngIf="activeFieldsTables['price_per_day']===1">{{equipment.price_per_day}}</td>
+          <td *ngIf="activeFieldsTables['rentals']===1">{{equipment.rentals}}</td>
+          <td *ngIf="activeFieldsTables['repairs']===1">{{equipment.repairs}}</td>
+          <td *ngIf="activeFieldsTables['repairs_sum']===1">{{equipment.repairs_sum}}</td>
+          <td *ngIf="activeFieldsTables['tool_number']===1">{{equipment.tool_number}}</td>
+          <td *ngIf="activeFieldsTables['revenue']===1">{{equipment.revenue}}</td>
+          <td *ngIf="activeFieldsTables['profit']===1">{{equipment.profit}}</td>
+          <td *ngIf="activeFieldsTables['degree_wear']===1">{{equipment.degree_wear}}</td>
+          <td *ngIf="activeFieldsTables['payback_ratio']===1">{{equipment.payback_ratio}}</td>
         </tr>
       </table>
     </div>

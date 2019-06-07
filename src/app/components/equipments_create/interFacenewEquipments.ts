@@ -1,4 +1,5 @@
 interface InterFacenewEquipments {
+  name: string;
   status: string;
   stock: number;
   equipmentsType: number;

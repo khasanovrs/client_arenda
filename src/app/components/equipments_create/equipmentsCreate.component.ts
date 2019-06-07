@@ -16,6 +16,7 @@ export class EquipmentsCreateComponent implements OnInit {
   equipmentsStatusList: InterFaceDopParams[] = [];
 
   newEquipments: InterFacenewEquipments = {
+    name: '',
     status: '',
     stock: null,
     equipmentsType: null,
@@ -70,6 +71,11 @@ export class EquipmentsCreateComponent implements OnInit {
   }
 
   addEquipment() {
+    if (this.newEquipments.name === '') {
+      this.globalParamsMessage.data = {title: 'Необходимо указать наименование', type: 'error', body: ''};
+      return false;
+    }
+
     if (this.newEquipments.status === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать статус', type: 'error', body: ''};
       return false;
@@ -101,6 +107,7 @@ export class EquipmentsCreateComponent implements OnInit {
     }
 
     this.equipmentsCreateService.addEquipment({
+      name: this.newEquipments.name,
       status: this.newEquipments.status,
       stock: this.newEquipments.stock,
       equipmentsType: this.newEquipments.equipmentsType,
