@@ -7,6 +7,7 @@ import {ClientCreateComponent} from './components/client_create/clientCreate.com
 import {ClientInfoComponent} from './components/client_info/clientInfo.component';
 import {StockComponent} from './components/stock/stock.component';
 import {AuthComponent} from './components/auth/auth.component';
+import {EquipmentsCreateComponent} from './components/equipments_create/equipmentsCreate.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,9 @@ const routes: Routes = [
   }, {
     path: 'stock',
     component: StockComponent
+  }, {
+    path: 'equipments-create',
+    component: EquipmentsCreateComponent
   }
 ];
 

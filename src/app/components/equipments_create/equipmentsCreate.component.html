@@ -1,0 +1,182 @@
+<div class="---page-client-in ---row">
+  <div class="---col-12 ---col-lg-6 ---form">
+    <div class="---data-block">
+      <div class="h2 ---font-sbold">О товаре</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Склад</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="newEquipments.stock">
+              <option class="---select__list-item" *ngFor="let stock of stocks" [ngValue]="stock.val">
+                {{stock.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Тип оборудования</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="newEquipments.equipmentsType">
+              <option class="---select__list-item" *ngFor="let equipmentsType of equipmentsTypeList"
+                      [ngValue]="equipmentsType.val">
+                {{equipmentsType.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Категория</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="newEquipments.equipmentsCategory">
+              <option class="---select__list-item" *ngFor="let equipmentsCategory of equipmentsCategoryList"
+                      [ngValue]="equipmentsCategory.val">
+                {{equipmentsCategory.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>номер инструмента</label>
+          <input type="number" class="---input" [(ngModel)]="newEquipments.tool_number">
+        </div>
+      </div>
+    </div>
+
+    <div class="---data-block">
+      <div class="h2 ---font-sbold">Данные на аренду</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Точка выдачи</label>
+          <div class="---select">
+            <select>
+              <option value="">Электроинструменты 1</option>
+              <option value="">Электроинструменты 2</option>
+              <option value="">Электроинструменты 3</option>
+              <option value="">Электроинструменты 4</option>
+              <option value="">Электроинструменты 5</option>
+            </select>
+
+            <div class="---select__cur-value">
+              <span>Электроинструменты</span>
+              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
+            </div>
+
+            <div class="---select__list-wrapper">
+              <div class="---select__list">
+                <a href="#" class="---select__list-item">Электроинструменты 1</a>
+                <a href="#" class="---select__list-item">Электроинструменты 2</a>
+                <a href="#" class="---select__list-item">Электроинструменты 3</a>
+                <a href="#" class="---select__list-item">Электроинструменты 4</a>
+                <a href="#" class="---select__list-item">Электроинструменты 5</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Износ оборудования</label>
+          <div class="---input ---input--wear ---font-sbold ---d-flex ---align-items-center ---justify-content-between">
+            86 %
+
+            <div class="---d-flex">
+              <div class="---dot ---dot--acent"></div>
+              <div class="---dot ---dot--acent"></div>
+              <div class="---dot ---dot--acent"></div>
+              <div class="---dot ---dot--acent"></div>
+              <div class="---dot ---dot--acent"></div>
+              <div class="---dot ---dot--acent"></div>
+              <div class="---dot ---dot--acent"></div>
+              <div class="---dot ---dot--acent"></div>
+              <div class="---dot"></div>
+              <div class="---dot"></div>
+            </div>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Цена аренды за сутки</label>
+          <input type="money" class="---input">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Максимальная скидка</label>
+          <div class="---select">
+            <select>
+              <option value="">Электроинструменты 1</option>
+              <option value="">Электроинструменты 2</option>
+              <option value="">Электроинструменты 3</option>
+              <option value="">Электроинструменты 4</option>
+              <option value="">Электроинструменты 5</option>
+            </select>
+
+            <div class="---select__cur-value">
+              <span>Электроинструменты</span>
+              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
+            </div>
+
+            <div class="---select__list-wrapper">
+              <div class="---select__list">
+                <a href="#" class="---select__list-item">Электроинструменты 1</a>
+                <a href="#" class="---select__list-item">Электроинструменты 2</a>
+                <a href="#" class="---select__list-item">Электроинструменты 3</a>
+                <a href="#" class="---select__list-item">Электроинструменты 4</a>
+                <a href="#" class="---select__list-item">Электроинструменты 5</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Цена аренды за 2-7 суток</label>
+          <input type="money" class="---input">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Цена аренды за 8-14 сут</label>
+          <input type="money" class="---input">
+        </div>
+      </div>
+    </div>
+
+    <div class="---data-block">
+      <div class="h2 ---font-sbold">Описание товара на сайте</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label></label>
+          <label class="---pos-rel ---input ---input--file-upload">
+            <i class="ifont ---icon-camera ---y-pos-abs"></i>
+            <input type="file" class="---d-none" multiple>
+            <span class="---input__file-name">Загрузить фотографию</span>
+          </label>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Энергия удара, Дж</label>
+          <input type="tel" class="---input">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Габаритная длина, мм</label>
+          <input class="---input">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Сетевой шнур, м</label>
+          <input type="tel" class="---input">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Мощность, Вт</label>
+          <input class="---input">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Частота ударов, уд/мин</label>
+          <input type="tel" class="---input">
+        </div>
+
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <a href="#" class="---input ---input--add-field ---d-block">Добавить новое поле</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="---btns-wrapper">
+      <div (click)="addEquipment()" class="---btn ---btn--fill-acent">Добавить</div>
+    </div>
+
+  </div>
+</div>

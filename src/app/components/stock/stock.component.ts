@@ -83,7 +83,7 @@ export class StockComponent implements OnInit {
         this.equipmentsStatusList = data;
       },
       (error) => {
-        console.log('Ошибка при получении списка категорий оборудования: ', error);
+        console.log('Ошибка при получении списка статусов оборудования: ', error);
       });
 
     this.equipmentsService.getEquipmentsFields().then((data: InterFaceActiveFields[]) => {
