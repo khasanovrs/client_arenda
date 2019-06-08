@@ -8,6 +8,17 @@
           <label>Наименование</label>
           <input type="text" class="---input" [(ngModel)]="newEquipments.name">
         </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Статус</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="newEquipments.status">
+              <option class="---select__list-item" *ngFor="let equipmentsStatus of equipmentsStatusList"
+                      [ngValue]="equipmentsStatus.val">
+                {{equipmentsStatus.name}}
+              </option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
@@ -47,23 +58,6 @@
           <input type="number" class="---input" [(ngModel)]="newEquipments.tool_number">
         </div>
       </div>
-      <div class="---row">
-        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
-          <label>Статус</label>
-          <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.status">
-              <option class="---select__list-item" *ngFor="let equipmentsStatus of equipmentsStatusList"
-                      [ngValue]="equipmentsStatus.val">
-                {{equipmentsStatus.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
-          <label>Количество</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.count">
-        </div>
-      </div>
     </div>
 
     <div class="---data-block">
@@ -71,31 +65,8 @@
 
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
-          <label>Точка выдачи</label>
-          <div class="---select">
-            <select>
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
-            </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
-          </div>
+          <label>Количество</label>
+          <input type="number" class="---input" [(ngModel)]="newEquipments.count">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Износ оборудования</label>
@@ -118,42 +89,17 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Цена аренды за сутки</label>
-          <input type="money" class="---input">
+          <input type="text" class="---input" mask="separator" [(ngModel)]="newEquipments.price_per_day">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
-          <label>Максимальная скидка</label>
+          <label>Скидка</label>
           <div class="---select">
-            <select>
-              <option value="">Электроинструменты 1</option>
-              <option value="">Электроинструменты 2</option>
-              <option value="">Электроинструменты 3</option>
-              <option value="">Электроинструменты 4</option>
-              <option value="">Электроинструменты 5</option>
+            <select class="---select__cur-value" [(ngModel)]="newEquipments.sale">
+              <option class="---select__list-item" *ngFor="let discount of discounts" [ngValue]="discount.val">
+                {{discount.name}}
+              </option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Электроинструменты</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Электроинструменты 1</a>
-                <a href="#" class="---select__list-item">Электроинструменты 2</a>
-                <a href="#" class="---select__list-item">Электроинструменты 3</a>
-                <a href="#" class="---select__list-item">Электроинструменты 4</a>
-                <a href="#" class="---select__list-item">Электроинструменты 5</a>
-              </div>
-            </div>
           </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
-          <label>Цена аренды за 2-7 суток</label>
-          <input type="money" class="---input">
-        </div>
-        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
-          <label>Цена аренды за 8-14 сут</label>
-          <input type="money" class="---input">
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ interface InterFacenewEquipments {
   name: string;
   status: string;
   stock: number;
+  sale: number;
   equipmentsType: number;
   equipmentsCategory: number;
   count: number;

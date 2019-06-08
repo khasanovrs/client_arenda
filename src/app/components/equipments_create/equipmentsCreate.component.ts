@@ -14,11 +14,14 @@ export class EquipmentsCreateComponent implements OnInit {
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsCategoryList: InterFaceDopParams[] = [];
   equipmentsStatusList: InterFaceDopParams[] = [];
+  // список скидок
+  discounts: InterFaceDopParams[] = [];
 
   newEquipments: InterFacenewEquipments = {
     name: '',
     status: '',
     stock: null,
+    sale: null,
     equipmentsType: null,
     equipmentsCategory: null,
     tool_number: null,
@@ -68,6 +71,13 @@ export class EquipmentsCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении списка статусов оборудования: ', error);
       });
+
+    this.dopParamsService.getDiscount().then((data: InterFaceDopParams[]) => {
+        this.discounts = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка скидок: ', error);
+      });
   }
 
   addEquipment() {
@@ -110,6 +120,7 @@ export class EquipmentsCreateComponent implements OnInit {
       name: this.newEquipments.name,
       status: this.newEquipments.status,
       stock: this.newEquipments.stock,
+      sale: this.newEquipments.sale,
       equipmentsType: this.newEquipments.equipmentsType,
       equipmentsCategory: this.newEquipments.equipmentsCategory,
       count: this.newEquipments.count,
