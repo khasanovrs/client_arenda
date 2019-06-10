@@ -28,12 +28,16 @@ export class EquipmentsCreateComponent implements OnInit {
     count: null,
     selling_price: '',
     price_per_day: '',
-    rentals: null,
-    repairs: null,
-    repairs_sum: '',
-    revenue: '',
-    profit: '',
+    rentals: 0,
+    repairs: 0,
+    repairs_sum: '0',
+    revenue: '0',
     degree_wear: null,
+    impact_energy: '',
+    length: '',
+    network_cord: '',
+    power: '',
+    frequency_hits: ''
   };
 
   constructor(private equipmentsCreateService: EquipmentsCreateService,
@@ -128,7 +132,12 @@ export class EquipmentsCreateComponent implements OnInit {
       selling_price: this.newEquipments.selling_price,
       price_per_day: this.newEquipments.price_per_day,
       revenue: this.newEquipments.revenue,
-      degree_wear: this.newEquipments.degree_wear
+      degree_wear: this.newEquipments.degree_wear,
+      impact_energy: this.newEquipments.impact_energy,
+      length: this.newEquipments.length,
+      network_cord: this.newEquipments.network_cord,
+      power: this.newEquipments.power,
+      frequency_hits: this.newEquipments.frequency_hits
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно добавлено', type: 'success', body: ''};
 

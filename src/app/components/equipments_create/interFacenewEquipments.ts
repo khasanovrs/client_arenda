@@ -13,6 +13,10 @@ interface InterFacenewEquipments {
   repairs: number;
   repairs_sum: string;
   revenue: string;
-  profit: string;
   degree_wear: number;
+  impact_energy: string;
+  length: string;
+  network_cord: string;
+  power: string;
+  frequency_hits: string;
 }
