@@ -16,7 +16,7 @@ export class MenuComponent {
       {link: '/reports.php', name: 'Отчеты', class: '---icon-menu-report'},
       {link: 'settings', name: 'Настройки', class: '---icon-menu-settings'},
       {link: '/finance.php', name: 'Финансы', class: '---icon-menu-finance'},
-      {link: '/orders.php', name: 'Заявки', class: '---icon-menu-orders'}
+      {link: 'application', name: 'Заявки', class: '---icon-menu-orders'}
     ];
   }
 }
