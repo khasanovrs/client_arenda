@@ -4516,3 +4516,10 @@ app-client {
 .shadow-style {
   box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);
 }
+
+.---form .---field .mini-input {
+  color: #fff;
+  display: flex;
+  width: 10%;
+  text-align: center;
+}

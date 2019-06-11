@@ -17,4 +17,9 @@ interface InterFacenewEquipments {
   profit: string;
   degree_wear: number;
   payback_ratio: number;
+  power_energy: string;
+  length: string;
+  network_cord: string;
+  power: string;
+  frequency_hits: string;
 }
