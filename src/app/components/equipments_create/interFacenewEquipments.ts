@@ -1,7 +1,8 @@
 interface InterFacenewEquipments {
-  name: string;
+  model: string;
   status: string;
   stock: number;
+  mark: number;
   equipmentsType: number;
   equipmentsCategory: number;
   count: number;

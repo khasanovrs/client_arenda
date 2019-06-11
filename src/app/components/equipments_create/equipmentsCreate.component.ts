@@ -14,15 +14,17 @@ export class EquipmentsCreateComponent implements OnInit {
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsCategoryList: InterFaceDopParams[] = [];
   equipmentsStatusList: InterFaceDopParams[] = [];
+  equipmentsMarkList: InterFaceDopParams[] = [];
 
   newEquipments: InterFacenewEquipments = {
-    name: '',
+    model: '',
     status: '',
     stock: null,
     equipmentsType: null,
     equipmentsCategory: null,
     tool_number: null,
     count: null,
+    mark: null,
     selling_price: '',
     price_per_day: '',
     rentals: null,
@@ -68,16 +70,28 @@ export class EquipmentsCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении списка статусов оборудования: ', error);
       });
+
+    this.equipmentsService.getEquipmentsMark().then((data: InterFaceDopParams[]) => {
+        this.equipmentsMarkList = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка статусов оборудования: ', error);
+      });
   }
 
   addEquipment() {
-    if (this.newEquipments.name === '') {
+    if (this.newEquipments.model === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать наименование', type: 'error', body: ''};
       return false;
     }
 
     if (this.newEquipments.status === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать статус', type: 'error', body: ''};
+      return false;
+    }
+
+    if (this.newEquipments.mark === null) {
+      this.globalParamsMessage.data = {title: 'Необходимо указать марку', type: 'error', body: ''};
       return false;
     }
 
@@ -107,7 +121,8 @@ export class EquipmentsCreateComponent implements OnInit {
     }
 
     this.equipmentsCreateService.addEquipment({
-      name: this.newEquipments.name,
+      model: this.newEquipments.model,
+      mark: this.newEquipments.mark,
       status: this.newEquipments.status,
       stock: this.newEquipments.stock,
       equipmentsType: this.newEquipments.equipmentsType,

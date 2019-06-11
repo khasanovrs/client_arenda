@@ -12,8 +12,8 @@ export class EquipmentsService {
   }
 
 
+  // получение списка типов товаров
   public getEquipmentsType() {
-    // получение списка складов
     return new Promise((resolve, reject) => {
       if (this.equipmentsTypeList.length === 0) {
         this.httpService.prepareQuery('api/get-equipments-type', '')
@@ -32,6 +32,7 @@ export class EquipmentsService {
     });
   }
 
+  // получение списка категорий товаров
   public getEquipmentsCategory() {
     return new Promise((resolve, reject) => {
       if (this.equipmentsCategoryList.length === 0) {
@@ -51,8 +52,8 @@ export class EquipmentsService {
     });
   }
 
+  // получение списка статусов
   public getEquipmentsStatus() {
-    // получение списка доступных
     return new Promise((resolve, reject) => {
       if (this.equipmentsAvailabilityList.length === 0) {
         this.httpService.prepareQuery('api/get-equipments-status', '')
@@ -71,8 +72,8 @@ export class EquipmentsService {
     });
   }
 
+  // получение списка товаров
   public getEquipments(data) {
-    // получение списка товаров
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/get-equipments', data)
         .then((result: any) => {
@@ -86,8 +87,8 @@ export class EquipmentsService {
     });
   }
 
+  // получение списка активных полей
   public getEquipmentsFields() {
-    // получение списка складов
     return new Promise((resolve, reject) => {
       if (this.equipmentsFieldsList.length === 0) {
         this.httpService.prepareQuery('api/get-equipments-fields', '')
@@ -130,6 +131,21 @@ export class EquipmentsService {
           },
           (error) => {
             console.log('Ошибка при изменении статуса у оборудования', error);
+            reject(error);
+          }
+        );
+    });
+  }
+
+  // получение списка марок
+  public getEquipmentsMark() {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-equipment-mark', '')
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении списка марок', error);
             reject(error);
           }
         );
