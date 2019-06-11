@@ -51,7 +51,8 @@
           <label>Тип оборудования</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="filters.equipmentsType">
-              <option class="---select__list-item" *ngFor="let equipmentsType of equipmentsTypeList" [ngValue]="equipmentsType.val">
+              <option class="---select__list-item" *ngFor="let equipmentsType of equipmentsTypeList"
+                      [ngValue]="equipmentsType.val">
                 {{equipmentsType.name}}
               </option>
             </select>
@@ -61,7 +62,8 @@
           <label>Категория</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="filters.equipmentsCategory">
-              <option class="---select__list-item" *ngFor="let equipmentsCategory of equipmentsCategoryList" [ngValue]="equipmentsCategory.val">
+              <option class="---select__list-item" *ngFor="let equipmentsCategory of equipmentsCategoryList"
+                      [ngValue]="equipmentsCategory.val">
                 {{equipmentsCategory.name}}
               </option>
             </select>
@@ -217,7 +219,8 @@
           </ng-container>
         </tr>
 
-        <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer">
+        <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 10, currentPage: p }"
+            class="cursor-pointer">
           <td *ngIf="activeFieldsTables['name']===1">{{equipment.name}}</td>
           <td *ngIf="activeFieldsTables['category']===1">{{equipment.category}}</td>
           <td *ngIf="activeFieldsTables['stock']===1">{{equipment.stock}}</td>
@@ -226,22 +229,23 @@
             <div class="---select">
               <select class="---select__cur-value" [(ngModel)]="equipment.status"
                       (change)="changeStatus(equipment)">
-                <option class="---select__list-item" *ngFor="let equipmentsStatus of equipmentsStatusList" [ngValue]="equipmentsStatus.val">
+                <option class="---select__list-item" *ngFor="let equipmentsStatus of equipmentsStatusList"
+                        [ngValue]="equipmentsStatus.val">
                   {{equipmentsStatus.name}}
                 </option>
               </select>
             </div>
           </td>
-          <td *ngIf="activeFieldsTables['selling_price']===1">{{equipment.selling_price}}</td>
-          <td *ngIf="activeFieldsTables['price_per_day']===1">{{equipment.price_per_day}}</td>
+          <td *ngIf="activeFieldsTables['selling_price']===1">{{equipment.selling_price | digitsNumbers}}</td>
+          <td *ngIf="activeFieldsTables['price_per_day']===1">{{equipment.price_per_day | digitsNumbers}}</td>
           <td *ngIf="activeFieldsTables['rentals']===1">{{equipment.rentals}}</td>
           <td *ngIf="activeFieldsTables['repairs']===1">{{equipment.repairs}}</td>
-          <td *ngIf="activeFieldsTables['repairs_sum']===1">{{equipment.repairs_sum}}</td>
+          <td *ngIf="activeFieldsTables['repairs_sum']===1">{{equipment.repairs_sum | digitsNumbers}}</td>
           <td *ngIf="activeFieldsTables['tool_number']===1">{{equipment.tool_number}}</td>
-          <td *ngIf="activeFieldsTables['revenue']===1">{{equipment.revenue}}</td>
-          <td *ngIf="activeFieldsTables['profit']===1">{{equipment.profit}}</td>
-          <td *ngIf="activeFieldsTables['degree_wear']===1">{{equipment.degree_wear}}</td>
-          <td *ngIf="activeFieldsTables['payback_ratio']===1">{{equipment.payback_ratio}}</td>
+          <td *ngIf="activeFieldsTables['revenue']===1">{{equipment.revenue | digitsNumbers}}</td>
+          <td *ngIf="activeFieldsTables['profit']===1">{{equipment.profit | digitsNumbers}}</td>
+          <td *ngIf="activeFieldsTables['degree_wear']===1">{{equipment.degree_wear}}%</td>
+          <td *ngIf="activeFieldsTables['payback_ratio']===1">{{equipment.payback_ratio}}%</td>
         </tr>
       </table>
     </div>

@@ -14,12 +14,14 @@ export class EquipmentsCreateComponent implements OnInit {
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsCategoryList: InterFaceDopParams[] = [];
   equipmentsStatusList: InterFaceDopParams[] = [];
+  discounts: InterFaceDopParams[] = [];
   equipmentsMarkList: InterFaceDopParams[] = [];
 
   newEquipments: InterFacenewEquipments = {
     model: '',
     status: '',
     stock: null,
+    discount: null,
     equipmentsType: null,
     equipmentsCategory: null,
     tool_number: null,
@@ -27,12 +29,13 @@ export class EquipmentsCreateComponent implements OnInit {
     mark: null,
     selling_price: '',
     price_per_day: '',
-    rentals: null,
-    repairs: null,
-    repairs_sum: '',
-    revenue: '',
-    profit: '',
-    degree_wear: null,
+    rentals: 0,
+    repairs: 0,
+    repairs_sum: '0',
+    revenue: '0',
+    profit: '0',
+    degree_wear: 0,
+    payback_ratio: 0
   };
 
   constructor(private equipmentsCreateService: EquipmentsCreateService,
@@ -76,6 +79,13 @@ export class EquipmentsCreateComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении списка статусов оборудования: ', error);
+      });
+
+    this.dopParamsService.getDiscount().then((data: InterFaceDopParams[]) => {
+        this.discounts = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка скидок: ', error);
       });
   }
 
@@ -122,17 +132,23 @@ export class EquipmentsCreateComponent implements OnInit {
 
     this.equipmentsCreateService.addEquipment({
       model: this.newEquipments.model,
-      mark: this.newEquipments.mark,
       status: this.newEquipments.status,
       stock: this.newEquipments.stock,
+      discount: this.newEquipments.discount,
       equipmentsType: this.newEquipments.equipmentsType,
       equipmentsCategory: this.newEquipments.equipmentsCategory,
-      count: this.newEquipments.count,
       tool_number: this.newEquipments.tool_number,
+      count: this.newEquipments.count,
+      mark: this.newEquipments.mark,
       selling_price: this.newEquipments.selling_price,
       price_per_day: this.newEquipments.price_per_day,
+      rentals: this.newEquipments.rentals,
+      repairs: this.newEquipments.repairs,
+      repairs_sum: this.newEquipments.repairs_sum,
       revenue: this.newEquipments.revenue,
-      degree_wear: this.newEquipments.degree_wear
+      profit: this.newEquipments.profit,
+      degree_wear: this.newEquipments.degree_wear,
+      payback_ratio: this.newEquipments.payback_ratio
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно добавлено', type: 'success', body: ''};
 

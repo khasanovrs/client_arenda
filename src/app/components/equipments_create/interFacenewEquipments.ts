@@ -6,6 +6,7 @@ interface InterFacenewEquipments {
   equipmentsType: number;
   equipmentsCategory: number;
   count: number;
+  discount: number;
   tool_number: number;
   selling_price: string;
   price_per_day: string;
@@ -15,4 +16,5 @@ interface InterFacenewEquipments {
   revenue: string;
   profit: string;
   degree_wear: number;
+  payback_ratio: number;
 }
