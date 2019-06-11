@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DopParamsService} from '../../services/dopParams.service';
 import {StockService} from './stock.service';
 import {EquipmentsService} from '../equipments/equipments.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-stock',
@@ -54,7 +55,8 @@ export class StockComponent implements OnInit {
 
   constructor(private stockService: StockService,
               private dopParamsService: DopParamsService,
-              private equipmentsService: EquipmentsService) {
+              private equipmentsService: EquipmentsService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -209,5 +211,9 @@ export class StockComponent implements OnInit {
     };
 
     this.getEquipments();
+  }
+
+  equipmentDetails(index) {
+    this.router.navigate(['/equipments/' + index]);
   }
 }

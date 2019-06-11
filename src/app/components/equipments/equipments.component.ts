@@ -1,23 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {EquipmentsCreateService} from './equipmentsCreate.service';
 import {DopParamsService} from '../../services/dopParams.service';
-import {EquipmentsService} from '../equipments/equipments.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {EquipmentsService} from './equipments.service';
 
 @Component({
-  selector: 'app-equipment-create',
-  templateUrl: './equipmentsCreate.component.html',
+  selector: 'app-equipment',
+  templateUrl: './equipments.component.html',
 })
-export class EquipmentsCreateComponent implements OnInit {
+export class EquipmentsComponent implements OnInit {
   stocks: InterFaceStocks[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsCategoryList: InterFaceDopParams[] = [];
   equipmentsStatusList: InterFaceDopParams[] = [];
   discounts: InterFaceDopParams[] = [];
   equipmentsMarkList: InterFaceDopParams[] = [];
+  equipmentId: null;
 
-  newEquipments: InterFacenewEquipments = {
+  equipment: InterFaceInfoEquipments = {
+    id: null,
     model: '',
     status: '',
     stock: null,
@@ -43,11 +44,16 @@ export class EquipmentsCreateComponent implements OnInit {
     frequency_hits: '',
   };
 
-  constructor(private equipmentsCreateService: EquipmentsCreateService,
-              private dopParamsService: DopParamsService,
+  constructor(private dopParamsService: DopParamsService,
               private equipmentsService: EquipmentsService,
               private globalParamsMessage: GlobalParamsMessage,
+              private activatedRoute: ActivatedRoute,
               private router: Router) {
+    this.activatedRoute.params.subscribe(
+      (params: Params): void => {
+        this.equipmentId = params.id;
+      }
+    );
   }
 
   ngOnInit() {
@@ -92,80 +98,88 @@ export class EquipmentsCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении списка скидок: ', error);
       });
+
+    this.equipmentsService.getEquipmentInfo({equipmentId: this.equipmentId}).then((data: InterFaceInfoEquipments) => {
+        this.equipment = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении детальной информации по клиенту: ', error);
+      });
   }
 
-  addEquipment() {
-    if (this.newEquipments.model === '') {
+  updateEquipment() {
+    if (this.equipment.model === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать наименование', type: 'error', body: ''};
       return false;
     }
 
-    if (this.newEquipments.status === null) {
+    if (this.equipment.status === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать статус', type: 'error', body: ''};
       return false;
     }
 
-    if (this.newEquipments.mark === null) {
+    if (this.equipment.mark === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать марку', type: 'error', body: ''};
       return false;
     }
 
-    if (this.newEquipments.stock === null) {
+    if (this.equipment.stock === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать склад', type: 'error', body: ''};
       return false;
     }
 
-    if (this.newEquipments.type === null) {
+    if (this.equipment.type === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать тип оборудования', type: 'error', body: ''};
       return false;
     }
 
-    if (this.newEquipments.category === null) {
+    if (this.equipment.category === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать категорию оборудования', type: 'error', body: ''};
       return false;
     }
 
-    if (this.newEquipments.count === null) {
+    if (this.equipment.count === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать количество оборудования', type: 'error', body: ''};
       return false;
     }
 
-    if (this.newEquipments.tool_number === null) {
+    if (this.equipment.tool_number === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать номер оборудования', type: 'error', body: ''};
       return false;
     }
 
-    this.equipmentsCreateService.addEquipment({
-      model: this.newEquipments.model,
-      status: this.newEquipments.status,
-      stock: this.newEquipments.stock,
-      discount: this.newEquipments.discount,
-      equipmentsType: this.newEquipments.type,
-      equipmentsCategory: this.newEquipments.category,
-      tool_number: this.newEquipments.tool_number,
-      count: this.newEquipments.count,
-      mark: this.newEquipments.mark,
-      selling_price: this.newEquipments.selling_price,
-      price_per_day: this.newEquipments.price_per_day,
-      rentals: this.newEquipments.rentals,
-      repairs: this.newEquipments.repairs,
-      repairs_sum: this.newEquipments.repairs_sum,
-      revenue: this.newEquipments.revenue,
-      profit: this.newEquipments.profit,
-      degree_wear: this.newEquipments.degree_wear,
-      payback_ratio: this.newEquipments.payback_ratio,
-      power_energy:  this.newEquipments.power_energy,
-      length:  this.newEquipments.length,
-      network_cord:  this.newEquipments.network_cord,
-      power:  this.newEquipments.power,
-      frequency_hits:  this.newEquipments.frequency_hits,
+    this.equipmentsService.updateEquipment({
+      id: this.equipment.id,
+      model: this.equipment.model,
+      status: this.equipment.status,
+      stock: this.equipment.stock,
+      discount: this.equipment.discount,
+      equipmentsType: this.equipment.type,
+      equipmentsCategory: this.equipment.category,
+      tool_number: this.equipment.tool_number,
+      count: this.equipment.count,
+      mark: this.equipment.mark,
+      selling_price: this.equipment.selling_price,
+      price_per_day: this.equipment.price_per_day,
+      rentals: this.equipment.rentals,
+      repairs: this.equipment.repairs,
+      repairs_sum: this.equipment.repairs_sum,
+      revenue: this.equipment.revenue,
+      profit: this.equipment.profit,
+      degree_wear: this.equipment.degree_wear,
+      payback_ratio: this.equipment.payback_ratio,
+      power_energy: this.equipment.power_energy,
+      length: this.equipment.length,
+      network_cord: this.equipment.network_cord,
+      power: this.equipment.power,
+      frequency_hits: this.equipment.frequency_hits,
     }).then(() => {
-        this.globalParamsMessage.data = {title: 'Оборудование успешно добавлено', type: 'success', body: ''};
+        this.globalParamsMessage.data = {title: 'Оборудование успешно изменено', type: 'success', body: ''};
 
         this.router.navigate(['/stock']);
       },
       (error) => {
-        console.log('Ошибка при добавлении нового пользователей: ', error);
+        console.log('Ошибка при изменении оборудования: ', error);
       });
   }
 }

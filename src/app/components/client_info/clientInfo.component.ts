@@ -45,7 +45,6 @@ export class ClientInfoComponent implements OnInit {
               private globalParamsMessage: GlobalParamsMessage,
               private router: ActivatedRoute) {
 
-
     this.router.params.subscribe(
       (params: Params): void => {
         this.clientId = params.id;

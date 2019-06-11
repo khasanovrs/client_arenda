@@ -220,7 +220,7 @@
         </tr>
 
         <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 10, currentPage: p }"
-            class="cursor-pointer">
+            class="cursor-pointer" (click)="equipmentDetails(equipment.id)">
           <td *ngIf="activeFieldsTables['name']===1">{{equipment.name}}</td>
           <td *ngIf="activeFieldsTables['category']===1">{{equipment.category}}</td>
           <td *ngIf="activeFieldsTables['stock']===1">{{equipment.stock}}</td>

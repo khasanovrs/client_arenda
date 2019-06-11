@@ -8,6 +8,7 @@ import {ClientInfoComponent} from './components/client_info/clientInfo.component
 import {StockComponent} from './components/stock/stock.component';
 import {AuthComponent} from './components/auth/auth.component';
 import {EquipmentsCreateComponent} from './components/equipments_create/equipmentsCreate.component';
+import {EquipmentsComponent} from './components/equipments/equipments.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,9 @@ const routes: Routes = [
   }, {
     path: 'equipments-create',
     component: EquipmentsCreateComponent
+  }, {
+    path: 'equipments/:id',
+    component: EquipmentsComponent
   }
 ];
 

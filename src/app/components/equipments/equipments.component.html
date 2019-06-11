@@ -7,7 +7,7 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Марка</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.mark">
+            <select class="---select__cur-value" [(ngModel)]="equipment.mark">
               <option class="---select__list-item" *ngFor="let equipmentsMark of equipmentsMarkList"
                       [ngValue]="equipmentsMark.val">
                 {{equipmentsMark.name}}
@@ -17,14 +17,14 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Модель</label>
-          <input type="text" class="---input" [(ngModel)]="newEquipments.model">
+          <input type="text" class="---input" [(ngModel)]="equipment.model">
         </div>
       </div>
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Склад</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.stock">
+            <select class="---select__cur-value" [(ngModel)]="equipment.stock">
               <option class="---select__list-item" *ngFor="let stock of stocks" [ngValue]="stock.val">
                 {{stock.name}}
               </option>
@@ -34,7 +34,7 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Тип оборудования</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.type">
+            <select class="---select__cur-value" [(ngModel)]="equipment.type">
               <option class="---select__list-item" *ngFor="let equipmentsType of equipmentsTypeList"
                       [ngValue]="equipmentsType.val">
                 {{equipmentsType.name}}
@@ -45,7 +45,7 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Категория</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.category">
+            <select class="---select__cur-value" [(ngModel)]="equipment.category">
               <option class="---select__list-item" *ngFor="let equipmentsCategory of equipmentsCategoryList"
                       [ngValue]="equipmentsCategory.val">
                 {{equipmentsCategory.name}}
@@ -55,14 +55,14 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>номер инструмента</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.tool_number">
+          <input type="number" class="---input" [(ngModel)]="equipment.tool_number">
         </div>
       </div>
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Статус</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.status">
+            <select class="---select__cur-value" [(ngModel)]="equipment.status">
               <option class="---select__list-item" *ngFor="let equipmentsStatus of equipmentsStatusList"
                       [ngValue]="equipmentsStatus.val">
                 {{equipmentsStatus.name}}
@@ -72,7 +72,7 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Количество</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.count">
+          <input type="number" class="---input" [(ngModel)]="equipment.count">
         </div>
       </div>
     </div>
@@ -84,54 +84,54 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Износ оборудования</label>
           <div class="---input ---input--wear ---font-sbold ---d-flex ---align-items-center ---justify-content-between">
-            <input type="text" class="mini-input" [(ngModel)]="newEquipments.degree_wear">%
+            <input type="text" class="mini-input" [(ngModel)]="equipment.degree_wear">%
 
             <div class="---d-flex">
-              <div class="---dot" [ngClass]="{'---dot--acent':newEquipments.degree_wear > 9}"></div>
-              <div class="---dot" [ngClass]="{'---dot--acent':newEquipments.degree_wear > 19}"></div>
-              <div class="---dot" [ngClass]="{'---dot--acent':newEquipments.degree_wear > 29}"></div>
-              <div class="---dot" [ngClass]="{'---dot--acent':newEquipments.degree_wear > 39}"></div>
-              <div class="---dot" [ngClass]="{'---dot--acent':newEquipments.degree_wear > 49}"></div>
-              <div class="---dot" [ngClass]="{'---dot--acent':newEquipments.degree_wear > 59}"></div>
-              <div class="---dot" [ngClass]="{'---dot--acent':newEquipments.degree_wear > 69}"></div>
-              <div class="---dot" [ngClass]="{'---dot--acent':newEquipments.degree_wear > 79}"></div>
-              <div class="---dot" [ngClass]="{'---dot--acent':newEquipments.degree_wear > 89}"></div>
-              <div class="---dot" [ngClass]="{'---dot--acent':newEquipments.degree_wear === 100}"></div>
+              <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear > 9}"></div>
+              <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear > 19}"></div>
+              <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear > 29}"></div>
+              <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear > 39}"></div>
+              <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear > 49}"></div>
+              <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear > 59}"></div>
+              <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear > 69}"></div>
+              <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear > 79}"></div>
+              <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear > 89}"></div>
+              <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear === 100}"></div>
             </div>
           </div>
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Цена аренды за сутки</label>
-          <input type="text" class="---input" mask="separator" [(ngModel)]="newEquipments.price_per_day">
+          <input type="text" class="---input" mask="separator" [(ngModel)]="equipment.price_per_day">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Цена продажи</label>
-          <input type="text" class="---input" mask="separator" [(ngModel)]="newEquipments.selling_price">
+          <input type="text" class="---input" mask="separator" [(ngModel)]="equipment.selling_price">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Количество прокатов</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.rentals">
+          <input type="number" class="---input" [(ngModel)]="equipment.rentals">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Количество ремонтов</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.repairs">
+          <input type="number" class="---input" [(ngModel)]="equipment.repairs">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Сумма ремонтов</label>
-          <input type="text" class="---input" mask="separator" [(ngModel)]="newEquipments.repairs_sum">
+          <input type="text" class="---input" mask="separator" [(ngModel)]="equipment.repairs_sum">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Коэффициент окупаемости</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.payback_ratio">
+          <input type="number" class="---input" [(ngModel)]="equipment.payback_ratio">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Выручка</label>
-          <input type="text" class="---input" mask="separator" [(ngModel)]="newEquipments.revenue">
+          <input type="text" class="---input" mask="separator" [(ngModel)]="equipment.revenue">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Скидка</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.discount">
+            <select class="---select__cur-value" [(ngModel)]="equipment.discount">
               <option class="---select__list-item" *ngFor="let discount of discounts"
                       [ngValue]="discount.val">
                 {{discount.name}}
@@ -156,29 +156,29 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Энергия удара, Дж</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.power_energy">
+          <input type="number" class="---input" [(ngModel)]="equipment.power_energy">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Габаритная длина, мм</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.length">
+          <input type="number" class="---input" [(ngModel)]="equipment.length">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Сетевой шнур, м</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.network_cord">
+          <input type="number" class="---input" [(ngModel)]="equipment.network_cord">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Мощность, Вт</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.power">
+          <input type="number" class="---input" [(ngModel)]="equipment.power">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Частота ударов, уд/мин</label>
-          <input type="number" class="---input" [(ngModel)]="newEquipments.frequency_hits">
+          <input type="number" class="---input" [(ngModel)]="equipment.frequency_hits">
         </div>
       </div>
     </div>
 
     <div class="---btns-wrapper">
-      <div (click)="addEquipment()" class="---btn ---btn--fill-acent">Добавить</div>
+      <div (click)="updateEquipment()" class="---btn ---btn--fill-acent">Изменить</div>
     </div>
 
   </div>

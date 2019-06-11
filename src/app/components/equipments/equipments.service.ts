@@ -87,6 +87,21 @@ export class EquipmentsService {
     });
   }
 
+  // получение конкретной информации о товаре
+  public getEquipmentInfo(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-equipments-info', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении списка оборудований', error);
+            reject();
+          }
+        );
+    });
+  }
+
   // получение списка активных полей
   public getEquipmentsFields() {
     return new Promise((resolve, reject) => {
@@ -122,7 +137,7 @@ export class EquipmentsService {
     });
   }
 
-  // обновление статуса клиента
+  // обновление статуса оборудования
   public updateStatus(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/get-equipments-update-status', data)
@@ -146,6 +161,21 @@ export class EquipmentsService {
           },
           (error) => {
             console.log('Ошибка при получении списка марок', error);
+            reject(error);
+          }
+        );
+    });
+  }
+
+  // обновление информации об оборудовании
+  public updateEquipment(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/equipments-update', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при изменении информации об оборудовании', error);
             reject(error);
           }
         );

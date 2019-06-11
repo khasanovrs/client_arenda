@@ -37,6 +37,7 @@ import {AuthService} from './components/auth/auth.service';
 import {GlobalParams} from './storage/global-params';
 import {EquipmentsCreateComponent} from './components/equipments_create/equipmentsCreate.component';
 import {EquipmentsCreateService} from './components/equipments_create/equipmentsCreate.service';
+import {EquipmentsComponent} from './components/equipments/equipments.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -57,7 +58,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     ClientInfoComponent,
     StockComponent,
     AuthComponent,
-    EquipmentsCreateComponent
+    EquipmentsCreateComponent,
+    EquipmentsComponent
   ],
   imports: [
     BrowserModule,

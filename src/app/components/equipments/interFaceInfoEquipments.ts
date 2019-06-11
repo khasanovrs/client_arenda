@@ -1,4 +1,5 @@
-interface InterFacenewEquipments {
+interface InterFaceInfoEquipments {
+  id: number;
   model: string;
   status: string;
   stock: number;
