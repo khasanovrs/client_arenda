@@ -16,4 +16,8 @@ interface InterFaceNewClient {
   phone: string;
   phone_2: string;
   email: string;
+  number_passport: string;
+  where_passport: string;
+  date_passport: string;
+  address_passport: string;
 }

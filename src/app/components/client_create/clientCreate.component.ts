@@ -34,7 +34,11 @@ export class ClientCreateComponent implements OnInit {
     phone_chief: '',
     phone: '',
     phone_2: '',
-    email: ''
+    email: '',
+    number_passport: '',
+    where_passport: '',
+    date_passport: '',
+    address_passport: '',
   };
 
   constructor(private clientCreateService: ClientCreateService,

@@ -103,6 +103,29 @@
     </div>
 
     <div class="---data-block">
+      <div class="h2 ---font-sbold">Паспортные данные</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Серия номер паспорта</label>
+          <input type="text" class="---input" [(ngModel)]="newClient.number_passport">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Кем выдан</label>
+          <input type="text" class="---input" [(ngModel)]="newClient.where_passport">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Дата выдачи паспорта</label>
+          <input type="date" class="---input" [(ngModel)]="newClient.date_passport">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Адрес прописки</label>
+          <input type="text" class="---input" [(ngModel)]="newClient.address_passport">
+        </div>
+      </div>
+    </div>
+
+    <div class="---data-block">
       <div class="h2 ---font-sbold">Контакты</div>
 
       <div class="---row">

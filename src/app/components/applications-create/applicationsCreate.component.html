@@ -1,0 +1,206 @@
+<div class="---page-rent-in ---row">
+  <div class="---col-12 ---col-lg-6 ---form">
+    <div class="---data-block">
+      <div class="h2 ---font-sbold">Данные аренды</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Вид аренды</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="application.typeLease.val">
+              <option class="---select__list-item" *ngFor="let applicationsTypeLease of applicationsTypeLeases"
+                      [ngValue]="applicationsTypeLease.val">
+                {{applicationsTypeLease.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Скидка на аренду</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="application.sale.val">
+              <option class="---select__list-item" *ngFor="let discount of discounts" [ngValue]="discount.val">
+                {{discount.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Доставка</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="application.delivery.val">
+              <option class="---select__list-item" *ngFor="let delivery of applicationsDelivery"
+                      [ngValue]="delivery.val">
+                {{delivery.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Статус</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="application.status.val">
+              <option class="---select__list-item" *ngFor="let status of applicationsStatus"
+                      [ngValue]="status.val">
+                {{status.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Источник</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="application.source.val">
+              <option class="---select__list-item" *ngFor="let source of applicationsSource"
+                      [ngValue]="source.val">
+                {{source.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Комментарий</label>
+          <textarea class="---input" [(ngModel)]="application.comment"></textarea>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Начало аренды</label>
+          <div class="---input ---input--calendar ---pos-rel">
+            <div class="---select">
+              <input type="date" [(ngModel)]="application.rent_start.val">
+            </div>
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Окончание аренды</label>
+          <div class="---input ---input--calendar ---pos-rel">
+            <input type="date" [(ngModel)]="application.rent_end.val">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="---data-block">
+      <div class="h2 ---font-sbold ---d-flex ---flex-wrap ---align-items-center ---justify-content-between">
+        Данные арендатора
+
+        <a href="#" class="---check-by-bailiff">Проверить через сервис приставов</a>
+      </div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>ФИО клиента</label>
+          <input class="---input" [(ngModel)]="application.client_fio.val">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label></label>
+          <div class="---add-client-from-base ---pos-rel ---radius-5" (click)="showSearchClient.show=true;">
+            Добавить клиента из базы
+            <i class="ifont ---icon-loop ---y-pos-abs"></i>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Электронная почта</label>
+          <input type="email" class="---input" [(ngModel)]="application.client_email.val">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Номер телефона</label>
+          <input type="tel" class="---input" [(ngModel)]="application.client_phone.val">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Номер и серия паспорта</label>
+          <input class="---input" [(ngModel)]="application.client_number_passport.val">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Паспорт выдан</label>
+          <input class="---input" [(ngModel)]="application.client_where_passport.val">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Дата выдачи паспорта</label>
+          <div class="---input ---input--calendar ---pos-rel">
+            <input type="date" class="---radius-5" [(ngModel)]="application.client_date_passport.val">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Адрес прописки</label>
+          <input class="---input" [(ngModel)]="application.client_address_passport.val">
+        </div>
+      </div>
+    </div>
+
+    <div class="---btns-wrapper">
+      <div (click)="addApplication()" class="---btn ---btn--fill-acent">Создать заявку</div>
+    </div>
+
+  </div>
+  <div class="---col-12 ---col-lg-6">
+
+    <div class="---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form">
+      <div class="h2 ---font-sbold">Запрашиваемое оборудование</div>
+      <div class="---devider ---devider-mt0"></div>
+
+      <div class="---prod-list">
+        <div *ngFor="let equipment of application.equipments"
+             class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
+                        <span class="---prod-item__info ---d-inline-flex ---align-items-center">
+                            <span
+                              class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
+                                <img src="/assets/imgs/catalog/{{equipment.photo}}.png" alt=""
+                                     class="---lazyload ---img-contain">
+                            </span>
+                            <span class="---prod-item__title ---font-sbold">{{equipment.name}}</span>
+                        </span>
+
+          <span class="---prod-item__thumb ---d-inline-flex">
+                            <span class="---thumb-item">
+                                За единицу<br>
+                                <span class="---font-sbold">{{equipment.price | digitsNumbers}} ₽</span>
+                            </span>
+                            <span class="---thumb-item">
+                                В наличии<br>
+                                <span class="---font-sbold">{{equipment.stock}} шт.</span>
+                            </span>
+                        </span>
+
+          <span class="---prod-qnty-wrapper ---radius-5 ---d-inline-flex ---align-items-center">
+                            <span
+                              class="---switcher ---d-inline-flex ---justify-content-center ---align-items-center">-</span>
+                            <span class="---qnty ---font-sbold">{{equipment.count}}</span>
+                            <span
+                              class="---switcher ---d-inline-flex ---justify-content-center ---align-items-center ---plus">+</span>
+                        </span>
+        </div>
+
+        <a href="#" class="---btn ---btn--fill-dark">Добавить</a>
+      </div>
+
+      <div class="---devider"></div>
+
+      <div class="---total-price ---font-sbold h2">
+        <div class="---delivery ---font-light">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>
+        Итого: {{application.sum | digitsNumbers}} ₽
+      </div>
+
+      <div class="---devider"></div>
+
+      <a href="#" class="---btn ---btn--fill-acent">Добавить платеж</a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div *ngIf="showSearchClient.show" class="spec-abs">
+  <div class="spec-abs-mod">
+    <div (click)="showSearchClient.show=false">Закрыть</div>
+    <input type="text" class="---input" [(ngModel)]="showSearchClient.filter"
+           (keyup)="searchClient(showSearchClient.filter)">
+    <div *ngFor="let client of showSearchClient.clients; let i = index" (click)="insertClientData(i)">
+      <div>{{client.client_fio}}</div>
+    </div>
+  </div>
+</div>

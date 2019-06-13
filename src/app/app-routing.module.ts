@@ -10,6 +10,7 @@ import {AuthComponent} from './components/auth/auth.component';
 import {EquipmentsCreateComponent} from './components/equipments_create/equipmentsCreate.component';
 import {EquipmentsComponent} from './components/equipments/equipments.component';
 import {ApplicationsComponent} from './components/applications/applications.component';
+import {ApplicationsCreateComponent} from './components/applications-create/applicationsCreate.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,9 @@ const routes: Routes = [
   }, {
     path: 'application',
     component: ApplicationsComponent
+  }, {
+    path: 'application-create',
+    component: ApplicationsCreateComponent
   }
 ];
 

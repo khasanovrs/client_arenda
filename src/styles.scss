@@ -4523,3 +4523,35 @@ app-client {
   width: 10%;
   text-align: center;
 }
+
+
+.spec-abs {
+  position: absolute;
+  background: #000000a1;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  .spec-abs-mod {
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #fff;
+    width: 300px;
+  }
+
+  input {
+    position: relative;
+    width: 100%;
+    border-radius: 5px;
+    background: #fff;
+    padding: 11px 15px;
+    font-size: 0.77777778rem;
+    font-weight: 400;
+    transition: all 0.3s;
+  }
+}
