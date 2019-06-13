@@ -40,6 +40,8 @@ import {EquipmentsCreateService} from './components/equipments_create/equipments
 import {EquipmentsComponent} from './components/equipments/equipments.component';
 import {ApplicationsComponent} from './components/applications/applications.component';
 import {ApplicationsService} from './components/applications/applications.service';
+import {ApplicationsCreateService} from './components/applications-create/applicationsCreate.service';
+import {ApplicationsCreateComponent} from './components/applications-create/applicationsCreate.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -62,7 +64,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     AuthComponent,
     EquipmentsCreateComponent,
     EquipmentsComponent,
-    ApplicationsComponent
+    ApplicationsComponent,
+    ApplicationsCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +92,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     EquipmentsService,
     AuthService,
     EquipmentsCreateService,
-    ApplicationsService
+    ApplicationsService,
+    ApplicationsCreateService
   ],
   bootstrap: [AppComponent]
 })

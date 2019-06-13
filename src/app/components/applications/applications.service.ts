@@ -5,8 +5,6 @@ import {HttpService} from '../../utils/http/http.service';
 export class ApplicationsService {
   applicationsFieldsList: InterFaceActiveFields[] = [];
   applicationsStatusList: InterFaceDopParams[] = [];
-  applicationsSourceList: InterFaceDopParams[] = [];
-  applicationsDeliveryList: InterFaceDopParams[] = [];
 
   constructor(private httpService: HttpService) {
   }
@@ -66,47 +64,27 @@ export class ApplicationsService {
     });
   }
 
-  // получение списка источников
-  public getApplicationsSource() {
+  // получение списка статусов
+  public getApplications() {
     return new Promise((resolve, reject) => {
-      if (this.applicationsSourceList.length === 0) {
+      if (this.applicationsStatusList.length === 0) {
         this.httpService.prepareQuery('api/get-applications-status', '')
           .then((result: InterFaceDopParams[]) => {
-              this.applicationsSourceList = result;
-              resolve(this.applicationsSourceList);
+              this.applicationsStatusList = result;
+              resolve(this.applicationsStatusList);
             },
             (error) => {
-              console.log('Ошибка при получении списка источников заявки', error);
+              console.log('Ошибка при получении списка статусов заявки', error);
               reject();
             }
           );
       } else {
-        resolve(this.applicationsSourceList);
+        resolve(this.applicationsStatusList);
       }
     });
   }
 
-  // получение списка источников
-  public getApplicationsDelivery() {
-    return new Promise((resolve, reject) => {
-      if (this.applicationsDeliveryList.length === 0) {
-        this.httpService.prepareQuery('api/get-applications-delivery', '')
-          .then((result: InterFaceDopParams[]) => {
-              this.applicationsDeliveryList = result;
-              resolve(this.applicationsDeliveryList);
-            },
-            (error) => {
-              console.log('Ошибка при получении списка статусов доставки', error);
-              reject();
-            }
-          );
-      } else {
-        resolve(this.applicationsDeliveryList);
-      }
-    });
-  }
-
-  // получение списка источников
+  // изменение статуса
   public updateApplicationsStatus(data) {
     return new Promise((resolve, reject) => {
         this.httpService.prepareQuery('api/update-applications-status', data)
