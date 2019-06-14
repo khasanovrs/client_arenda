@@ -90,16 +90,24 @@
 
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
-          <label>ФИО клиента</label>
-          <input class="---input" [(ngModel)]="application.client_fio.val">
-        </div>
-        <div class="---field ---col-12 ---col-sm-6">
           <label></label>
           <div class="---add-client-from-base ---pos-rel ---radius-5" (click)="showSearchClient.show=true;">
             Добавить клиента из базы
             <i class="ifont ---icon-loop ---y-pos-abs"></i>
           </div>
         </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label></label>
+          <div class="---add-client-from-base ---pos-rel ---radius-5" (click)="globalParams.showModalCreateUser=true;">
+            Добавить нового клиента
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>ФИО клиента</label>
+          <input class="---input" [(ngModel)]="application.client_fio.val">
+        </div>
+
         <div class="---field ---col-12 ---col-xs-6">
           <label>Электронная почта</label>
           <input type="email" class="---input" [(ngModel)]="application.client_email.val">
@@ -202,5 +210,13 @@
     <div *ngFor="let client of showSearchClient.clients; let i = index" (click)="insertClientData(i)">
       <div>{{client.client_fio}}</div>
     </div>
+  </div>
+</div>
+
+
+<div *ngIf="globalParams.showModalCreateUser" class="spec-abs">
+  <div class="spec-abs-mod">
+    <div (click)="globalParams.showModalCreateUser=false">Закрыть</div>
+    <app-client-create></app-client-create>
   </div>
 </div>

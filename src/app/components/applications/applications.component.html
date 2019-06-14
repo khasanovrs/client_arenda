@@ -68,7 +68,7 @@
         <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }"
             class="cursor-pointer">
           <td *ngIf="activeFieldsTables['client']===1">{{application.client}}</td>
-          <td *ngIf="activeFieldsTables['phone']===1">{{application.phone}}</td>
+          <td *ngIf="activeFieldsTables['phone']===1">{{application.phone | telephoneNumber}}</td>
           <td *ngIf="activeFieldsTables['equipments_name']===1">{{application.equipments_name}}</td>
           <td *ngIf="activeFieldsTables['status']===1">
             <div class="---select">

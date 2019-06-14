@@ -5,6 +5,7 @@ import {EquipmentsService} from '../equipments/equipments.service';
 import {ClientService} from '../client/client.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {Router} from '@angular/router';
+import {GlobalParams} from '../../storage/global-params';
 
 @Component({
   selector: 'app-applications-create',
@@ -16,6 +17,8 @@ export class ApplicationsCreateComponent implements OnInit {
   applicationsDelivery: InterFaceDopParams[] = [];
   applicationsTypeLeases: InterFaceDopParams[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
+  // отображение модального окна создания пользователя
+  showCreateClient = false;
   // список скидок
   discounts: InterFaceDopParams[] = [];
   // отображение окна поиска клиента из бд
@@ -55,6 +58,7 @@ export class ApplicationsCreateComponent implements OnInit {
               private equipmentsService: EquipmentsService,
               private clientService: ClientService,
               private globalParamsMessage: GlobalParamsMessage,
+              public globalParams: GlobalParams,
               private router: Router) {
   }
 
