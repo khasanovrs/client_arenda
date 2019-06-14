@@ -64,23 +64,18 @@ export class ApplicationsService {
     });
   }
 
-  // получение списка статусов
-  public getApplications() {
+  // получение списка заявов
+  public getApplication(data) {
     return new Promise((resolve, reject) => {
-      if (this.applicationsStatusList.length === 0) {
-        this.httpService.prepareQuery('api/get-applications-status', '')
-          .then((result: InterFaceDopParams[]) => {
-              this.applicationsStatusList = result;
-              resolve(this.applicationsStatusList);
-            },
-            (error) => {
-              console.log('Ошибка при получении списка статусов заявки', error);
-              reject();
-            }
-          );
-      } else {
-        resolve(this.applicationsStatusList);
-      }
+      this.httpService.prepareQuery('api/get-applications', data)
+        .then((result) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении заявок', error);
+            reject();
+          }
+        );
     });
   }
 

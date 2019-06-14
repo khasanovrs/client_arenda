@@ -64,6 +64,28 @@
             <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
           </ng-container>
         </tr>
+
+        <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }"
+            class="cursor-pointer">
+          <td *ngIf="activeFieldsTables['client']===1">{{application.client}}</td>
+          <td *ngIf="activeFieldsTables['phone']===1">{{application.phone}}</td>
+          <td *ngIf="activeFieldsTables['equipments_name']===1">{{application.equipments_name}}</td>
+          <td *ngIf="activeFieldsTables['status']===1">
+            <div class="---select">
+              <select class="---select__cur-value"
+                      (change)="changeStatus(application)"
+                      [(ngModel)]="application.status">
+                <option class="---select__list-item" *ngFor="let status of deliveryStatus" [ngValue]="status.val">
+                  {{status.name}}
+                </option>
+              </select>
+            </div>
+          </td>
+          <td *ngIf="activeFieldsTables['source']===1">{{application.source}}</td>
+          <td *ngIf="activeFieldsTables['comment']===1">{{application.comment}}</td>
+          <td *ngIf="activeFieldsTables['user']===1">{{application.user}}</td>
+          <td *ngIf="activeFieldsTables['equipments_count']===1">{{application.equipments_count}}</td>
+        </tr>
       </table>
     </div>
 

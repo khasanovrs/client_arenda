@@ -7,12 +7,10 @@ import {ApplicationsService} from './applications.service';
 })
 export class ApplicationsComponent implements OnInit {
   deliveryStatus: InterFaceDopParams[] = [];
-
   // отображение фильтра
   showFilters = false;
   // отображение фильтра
   showActiveFields = false;
-
   // список активных полей
   activeFields: InterFaceActiveFields[] = [];
   // список активных полей
@@ -22,6 +20,8 @@ export class ApplicationsComponent implements OnInit {
     source: '',
     like: '',
   };
+
+  applications: InterFaceApplications[] = [];
 
   constructor(private applicationsService: ApplicationsService) {
   }
@@ -41,6 +41,13 @@ export class ApplicationsComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении списка полей оборудования: ', error);
+      });
+
+    this.applicationsService.getApplication({filter: this.filters}).then((data: any) => {
+        this.applications = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка заявок: ', error);
       });
   }
 
@@ -84,7 +91,10 @@ export class ApplicationsComponent implements OnInit {
 
   // изменение статуса
   changeStatus(application) {
-    this.applicationsService.updateApplicationsStatus({application_id: application.id, application_status: application.status}).then(() => {
+    this.applicationsService.updateApplicationsStatus({
+      application_id: application.equipments_id,
+      application_status: application.status
+    }).then(() => {
       },
       (error) => {
         console.log('Ошибка при изменении статуса у оборудования: ', error);
