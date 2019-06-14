@@ -17,8 +17,6 @@ export class ApplicationsCreateComponent implements OnInit {
   applicationsDelivery: InterFaceDopParams[] = [];
   applicationsTypeLeases: InterFaceDopParams[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
-  // отображение модального окна создания пользователя
-  showCreateClient = false;
   // список скидок
   discounts: InterFaceDopParams[] = [];
   // отображение окна поиска клиента из бд

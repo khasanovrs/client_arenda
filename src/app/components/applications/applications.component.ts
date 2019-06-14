@@ -18,7 +18,7 @@ export class ApplicationsComponent implements OnInit {
 
   filters = {
     source: '',
-    like: '',
+    status: '',
   };
 
   applications: InterFaceApplications[] = [];
@@ -43,17 +43,13 @@ export class ApplicationsComponent implements OnInit {
         console.log('Ошибка при получении списка полей оборудования: ', error);
       });
 
-    this.applicationsService.getApplication({filter: this.filters}).then((data: any) => {
-        this.applications = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка заявок: ', error);
-      });
+    this.getApplication();
   }
 
   // изменение типа источников
   changeTypeApplications(data) {
     this.filters.source = data;
+    this.getApplication();
   }
 
   // отображение фильтра
@@ -101,7 +97,25 @@ export class ApplicationsComponent implements OnInit {
       });
   }
 
-  getApplications() {
+  getApplication() {
+    this.applicationsService.getApplication({
+      status: this.filters.status,
+      source: this.filters.source,
+    }).then((data: any) => {
+        this.applications = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка заявок: ', error);
+      });
+  }
 
+  // очистка фильтра
+  clearFilter() {
+    this.filters = {
+      source: '',
+      status: '',
+    };
+
+    this.getApplication();
   }
 }

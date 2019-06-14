@@ -24,18 +24,33 @@
           Активные поля
           <i class="ifont ---icon-list ---d-none ---sm-d-flex"></i>
         </div>
-
-        <div class="---search ---field ---pos-rel">
-          <input class="---input" placeholder="Поиск по складу" [(ngModel)]="filters.like"
-                 (keyup)="getApplications()">
-          <button class="---y-pos-abs ifont ---icon-loop"></button>
-        </div>
       </div>
 
       <a routerLink='/application-create' class="---btn ---btn--fill-acent">Новая заявка</a>
     </div>
 
     <div *ngIf="showFilters" class="---block--bg-white ---block-filter ---radius-5 ---form">
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Статус</label>
+          <div class="---select">
+            <select class="---select__cur-value"
+                    [(ngModel)]="filters.status">
+              <option class="---select__list-item" *ngFor="let status of deliveryStatus" [ngValue]="status.val">
+                {{status.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="---btns ---d-flex">
+        <div (click)="getApplication()" class="---btn ---btn--fill-acent">Применить фильтры</div>
+        <div (click)="clearFilter()" class="---btn ---btn--border-bg">
+          Сбросить фильры
+          <i class="ifont ---icon-close"></i>
+        </div>
+      </div>
     </div>
 
     <div *ngIf="showActiveFields" id="active-field" class=" ---block--bg-white ---block-filter ---radius-5 ---form">
