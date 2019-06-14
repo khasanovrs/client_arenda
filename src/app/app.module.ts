@@ -42,6 +42,7 @@ import {ApplicationsComponent} from './components/applications/applications.comp
 import {ApplicationsService} from './components/applications/applications.service';
 import {ApplicationsCreateService} from './components/applications-create/applicationsCreate.service';
 import {ApplicationsCreateComponent} from './components/applications-create/applicationsCreate.component';
+import {ApplicationsInfoComponent} from './components/applications-info/applicationsInfo.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -65,7 +66,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     EquipmentsCreateComponent,
     EquipmentsComponent,
     ApplicationsComponent,
-    ApplicationsCreateComponent
+    ApplicationsCreateComponent,
+    ApplicationsInfoComponent
   ],
   imports: [
     BrowserModule,

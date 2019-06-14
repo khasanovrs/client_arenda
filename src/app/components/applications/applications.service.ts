@@ -82,15 +82,30 @@ export class ApplicationsService {
   // изменение статуса
   public updateApplicationsStatus(data) {
     return new Promise((resolve, reject) => {
-        this.httpService.prepareQuery('api/update-applications-status', data)
-          .then((result: InterFaceDopParams[]) => {
-              resolve(result);
-            },
-            (error) => {
-              console.log('Ошибка при изменении статуса заявки', error);
-              reject();
-            }
-          );
+      this.httpService.prepareQuery('api/update-applications-status', data)
+        .then((result: InterFaceDopParams[]) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при изменении статуса заявки', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // получение информации по заявке
+  public getApplicationInfo(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-application-info', data)
+        .then((result: InterFaceDopParams[]) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при изменении статуса заявки', error);
+            reject();
+          }
+        );
     });
   }
 }
