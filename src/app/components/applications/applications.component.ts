@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ApplicationsService} from './applications.service';
+import {DopParamsService} from '../../services/dopParams.service';
 
 @Component({
   selector: 'app-applications',
@@ -7,23 +8,28 @@ import {ApplicationsService} from './applications.service';
 })
 export class ApplicationsComponent implements OnInit {
   deliveryStatus: InterFaceDopParams[] = [];
-
   // отображение фильтра
   showFilters = false;
   // отображение фильтра
   showActiveFields = false;
-
   // список активных полей
   activeFields: InterFaceActiveFields[] = [];
   // список активных полей
   activeFieldsTables = {};
+  branches: InterFaceDopParams[] = [];
 
   filters = {
     source: '',
-    like: '',
+    status: '',
+    branch: null,
+    date_start: '',
+    date_end: '',
   };
 
-  constructor(private applicationsService: ApplicationsService) {
+  applications: InterFaceApplications[] = [];
+
+  constructor(private applicationsService: ApplicationsService,
+              private dopParamsService: DopParamsService) {
   }
 
   ngOnInit() {
@@ -42,11 +48,21 @@ export class ApplicationsComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении списка полей оборудования: ', error);
       });
+
+    this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
+        this.branches = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении филиалов: ', error);
+      });
+
+    this.getApplication();
   }
 
   // изменение типа источников
   changeTypeApplications(data) {
     this.filters.source = data;
+    this.getApplication();
   }
 
   // отображение фильтра
@@ -84,14 +100,41 @@ export class ApplicationsComponent implements OnInit {
 
   // изменение статуса
   changeStatus(application) {
-    this.applicationsService.updateApplicationsStatus({application_id: application.id, application_status: application.status}).then(() => {
+    this.applicationsService.updateApplicationsStatus({
+      application_id: application.equipments_id,
+      application_status: application.status
+    }).then(() => {
       },
       (error) => {
         console.log('Ошибка при изменении статуса у оборудования: ', error);
       });
   }
 
-  getApplications() {
+  getApplication() {
+    this.applicationsService.getApplication({
+      status: this.filters.status,
+      source: this.filters.source,
+      branch: this.filters.branch,
+      date_start: this.filters.date_start,
+      date_end: this.filters.date_end,
+    }).then((data: any) => {
+        this.applications = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка заявок: ', error);
+      });
+  }
 
+  // очистка фильтра
+  clearFilter() {
+    this.filters = {
+      source: '',
+      status: '',
+      branch: null,
+      date_start: '',
+      date_end: '',
+    };
+
+    this.getApplication();
   }
 }

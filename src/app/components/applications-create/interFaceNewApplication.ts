@@ -7,6 +7,7 @@ interface InterFaceNewApplication {
   rent_start: { val: number, required: true, name: string };
   rent_end: { val: number, required: true, name: string };
   delivery: { val: number, required: true, name: string };
+  branch: { val: number, required: true, name: string };
   client_id: number;
   comment: string;
   client_fio: { val: string, required: true, name: string };

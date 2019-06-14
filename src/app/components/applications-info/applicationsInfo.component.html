@@ -48,17 +48,6 @@
           </div>
         </div>
         <div class="---field ---col-12 ---col-xs-6">
-          <label>Статус</label>
-          <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.status.val">
-              <option class="---select__list-item" *ngFor="let status of applicationsStatus"
-                      [ngValue]="status.val">
-                {{status.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6">
           <label>Источник</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="application.source.val">

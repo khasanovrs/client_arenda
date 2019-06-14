@@ -64,38 +64,48 @@ export class ApplicationsService {
     });
   }
 
-  // получение списка статусов
-  public getApplications() {
+  // получение списка заявов
+  public getApplication(data) {
     return new Promise((resolve, reject) => {
-      if (this.applicationsStatusList.length === 0) {
-        this.httpService.prepareQuery('api/get-applications-status', '')
-          .then((result: InterFaceDopParams[]) => {
-              this.applicationsStatusList = result;
-              resolve(this.applicationsStatusList);
-            },
-            (error) => {
-              console.log('Ошибка при получении списка статусов заявки', error);
-              reject();
-            }
-          );
-      } else {
-        resolve(this.applicationsStatusList);
-      }
+      this.httpService.prepareQuery('api/get-applications', data)
+        .then((result) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении заявок', error);
+            reject();
+          }
+        );
     });
   }
 
   // изменение статуса
   public updateApplicationsStatus(data) {
     return new Promise((resolve, reject) => {
-        this.httpService.prepareQuery('api/update-applications-status', data)
-          .then((result: InterFaceDopParams[]) => {
-              resolve(result);
-            },
-            (error) => {
-              console.log('Ошибка при изменении статуса заявки', error);
-              reject();
-            }
-          );
+      this.httpService.prepareQuery('api/update-applications-status', data)
+        .then((result: InterFaceDopParams[]) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при изменении статуса заявки', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // получение информации по заявке
+  public getApplicationInfo(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-application-info', data)
+        .then((result: InterFaceDopParams[]) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при изменении статуса заявки', error);
+            reject();
+          }
+        );
     });
   }
 }
