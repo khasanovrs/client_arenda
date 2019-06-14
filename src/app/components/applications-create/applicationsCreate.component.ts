@@ -17,6 +17,7 @@ export class ApplicationsCreateComponent implements OnInit {
   applicationsDelivery: InterFaceDopParams[] = [];
   applicationsTypeLeases: InterFaceDopParams[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
+  branches: InterFaceDopParams[] = [];
   // список скидок
   discounts: InterFaceDopParams[] = [];
   // отображение окна поиска клиента из бд
@@ -38,6 +39,7 @@ export class ApplicationsCreateComponent implements OnInit {
     sale: {val: null, required: true, name: 'скидка'},
     status: {val: null, required: true, name: 'статус'},
     source: {val: null, required: true, name: 'источник'},
+    branch: {val: null, required: true, name: 'филиал'},
     rent_start: {val: null, required: true, name: 'начало аренды'},
     rent_end: {val: null, required: true, name: 'конец аренды'},
     delivery: {val: null, required: true, name: 'тип доставки'},
@@ -101,6 +103,13 @@ export class ApplicationsCreateComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении списка скидок: ', error);
+      });
+
+    this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
+        this.branches = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении филиалов: ', error);
       });
   }
 
@@ -167,6 +176,7 @@ export class ApplicationsCreateComponent implements OnInit {
       delivery_sum: this.application.delivery_sum,
       comment: this.application.comment,
       source: this.application.source.val,
+      branch: this.application.branch.val,
       status: this.application.status.val
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно добавлена', type: 'success', body: ''};

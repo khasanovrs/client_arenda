@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ApplicationsService} from './applications.service';
+import {DopParamsService} from '../../services/dopParams.service';
 
 @Component({
   selector: 'app-applications',
@@ -15,15 +16,20 @@ export class ApplicationsComponent implements OnInit {
   activeFields: InterFaceActiveFields[] = [];
   // список активных полей
   activeFieldsTables = {};
+  branches: InterFaceDopParams[] = [];
 
   filters = {
     source: '',
     status: '',
+    branch: null,
+    date_start: '',
+    date_end: '',
   };
 
   applications: InterFaceApplications[] = [];
 
-  constructor(private applicationsService: ApplicationsService) {
+  constructor(private applicationsService: ApplicationsService,
+              private dopParamsService: DopParamsService) {
   }
 
   ngOnInit() {
@@ -41,6 +47,13 @@ export class ApplicationsComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении списка полей оборудования: ', error);
+      });
+
+    this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
+        this.branches = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении филиалов: ', error);
       });
 
     this.getApplication();
@@ -101,6 +114,9 @@ export class ApplicationsComponent implements OnInit {
     this.applicationsService.getApplication({
       status: this.filters.status,
       source: this.filters.source,
+      branch: this.filters.branch,
+      date_start: this.filters.date_start,
+      date_end: this.filters.date_end,
     }).then((data: any) => {
         this.applications = data;
       },
@@ -114,6 +130,9 @@ export class ApplicationsComponent implements OnInit {
     this.filters = {
       source: '',
       status: '',
+      branch: null,
+      date_start: '',
+      date_end: '',
     };
 
     this.getApplication();
