@@ -184,11 +184,9 @@
                         </span>
 
           <span class="---prod-qnty-wrapper ---radius-5 ---d-inline-flex ---align-items-center">
-                            <span
-                              class="---switcher ---d-inline-flex ---justify-content-center ---align-items-center">-</span>
+                            <span (click)="changeCount(equipment,'decrease')" class="c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center">-</span>
                             <span class="---qnty ---font-sbold">{{equipment.count}}</span>
-                            <span
-                              class="---switcher ---d-inline-flex ---justify-content-center ---align-items-center ---plus">+</span>
+                            <span (click)="changeCount(equipment,'increase')" class="c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center ---plus">+</span>
                         </span>
         </div>
 

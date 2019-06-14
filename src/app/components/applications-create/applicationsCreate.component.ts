@@ -127,6 +127,17 @@ export class ApplicationsCreateComponent implements OnInit {
       });
   }
 
+  changeCount(equipment, type) {
+
+    if (type === 'increase') {
+      equipment.count++;
+    }
+
+    if (type === 'decrease') {
+      equipment.count--;
+    }
+  }
+
   // заполнение данными из справочника
   insertClientData(index) {
     this.application.client_id = this.showSearchClient.clients[index].client_id;
