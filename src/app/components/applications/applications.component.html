@@ -104,6 +104,7 @@
         </tr>
 
         <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }"
+            (click)="applicationDetails(application.id)"
             class="cursor-pointer">
           <td *ngIf="activeFieldsTables['client']===1">{{application.client}}</td>
           <td *ngIf="activeFieldsTables['phone']===1">{{application.phone | telephoneNumber}}</td>
