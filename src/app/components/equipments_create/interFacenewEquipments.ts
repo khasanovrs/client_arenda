@@ -22,4 +22,6 @@ interface InterFacenewEquipments {
   network_cord: string;
   power: string;
   frequency_hits: string;
+  photo_name: string;
+  photo_content: string;
 }
