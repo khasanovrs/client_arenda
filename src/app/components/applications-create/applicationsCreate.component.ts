@@ -27,12 +27,16 @@ export class ApplicationsCreateComponent implements OnInit {
     clients: []
   };
 
+  // отображение окна добавления товара
+  showAddEquipments = {
+    show: false,
+    filter: '',
+    equipments: []
+  };
+
   application: InterFaceNewApplication = {
     client_id: null,
-    equipments: [
-      {id: 7, name: 'Оборудование 1', count: 1, price: '1200', stock: 2, photo: '1'},
-      {id: 8, name: 'Оборудование 2', count: 4, price: '750', stock: 1, photo: '1'}
-    ],
+    equipments: [],
     sum: '6000',
     delivery_sum: '1000',
     typeLease: {val: null, required: true, name: 'тип аренды'},
@@ -127,6 +131,20 @@ export class ApplicationsCreateComponent implements OnInit {
       });
   }
 
+  // поиск товара из бд
+  searchEquipments(filter) {
+    if (filter === '') {
+      return false;
+    }
+
+    this.equipmentsService.searchEquipments({filter: filter}).then((data: InterFaceSearchClient[]) => {
+        this.showAddEquipments.equipments = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка оборудования: ', error);
+      });
+  }
+
   changeCount(equipment, type) {
 
     if (type === 'increase') {
@@ -156,6 +174,18 @@ export class ApplicationsCreateComponent implements OnInit {
       filter: '',
       clients: []
     };
+  }
+
+  insertEquipmentsData(index) {
+    const tmp = {
+      id: this.showAddEquipments.equipments[index].id,
+      name: this.showAddEquipments.equipments[index].name,
+      in_stock: this.showAddEquipments.equipments[index].count,
+      count: 0,
+      price: this.showAddEquipments.equipments[index].price_per_day,
+      photo: this.showAddEquipments.equipments[index].photo
+    };
+    this.application.equipments.push(tmp);
   }
 
   addApplication() {

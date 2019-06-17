@@ -179,18 +179,20 @@
                             </span>
                             <span class="---thumb-item">
                                 В наличии<br>
-                                <span class="---font-sbold">{{equipment.stock}} шт.</span>
+                                <span class="---font-sbold">{{equipment.in_stock}} шт.</span>
                             </span>
                         </span>
 
           <span class="---prod-qnty-wrapper ---radius-5 ---d-inline-flex ---align-items-center">
-                            <span (click)="changeCount(equipment,'decrease')" class="c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center">-</span>
+                            <span (click)="changeCount(equipment,'decrease')"
+                                  class="c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center">-</span>
                             <span class="---qnty ---font-sbold">{{equipment.count}}</span>
-                            <span (click)="changeCount(equipment,'increase')" class="c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center ---plus">+</span>
+                            <span (click)="changeCount(equipment,'increase')"
+                                  class="c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center ---plus">+</span>
                         </span>
         </div>
 
-        <a href="#" class="---btn ---btn--fill-dark">Добавить</a>
+        <div (click)="showAddEquipments.show=true" class="---btn ---btn--fill-dark">Добавить</div>
       </div>
 
       <div class="---devider"></div>
@@ -218,6 +220,17 @@
            (keyup)="searchClient(showSearchClient.filter)">
     <div *ngFor="let client of showSearchClient.clients; let i = index" (click)="insertClientData(i)">
       <div>{{client.client_fio}}</div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showAddEquipments.show" class="spec-abs">
+  <div class="spec-abs-mod">
+    <div (click)="showAddEquipments.show=false">Закрыть</div>
+    <input type="text" class="---input" [(ngModel)]="showAddEquipments.filter"
+           (keyup)="searchEquipments(showAddEquipments.filter)">
+    <div *ngFor="let equipments of showAddEquipments.equipments; let i = index" (click)="insertEquipmentsData(i)">
+      <div>{{equipments.name}}</div>
     </div>
   </div>
 </div>
