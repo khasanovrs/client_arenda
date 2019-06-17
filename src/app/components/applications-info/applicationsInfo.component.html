@@ -106,33 +106,25 @@
       <div class="---devider ---devider-mt0"></div>
 
       <div class="---prod-list">
-        <div *ngFor="let equipment of application.equipments"
-             class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
+        <div class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
                         <span class="---prod-item__info ---d-inline-flex ---align-items-center">
                             <span
                               class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
-                                <img src="/assets/imgs/catalog/{{equipment.photo}}.png" alt=""
+                                <img src="/assets/imgs/catalog/{{application.equipments.photo}}.png" alt=""
                                      class="---lazyload ---img-contain">
                             </span>
-                            <span class="---prod-item__title ---font-sbold">{{equipment.name}}</span>
+                            <span class="---prod-item__title ---font-sbold">{{application.equipments.name}}</span>
                         </span>
 
           <span class="---prod-item__thumb ---d-inline-flex">
                             <span class="---thumb-item">
-                                За единицу<br>
-                                <span class="---font-sbold">{{equipment.price | digitsNumbers}} ₽</span>
-                            </span>
-                            <span class="---thumb-item">
-                                В наличии<br>
-                                <span class="---font-sbold">{{equipment.stock}} шт.</span>
+                                Количество<br>
+                                <span class="---font-sbold">{{application.equipments.count}}</span>
                             </span>
                         </span>
         </div>
-
-        <a href="#" class="---btn ---btn--fill-dark">Добавить</a>
       </div>
 
-      <div class="---devider"></div>
 
       <div class="---total-price ---font-sbold h2">
         <div class="---delivery ---font-light">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>

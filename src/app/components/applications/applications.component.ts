@@ -140,7 +140,7 @@ export class ApplicationsComponent implements OnInit {
     this.getApplication();
   }
 
-  applicationDetails(id) {
-    this.router.navigate(['/application/' + id]);
+  applicationDetails(equipments_id) {
+    this.router.navigate(['/application/' + equipments_id]);
   }
 }

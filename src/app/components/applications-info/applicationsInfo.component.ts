@@ -37,7 +37,15 @@ export class ApplicationsInfoComponent implements OnInit {
     client_phone: '',
     delivery_sum: '',
     sum: '',
-    equipments: []
+    equipments: {
+      id: null,
+      name: '',
+      count: null,
+      status: null,
+      photo: '',
+      price: '',
+      stock: null
+    }
   };
 
   constructor(private applicationsCreateService: ApplicationsCreateService,
