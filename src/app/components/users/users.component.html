@@ -25,7 +25,7 @@
 
       <div class="---icons ---y-pos-abs ---d-flex">
         <a href="#" class="---history ---d-inline-flex ---align-items-center">История</a>
-        <a href="#" class="ifont ---icon-edit ---acent"></a>
+        <div (click)="changeUser(user)" class="ifont ---icon-edit ---acent"></div>
         <a href="#" class="ifont ---icon-close"></a>
       </div>
     </div>
@@ -41,7 +41,7 @@
 
       <div class="---icons ---y-pos-abs ---d-flex">
         <a href="#" class="---history ---d-inline-flex ---align-items-center">История</a>
-        <a href="#" class="ifont ---icon-edit ---acent"></a>
+        <div (click)="changeUser(user)" class="ifont ---icon-edit ---acent"></div>
         <a href="#" class="ifont ---icon-close"></a>
       </div>
     </div>
@@ -50,7 +50,7 @@
 
 <div class="---col-12 ---col-xl-4">
   <div class="---r-side-add-block ---block--bg-white ---radius-5">
-    <div class="h2 ---font-sbold">Добавить сотрудника</div>
+    <div class="h2 ---font-sbold">{{newUser.fio}}</div>
 
     <div class="---border"></div>
 
@@ -59,7 +59,7 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-xl-12">
           <label>Выберите филиал</label>
           <select class="---select__cur-value" [(ngModel)]="newUser.branch_id">
-            <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch">
+            <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
               {{branch.name}}
             </option>
           </select>
@@ -67,7 +67,7 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-xl-12">
           <label>Выберите роль</label>
           <select class="---select__cur-value" [(ngModel)]="newUser.user_type">
-            <option class="---select__list-item" *ngFor="let role of roles" [ngValue]="role">
+            <option class="---select__list-item" *ngFor="let role of roles" [ngValue]="role.val">
               {{role.name}}
             </option>
           </select>
@@ -78,12 +78,8 @@
 
       <div class="---row ---_sm">
         <div class="---field col ---col-12 ---col-xs-6 ---col-md-4 ---col-xl-6">
-          <label>Имя</label>
-          <input [(ngModel)]="newUser.name" class="---input ---fill--bg">
-        </div>
-        <div class="---field col ---col-12 ---col-xs-6 ---col-md-4 ---col-xl-6">
-          <label>Фамилия</label>
-          <input [(ngModel)]="newUser.lastName" class="---input ---fill--bg">
+          <label>ФИО</label>
+          <input [(ngModel)]="newUser.name_lastName" class="---input ---fill--bg">
         </div>
         <div class="---field col ---col-12 ---col-xs-6 ---col-md-4 ---col-xl-6">
           <label>Пароль</label>
@@ -114,6 +110,8 @@
 
     <div class="---border ---border-mt0"></div>
 
-    <a (click)="addNewUser()" class="---btn ---btn--fill-acent">Добавить</a>
+    <div (click)="addNewUser()" class="---btn ---btn--fill-acent">{{newUser.btn}}</div>
+
+    <div (click)="clear()" class="---btn ---btn--fill-acent">Новый сотрудник</div>
   </div>
 </div>
