@@ -29,8 +29,9 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Скидка на аренду</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.sale.val">
-              <option class="---select__list-item" *ngFor="let discount of discounts" [ngValue]="discount.val">
+            <select class="---select__cur-value" [(ngModel)]="application.sale.val" (change)="changeSum()">
+              <option class="---select__list-item" *ngFor="let discount of discounts"
+                      [ngValue]="discount.val">
                 {{discount.name}}
               </option>
             </select>
@@ -77,7 +78,7 @@
           <label>Начало аренды</label>
           <div class="---input ---input--calendar ---pos-rel">
             <div class="---select">
-              <input type="date" [(ngModel)]="application.rent_start.val">
+              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_start.val">
             </div>
             <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
@@ -85,7 +86,7 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Окончание аренды</label>
           <div class="---input ---input--calendar ---pos-rel">
-            <input type="date" [(ngModel)]="application.rent_end.val">
+            <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_end.val">
             <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
