@@ -162,7 +162,7 @@
       <div class="---devider ---devider-mt0"></div>
 
       <div class="---prod-list">
-        <div *ngFor="let equipment of application.equipments"
+        <div *ngFor="let equipment of application.equipments; let i = index"
              class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
                         <span class="---prod-item__info ---d-inline-flex ---align-items-center">
                             <span
@@ -171,6 +171,7 @@
                                      class="---lazyload ---img-contain">
                             </span>
                             <span class="---prod-item__title ---font-sbold">{{equipment.name}}</span>
+                            <span style="color: red" (click)="deleteEquipment(i)">Удалить</span>
                         </span>
 
           <span class="---prod-item__thumb ---d-inline-flex">

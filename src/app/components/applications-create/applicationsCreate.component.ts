@@ -298,4 +298,9 @@ export class ApplicationsCreateComponent implements OnInit {
     this.application.sum = sum;
   }
 
+  // удаление оборудования из списка
+  deleteEquipment(index) {
+    this.application.equipments.splice(index, 1);
+  }
+
 }
