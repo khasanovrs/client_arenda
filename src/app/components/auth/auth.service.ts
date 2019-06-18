@@ -25,6 +25,22 @@ export class AuthService {
     });
   }
 
+  // получение детальной информации по клиенту
+  public exit() {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/exit', '')
+        .then(() => {
+            this.authenticated.emit(false);
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при выходе', error);
+            reject();
+          }
+        );
+    });
+  }
+
   getEmittedValue() {
     return this.authenticated;
   }

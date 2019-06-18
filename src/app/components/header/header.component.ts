@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {SessionService} from '../../services/session.service';
 import {Router} from '@angular/router';
 import {SessionStorageService} from '../../storage/session-storage.service';
 import {AuthService} from '../auth/auth.service';
@@ -9,16 +8,14 @@ import {AuthService} from '../auth/auth.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
-  constructor(private sessionService: SessionService,
-              private router: Router,
+  constructor(private router: Router,
               private sessionStorageService: SessionStorageService,
               private authService: AuthService) {
   }
 
   exit() {
-    this.sessionService.exit().then(() => {
+    this.authService.exit().then(() => {
         this.sessionStorageService.pubId = '';
-        this.authService.authenticated.emit(false);
         this.router.navigate(['/']);
       },
       (error) => {

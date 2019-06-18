@@ -43,7 +43,6 @@ import {ApplicationsService} from './components/applications/applications.servic
 import {ApplicationsCreateService} from './components/applications-create/applicationsCreate.service';
 import {ApplicationsCreateComponent} from './components/applications-create/applicationsCreate.component';
 import {ApplicationsInfoComponent} from './components/applications-info/applicationsInfo.component';
-import {SessionService} from './services/session.service';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -96,8 +95,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     AuthService,
     EquipmentsCreateService,
     ApplicationsService,
-    ApplicationsCreateService,
-    SessionService
+    ApplicationsCreateService
   ],
   bootstrap: [AppComponent]
 })
