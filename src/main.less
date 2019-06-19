@@ -1,0 +1,384 @@
+/**
+*
+	Include
+*
+**/
+@import url('assets/inc/fns.less');
+@import url('assets/inc/vars.less');
+@import url('assets/inc/fonts.less');
+@import (reference) url('assets/inc/common_classes.less');
+
+
+
+
+
+/**
+*
+	UI map
+*
+**/
+@import url('assets/inc/ui/tabs.less');
+@import url('assets/inc/ui/buttons.less');
+@import url('assets/inc/ui/form.less');
+@import url('assets/inc/ui/table.less');
+@import url('assets/inc/ui/text.less');
+@import url('assets/inc/ui/blocks.less');
+
+
+
+
+
+/**
+*
+	Main menu
+*
+**/
+@import url('assets/inc/layouts/main_left_menu.less');
+
+
+
+
+
+/**
+*
+	Pages
+*
+**/
+@import url('assets/inc/pages/auth.less');
+@import url('assets/inc/pages/add_new_question.less');
+@import url('assets/inc/pages/finance.less');
+@import url('assets/inc/pages/application.less');
+@import url('assets/inc/pages/settings.less');
+@import url('assets/inc/pages/sale.less');
+@import url('assets/inc/pages/reports.less');
+@import url('assets/inc/pages/clients.less');
+@import url('assets/inc/pages/rent.less');
+
+
+
+
+
+/**
+*
+	Header
+*
+**/
+@import url('assets/inc/layouts/header.less');
+
+
+
+
+
+/**
+*
+	Main Content
+*
+**/
+#---main-content {
+	width: calc(100% - 220px);
+
+	.---main-wrapper {
+		padding: 50px 60px 0 60px;
+	}
+
+	footer {
+		color: #434d68;
+		font-size: 13/@px;
+		padding: 20px 0;
+		border-top: 2px solid #e3e8f0;
+		margin-top: 40px;
+
+		.copy {
+			margin-right: 25px;
+		}
+
+		a {
+			text-decoration: underline;
+			color: inherit;
+		}
+
+	}
+
+}
+
+.---prod-item {
+	color: @textColor;
+	margin-bottom: 30px;
+	font-size: 15/@px;
+
+	.---prod-item__info {
+		width: 45%;
+	}
+
+	.---prod-item__img {
+		.flex-width(62px);
+		height: 62px;
+		margin-right: 18px;
+		box-shadow: inset 0 0 0 1px fadeout(#d5dbe6, 46%);
+
+		img {
+			width: 70%;
+			height: 70%;
+		}
+
+	}
+
+	.---prod-item__thumb {
+		width: calc(55% - 130px);
+
+		.---thumb-item {
+
+			&:first-child {
+				margin-right: 30px;
+			}
+
+		}
+
+	}
+
+	.---prod-qnty-wrapper {
+		overflow: hidden;
+		width: 90px;
+		height: 34px;
+		background: @bgColor;
+
+		.---switcher {
+			color: #99a2b0;
+			width: 30%;
+			font-size: 30px;
+		}
+
+		.---qnty {
+			text-align: center;
+			font-size: 16/@px;
+			width: 40%;
+		}
+
+	}
+
+	&:after {
+		content: '';
+		position: absolute;
+		left: 78px;
+		right: 0;
+		bottom: -8px;
+		height: 1px;
+		background: @bgColor;
+	}
+
+}
+
+.---r-side-add-block {
+	margin-top: 63px;
+	padding: 43px 49px 46px;
+
+	.---border {
+		margin: 30px 0;
+		height: 2px;
+		background: @bgColor;
+	}
+	.---border-mt0 {
+		margin-top: 0;
+	}
+
+	.---t-wrapper {
+		margin: 0 -3px;
+	}
+
+	table {
+		min-width: 560px;
+
+		th {
+			background: transparent;
+		}
+
+		td {
+
+			&:first-child {
+				border-radius: 5px 0 0 5px;
+			}
+
+			&:last-child {
+				border-radius: 0 5px 5px 0;
+			}
+
+		}
+
+		tr {
+
+			&:nth-child(even) {
+
+				td {
+					background: @bgColor;
+				}
+
+			}
+
+		}
+
+	}
+
+	.---btn {
+		padding: 14px 35px;
+	}
+
+	.---check {
+		padding: 0 !important;
+		box-shadow: inset 0 0 0 1px #e7ebf3 !important;
+
+		.---box {
+			width: 18px;
+			height: 18px;
+			user-select: none;
+			position: relative;
+			cursor: pointer;
+			border-radius: 5px;
+			border-radius: 2.5px;
+			border: 1px solid #d5dbe6;
+			left: 10px;
+
+			&:after {
+				font-family: 'crm-stroyka';
+				content:'\0056';
+				left: 2px;
+				opacity: 0;
+				font-size: 11px;
+				.---y-pos-abs;
+			}
+
+			&.---is-active {
+				box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);
+				border-color: @mainColor;
+				background: @mainColor;
+
+				&:after {
+					opacity: 1;
+				}
+
+			}
+
+		}
+
+		input {
+			padding: 11px 15px 11px 40px;
+			width: 100%;
+			display: block;
+		}
+
+	}
+
+	&:not(:first-child) {
+		margin-top: 5px;
+	}
+
+}
+
+.---h-filters-wrapper {
+
+	.---field {
+		margin-bottom: 0;
+		width: 330px;
+
+		.---input {
+			font-size: 16/@px;
+			padding: 19.5px 45px 19.5px 15px;
+			.placeholder-style(16/@px @font__main, fadeout(@textColor, 50%));
+		}
+
+		button {
+			right: 17px;
+			font-size: 22px;
+		}
+
+	}
+
+	.---filters {
+		user-select: none;
+		margin-right: 13px;
+		background: #fff;
+		font-size: 16/@px;
+		color: #fff;
+		background: @textColor;
+		padding: 18px 20px;
+
+		i {
+			margin-left: 20px;
+			font-size: 18px;
+		}
+
+		&.---is-active {
+			background: @mainColor;
+			color: @textColor;
+			border-bottom: 10px solid darken(@mainColor, 15%);
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+	}
+
+}
+
+.---block-filter {
+	padding: 35px 40px;
+	margin-top: 40px;
+
+	.---btns {
+		margin-top: 10px;
+	}
+
+	.---btn {
+		margin-right: 12px;
+		padding: 12px 30px;
+
+		i {
+			margin-left: 20px;
+		}
+
+	}
+
+}
+
+
+
+
+
+
+/**
+*
+	Modals
+*
+**/
+@import url('assets/inc/modals.less');
+
+
+
+
+
+/**
+*
+	Adaptive
+*
+**/
+@import url('assets/inc/adaptive/xxl.less');
+@import url('assets/inc/adaptive/xl.less');
+@import url('assets/inc/adaptive/lg.less');
+@import url('assets/inc/adaptive/md.less');
+@import url('assets/inc/adaptive/sm.less');
+@import url('assets/inc/adaptive/475.less');
+@import url('assets/inc/adaptive/375.less');
+@import url('assets/inc/adaptive/320.less');
+
+
+
+
+
+/**
+*
+  Plugins
+*
+**/
+@import url('assets/inc/plugins/owl-carousel.less');
+@import url('assets/inc/plugins/datepicker.less');
+// @import url('assets/inc/plugins/baguette-box.less');
