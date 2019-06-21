@@ -3,11 +3,6 @@
   <a href="#">Политика конфиденциальности</a>
 </footer>
 
-</div>
-
-</div>
-
-
 <!-- Модальные окна -->
 <div id="---modal-image" class="---modal --justify-content-center ---align-items-start ---justify-content-center">
   <div class="---wrapper ---wrapper--image ---wrapper--big">
@@ -341,23 +336,3 @@
 
   </div>
 </div>
-
-<script>
-  <?=file_get_contents('static/js/html_js.min.js'); ?>
-
-  // requireResource('main.css', 'css', '1.2.5', '/static/styles/main.css', function() {
-  //     document.getElementById('---main-content').classList.add('---d-block');
-  // });
-
-  document.getElementById('---main-content').classList.add('---d-block');
-</script>
-<script defer src="/static/js/scripts.min.js"></script>
-</body>
-</html>
-<?php
-    $out = ob_get_clean();
-    $out = preg_replace('/(?![^<]*<\/pre>)[\n\r\t]+/', "\n", $out);
-$out = preg_replace('/ {2,}/', ' ', $out);
-$out = preg_replace('/>[\n]+/', '>', $out);
-echo $out;
-?>
