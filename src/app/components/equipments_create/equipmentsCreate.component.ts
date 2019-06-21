@@ -17,6 +17,10 @@ export class EquipmentsCreateComponent implements OnInit {
   discounts: InterFaceDopParams[] = [];
   equipmentsMarkList: InterFaceDopParams[] = [];
 
+  // загрузка изображения
+  load_file: any = [];
+  fileString = '';
+
   newEquipments: InterFacenewEquipments = {
     model: '',
     status: '',
@@ -41,6 +45,8 @@ export class EquipmentsCreateComponent implements OnInit {
     network_cord: '',
     power: '',
     frequency_hits: '',
+    photo_name: '',
+    photo_content: ''
   };
 
   constructor(private equipmentsCreateService: EquipmentsCreateService,
@@ -154,18 +160,56 @@ export class EquipmentsCreateComponent implements OnInit {
       profit: this.newEquipments.profit,
       degree_wear: this.newEquipments.degree_wear,
       payback_ratio: this.newEquipments.payback_ratio,
-      power_energy:  this.newEquipments.power_energy,
-      length:  this.newEquipments.length,
-      network_cord:  this.newEquipments.network_cord,
-      power:  this.newEquipments.power,
-      frequency_hits:  this.newEquipments.frequency_hits,
+      power_energy: this.newEquipments.power_energy,
+      length: this.newEquipments.length,
+      network_cord: this.newEquipments.network_cord,
+      power: this.newEquipments.power,
+      frequency_hits: this.newEquipments.frequency_hits,
+      photo: this.newEquipments.photo_name
     }).then(() => {
-        this.globalParamsMessage.data = {title: 'Оборудование успешно добавлено', type: 'success', body: ''};
 
-        this.router.navigate(['/stock']);
+        if (this.newEquipments.photo_name !== '') {
+          this.sendFiles();
+        } else {
+          this.globalParamsMessage.data = {title: 'Оборудование успешно добавлено', type: 'success', body: ''};
+          this.router.navigate(['/stock']);
+        }
       },
       (error) => {
         console.log('Ошибка при добавлении нового пользователей: ', error);
+      });
+  }
+
+  // добавить фото
+  addPhoto(event) {
+    const target = event.target || event.srcElement;
+
+    for (let j = 0; target.files.length > j; j++) {
+      this.load_file = target.files[j];
+      const reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this, name);
+      reader.readAsBinaryString(this.load_file);
+    }
+  }
+
+  _handleReaderLoaded(data, readerEvt) {
+    const binaryString = readerEvt.target.result;
+    this.fileString = btoa(binaryString);
+
+    this.newEquipments.photo_name = this.load_file.name;
+    this.newEquipments.photo_content = this.fileString;
+  }
+
+  sendFiles() {
+    this.equipmentsCreateService.sendOrderFiles({
+      file_name: this.newEquipments.photo_name,
+      files: this.newEquipments.photo_content
+    }).then(() => {
+        this.globalParamsMessage.data = {title: 'Оборудование успешно добавлено', type: 'success', body: ''};
+        this.router.navigate(['/stock']);
+      },
+      (error) => {
+        console.log('Ошибка при добавлении фотографии оборудования: ', error);
       });
   }
 }

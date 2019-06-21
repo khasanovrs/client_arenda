@@ -1,0 +1,82 @@
+.---page-finance {
+	
+	.---finance-stat-wrapper {
+		margin-bottom: 30px;
+	}
+
+	.---stat-item {
+		margin-bottom: 15px;
+		border-radius: 5px 5px 5px 30px;
+		padding: 18px 20px;
+
+		.---stat-item__info {
+			padding-left: 50px;
+
+			.---icon {
+				width: 32px;
+				height: 32px;
+				border-radius: 100%;
+				background: @mainColor;
+				color: @textColor;
+				font-size: 41px;
+				left: 0;
+				text-align: center;
+				line-height: 32px;
+
+				&.ifont {
+					font-size: 20px;
+				}
+
+			}
+
+			.---select {
+				width: 140px;
+			
+				.---select__cur-value {
+
+					span {
+						height: auto;
+						-webkit-line-clamp: 2;
+					}
+
+				}
+
+			}
+
+		}
+
+		.---stat-item__num {
+			font-size: 30/@px;
+		}
+
+	}
+
+	.---tabs__switchers-wrapper {
+		padding-bottom: 35px;
+	}
+
+	.---type {
+		margin: 0 40px 0 0;
+		background: @bgColor;
+		background: #fff;
+
+		.---type__item {
+			font-size: 16/@px;
+			padding: 18px 34px;
+			border-radius: 5px;
+			color: fadeout(@textColor, 30%);
+
+			&.---is-active {
+				color: #fff;
+				background: @acentColor;
+			}
+
+		}
+
+	}
+
+	table {
+		margin-top: 36px;
+	}
+
+}

@@ -49,7 +49,7 @@ export class HttpService {
       this.sendPostQuery(url, data).subscribe((result: { status: string, msg: string, session_id: string, data: string }) => {
           console.log('HttpService Ответ получен: ', result);
           if (result.status === 'OK') {
-            if (typeof result.data !== 'undefined') {
+            if (typeof result.data !== 'undefined' && result.data !== '') {
               let rez = atob(result.data);
               rez = JSON.parse(rez);
               console.log('Результат ответа: ', rez);

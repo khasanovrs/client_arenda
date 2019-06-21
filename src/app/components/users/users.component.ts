@@ -21,14 +21,16 @@ export class UsersComponent implements OnInit {
   usersManager: InterFaceUsers[] = [];
   // объект для создания нового пользователя
   newUser: InterFaceNewUser = {
-    name: '',
-    lastName: '',
+    id: null,
+    fio: 'Добавить сотрудника',
+    name_lastName: '',
     pass: '',
     user_type: {val: null, name: ''},
     branch_id: {val: null, name: ''},
     email: '',
     phone: '',
-    user_right: []
+    user_right: [],
+    btn: 'Создать'
   };
 
   constructor(private usersService: UsersService,
@@ -50,7 +52,6 @@ export class UsersComponent implements OnInit {
 
     this.dopParamsService.getRoles().then((data: InterFaceDopParams[]) => {
         this.roles = data;
-        this.newUser.user_type = data[0];
       },
       (error) => {
         console.log('Ошибка при получении ролей: ', error);
@@ -91,17 +92,12 @@ export class UsersComponent implements OnInit {
 
   // добавление нового пользователя
   addNewUser() {
-    if (this.newUser.name === '') {
-      this.globalParamsMessage.data = {title: 'Необходимо указать имя сотрудника', type: 'error', body: ''};
+    if (this.newUser.name_lastName === '') {
+      this.globalParamsMessage.data = {title: 'Необходимо указать фио сотрудника', type: 'error', body: ''};
       return false;
     }
 
-    if (this.newUser.lastName === '') {
-      this.globalParamsMessage.data = {title: 'Необходимо указать фамилию сотрудника', type: 'error', body: ''};
-      return false;
-    }
-
-    if (this.newUser.pass === '') {
+    if (this.newUser.pass === '' && this.newUser.id === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать пароль сотрудника', type: 'error', body: ''};
       return false;
     }
@@ -129,32 +125,61 @@ export class UsersComponent implements OnInit {
     }
 
     this.usersService.addUsers({
-      name: this.newUser.name,
-      lastName: this.newUser.lastName,
+      id: this.newUser.id,
+      fio: this.newUser.name_lastName,
       pass: this.newUser.pass,
       phone: this.newUser.phone.replace(/[\),\(,\-,+,\s]/g, ''),
-      branch_id: this.newUser.branch_id.val,
-      user_type: this.newUser.user_type.val,
+      branch_id: this.newUser.branch_id,
+      user_type: this.newUser.user_type,
       email: this.newUser.email,
       user_right: this.newUser.user_right
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Пользователь успешно добавлен', type: 'success', body: ''};
-
-        this.newUser = {
-          name: '',
-          lastName: '',
-          pass: '',
-          user_type: null,
-          branch_id: null,
-          email: '',
-          phone: '',
-          user_right: []
-        };
-
+        this.clear();
         this.selectUsers(this.currentBranch);
       },
       (error) => {
         console.log('Ошибка при добавлении нового пользователей: ', error);
       });
+  }
+
+  // правка пользоввателя
+  changeUser(client) {
+    this.clear();
+    this.newUser.id = client.id;
+    this.newUser.fio = client.fio;
+    this.newUser.name_lastName = client.fio;
+    this.newUser.branch_id = client.branch_id;
+    this.newUser.user_type = client.user_type;
+    this.newUser.email = client.email;
+    this.newUser.phone = client.phone;
+    this.newUser.btn = 'Изменить';
+
+    for (const value of this.rights) {
+      for (const value2 of client.rights) {
+        if (value2 === value.val) {
+          value.checked = true;
+        }
+      }
+    }
+  }
+
+  clear() {
+    this.newUser = {
+      id: null,
+      fio: 'Добавить сотрудника',
+      name_lastName: '',
+      pass: '',
+      user_type: null,
+      branch_id: null,
+      email: '',
+      phone: '',
+      user_right: [],
+      btn: 'Создать'
+    };
+
+    for (const value of this.rights) {
+      value.checked = false;
+    }
   }
 }
