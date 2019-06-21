@@ -1,22 +1,20 @@
-<aside class="---left-main-menu">
-  <div class="---logo ---pos-rel ---d-block">
-    <img data-src="assets/imgs/logo.svg" alt="" class="---lazyload ---y-pos-abs">
-    stroika
-    <span class="---d-block">arenda</span>
+<div class="---logo ---pos-rel ---d-block">
+  <img data-src="assets/imgs/logo.svg" alt="" class="---lazyload ---y-pos-abs">
+  stroika
+  <span class="---d-block">arenda</span>
+</div>
+
+<nav>
+  <a *ngFor="let menu of menuList" [routerLinkActiveOptions]="{ exact: true }" routerLink={{menu.link}} routerLinkActive='---is-active'>
+    <i class="ifont ---y-pos-abs" ngClass={{menu.class}}></i>
+    {{menu.name}}
+  </a>
+</nav>
+
+<div class="---btns ---d-block ---sm-d-none">
+  <div class="---in-rent">
+    В аренде: <b class="---font-sbold">284</b>
   </div>
 
-  <nav>
-    <a *ngFor="let menu of menuList" [routerLinkActiveOptions]="{ exact: true }" routerLink={{menu.link}} routerLinkActive='---is-active'>
-      <i class="ifont ---y-pos-abs" ngClass={{menu.class}}></i>
-      {{menu.name}}
-    </a>
-  </nav>
-
-  <div class="---btns ---d-block ---sm-d-none">
-    <div class="---in-rent">
-      В аренде: <b class="---font-sbold">284</b>
-    </div>
-
-    <a href="#" class="---btn ---btn--fill-acent ---btn--sm">Создать заявку</a>
-  </div>
-</aside>
+  <a href="#" class="---btn ---btn--fill-acent ---btn--sm">Создать заявку</a>
+</div>
