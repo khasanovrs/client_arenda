@@ -150,7 +150,7 @@
           <label></label>
           <label class="---pos-rel ---input ---input--file-upload">
             <i class="ifont ---icon-camera ---y-pos-abs"></i>
-            <input type="file" class="---d-none" multiple>
+            <input type="file" (change)="addPhoto($event)" class="---d-none">
             <span class="---input__file-name">Загрузить фотографию</span>
           </label>
         </div>
@@ -178,7 +178,7 @@
     </div>
 
     <div class="---btns-wrapper">
-      <div (click)="addEquipment()" class="---btn ---btn--fill-acent">Добавить</div>
+      <div (click)="sendFiles()" class="---btn ---btn--fill-acent">Добавить</div>
     </div>
 
   </div>

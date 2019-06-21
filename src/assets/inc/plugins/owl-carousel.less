@@ -1,0 +1,97 @@
+.owl-carousel {
+  display: none;
+  width: 100%;
+  tap-highlight-color: transparent;
+  position: relative;
+  z-index: 1; 
+
+  .owl-stage {
+    position: relative;
+    touch-action: manipulation;
+    backface-visibility: hidden;
+
+    &:after {
+      content: ".";
+      display: block;
+      clear: both;
+      visibility: hidden;
+      line-height: 0;
+      height: 0;
+    }
+
+  }
+
+  .owl-stage-outer {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0px, 0px, 0px); 
+  }
+
+  .owl-wrapper,
+  .owl-item {
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0); 
+  }
+
+  .owl-item {
+    position: relative;
+    min-height: 1px;
+    float: left;
+    touch-callout: none;
+  }
+
+  .owl-nav,
+  .owl-dots {
+
+    &.disabled {display: none !important;}
+
+  }
+
+  .owl-dot,
+  .owl-prev,
+  .owl-next {
+    cursor: pointer;
+    user-select: none; 
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0 !important;
+    font: inherit; 
+  }
+
+  &.owl-loaded {
+    display: block;
+  }
+
+  &.owl-loading {
+    opacity: 0;
+    display: block;
+  }
+
+  &.owl-hidden {
+    opacity: 0;
+  }
+
+  &.owl-refresh {
+
+    .owl-item {
+      visibility: hidden;
+    }
+
+  }
+
+  &.owl-drag {
+
+    .owl-item {
+      touch-action: pan-y;
+      user-select: none;
+    }
+
+  }
+
+  &.owl-grab {
+    cursor: move;
+    cursor: grab;
+  }
+
+}

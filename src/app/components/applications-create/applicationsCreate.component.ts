@@ -27,14 +27,18 @@ export class ApplicationsCreateComponent implements OnInit {
     clients: []
   };
 
+  // отображение окна добавления товара
+  showAddEquipments = {
+    show: false,
+    filter: '',
+    equipments: []
+  };
+
   application: InterFaceNewApplication = {
     client_id: null,
-    equipments: [
-      {id: 7, name: 'Оборудование 1', count: 1, price: '1200', stock: 2, photo: '1'},
-      {id: 8, name: 'Оборудование 2', count: 4, price: '750', stock: 1, photo: '1'}
-    ],
-    sum: '6000',
-    delivery_sum: '1000',
+    equipments: [],
+    sum: '0',
+    delivery_sum: '0',
     typeLease: {val: null, required: true, name: 'тип аренды'},
     sale: {val: null, required: true, name: 'скидка'},
     status: {val: null, required: true, name: 'статус'},
@@ -127,15 +131,40 @@ export class ApplicationsCreateComponent implements OnInit {
       });
   }
 
+  // поиск товара из бд
+  searchEquipments(filter) {
+    if (filter === '') {
+      return false;
+    }
+
+    this.equipmentsService.searchEquipments({filter: filter}).then((data: InterFaceSearchClient[]) => {
+        this.showAddEquipments.equipments = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка оборудования: ', error);
+      });
+  }
+
   changeCount(equipment, type) {
 
     if (type === 'increase') {
+      if (parseInt(equipment.count, 10) === parseInt(equipment.in_stock, 10)) {
+        this.globalParamsMessage.data = {title: `В наличии только ${equipment.in_stock} шт `, type: 'error', body: ''};
+        return false;
+      }
+
       equipment.count++;
     }
 
     if (type === 'decrease') {
+      if (equipment.count === 1) {
+        this.globalParamsMessage.data = {title: `Количество оборудования не может быть меньше 1`, type: 'error', body: ''};
+        return false;
+      }
       equipment.count--;
     }
+
+    this.changeSum();
   }
 
   // заполнение данными из справочника
@@ -158,6 +187,26 @@ export class ApplicationsCreateComponent implements OnInit {
     };
   }
 
+  insertEquipmentsData(index) {
+    const tmp = {
+      id: this.showAddEquipments.equipments[index].id,
+      name: this.showAddEquipments.equipments[index].name,
+      in_stock: this.showAddEquipments.equipments[index].count,
+      count: 1,
+      price: this.showAddEquipments.equipments[index].price_per_day,
+      photo: this.showAddEquipments.equipments[index].photo
+    };
+    this.application.equipments.push(tmp);
+
+    this.showAddEquipments = {
+      show: false,
+      filter: '',
+      equipments: []
+    };
+
+    this.changeSum();
+  }
+
   addApplication() {
     for (const value in this.application) {
       if (this.application.hasOwnProperty(value)) {
@@ -166,6 +215,14 @@ export class ApplicationsCreateComponent implements OnInit {
           return false;
         }
       }
+    }
+
+    const date1 = new Date(this.application.rent_start.val);
+    const date2 = new Date(this.application.rent_end.val);
+
+    if (date2 < date1) {
+      this.globalParamsMessage.data = {title: `Период аренды указан некорректно`, type: 'error', body: ''};
+      return false;
     }
 
     this.applicationsCreateService.addApplication({
@@ -198,4 +255,52 @@ export class ApplicationsCreateComponent implements OnInit {
         console.log('Ошибка при добавлении новой заявки: ', error);
       });
   }
+
+  // вычесляем сумму аренды
+  changeSum() {
+    let sum = null;
+
+    if (this.application.equipments.length !== 0) {
+      for (const value of this.application.equipments) {
+        sum += value.count * parseFloat(value.price);
+      }
+    } else {
+      return true;
+    }
+
+    if (this.application.rent_start.val !== null && this.application.rent_end.val !== null) {
+      const date1 = new Date(this.application.rent_start.val);
+      const date2 = new Date(this.application.rent_end.val);
+
+      if (date2 < date1) {
+        this.globalParamsMessage.data = {title: `Период аренды указан некорректно`, type: 'error', body: ''};
+        return false;
+      }
+
+      const daysLag = Math.ceil(Math.abs(date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
+
+      sum = daysLag * sum;
+    }
+
+    if (this.application.sale !== null) {
+      let tmpSale = 0;
+      for (const value of this.discounts) {
+        if (this.application.sale.val === value.val) {
+          tmpSale = parseFloat(value.name);
+        }
+      }
+
+      if (tmpSale !== 0) {
+        sum -= sum * tmpSale / 100;
+      }
+    }
+
+    this.application.sum = sum;
+  }
+
+  // удаление оборудования из списка
+  deleteEquipment(index) {
+    this.application.equipments.splice(index, 1);
+  }
+
 }

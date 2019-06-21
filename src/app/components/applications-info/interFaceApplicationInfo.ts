@@ -15,10 +15,11 @@ interface InterFaceApplicationInfo {
   sum: string;
   equipments: {
     id: number,
-    equipments_id: number,
     name: string,
     count: number,
     status: number,
-    photo: string
-  }[];
+    stock: number,
+    photo: string,
+    price: string,
+  };
 }

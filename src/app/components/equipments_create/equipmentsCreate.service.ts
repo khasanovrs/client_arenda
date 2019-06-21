@@ -20,4 +20,18 @@ export class EquipmentsCreateService {
         );
     });
   }
+
+  sendOrderFiles(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-equipment-photo', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении фотографии оборудования', error);
+            reject();
+          }
+        );
+    });
+  }
 }

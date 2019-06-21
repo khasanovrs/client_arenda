@@ -37,7 +37,15 @@ export class ApplicationsInfoComponent implements OnInit {
     client_phone: '',
     delivery_sum: '',
     sum: '',
-    equipments: []
+    equipments: {
+      id: null,
+      name: '',
+      count: null,
+      status: null,
+      photo: '',
+      price: '',
+      stock: null
+    }
   };
 
   constructor(private applicationsCreateService: ApplicationsCreateService,
@@ -121,6 +129,7 @@ export class ApplicationsInfoComponent implements OnInit {
         this.application.client_fio = data.client_fio;
         this.application.client_phone = data.client_phone;
         this.application.delivery_sum = data.client_phone;
+        this.application.equipments = data.equipments;
         this.application.sum = data.sum;
       },
       (error) => {

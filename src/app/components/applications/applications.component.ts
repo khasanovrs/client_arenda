@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApplicationsService} from './applications.service';
 import {DopParamsService} from '../../services/dopParams.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-applications',
@@ -28,10 +29,6 @@ export class ApplicationsComponent implements OnInit {
 
   applications: InterFaceApplications[] = [];
 
-  constructor(private applicationsService: ApplicationsService,
-              private dopParamsService: DopParamsService) {
-  }
-
   ngOnInit() {
     this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
         this.deliveryStatus = data;
@@ -57,6 +54,11 @@ export class ApplicationsComponent implements OnInit {
       });
 
     this.getApplication();
+  }
+
+  constructor(private applicationsService: ApplicationsService,
+              private dopParamsService: DopParamsService,
+              private router: Router) {
   }
 
   // изменение типа источников
@@ -136,5 +138,9 @@ export class ApplicationsComponent implements OnInit {
     };
 
     this.getApplication();
+  }
+
+  applicationDetails(equipments_id) {
+    this.router.navigate(['/application/' + equipments_id]);
   }
 }
