@@ -91,7 +91,7 @@ if (sessionStorage.fontsLoaded) {
 } 
 else {
     var script = document.createElement('script');
-        script.src = '/static/js/font_face_observer.min.js';
+        script.src = 'assets/js/font_face_observer.min.js';
         script.async = true;
 
     script.onload = function () {
