@@ -195,7 +195,7 @@
     <div *ngIf="showActiveFields" id="active-field" class=" ---block--bg-white ---block-filter ---radius-5 ---form">
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3" *ngFor="let activeField of activeFields; let i = index">
-          <label for="right_{{activeField.code}}" class="---checkbox">
+          <label for="right_{{activeField.code}}" class="---checkbox" [ngClass]="{'---is-active':activeField.flag}">
             <input type="checkbox"
                    id="right_{{activeField.code}}"
                    (change)="changeCheckbox(i)"

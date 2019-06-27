@@ -99,11 +99,13 @@
 
       <div class="---row ---_sm">
         <div class="col ---col-12 ---col-xs-6 checkbox-style" *ngFor="let right of rights; let i = index">
-          <input type="checkbox"
-                 id="right_{{right.val}}"
-                 (change)="changeCheckbox(i)"
-                 [checked]="right.checked">
-          <label for="right_{{right.val}}" class="---checkbox">{{right.name}}</label>
+          <label for="right_{{right.val}}" class="---checkbox" [ngClass]="{'---is-active':right.checked}">
+            <input type="checkbox"
+                   id="right_{{right.val}}"
+                   (change)="changeCheckbox(i)"
+                   [checked]="right.checked">
+            {{right.name}}
+          </label>
         </div>
       </div>
     </div>
