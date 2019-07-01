@@ -1,1 +1,48 @@
-Наборы
+<div>
+  Статусы
+  <div  *ngFor="let status of statusList">
+    {{status.name}}
+  </div>
+</div>
+<hr>
+<div>
+  Источники
+  <div  *ngFor="let source of sourceList">
+    {{source.name}}
+  </div>
+</div>
+<hr>
+<div>
+  Филиалы
+  <div  *ngFor="let branch of branchList">
+    {{branch.name}}
+  </div>
+</div>
+<hr>
+<div>
+  Склады
+  <div  *ngFor="let stock of stocksList">
+    {{stock.name}}
+  </div>
+</div>
+<hr>
+<div>
+  Скидки
+  <div  *ngFor="let discount of discountList">
+    {{discount.name}}
+  </div>
+</div>
+<hr>
+<div>
+  Права
+  <div  *ngFor="let right of rightsList">
+    {{right.name}}
+  </div>
+</div>
+<hr>
+<div>
+  Роли
+  <div  *ngFor="let role of rolesList">
+    {{role.name}}
+  </div>
+</div>
