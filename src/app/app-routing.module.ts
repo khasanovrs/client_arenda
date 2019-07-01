@@ -12,6 +12,7 @@ import {EquipmentsComponent} from './components/equipments/equipments.component'
 import {ApplicationsComponent} from './components/applications/applications.component';
 import {ApplicationsCreateComponent} from './components/applications-create/applicationsCreate.component';
 import {ApplicationsInfoComponent} from './components/applications-info/applicationsInfo.component';
+import {SetsComponent} from './components/sets/sets.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,9 @@ const routes: Routes = [
   }, {
     path: 'stock',
     component: StockComponent
+  }, {
+    path: 'sets',
+    component: SetsComponent
   }, {
     path: 'equipments-create',
     component: EquipmentsCreateComponent

@@ -44,6 +44,8 @@ import {ApplicationsCreateService} from './components/applications-create/applic
 import {ApplicationsCreateComponent} from './components/applications-create/applicationsCreate.component';
 import {ApplicationsInfoComponent} from './components/applications-info/applicationsInfo.component';
 import {FooterComponent} from './components/footer/footer.component';
+import {SetsService} from './components/sets/sets.service';
+import {SetsComponent} from './components/sets/sets.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -69,7 +71,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     ApplicationsComponent,
     ApplicationsCreateComponent,
     ApplicationsInfoComponent,
-    FooterComponent
+    FooterComponent,
+    SetsComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     AuthService,
     EquipmentsCreateService,
     ApplicationsService,
-    ApplicationsCreateService
+    ApplicationsCreateService,
+    SetsService
   ],
   bootstrap: [AppComponent]
 })
