@@ -69,8 +69,9 @@
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения начало</label>
-          <div>
-            <input type="date" [(ngModel)]="filters.date_start">
+          <div class="---input ---input--calendar ---pos-rel">
+            <input [(ngModel)]="filters.date_start" class="---datepicker" data-position="bottom left">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">

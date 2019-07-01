@@ -302,7 +302,7 @@ $(document).ready(function() {
 
 
 	/* Init datepicker */
-    $("input[type=datepicker]").datepicker();
+    $(".---datepicker").datepicker();
 
 
 
