@@ -47,6 +47,7 @@
             </select>
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Источник</label>
           <div class="---select">
@@ -57,6 +58,7 @@
             </select>
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Статус</label>
           <div class="---select">
@@ -67,6 +69,7 @@
             </select>
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения начало</label>
           <div class="---input ---input--calendar ---pos-rel">
@@ -74,34 +77,40 @@
             <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения конец</label>
-          <div class="---select">
-            <input type="date" [(ngModel)]="filters.date_end">
+          <div class="---input ---input--calendar ---pos-rel">
+            <input [(ngModel)]="filters.date_end" class="---datepicker" data-position="bottom left">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Выручка от</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.dohod_start">
+          <div>
+            <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.dohod_start">
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Выручка до</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.dohod_end">
+          <div>
+            <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.dohod_end">
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество прокатов от</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.rentals_start">
+          <div>
+            <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.rentals_start">
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество прокатов до</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.rentals_end">
+          <div>
+            <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.rentals_end">
           </div>
         </div>
       </div>
@@ -109,7 +118,7 @@
       <div class="---btns ---d-flex">
         <div (click)="getClients()" class="---btn ---btn--fill-acent">Применить фильтры</div>
         <div (click)="clearFilter()" class="---btn ---btn--border-bg">
-          Сбросить фильры
+          Сбросить фильтры
           <i class="ifont ---icon-close"></i>
         </div>
       </div>

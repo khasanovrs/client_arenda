@@ -83,40 +83,40 @@ function requireResource(name, type, version, url, callback) {
 
 
 
-// /* Font face observer */
-// var html = document.querySelector('body');
+/* Font face observer */
+var html = document.querySelector('body');
 
-// if (sessionStorage.fontsLoaded) {
-//     html.classList.add('---is-font-loaded');
-// } 
-// else {
-//     var script = document.createElement('script');
-//         script.src = 'assets/js/font_face_observer.min.js';
-//         script.async = true;
+if (sessionStorage.fontsLoaded) {
+    html.classList.add('---is-font-loaded');
+} 
+else {
+    var script = document.createElement('script');
+        script.src = 'assets/js/font_face_observer.min.js';
+        script.async = true;
 
-//     script.onload = function () {
-//         var extraBold = new FontFaceObserver('Gilroy', {
-//             weight: 800
-//         });
-//         var semiBold = new FontFaceObserver('Gilroy', {
-//             weight: 600
-//         });
-//         var regular = new FontFaceObserver('Gilroy', {
-//             weight: 400
-//         });
-//         var light = new FontFaceObserver('Gilroy', {
-//             weight: 300
-//         });
+    script.onload = function () {
+        var extraBold = new FontFaceObserver('Gilroy', {
+            weight: 800
+        });
+        var semiBold = new FontFaceObserver('Gilroy', {
+            weight: 600
+        });
+        var regular = new FontFaceObserver('Gilroy', {
+            weight: 400
+        });
+        var light = new FontFaceObserver('Gilroy', {
+            weight: 300
+        });
 
-//         Promise.all([
-//             light.load(),
-//             regular.load(),
-//             semiBold.load(),
-//             extraBold.load()
-//         ]).then(function () {
-//             html.classList.add('---is-font-loaded');
-//             sessionStorage.fontsLoaded = true;
-//         });
-//     };
-//     document.head.appendChild(script);
-// }
+        Promise.all([
+            light.load(),
+            regular.load(),
+            semiBold.load(),
+            extraBold.load()
+        ]).then(function () {
+            html.classList.add('---is-font-loaded');
+            sessionStorage.fontsLoaded = true;
+        });
+    };
+    document.head.appendChild(script);
+}
