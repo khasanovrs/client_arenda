@@ -10891,7 +10891,7 @@ return jQuery;
 
 
 	/* Init datepicker */
-    $("input[type=datepicker]").datepicker();
+    $(".---datepicker").datepicker();
 
 
 
