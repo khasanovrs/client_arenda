@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SetsService} from './sets.service';
 import {DopParamsService} from '../../services/dopParams.service';
+import {StockService} from '../stock/stock.service';
+import {DopParamsChangeService} from '../../services/dopParamsChange.service';
 
 @Component({
   selector: 'app-sets',
@@ -23,7 +25,9 @@ export class SetsComponent implements OnInit {
   rolesList: InterFaceDopParams[] = [];
 
   constructor(private setsService: SetsService,
-              private dopParamsService: DopParamsService) {
+              private dopParamsService: DopParamsService,
+              private stockService: StockService,
+              private dopParamsChangeService: DopParamsChangeService) {
   }
 
   ngOnInit() {

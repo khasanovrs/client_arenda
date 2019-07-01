@@ -8,14 +8,14 @@ import {Router} from '@angular/router';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  checkAuth: Boolean = false;
+  //checkAuth: Boolean = false;
+  checkAuth: Boolean = true;
 
   constructor(private globalParams: GlobalParams,
               private authService: AuthService,
               private router: Router) {
-    this.checkAuth = this.authService.getEmittedValue().subscribe(item => this.checkAuth = item);
-
-    this.checkAuthRedirect();
+    // this.checkAuth = this.authService.getEmittedValue().subscribe(item => this.checkAuth = item);
+    // this.checkAuthRedirect();
   }
 
   checkAuthRedirect() {

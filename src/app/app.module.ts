@@ -46,6 +46,7 @@ import {ApplicationsInfoComponent} from './components/applications-info/applicat
 import {FooterComponent} from './components/footer/footer.component';
 import {SetsService} from './components/sets/sets.service';
 import {SetsComponent} from './components/sets/sets.component';
+import {DopParamsChangeService} from './services/dopParamsChange.service';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -101,7 +102,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     EquipmentsCreateService,
     ApplicationsService,
     ApplicationsCreateService,
-    SetsService
+    SetsService,
+    DopParamsChangeService
   ],
   bootstrap: [AppComponent]
 })
