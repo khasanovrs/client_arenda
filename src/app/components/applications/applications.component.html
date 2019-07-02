@@ -55,14 +55,16 @@
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения начало</label>
-          <div>
-            <input type="date" [(ngModel)]="filters.date_start">
+          <div class="---input ---input--calendar ---pos-rel">
+            <input class="---datepicker ---radius-5" [(ngModel)]="filters.date_start">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i> 
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения конец</label>
-          <div class="---select">
-            <input type="date" [(ngModel)]="filters.date_end">
+          <div class="---input ---input--calendar ---pos-rel">
+            <input class="---datepicker ---radius-5" [(ngModel)]="filters.date_end">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i> 
           </div>
         </div>
       </div>
@@ -98,6 +100,7 @@
     <div class="---t-wrapper">
       <table>
         <tr>
+          <th></th>
           <ng-container *ngFor="let activeField of activeFields">
             <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
           </ng-container>
@@ -106,6 +109,9 @@
         <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }"
             (click)="applicationDetails(application.equipments_id)"
             class="cursor-pointer">
+          <td>
+            <a href="#" class="ifont ---icon-edit ---radius-5"></a>
+          </td>
           <td *ngIf="activeFieldsTables['client']===1">{{application.client}}</td>
           <td *ngIf="activeFieldsTables['phone']===1">{{application.phone | telephoneNumber}}</td>
           <td *ngIf="activeFieldsTables['equipments_name']===1">{{application.equipments_name}}</td>

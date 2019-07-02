@@ -69,116 +69,81 @@
             </select>
           </div>
         </div>
+        
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество от</label>
-          <div class="---select">
-            <input type="number" [(ngModel)]="filters.count_start">
-          </div>
+          <input class="---input ---shadow--bg" type="number" [(ngModel)]="filters.count_start">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество до</label>
-          <div class="---select">
-            <input type="number" [(ngModel)]="filters.count_end">
-          </div>
+          <input class="---input ---shadow--bg" type="number" [(ngModel)]="filters.count_end">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Цена продажи от</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.selling_price_start">
-          </div>
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.selling_price_start">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Цена продажи до</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.selling_price_end">
-          </div>
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.selling_price_end">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Цена за сутки от</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.price_per_day_start">
-          </div>
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.price_per_day_start">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Цена за сутки до</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.price_per_day_end">
-          </div>
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.price_per_day_end">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество прокатов от</label>
-          <div class="---select">
-            <input type="number" [(ngModel)]="filters.rentals_start">
-          </div>
+          <input class="---input ---shadow--bg" type="number" [(ngModel)]="filters.rentals_start">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество прокатов до</label>
-          <div class="---select">
-            <input type="number" [(ngModel)]="filters.rentals_end">
-          </div>
+          <input class="---input ---shadow--bg" type="number" [(ngModel)]="filters.rentals_end">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество ремонтов от</label>
-          <div class="---select">
-            <input type="number" [(ngModel)]="filters.repairs_start">
-          </div>
+          <input class="---input ---shadow--bg" type="number" [(ngModel)]="filters.repairs_start">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество ремонтов до</label>
-          <div class="---select">
-            <input type="number" [(ngModel)]="filters.repairs_end">
-          </div>
+          <input class="---input ---shadow--bg" type="number" [(ngModel)]="filters.repairs_end">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Сумма ремонтов от</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.repairs_sum_start">
-          </div>
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.repairs_sum_start">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Сумма ремонтов до</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.repairs_sum_end">
-          </div>
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.repairs_sum_end">
         </div>
 
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Выручка от</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.revenue_start">
-          </div>
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.revenue_start">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Выручка до</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.revenue_end">
-          </div>
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.revenue_end">
         </div>
 
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Прибыль от</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.profit_start">
-          </div>
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.profit_start">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Прибыль до</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.profit_end">
-          </div>
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.profit_end">
         </div>
 
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Степень износа от</label>
-          <div class="---select">
-            <input type="number" [(ngModel)]="filters.degree_wear_start">
-          </div>
+          <input class="---input ---shadow--bg" type="number" [(ngModel)]="filters.degree_wear_start">
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Степень износа до</label>
-          <div class="---select">
-            <input type="number" [(ngModel)]="filters.degree_wear_end">
-          </div>
+          <input class="---input ---shadow--bg" type="number" [(ngModel)]="filters.degree_wear_end">
         </div>
 
       </div>
@@ -214,6 +179,7 @@
     <div class="---t-wrapper">
       <table>
         <tr>
+          <th></th>
           <ng-container *ngFor="let activeField of activeFields">
             <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
           </ng-container>
@@ -221,6 +187,9 @@
 
         <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 10, currentPage: p }"
             class="cursor-pointer" (click)="equipmentDetails(equipment.id)">
+          <td>
+            <a href="#" class="ifont ---icon-edit ---radius-5"></a>
+          </td>
           <td *ngIf="activeFieldsTables['name']===1">{{equipment.name}}</td>
           <td *ngIf="activeFieldsTables['category']===1">{{equipment.category}}</td>
           <td *ngIf="activeFieldsTables['stock']===1">{{equipment.stock}}</td>

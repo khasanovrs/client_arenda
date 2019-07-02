@@ -28,14 +28,14 @@
             ],
             "scripts": [
               "src/assets/js/plugins/jquery-3.4.0.js",
-              "src/assets/js/script.js",
-              "src/assets/js/html_js.js",
               "src/assets/js/less.min.js",
               "src/assets/js/plugins/baguetteBox.js",
               "src/assets/js/plugins/image_lazyload.min.js",
               "src/assets/js/plugins/jquery.datepicker.js",
               "src/assets/js/plugins/jquery.mask.js",
-              "src/assets/js/plugins/jquery.owl-carousel.js"
+              "src/assets/js/plugins/jquery.owl-carousel.js",
+              "src/assets/js/html_js.js",
+              "src/assets/js/script.js"
             ]
           },
           "configurations": {
