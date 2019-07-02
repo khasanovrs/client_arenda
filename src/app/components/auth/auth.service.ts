@@ -6,7 +6,6 @@ export class AuthService {
   authenticated: EventEmitter<any> = new EventEmitter();
 
   constructor(private httpService: HttpService) {
-    this.authenticated.emit(false);
   }
 
   // получение детальной информации по клиенту
@@ -15,6 +14,7 @@ export class AuthService {
       this.httpService.prepareQuery('api/auth', data)
         .then(() => {
             this.authenticated.emit(true);
+            localStorage.setItem('auth', 'true');
             resolve();
           },
           (error) => {
@@ -31,6 +31,7 @@ export class AuthService {
       this.httpService.prepareQuery('api/exit', '')
         .then(() => {
             this.authenticated.emit(false);
+            localStorage.setItem('auth', 'false');
             resolve();
           },
           (error) => {

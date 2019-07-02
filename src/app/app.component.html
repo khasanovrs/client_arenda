@@ -1,12 +1,11 @@
 <app-message-alert></app-message-alert>
-
 <app-menu *ngIf="checkAuth===true" class="---left-main-menu"></app-menu>
 
 <div [ngClass]="{'---main-content':checkAuth===true}" class="---d-flex ---flex-nowrap ---flex-column">
 	<app-header *ngIf="checkAuth===true"></app-header>
 	<div [ngClass]="{'---main-wrapper':checkAuth===true}" style="height: 100%;" class="---d-flex ---flex-column ---flex-nowrap">
 		<router-outlet></router-outlet>
-  		
+
   		<!-- На странице авторизации убрать футер -->
   		<app-footer></app-footer>
 	</div>

@@ -32,7 +32,6 @@
               "src/assets/js/html_js.js",
               "src/assets/js/less.min.js",
               "src/assets/js/plugins/baguetteBox.js",
-              "src/assets/js/plugins/font_face_observer.min.js",
               "src/assets/js/plugins/image_lazyload.min.js",
               "src/assets/js/plugins/jquery.datepicker.js",
               "src/assets/js/plugins/jquery.mask.js",
