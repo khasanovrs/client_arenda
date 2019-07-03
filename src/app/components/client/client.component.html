@@ -154,7 +154,12 @@
             </ng-container>
           </tr>
 
-          <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer">
+          <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" [ngClass]="{
+              '---purple':client.status===1,
+              '---dark':client.status===2,
+              '---dark-red':client.status===3,
+              '---light-red':client.status===4
+              }">
             <td>
               <div class="ifont ---icon-edit ---radius-5" (click)="clientDetails(client.id)"></div>
             </td>
@@ -162,12 +167,7 @@
             <td *ngIf="activeFieldsTables['fio']===1">{{client.fio}}</td>
             <td *ngIf="activeFieldsTables['phone']===1">{{client.phone | telephoneNumber}}</td>
             <td *ngIf="activeFieldsTables['status']===1">
-              <div [ngClass]="{
-              '---purple':client.status===1,
-              '---dark':client.status===2,
-              '---dark-red':client.status===3,
-              '---light-red':client.status===4
-              }" class="---select ---bg-color select-png bg-white">
+              <div class="---select ---bg-color select-png bg-white">
                 <select class="---select__cur-value w-200"
                         (change)="changeStatus(client)"
                         [(ngModel)]="client.status">

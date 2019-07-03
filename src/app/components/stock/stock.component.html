@@ -69,7 +69,7 @@
             </select>
           </div>
         </div>
-        
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество от</label>
           <input class="---input ---shadow--bg" type="number" [(ngModel)]="filters.count_start">
@@ -185,8 +185,12 @@
           </ng-container>
         </tr>
 
-        <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 10, currentPage: p }"
-            class="cursor-pointer">
+        <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" [ngClass]="{
+              '---purple':equipment.status===1,
+              '---dark':equipment.status===2,
+              '---dark-red':equipment.status===3,
+              '---light-red':equipment.status===4
+              }">
           <td>
             <div class="ifont ---icon-edit ---radius-5" (click)="equipmentDetails(equipment.id)"></div>
           </td>

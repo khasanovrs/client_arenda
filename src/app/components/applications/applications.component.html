@@ -57,14 +57,14 @@
           <label>Дата обращения начало</label>
           <div class="---input ---input--calendar ---pos-rel">
             <input class="---datepicker ---radius-5" [(ngModel)]="filters.date_start">
-            <i class="---y-pos-abs ifont ---icon-calendar"></i> 
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения конец</label>
           <div class="---input ---input--calendar ---pos-rel">
             <input class="---datepicker ---radius-5" [(ngModel)]="filters.date_end">
-            <i class="---y-pos-abs ifont ---icon-calendar"></i> 
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
       </div>
@@ -106,7 +106,12 @@
           </ng-container>
         </tr>
 
-        <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer">
+        <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" [ngClass]="{
+              '---purple':application.status===1,
+              '---dark':application.status===2,
+              '---dark-red':application.status===3,
+              '---light-red':application.status===4
+              }">
           <td>
             <div (click)="applicationDetails(application.equipments_id)" class="ifont ---icon-edit ---radius-5"></div>
           </td>
