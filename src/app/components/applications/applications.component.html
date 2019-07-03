@@ -106,11 +106,9 @@
           </ng-container>
         </tr>
 
-        <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }"
-            (click)="applicationDetails(application.equipments_id)"
-            class="cursor-pointer">
+        <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer">
           <td>
-            <a href="#" class="ifont ---icon-edit ---radius-5"></a>
+            <div (click)="applicationDetails(application.equipments_id)" class="ifont ---icon-edit ---radius-5"></div>
           </td>
           <td *ngIf="activeFieldsTables['client']===1">{{application.client}}</td>
           <td *ngIf="activeFieldsTables['phone']===1">{{application.phone | telephoneNumber}}</td>
