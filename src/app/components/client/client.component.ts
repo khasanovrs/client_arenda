@@ -111,7 +111,7 @@ export class ClientComponent implements OnInit {
     this.showFilters = !this.showFilters;
   }
 
-  // отображение фильтра
+  // отображение активных полей
   changeActiveFields() {
     this.showActiveFields = !this.showActiveFields;
   }
