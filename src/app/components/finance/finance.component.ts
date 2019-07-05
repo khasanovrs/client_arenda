@@ -16,11 +16,13 @@ export class FinanceComponent implements OnInit {
   activeFieldsTables = {};
   financeCategory: InterFaceDopParams[] = [];
   financeType: InterFaceDopParams[] = [];
+  financeCashBox: InterFaceDopParams[] = [];
 
   // фильтр
   filters: InterFaceFinance = {
     like: '',
     category: null,
+    cashBox: null,
     type: null,
     sum_start: '',
     sum_end: '',
@@ -53,6 +55,13 @@ export class FinanceComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении типов: ', error);
+      });
+
+    this.financeService.getFinanceCashBOx().then((data: InterFaceDopParams[]) => {
+        this.financeCashBox = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении касс: ', error);
       });
   }
 

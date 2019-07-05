@@ -6,6 +6,7 @@ export class FinanceService {
   activeFields: InterFaceActiveFields[] = [];
   category: InterFaceDopParams[] = [];
   type: InterFaceDopParams[] = [];
+  checkBox: InterFaceDopParams[] = [];
 
   constructor(private httpService: HttpService) {
   }
@@ -50,11 +51,31 @@ export class FinanceService {
     });
   }
 
+  // получение касс
+  public getFinanceCashBOx() {
+    return new Promise((resolve, reject) => {
+      if (this.checkBox.length === 0) {
+        this.httpService.prepareQuery('api/get-finance-cash-box', '')
+          .then((result: InterFaceDopParams[]) => {
+              this.checkBox = result;
+              resolve(this.checkBox);
+            },
+            (error) => {
+              console.log('Ошибка при получении касс финансов', error);
+              reject();
+            }
+          );
+      } else {
+        resolve(this.checkBox);
+      }
+    });
+  }
+
   // получение типов
   public getFinanceType() {
     return new Promise((resolve, reject) => {
       if (this.type.length === 0) {
-        this.httpService.prepareQuery('api/get-finance-type', '')
+        this.httpService.prepareQuery('api/get-finance-cash-box', '')
           .then((result: InterFaceDopParams[]) => {
               this.type = result;
               resolve(this.type);
