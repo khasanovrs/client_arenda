@@ -5,6 +5,7 @@ import {ApplicationsService} from '../applications/applications.service';
 import {DopParamsChangeService} from '../../services/dopParamsChange.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {EquipmentsService} from '../equipments/equipments.service';
+import {StockService} from '../stock/stock.service';
 
 @Component({
   selector: 'app-sets',
@@ -42,7 +43,8 @@ export class SetsComponent implements OnInit {
               private dopParamsService: DopParamsService,
               private dopParamsChangeService: DopParamsChangeService,
               private globalParamsMessage: GlobalParamsMessage,
-              private equipmentsService: EquipmentsService) {
+              private equipmentsService: EquipmentsService,
+              private stockService: StockService) {
   }
 
   ngOnInit() {
@@ -111,17 +113,17 @@ export class SetsComponent implements OnInit {
       });
   }
 
+  // статусы для заявок
+  // статусы для клиентов
+  // источники
+  // филиалы
+  // склады
+  // скидки
+  // права
+  // роли
+
   // добавление нового поля
   addParams() {
-    // статусы для заявок
-    // статусы для клиентов
-    // источники
-    // филиалы
-    // склады
-    // скидки
-    // права
-    // роли
-
     if (this.newParams.type === 'status_application') {
       this.dopParamsChangeService.addApplicationsStatus(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Статус успешно добавлен', type: 'success', body: ''};
@@ -167,6 +169,15 @@ export class SetsComponent implements OnInit {
         });
     }
 
+    if (this.newParams.type === 'stock') {
+      this.stockService.addStock(this.newParams).then(() => {
+          this.globalParamsMessage.data = {title: 'Склад успешно добавлен', type: 'success', body: ''};
+        },
+        (error) => {
+          console.log('Ошибка при добавлении нового склада: ', error);
+        });
+    }
+
     if (this.newParams.type === 'discount') {
       this.dopParamsChangeService.addDiscount(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Скидка успешно добавлена', type: 'success', body: ''};
@@ -193,5 +204,96 @@ export class SetsComponent implements OnInit {
           console.log('Ошибка при добавлении новой роли: ', error);
         });
     }
+  }
+
+  // удаление статуса для заявки
+  deleteStatusApplication(id) {
+    this.dopParamsChangeService.deleteaddApplicationsStatus({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Статус успешно удален', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при удалении статуса для заявки: ', error);
+      });
+  }
+
+  // удаление статуса для клиента
+  deleteStatusClient(id) {
+    this.dopParamsChangeService.deleteClientStatus({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Статус успешно удален', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при удалении статуса для клиента: ', error);
+      });
+  }
+
+  // удаление статуса для оборудования
+  deleteStatusEquipment(id) {
+    this.dopParamsChangeService.deleteEquipmentStatus({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Статус успешно удален', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при удалении статуса для оборудования: ', error);
+      });
+  }
+
+  // удаление источника
+  deleteSource(id) {
+    this.dopParamsChangeService.deleteSource({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Источник успешно удален', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при удалении источника: ', error);
+      });
+  }
+
+  // удаление филиала
+  deleteBranch(id) {
+    this.dopParamsChangeService.deleteBranch({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Филиал успешно удален', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при удалении филиала: ', error);
+      });
+  }
+
+  // удаление скидки
+  deleteDiscount(id) {
+    this.dopParamsChangeService.deleteDiscount({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Скидка успешно удалена', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при удалении скидки: ', error);
+      });
+
+  }
+
+  // удаление склада
+  deleteStock(id) {
+    this.stockService.deleteStock({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Склад успешно удален', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при добавлении склада: ', error);
+      });
+  }
+
+  // удаление роли
+  deleteRole(id) {
+    this.dopParamsChangeService.deleteRoles({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Роль успешно удалена', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при удалении роли: ', error);
+      });
+  }
+
+  // удаление прав
+  deleteRight(id) {
+    this.dopParamsChangeService.deleteRights({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Права успешно удалены', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при удалении прав: ', error);
+      });
   }
 }
