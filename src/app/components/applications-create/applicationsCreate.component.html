@@ -77,16 +77,14 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Начало аренды</label>
           <div class="---input ---input--calendar ---pos-rel">
-            <div class="---select">
-              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_start.val">
-            </div>
+            <input class="---datepicker" (change)="changeSum()" [(ngModel)]="application.rent_start.val">
             <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
         <div class="---field ---col-12 ---col-xs-6">
           <label>Окончание аренды</label>
           <div class="---input ---input--calendar ---pos-rel">
-            <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_end.val">
+            <input class="---datepicker" (change)="changeSum()" [(ngModel)]="application.rent_end.val">
             <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
@@ -139,7 +137,7 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Дата выдачи паспорта</label>
           <div class="---input ---input--calendar ---pos-rel">
-            <input type="date" class="---radius-5" [(ngModel)]="application.client_date_passport.val">
+            <input class="---datepicker" [(ngModel)]="application.client_date_passport.val">
             <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
