@@ -1,48 +1,62 @@
 <div>
-  Статусы
-  <div  *ngFor="let status of statusList">
+  Статусы для клиентов
+  <div *ngFor="let status of clientStatusList">
+    {{status.name}}
+  </div>
+</div>
+<hr>
+<div>
+  Статусы для заявок
+  <div *ngFor="let status of applicationStatusList">
+    {{status.name}}
+  </div>
+</div>
+<hr>
+<div>
+  Статусы для оборудований
+  <div *ngFor="let status of equipmentsStatusList">
     {{status.name}}
   </div>
 </div>
 <hr>
 <div>
   Источники
-  <div  *ngFor="let source of sourceList">
+  <div *ngFor="let source of sourceList">
     {{source.name}}
   </div>
 </div>
 <hr>
 <div>
   Филиалы
-  <div  *ngFor="let branch of branchList">
+  <div *ngFor="let branch of branchList">
     {{branch.name}}
   </div>
 </div>
 <hr>
 <div>
   Склады
-  <div  *ngFor="let stock of stocksList">
+  <div *ngFor="let stock of stocksList">
     {{stock.name}}
   </div>
 </div>
 <hr>
 <div>
   Скидки
-  <div  *ngFor="let discount of discountList">
+  <div *ngFor="let discount of discountList">
     {{discount.name}}
   </div>
 </div>
 <hr>
 <div>
   Права
-  <div  *ngFor="let right of rightsList">
+  <div *ngFor="let right of rightsList">
     {{right.name}}
   </div>
 </div>
 <hr>
 <div>
   Роли
-  <div  *ngFor="let role of rolesList">
+  <div *ngFor="let role of rolesList">
     {{role.name}}
   </div>
 </div>

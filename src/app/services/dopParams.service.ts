@@ -35,10 +35,10 @@ export class DopParamsService {
   }
 
   // получение статусов
-  public getStatus() {
+  public getStatusClient() {
     return new Promise((resolve, reject) => {
       if (this.status.length === 0) {
-        this.httpService.prepareQuery('api/get-status', '')
+        this.httpService.prepareQuery('api/get-client-status', '')
           .then((result: InterFaceDopParams []) => {
               this.status = result;
               resolve(this.status);

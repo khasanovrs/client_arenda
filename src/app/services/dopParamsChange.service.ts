@@ -7,30 +7,92 @@ export class DopParamsChangeService {
   constructor(private httpService: HttpService) {
   }
 
-  // добавление статуса
-  public addStatus(data) {
+  // добавление статуса для клиента
+  public addClientStatus(data) {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/add-status', data)
+      this.httpService.prepareQuery('api/add-client-status', data)
         .then(() => {
             resolve();
           },
           (error) => {
-            console.log('Ошибка при добавлении статуса', error);
+            console.log('Ошибка при добавлении статуса для клиента', error);
             reject();
           }
         );
     });
   }
 
-  // удаление статуса
-  public deleteStatus(data) {
+  // удаление статуса клиента
+  public deleteClientStatus(data) {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/delete-status', data)
+      this.httpService.prepareQuery('api/delete-client-status', data)
         .then(() => {
             resolve();
           },
           (error) => {
-            console.log('Ошибка при удалении статуса', error);
+            console.log('Ошибка при удалении статуса для клиента', error);
+            reject();
+          }
+        );
+    });
+  }
+
+
+  // добавление статуса для заявки
+  public addApplicationsStatus(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-applications-status', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении статуса для клиента', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // удаление статуса для заявки
+  public deleteaddApplicationsStatus(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/delete-applications-status', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при удалении статуса для клиента', error);
+            reject();
+          }
+        );
+    });
+  }
+
+
+  // добавление статуса для оборудования
+  public addEquipmentStatus(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-equipment-status', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении статуса для оборудования', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // удаление статуса для оборудования
+  public deleteEquipmentStatus(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/delete-equipment-status', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при удалении статуса для оборудования', error);
             reject();
           }
         );
