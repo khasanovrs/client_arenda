@@ -13,6 +13,8 @@ import {ApplicationsComponent} from './components/applications/applications.comp
 import {ApplicationsCreateComponent} from './components/applications-create/applicationsCreate.component';
 import {ApplicationsInfoComponent} from './components/applications-info/applicationsInfo.component';
 import {SetsComponent} from './components/sets/sets.component';
+import {FinanceComponent} from './components/finance/finance.component';
+import {ReportComponent} from './components/reports/report.component';
 
 
 const routes: Routes = [
@@ -58,6 +60,14 @@ const routes: Routes = [
   {
     path: 'application/:id',
     component: ApplicationsInfoComponent
+  },
+  {
+    path: 'finance',
+    component: FinanceComponent
+  },
+  {
+    path: 'report',
+    component: ReportComponent
   }
 ];
 
