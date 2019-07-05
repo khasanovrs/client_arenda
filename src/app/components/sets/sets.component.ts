@@ -208,7 +208,7 @@ export class SetsComponent implements OnInit {
 
   // удаление статуса для заявки
   deleteStatusApplication(id) {
-    this.dopParamsChangeService.deleteaddApplicationsStatus({'id': id}).then(() => {
+    this.dopParamsChangeService.deleteApplicationsStatus({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Статус успешно удален', type: 'success', body: ''};
       },
       (error) => {

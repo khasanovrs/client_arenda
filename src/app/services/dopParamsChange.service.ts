@@ -54,7 +54,7 @@ export class DopParamsChangeService {
   }
 
   // удаление статуса для заявки
-  public deleteaddApplicationsStatus(data) {
+  public deleteApplicationsStatus(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/delete-applications-status', data)
         .then(() => {
