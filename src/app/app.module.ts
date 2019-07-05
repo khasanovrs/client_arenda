@@ -47,6 +47,10 @@ import {FooterComponent} from './components/footer/footer.component';
 import {SetsService} from './components/sets/sets.service';
 import {SetsComponent} from './components/sets/sets.component';
 import {DopParamsChangeService} from './services/dopParamsChange.service';
+import {FinanceComponent} from './components/finance/finance.component';
+import {FinanceService} from './components/finance/finance.service';
+import {ReportService} from './components/reports/report.service';
+import {ReportComponent} from './components/reports/report.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -73,7 +77,9 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     ApplicationsCreateComponent,
     ApplicationsInfoComponent,
     FooterComponent,
-    SetsComponent
+    SetsComponent,
+    FinanceComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +109,9 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     ApplicationsService,
     ApplicationsCreateService,
     SetsService,
-    DopParamsChangeService
+    DopParamsChangeService,
+    FinanceService,
+    ReportService
   ],
   bootstrap: [AppComponent]
 })

@@ -57,7 +57,7 @@ export class ClientInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dopParamsService.getStatus().then((data: InterFaceDopParams[]) => {
+    this.dopParamsService.getStatusClient().then((data: InterFaceDopParams[]) => {
         this.statusList = data;
       },
       (error) => {

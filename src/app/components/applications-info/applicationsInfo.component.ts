@@ -66,7 +66,7 @@ export class ApplicationsInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.applicationsCreateService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
+    this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
         this.applicationsStatus = data;
       },
       (error) => {

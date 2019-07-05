@@ -42,7 +42,7 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dopParamsService.getStatus().then((data: InterFaceDopParams[]) => {
+    this.dopParamsService.getStatusClient().then((data: InterFaceDopParams[]) => {
         this.statusList = data;
       },
       (error) => {
@@ -111,7 +111,7 @@ export class ClientComponent implements OnInit {
     this.showFilters = !this.showFilters;
   }
 
-  // отображение фильтра
+  // отображение активных полей
   changeActiveFields() {
     this.showActiveFields = !this.showActiveFields;
   }
