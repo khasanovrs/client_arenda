@@ -8,6 +8,6 @@
 		<router-outlet></router-outlet>
 
   		<!-- На странице авторизации убрать футер -->
-  		<app-footer></app-footer>
+  		<app-footer *ngIf="checkAuth===true"></app-footer>
 	</div>
 </div>
