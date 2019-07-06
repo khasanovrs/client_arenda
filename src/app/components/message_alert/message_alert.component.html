@@ -7,17 +7,23 @@
 </div>-->
 
 <div *ngIf="data.data.type" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
-  <div class="---wrapper ---wrapper--image ---wrapper--big">
+    <div class="---wrapper ---wrapper--small">
 
-    <div class="---js-close-modal ---js-close-modal-icon"></div>
+        <div class="---js-close-modal ---js-close-modal-icon"></div>
 
-    <div class="modal-body">
-      <div [ngClass]="{'success':data.data.type==='success','error':data.data.type==='error'}">{{data.data.title}}</div>
-      <div>{{data.data.body}}</div>
-      <div class="btn" (click)="clear()">Ок, понял</div>
+        <div class="modal-body">
+
+            <div class="---modal__header" [ngClass]="{'success':data.data.type==='success','error':data.data.type==='error'}">{{data.data.title}}</div>
+
+            <div class="---notify-text">{{data.data.body}}</div>
+
+            <div class="---modal__footer-btns ---d-flex">
+                <div class="---btn ---btn--fill-acent ---btn--sm" (click)="clear()">Ок, понял</div>
+            </div>
+
+        </div>
+
     </div>
-
-  </div>
 </div>
 
 
@@ -82,56 +88,54 @@
                 <input class="---input" placeholder="Поиск по оборудованию">
             </div>
 
-            <?php for($i = 0; $i < 2; $i++): ?>
-                <a href="#" class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
-                    <span class="---prod-item__info ---d-inline-flex ---align-items-center">
-                        <span class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
-                            <img data-src="/static/imgs/catalog/1.png" alt="" class="---lazyload ---img-contain">
-                        </span>
-                        <span class="---prod-item__title ---font-sbold">Отбойный молоток<br> MAKITA HM1203C</span>
+            <a href="#" class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
+                <span class="---prod-item__info ---d-inline-flex ---align-items-center">
+                    <span class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
+                        <img data-src="/static/imgs/catalog/1.png" alt="" class="---lazyload ---img-contain">
                     </span>
+                    <span class="---prod-item__title ---font-sbold">Отбойный молоток<br> MAKITA HM1203C</span>
+                </span>
 
-                    <span class="---prod-item__thumb ---d-inline-flex">
-                        <span class="---thumb-item">
-                            За единицу<br> 
-                            <span class="---font-sbold">750 ₽</span>
-                        </span>
-                        <span class="---thumb-item">
-                            В наличии<br> 
-                            <span class="---font-sbold">0 шт.</span>
-                        </span>
+                <span class="---prod-item__thumb ---d-inline-flex">
+                    <span class="---thumb-item">
+                        За единицу<br> 
+                        <span class="---font-sbold">750 ₽</span>
                     </span>
+                    <span class="---thumb-item">
+                        В наличии<br> 
+                        <span class="---font-sbold">0 шт.</span>
+                    </span>
+                </span>
 
-                    <span class="---add-to-cart ---pos-rel ---font-sbold">
-                        <i class="ifont ---icon-basket-linear ---y-pos-abs"></i>
-                        Добавить
+                <span class="---add-to-cart ---pos-rel ---font-sbold">
+                    <i class="ifont ---icon-basket-linear ---y-pos-abs"></i>
+                    Добавить
+                </span>
+            </a>
+            <a href="#" class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
+                <span class="---prod-item__info ---d-inline-flex ---align-items-center">
+                    <span class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
+                        <img data-src="/static/imgs/catalog/1.png" alt="" class="---lazyload ---img-contain">
                     </span>
-                </a>
-                <a href="#" class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
-                    <span class="---prod-item__info ---d-inline-flex ---align-items-center">
-                        <span class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
-                            <img data-src="/static/imgs/catalog/1.png" alt="" class="---lazyload ---img-contain">
-                        </span>
-                        <span class="---prod-item__title ---font-sbold">Отбойный молоток<br> MAKITA HM1203C</span>
-                    </span>
+                    <span class="---prod-item__title ---font-sbold">Отбойный молоток<br> MAKITA HM1203C</span>
+                </span>
 
-                    <span class="---prod-item__thumb ---d-inline-flex">
-                        <span class="---thumb-item">
-                            За единицу<br> 
-                            <span class="---font-sbold">750 ₽</span>
-                        </span>
-                        <span class="---thumb-item">
-                            В наличии<br> 
-                            <span class="---font-sbold">0 шт.</span>
-                        </span>
+                <span class="---prod-item__thumb ---d-inline-flex">
+                    <span class="---thumb-item">
+                        За единицу<br> 
+                        <span class="---font-sbold">750 ₽</span>
                     </span>
+                    <span class="---thumb-item">
+                        В наличии<br> 
+                        <span class="---font-sbold">0 шт.</span>
+                    </span>
+                </span>
 
-                    <span class="---add-to-cart ---is-added ---pos-rel ---font-sbold">
-                        <i class="ifont ---icon-check-linear ---y-pos-abs"></i>
-                        Добавлено
-                    </span>
-                </a>
-            <?php endfor; ?>
+                <span class="---add-to-cart ---is-added ---pos-rel ---font-sbold">
+                    <i class="ifont ---icon-check-linear ---y-pos-abs"></i>
+                    Добавлено
+                </span>
+            </a>
         </div>
 
         <a href="#" class="---btn ---btn--fill-bg ---btn--sm ---js-close-modal">Закрыть</a>
