@@ -4,10 +4,21 @@
       <div>{{data.data.body}}</div>
       <div class="btn" (click)="clear()">Ок, понял</div>
   </div>
-</div> -->
+</div>-->
 
+<div *ngIf="data.data.type" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--image ---wrapper--big">
 
+    <div class="---js-close-modal ---js-close-modal-icon"></div>
 
+    <div class="modal-body">
+      <div [ngClass]="{'success':data.data.type==='success','error':data.data.type==='error'}">{{data.data.title}}</div>
+      <div>{{data.data.body}}</div>
+      <div class="btn" (click)="clear()">Ок, понял</div>
+    </div>
+
+  </div>
+</div>
 
 
 <!-- Модальные окна -->
