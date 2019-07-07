@@ -6,7 +6,7 @@ export class FinanceService {
   activeFields: InterFaceActiveFields[] = [];
   category: InterFaceDopParams[] = [];
   type: InterFaceDopParams[] = [];
-  checkBox: InterFaceDopParams[] = [];
+  checkBox: InterFaceFinanceCashBox[] = [];
 
   constructor(private httpService: HttpService) {
   }
@@ -56,7 +56,7 @@ export class FinanceService {
     return new Promise((resolve, reject) => {
       if (this.checkBox.length === 0) {
         this.httpService.prepareQuery('api/get-finance-cash-box', '')
-          .then((result: InterFaceDopParams[]) => {
+          .then((result: InterFaceFinanceCashBox[]) => {
               this.checkBox = result;
               resolve(this.checkBox);
             },
@@ -75,7 +75,7 @@ export class FinanceService {
   public getFinanceType() {
     return new Promise((resolve, reject) => {
       if (this.type.length === 0) {
-        this.httpService.prepareQuery('api/get-finance-cash-box', '')
+        this.httpService.prepareQuery('api/get-finance-type', '')
           .then((result: InterFaceDopParams[]) => {
               this.type = result;
               resolve(this.type);
@@ -101,6 +101,36 @@ export class FinanceService {
           (error) => {
             console.log('Ошибка при изменение списка отображаемых полей', error);
             reject();
+          }
+        );
+    });
+  }
+
+  // получение списка финансов
+  public getFinance(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-finance', data)
+        .then((result: InterFaceFinance[]) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении финансов', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // обновление статуса финансов
+  public updateStatusFinance(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/update-category-finance', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при изменении статуса у финансов', error);
+            reject(error);
           }
         );
     });

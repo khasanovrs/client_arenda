@@ -6,6 +6,7 @@ import {FinanceService} from './finance.service';
   templateUrl: './finance.component.html',
 })
 export class FinanceComponent implements OnInit {
+  p = 1;
 // отображение фильтра
   showFilters = false;
   // отображение фильтра
@@ -16,10 +17,14 @@ export class FinanceComponent implements OnInit {
   activeFieldsTables = {};
   financeCategory: InterFaceDopParams[] = [];
   financeType: InterFaceDopParams[] = [];
-  financeCashBox: InterFaceDopParams[] = [];
+  financeCashBox: InterFaceFinanceCashBox[] = [];
+  // список финансов
+  financeList: InterFaceFinance[] = [];
+  // сумма всех финансов
+  allSum = '0';
 
   // фильтр
-  filters: InterFaceFinance = {
+  filters: InterFaceFinanceFilter = {
     like: '',
     category: null,
     cashBox: null,
@@ -57,12 +62,14 @@ export class FinanceComponent implements OnInit {
         console.log('Ошибка при получении типов: ', error);
       });
 
-    this.financeService.getFinanceCashBOx().then((data: InterFaceDopParams[]) => {
+    this.financeService.getFinanceCashBOx().then((data: InterFaceFinanceCashBox[]) => {
         this.financeCashBox = data;
       },
       (error) => {
         console.log('Ошибка при получении касс: ', error);
       });
+
+    this.getFinance();
   }
 
 
@@ -91,15 +98,61 @@ export class FinanceComponent implements OnInit {
       });
   }
 
-  // изменение отображений записекй у полей
+  // изменение отображений записей у полей
   changeShowFields() {
     for (const value of this.activeFields) {
       this.activeFieldsTables[value.code] = value.flag;
     }
   }
 
+  // изменение статуса
+  changeStatus(finance) {
+    this.financeService.updateStatusFinance({finance_id: finance.id, finance_category: finance.category_id}).then(() => {
+      },
+      (error) => {
+        console.log('Ошибка при изменении статуса у финансов: ', error);
+      });
+  }
+
+  // очистка фильтра
+  clearFilters() {
+    this.filters = {
+      like: '',
+      category: null,
+      cashBox: 1,
+      type: null,
+      sum_start: '',
+      sum_end: '',
+      date_start: '',
+      date_end: ''
+    };
+
+    this.getFinance();
+  }
+
+  // установка кассы
+  setCashBox(id) {
+    this.filters.cashBox = id;
+
+    this.getFinance();
+  }
 
   getFinance() {
-
+    this.financeService.getFinance({
+      like: this.filters.like,
+      category: this.filters.category,
+      cashBox: this.filters.cashBox,
+      type: this.filters.type,
+      sum_start: this.filters.sum_start,
+      sum_end: this.filters.sum_end,
+      date_start: this.filters.date_start,
+      date_end: this.filters.date_end
+    }).then((data: InterFaceFinance[]) => {
+      console.log(1,data);
+        this.financeList = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка финансов: ', error);
+      });
   }
 }

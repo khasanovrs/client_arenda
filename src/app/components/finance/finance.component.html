@@ -110,44 +110,23 @@
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
       <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
-        <div class="---tabs__switcher ---is-active" data-tab="1">
+        <div class="---tabs__switcher" [ngClass]="{'---is-active':filters.cashBox === null}">
           Все кассы<br>
           <div class="---num ---font-sbold ---d-inline-flex ---align-items-center ---radius-5">
-            148 000 ₽
+            {{allSum | digitsNumbers}} ₽
             <i class="ifont ---icon-menu-settings"></i>
           </div>
         </div>
-        <div class="---tabs__switcher" data-tab="2">
-          Сбербанк<br>
+
+        <div class="---tabs__switcher" [ngClass]="{'---is-active':cashBox.val === filters.cashBox}"
+             *ngFor="let cashBox of financeCashBox" (click)="setCashBox(cashBox.val)">
+          {{cashBox.name}}<br>
           <div class="---num ---font-sbold ---d-inline-flex ---align-items-center ---radius-5">
-            148 000 ₽
-            <i class="ifont ---icon-menu-settings"></i>
-          </div>
-        </div>
-        <div class="---tabs__switcher" data-tab="3">
-          НДС<br>
-          <div class="---num ---font-sbold ---d-inline-flex ---align-items-center ---radius-5">
-            148 000 ₽
-            <i class="ifont ---icon-menu-settings"></i>
-          </div>
-        </div>
-        <div class="---tabs__switcher" data-tab="4">
-          Без НДС<br>
-          <div class="---num ---font-sbold ---d-inline-flex ---align-items-center ---radius-5">
-            148 000 ₽
-            <i class="ifont ---icon-menu-settings"></i>
-          </div>
-        </div>
-        <div class="---tabs__switcher" data-tab="5">
-          Наличные<br>
-          <div class="---num ---font-sbold ---d-inline-flex ---align-items-center ---radius-5">
-            148 000 ₽
+            {{cashBox.sum | digitsNumbers}} ₽
             <i class="ifont ---icon-menu-settings"></i>
           </div>
         </div>
       </div>
-
-      <a href="#" class="---btn ---btn--fill-white">Новая касса</a>
     </div>
 
     <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
@@ -231,11 +210,11 @@
       </div>
 
       <div class="---btns ---d-flex">
-        <a href="#" class="---btn ---btn--fill-acent">Применить фильтры</a>
-        <a href="#" class="---btn ---btn--border-bg">
-          Сбросить фильры
+        <div (click)="getFinance()" class="---btn ---btn--fill-acent">Применить фильтры</div>
+        <div (click)="clearFilters()" class="---btn ---btn--border-bg">
+          Сбросить фильтры
           <i class="ifont ---icon-close"></i>
-        </a>
+        </div>
       </div>
     </div>
 
@@ -267,101 +246,39 @@
               <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
             </ng-container>
           </tr>
-
-          <tr>
-            <td><label class="---checkbox"></label></td>
-            <td>8452</td>
-            <td>Списание средств в счет аренды помещения</td>
+          <tr *ngFor="let finance of financeList">
             <td>
-              <div class="---select ---purple ---bg-color">
-                <select>
-                  <option value="">аренда помещения</option>
-                  <option value="">аренда оборудования</option>
-                  <option value="">ремонт</option>
+              <div class="ifont ---icon-edit ---radius-5"></div>
+            </td>
+            <td>{{finance.id}}</td>
+            <td>{{finance.name}}</td>
+            <td>
+              <div class="---select ---bg-color select-png bg-white">
+                <select class="---select__cur-value w-200"
+                        [(ngModel)]="finance.category_id"
+                        (change)="changeStatus(finance)">
+                  <option class="---select__list-item" *ngFor="let category of financeCategory" [ngValue]="category.val">
+                    {{category.name}}
+                  </option>
                 </select>
-
-                <div class="---select__cur-value">
-                  <span>аренда помещения</span>
-                  <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-                </div>
-
-                <div class="---select__list-wrapper">
-                  <div class="---select__list">
-                    <a href="#" class="---select__list-item">аренда помещения</a>
-                    <a href="#" class="---select__list-item">аренда оборудования</a>
-                    <a href="#" class="---select__list-item">ремонт</a>
-                  </div>
-                </div>
               </div>
             </td>
-            <td><b class="---font-sbold">Расход</b></td>
-            <td>28.01.2017</td>
-            <td>Филиал Москва</td>
-            <td><b class="---font-sbold">48 500 ₽</b></td>
+            <td>{{finance.type}}</td>
+            <td>{{finance.date_create}}</td>
+            <td>{{finance.payer}}</td>
+            <td>{{finance.sum | digitsNumbers}} ₽</td>
           </tr>
-          <tr>
-            <td><label class="---checkbox"></label></td>
-            <td>8452</td>
-            <td>Списание средств в счет аренды помещения</td>
-            <td>
-              <div class="---select ---green ---bg-color">
-                <select>
-                  <option value="">аренда помещения</option>
-                  <option value="">аренда оборудования</option>
-                  <option value="">ремонт</option>
-                </select>
 
-                <div class="---select__cur-value">
-                  <span>аренда помещения</span>
-                  <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-                </div>
-
-                <div class="---select__list-wrapper">
-                  <div class="---select__list">
-                    <a href="#" class="---select__list-item">аренда помещения</a>
-                    <a href="#" class="---select__list-item">аренда оборудования</a>
-                    <a href="#" class="---select__list-item">ремонт</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td><b class="---font-sbold">Расход</b></td>
-            <td>28.01.2017</td>
-            <td>Филиал Москва</td>
-            <td><b class="---font-sbold">48 500 ₽</b></td>
-          </tr>
         </table>
       </div>
 
       <div
         class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
+        <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
 
-        <div class="---nums ---d-flex ---align-items-center ---justify-content-between ---sm-justify-content-start">
-          <a href="#" class="---button ---radius-5 ifont ---icon-arrow-left"></a>
-          <ul class="---d-flex ---font-sbold">
-            <li><a href="#" class="---radius-5 ---is-active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><span>...</span></li>
-            <li><a href="#">36</a></li>
-          </ul>
-          <a href="#" class="---button ---radius-5 ---pos-rel ---next ---d-inline-flex ---align-items-center">
-            <span class="---d-none ---xs-d-block">Далее</span>
-            <i class="ifont ---icon-arrow-right ---y-pos-abs"></i>
-          </a>
-        </div>
-
-        <div class="---pagination__total-count">
-          Всего платежей — <span class="---font-sbold">8 521</span>
-        </div>
+        <div>Всего клиентов — <span class="---font-sbold">{{financeList.length | digitsNumbers}}</span></div>
       </div>
     </div>
-    <div class="---tabs__tab" data-tab="2"></div>
-    <div class="---tabs__tab" data-tab="3"></div>
-    <div class="---tabs__tab" data-tab="4"></div>
-    <div class="---tabs__tab" data-tab="5"></div>
   </div>
 
 </div>

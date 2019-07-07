@@ -1,10 +1,9 @@
 interface InterFaceFinance {
-  like: string;
-  category: number;
-  cashBox: number;
-  type: number;
-  sum_start: string;
-  sum_end: string;
-  date_start: string;
-  date_end: string;
+  id: number;
+  name: string;
+  category_id: number;
+  type: string;
+  date_create: string;
+  payer: string;
+  sum: string;
 }
