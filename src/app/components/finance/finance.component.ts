@@ -64,6 +64,9 @@ export class FinanceComponent implements OnInit {
 
     this.financeService.getFinanceCashBOx().then((data: InterFaceFinanceCashBox[]) => {
         this.financeCashBox = data;
+        this.allSum = String(this.financeCashBox.reduce(function (sum, val) {
+          return sum + +(val.sum);
+        }, 0));
       },
       (error) => {
         console.log('Ошибка при получении касс: ', error);
@@ -148,7 +151,7 @@ export class FinanceComponent implements OnInit {
       date_start: this.filters.date_start,
       date_end: this.filters.date_end
     }).then((data: InterFaceFinance[]) => {
-      console.log(1,data);
+        console.log(1, data);
         this.financeList = data;
       },
       (error) => {

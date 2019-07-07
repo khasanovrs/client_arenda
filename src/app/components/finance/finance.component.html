@@ -110,7 +110,7 @@
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
       <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
-        <div class="---tabs__switcher" [ngClass]="{'---is-active':filters.cashBox === null}">
+        <div class="---tabs__switcher" [ngClass]="{'---is-active':filters.cashBox === null}" (click)="setCashBox(1)">
           Все кассы<br>
           <div class="---num ---font-sbold ---d-inline-flex ---align-items-center ---radius-5">
             {{allSum | digitsNumbers}} ₽
