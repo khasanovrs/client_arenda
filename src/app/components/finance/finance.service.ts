@@ -94,7 +94,7 @@ export class FinanceService {
   // изменение списка активных полей для таблицы
   public changeFields(data) {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/change-finance-fields', data)
+      this.httpService.prepareQuery('api/change-finance-field', data)
         .then(() => {
             resolve();
           },
