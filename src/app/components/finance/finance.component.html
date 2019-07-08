@@ -248,7 +248,7 @@
           </tr>
           <tr *ngFor="let finance of financeList">
             <td>
-              <div class="ifont ---icon-edit ---radius-5"></div>
+              <div (click)="financeDetails(finance.id)"  class="ifont ---icon-edit ---radius-5"></div>
             </td>
             <td *ngIf="activeFieldsTables['number']===1">{{finance.id}}</td>
             <td *ngIf="activeFieldsTables['nazn']===1">{{finance.name}}</td>

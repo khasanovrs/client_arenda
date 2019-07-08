@@ -16,6 +16,7 @@ import {SetsComponent} from './components/sets/sets.component';
 import {FinanceComponent} from './components/finance/finance.component';
 import {ReportComponent} from './components/reports/report.component';
 import {FinanceCreateComponent} from './components/finance_create/financeCreate.component';
+import {FinanceInfoComponent} from './components/finance_info/financeInfo.component';
 
 
 const routes: Routes = [
@@ -69,6 +70,10 @@ const routes: Routes = [
   {
     path: 'finance-create',
     component: FinanceCreateComponent
+  },
+  {
+    path: 'finance/:id',
+    component: FinanceInfoComponent
   },
   {
     path: 'report',

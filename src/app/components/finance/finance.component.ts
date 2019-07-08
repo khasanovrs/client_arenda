@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FinanceService} from './finance.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-finance',
@@ -35,7 +36,8 @@ export class FinanceComponent implements OnInit {
     date_end: ''
   };
 
-  constructor(private financeService: FinanceService) {
+  constructor(private financeService: FinanceService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -75,6 +77,9 @@ export class FinanceComponent implements OnInit {
     this.getFinance();
   }
 
+  financeDetails(finance_id) {
+    this.router.navigate(['/finance/' + finance_id]);
+  }
 
   // отображение фильтра
   changeShowFilters() {

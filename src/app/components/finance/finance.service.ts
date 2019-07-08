@@ -150,4 +150,19 @@ export class FinanceService {
         );
     });
   }
+
+  // получение детальной информации по финансам
+  public getFinanceInfo(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-finance-info', data)
+        .then((result: InterFaceFinanceInfo) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении информации по финанасам', error);
+            reject(error);
+          }
+        );
+    });
+  }
 }

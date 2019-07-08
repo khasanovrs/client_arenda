@@ -1,19 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 import {FinanceService} from '../finance/finance.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-finance-create',
-  templateUrl: './financeCreate.component.html',
+  selector: 'app-finance-info',
+  templateUrl: './financeInfo.component.html',
 })
-export class FinanceCreateComponent implements OnInit {
+export class FinanceInfoComponent implements OnInit {
   financeCategory: InterFaceDopParams[] = [];
   financeType: InterFaceDopParams[] = [];
   financeCashBox: InterFaceFinanceCashBox[] = [];
-  finance: InterFaceNewFinance = {
+  // идентификатор финансов
+  financeId: null;
+  finance: InterFaceFinanceInfo = {
+    id: '',
     name: '',
     category: null,
+    payer_id: null,
     type: null,
     date: '',
     payer: null,
@@ -23,7 +27,14 @@ export class FinanceCreateComponent implements OnInit {
 
   constructor(private financeService: FinanceService,
               private globalParamsMessage: GlobalParamsMessage,
-              private router: Router) {
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
+
+    this.activatedRoute.params.subscribe(
+      (params: Params): void => {
+        this.financeId = params.id;
+      }
+    );
   }
 
   ngOnInit() {
@@ -47,10 +58,17 @@ export class FinanceCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении касс: ', error);
       });
+
+    this.financeService.getFinanceInfo({financeId: this.financeId}).then((data: InterFaceFinanceInfo) => {
+        this.finance = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении детальной информации по записи: ', error);
+      });
   }
 
-  // добавление финансов
-  addFinance() {
+  // обновление финансов
+  updateFinance() {
     if (this.finance.name === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать назначение', type: 'error', body: ''};
       return false;
@@ -88,20 +106,20 @@ export class FinanceCreateComponent implements OnInit {
 
 
     this.financeService.addFinance({
-      id: '',
+      id: this.finance.id,
       name: this.finance.name,
       category: this.finance.category,
       type: this.finance.type,
       date: this.finance.date,
-      payer: this.finance.payer,
+      payer: this.finance.payer_id,
       sum: this.finance.sum,
       cashBox: this.finance.cashBox
     }).then(() => {
-        this.globalParamsMessage.data = {title: 'Заявка успешно добавлена', type: 'success', body: ''};
+        this.globalParamsMessage.data = {title: 'Заявка успешно обновлена', type: 'success', body: ''};
         this.router.navigate(['/finance']);
       },
       (error) => {
-        console.log('Ошибка при добавлении новой записи: ', error);
+        console.log('Ошибка при обновлении записи: ', error);
       });
   }
 }
