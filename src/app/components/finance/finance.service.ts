@@ -151,6 +151,21 @@ export class FinanceService {
     });
   }
 
+  // добавление финансов
+  public addCashBox(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-caashBox', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при добавлении касы', error);
+            reject(error);
+          }
+        );
+    });
+  }
+
   // получение детальной информации по финансам
   public getFinanceInfo(data) {
     return new Promise((resolve, reject) => {

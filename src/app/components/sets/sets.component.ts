@@ -6,6 +6,7 @@ import {DopParamsChangeService} from '../../services/dopParamsChange.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {EquipmentsService} from '../equipments/equipments.service';
 import {StockService} from '../stock/stock.service';
+import {FinanceService} from '../finance/finance.service';
 
 @Component({
   selector: 'app-sets',
@@ -30,11 +31,14 @@ export class SetsComponent implements OnInit {
   rightsList: InterFaceDopParamsCheckBox[] = [];
   // роли пользователя
   rolesList: InterFaceDopParams[] = [];
+  // кассы
+  financeCashBox: InterFaceFinanceCashBox[] = [];
   // новое поле
   newParams: InterFaceSets = {
     type: '',
     branch: null,
     name: '',
+    sum: '',
     color: ''
   };
 
@@ -44,7 +48,8 @@ export class SetsComponent implements OnInit {
               private dopParamsChangeService: DopParamsChangeService,
               private globalParamsMessage: GlobalParamsMessage,
               private equipmentsService: EquipmentsService,
-              private stockService: StockService) {
+              private stockService: StockService,
+              private financeService: FinanceService) {
   }
 
   ngOnInit() {
@@ -111,16 +116,14 @@ export class SetsComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении складов: ', error);
       });
-  }
 
-  // статусы для заявок
-  // статусы для клиентов
-  // источники
-  // филиалы
-  // склады
-  // скидки
-  // права
-  // роли
+    this.financeService.getFinanceCashBOx().then((data: InterFaceFinanceCashBox[]) => {
+        this.financeCashBox = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении касс: ', error);
+      });
+  }
 
   // добавление нового поля
   addParams() {
@@ -202,6 +205,15 @@ export class SetsComponent implements OnInit {
         },
         (error) => {
           console.log('Ошибка при добавлении новой роли: ', error);
+        });
+    }
+
+    if (this.newParams.type === 'cashBox') {
+      this.financeService.addCashBox(this.newParams).then(() => {
+          this.globalParamsMessage.data = {title: 'Касса успешно добавлена', type: 'success', body: ''};
+        },
+        (error) => {
+          console.log('Ошибка при добавлении новой кассы: ', error);
         });
     }
   }

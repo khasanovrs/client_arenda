@@ -3,4 +3,5 @@ interface InterFaceSets {
   branch: number;
   name: string;
   color: string;
+  sum: string;
 }
