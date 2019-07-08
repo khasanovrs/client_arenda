@@ -15,6 +15,7 @@ import {ApplicationsInfoComponent} from './components/applications-info/applicat
 import {SetsComponent} from './components/sets/sets.component';
 import {FinanceComponent} from './components/finance/finance.component';
 import {ReportComponent} from './components/reports/report.component';
+import {FinanceCreateComponent} from './components/finance_create/financeCreate.component';
 
 
 const routes: Routes = [
@@ -64,6 +65,10 @@ const routes: Routes = [
   {
     path: 'finance',
     component: FinanceComponent
+  },
+  {
+    path: 'finance-create',
+    component: FinanceCreateComponent
   },
   {
     path: 'report',

@@ -135,4 +135,19 @@ export class FinanceService {
         );
     });
   }
+
+  // добавление финансов
+  public addFinance(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-finance', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при добавлении финансов', error);
+            reject(error);
+          }
+        );
+    });
+  }
 }

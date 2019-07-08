@@ -1,0 +1,70 @@
+<div class="---page-client-in ---row">
+
+  <div class="---col-12 ---col-lg-6 ---form">
+
+    <div class="---data-block">
+      <div class="h2 ---font-sbold">Новая заявка</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Назначение</label>
+          <input type="text" class="---input" [(ngModel)]="finance.name">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Категория</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="finance.category">
+              <option class="---select__list-item" *ngFor="let category of financeCategory" [ngValue]="category.val">
+                {{category.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Тип</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="finance.type">
+              <option class="---select__list-item" *ngFor="let type of financeType" [ngValue]="type.val">
+                {{type.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Касса</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="finance.cashBox">
+              <option class="---select__list-item" *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
+                {{cashBox.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Дата</label>
+          <input type="date" class="---input" [(ngModel)]="finance.date">
+        </div>
+
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Плательщик</label>
+
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Сумма</label>
+          <input class="---input" type="text" mask="separator" [(ngModel)]="finance.sum">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="---btns-wrapper">
+      <div (click)="addFinance()" class="---btn ---btn--fill-acent">Сохранить</div>
+    </div>
+
+  </div>
+</div>

@@ -99,6 +99,8 @@ export class FinanceComponent implements OnInit {
       () => {
         console.log('Ошибка при изменение списка отображаемых полей');
       });
+
+    this.showActiveFields = !this.showActiveFields;
   }
 
   // изменение отображений записей у полей
@@ -151,8 +153,9 @@ export class FinanceComponent implements OnInit {
       date_start: this.filters.date_start,
       date_end: this.filters.date_end
     }).then((data: InterFaceFinance[]) => {
-        console.log(1, data);
         this.financeList = data;
+
+        this.showFilters = false;
       },
       (error) => {
         console.log('Ошибка при получении списка финансов: ', error);
