@@ -308,4 +308,14 @@ export class SetsComponent implements OnInit {
         console.log('Ошибка при удалении прав: ', error);
       });
   }
+
+  // удаление прав
+  deleteCashBox(id) {
+    this.financeService.deleteCashBox({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Касса успешно удалена', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при удалении кассы: ', error);
+      });
+  }
 }

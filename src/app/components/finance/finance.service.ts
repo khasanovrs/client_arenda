@@ -55,7 +55,7 @@ export class FinanceService {
   public getFinanceCashBOx() {
     return new Promise((resolve, reject) => {
       if (this.checkBox.length === 0) {
-        this.httpService.prepareQuery('api/get-finance-cash-box', '')
+        this.httpService.prepareQuery('api/get-cashBox', '')
           .then((result: InterFaceFinanceCashBox[]) => {
               this.checkBox = result;
               resolve(this.checkBox);
@@ -154,12 +154,28 @@ export class FinanceService {
   // добавление финансов
   public addCashBox(data) {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/add-caashBox', data)
+      this.httpService.prepareQuery('api/add-cashBox', data)
         .then((result: any) => {
             resolve(result);
           },
           (error) => {
             console.log('Ошибка при добавлении касы', error);
+            reject(error);
+          }
+        );
+    });
+  }
+
+
+  // удаление кассы
+  public deleteCashBox(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/delete-cashBox', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при удалении касы', error);
             reject(error);
           }
         );
