@@ -40,33 +40,36 @@
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Филиал</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.branch">
-              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
+            <select [(ngModel)]="filters.branch">
+              <option *ngFor="let branch of branches" [ngValue]="branch.val">
                 {{branch.name}}
               </option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Источник</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.source">
-              <option class="---select__list-item" *ngFor="let source of sourceList" [ngValue]="source.val">
+            <select [(ngModel)]="filters.source">
+              <option *ngFor="let source of sourceList" [ngValue]="source.val">
                 {{source.name}}
               </option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Статус</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.status">
-              <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status.val">
+            <select [(ngModel)]="filters.status">
+              <option *ngFor="let status of statusList" [ngValue]="status.val">
                 {{status.name}}
               </option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -171,10 +174,11 @@
                 <select class="---select__cur-value w-200"
                         (change)="changeStatus(client)"
                         [(ngModel)]="client.status">
-                  <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status.val">
+                  <option *ngFor="let status of statusList" [ngValue]="status.val">
                     {{status.name}}
                   </option>
                 </select>
+                <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
               </div>
             </td>
             <td *ngIf="activeFieldsTables['date_create']===1">{{client.date_create}}</td>

@@ -7,13 +7,15 @@
         <div class="---stat-item__info ---pos-rel">
           <div class="---icon ---y-pos-abs">+</div>
 
-          <div class="---select ---radius-5">
-            <select class="---select__cur-value w-200"
-                    (change)="changeStatus(finance)">
-              <option class="---select__list-item" *ngFor="let category of financeCategory" [ngValue]="category.val">
-                {{category.name}}
-              </option>
+          <div class="---select">
+            <select>
+              <option>вариант 1</option>
+              <option>вариант 2</option>
+              <option>вариант 3</option>
+              <option>вариант 4</option>
+              <option>вариант 5</option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -25,29 +27,15 @@
         <div class="---stat-item__info ---pos-rel">
           <div class="---icon ---font-sbold ---y-pos-abs">-</div>
 
-          <div class="---select ---radius-5">
+          <div class="---select">
             <select>
-              <option value="">Расход<br> за месяц</option>
-              <option value="">Расход<br> за месяц</option>
-              <option value="">Расход<br> за месяц</option>
-              <option value="">Расход<br> за месяц</option>
-              <option value="">Расход<br> за месяц</option>
+              <option>вариант 1</option>
+              <option>вариант 2</option>
+              <option>вариант 3</option>
+              <option>вариант 4</option>
+              <option>вариант 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Расход<br> за месяц</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Расход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Расход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Расход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Расход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Расход<br> за месяц</a>
-              </div>
-            </div>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -59,29 +47,15 @@
         <div class="---stat-item__info ---pos-rel">
           <div class="---icon ---font-sbold ---y-pos-abs ifont ---icon-user"></div>
 
-          <div class="---select ---radius-5">
+          <div class="---select">
             <select>
-              <option value="">Зарплата<br> за апрель</option>
-              <option value="">Зарплата<br> за апрель</option>
-              <option value="">Зарплата<br> за апрель</option>
-              <option value="">Зарплата<br> за апрель</option>
-              <option value="">Зарплата<br> за апрель</option>
+              <option>вариант 1</option>
+              <option>вариант 2</option>
+              <option>вариант 3</option>
+              <option>вариант 4</option>
+              <option>вариант 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Зарплата<br> за апрель</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Зарплата<br> за апрель</a>
-                <a href="#" class="---select__list-item">Зарплата<br> за апрель</a>
-                <a href="#" class="---select__list-item">Зарплата<br> за апрель</a>
-                <a href="#" class="---select__list-item">Зарплата<br> за апрель</a>
-                <a href="#" class="---select__list-item">Зарплата<br> за апрель</a>
-              </div>
-            </div>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -116,15 +90,13 @@
     <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
 
       <div class="---d-flex ---form ---align-items-start">
-        <div [ngClass]="{'---is-active':showFilters}"
-             class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
+        <div [ngClass]="{'---is-active':showFilters}"  class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
              (click)="changeShowFilters()">
           Фильтры
           <i class="ifont ---icon-menu-finance ---d-none ---sm-d-flex"></i>
         </div>
 
-        <div [ngClass]="{'---is-active':showActiveFields}"
-             class="---filters  ---radius-5 ---d-inline-flex ---align-items-center"
+        <div [ngClass]="{'---is-active':showActiveFields}" class="---filters  ---radius-5 ---d-inline-flex ---align-items-center"
              (click)="changeActiveFields()">
           Активные поля
           <i class="ifont ---icon-list ---d-none ---sm-d-flex"></i>
@@ -145,33 +117,24 @@
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Категория</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.category">
-              <option class="---select__list-item" *ngFor="let category of financeCategory" [ngValue]="category.val">
+            <select [(ngModel)]="filters.category">
+              <option *ngFor="let category of financeCategory" [ngValue]="category.val">
                 {{category.name}}
               </option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Тип</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.type">
-              <option class="---select__list-item" *ngFor="let type of financeType" [ngValue]="type.val">
+            <select [(ngModel)]="filters.type">
+              <option *ngFor="let type of financeType" [ngValue]="type.val">
                 {{type.name}}
               </option>
             </select>
-          </div>
-        </div>
-
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Филиал</label>
-          <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.branch">
-              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
-                {{branch.name}}
-              </option>
-            </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -245,7 +208,7 @@
           </tr>
           <tr *ngFor="let finance of financeList">
             <td>
-              <div (click)="financeDetails(finance.id)" class="ifont ---icon-edit ---radius-5"></div>
+              <div (click)="financeDetails(finance.id)"  class="ifont ---icon-edit ---radius-5"></div>
             </td>
             <td *ngIf="activeFieldsTables['number']===1">{{finance.id}}</td>
             <td *ngIf="activeFieldsTables['nazn']===1">{{finance.name}}</td>
@@ -254,18 +217,17 @@
                 <select class="---select__cur-value w-200"
                         [(ngModel)]="finance.category_id"
                         (change)="changeStatus(finance)">
-                  <option class="---select__list-item" *ngFor="let category of financeCategory"
-                          [ngValue]="category.val">
+                  <option *ngFor="let category of financeCategory" [ngValue]="category.val">
                     {{category.name}}
                   </option>
                 </select>
+                <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
               </div>
             </td>
             <td *ngIf="activeFieldsTables['type']===1">{{finance.type}}</td>
             <td *ngIf="activeFieldsTables['date']===1">{{finance.date_create}}</td>
             <td *ngIf="activeFieldsTables['payer']===1">{{finance.payer}}</td>
             <td *ngIf="activeFieldsTables['sum']===1">{{finance.sum | digitsNumbers}} ₽</td>
-            <td *ngIf="activeFieldsTables['branch']===1">{{finance.branch}}</td>
           </tr>
 
         </table>

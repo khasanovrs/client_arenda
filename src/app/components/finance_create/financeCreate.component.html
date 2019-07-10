@@ -13,22 +13,20 @@
         <div class="---field ---col-12 ---col-sm-6">
           <label>Категория</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="finance.category">
-              <option class="---select__list-item" *ngFor="let category of financeCategory" [ngValue]="category.val">
-                {{category.name}}
-              </option>
+            <select [(ngModel)]="finance.category">
+              <option *ngFor="let category of financeCategory" [ngValue]="category.val">{{category.name}}</option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
         <div class="---field ---col-12 ---col-sm-6">
           <label>Тип</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="finance.type">
-              <option class="---select__list-item" *ngFor="let type of financeType" [ngValue]="type.val">
-                {{type.name}}
-              </option>
+            <select [(ngModel)]="finance.type">
+              <option *ngFor="let type of financeType" [ngValue]="type.val">{{type.name}}</option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -46,23 +44,26 @@
         <div class="---field ---col-12 ---col-sm-6">
           <label>Касса</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="finance.cashBox">
-              <option class="---select__list-item" *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
-                {{cashBox.name}}
-              </option>
+            <select [(ngModel)]="finance.cashBox">
+              <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">{{cashBox.name}}</option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
         <div class="---field ---col-12 ---col-sm-6">
           <label>Дата</label>
-          <input type="date" class="---input" [(ngModel)]="finance.date">
+
+          <div class="---input ---input--calendar ---pos-rel">
+            <input class="---datepicker" data-position="bottom left" [(ngModel)]="finance.date">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
+          </div>
         </div>
 
 
         <div class="---field ---col-12 ---col-sm-6">
           <label>Плательщик</label>
-
+          <input class="---input">
         </div>
 
         <div class="---field ---col-12 ---col-sm-6">

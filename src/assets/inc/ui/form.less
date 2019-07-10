@@ -269,210 +269,54 @@
 
 /* Select */
 .---select {
-	position: relative;
-	z-index: 10;
 	border-radius: 5px;
 	box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);
+	position: relative;
+	z-index: 1;
+	background: #fff;
 
 	select {
-	    *display: none;
-    width: 100%;
+		width: 100%;
+		position: relative;
+		z-index: 1;
+		padding: 11.5px 40px 11.5px 15px;
+		cursor: pointer;
+		appearance: none;
 	}
 
-	.---select__cur-value {
-		padding: 11.5px 40px 9.5px 15px;
-		cursor: pointer;
-		z-index: 1;
-		position: relative;
-		background: #fff;
-		border-radius: 5px;
+	option {
+		color: @textColor;
+	}
 
-		span {
-			font-weight: 600;
-			font-size: 14/@px;
-			line-height: 1.4;
-			.text-overflow(1, 14/@px * 1.4);
+	i {
+		z-index: -1;
+		font-size: 6px;
+		right: 11px;
+		width: 18px;
+		height: 18px;
+		border-radius: 2.5px;
+		background: @mainColor;
+	}
+
+
+	&.---bg {
+		
+		select {
+			color: #fff;
 		}
 
 		i {
-			font-size: 6px;
-			right: 11px;
-			width: 18px;
-			height: 18px;
-			border-radius: 2.5px;
-			background: @mainColor;
+			color: @textColor;
+			background: #fff;
 		}
 
 	}
 
-	.---select__list-wrapper {
-		background: #fff;
-		position: absolute;
-		top: 100%;
-		left: 0;
-		right: 0;
-		opacity: 0;
-		visibility: hidden;
-		overflow: hidden;
-		border-radius: 0 0 5px 5px;
-	}
-
-	.---select__list {
-		padding: 0 15px;
-		z-index: 0;
-		max-height: 200px;
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
-
-		&::-webkit-scrollbar {
-			width: 6px;
-		}
-
-		&::-webkit-scrollbar-track {
-			background: fadeout(@textColor, 70%);
-		}
-
-		&::-webkit-scrollbar-thumb {
-			background-color: @mainColor;
-		}
-
-		.---select__list-item {
-			display: block;
-			font-size: 13/@px;
-			padding: 15px 0;
-			border-top: 1px solid #eaeaea;
-			color: fadeout(@textColor, 30%);
-
-			&:hover {
-				color: @textColor;
-				text-decoration: underline;
-			}
-
-		}
-
-	}
-
-	&.---is-active {
-		z-index: 11;
-		border-radius: 0;
-
-		.---select__cur-value {
-			border-radius: 5px 5px 0 0;
-		}
-
-		.---select__list-wrapper {
-			opacity: 1;
-			visibility: visible;
-			box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);
-		}
-
-	}
-
-	&.---bg-color {
-
-		.---select__cur-value {
-			color: #fff;
-
-			i {
-				color: @textColor;
-				background: #fff;
-			}
-
-		}
-
-	}
-
-	&.---purple {
-
-		.---select__cur-value {
-			background: #8a63c3;
-		}
-
-	}
-
-	&.---green {
-
-		.---select__cur-value {
-			background: #22d66d;
-		}
-
-	}
-
-	&.---red {
-
-		.---select__cur-value {
-			background: #ef4242;
-		}
-
-	}
-
-	&.---dark-red {
-
-		.---select__cur-value {
-			background: #5c2727;
-		}
-
-	}
-
-	&.---light-red {
-
-		.---select__cur-value {
-			background: #9f6363;
-		}
-
-	}
-
-	&.---dark {
-
-		.---select__cur-value {
-			background: @textColor;
-		}
-
-	}
-
-	&.---gray {
-
-		.---select__cur-value {
-			background: #6a6473;
-		}
-
-	}
-
+	&.---bg--purple {background: #8a63c3;}
+	&.---bg--green {background: #22d66d;}
+	&.---bg--red {background: #ef4242;}
+	&.---bg--dark-red {background: #5c2727;}
+	&.---bg--light-red {background: #9f6363;}
+	&.---bg--dark {background: @textColor;}
+	&.---bg--gray {background: #6a6473;}
 }
-
-// .---select-2 {
-// 	border-radius: 5px;
-// 	box-shadow: 2.121px 2.121px 14px 0px rgba(42, 31, 58, 0.1);
-// 	position: relative;
-// 	z-index: 1;
-// 	background: #fff;
-// 	margin: 30px 0;
-
-// 	select {
-// 		width: 100%;
-// 		position: relative;
-// 		z-index: 1;
-// 		padding: 10.25px 40px 8.25px 15px;
-// 		cursor: pointer;
-
-// 		option {
-// 			padding: 15px 0;
-// 		}
-
-// 	}
-
-// 	i {
-// 		z-index: -1;
-// 		font-size: 6px;
-// 		right: 11px;
-// 		width: 18px;
-// 		height: 18px;
-// 		border-radius: 2.5px;
-// 		background: @mainColor;
-// 	}
-
-// 	&.---is-active {
-// 		z-index: 11;
-// 	}
-
-// }

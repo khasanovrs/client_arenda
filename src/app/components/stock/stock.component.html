@@ -40,33 +40,36 @@
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Склад</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.stock">
-              <option class="---select__list-item" *ngFor="let stock of stocks" [ngValue]="stock.val">
+            <select [(ngModel)]="filters.stock">
+              <option *ngFor="let stock of stocks" [ngValue]="stock.val">
                 {{stock.name}}
               </option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Тип оборудования</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.equipmentsType">
-              <option class="---select__list-item" *ngFor="let equipmentsType of equipmentsTypeList"
+            <select [(ngModel)]="filters.equipmentsType">
+              <option *ngFor="let equipmentsType of equipmentsTypeList"
                       [ngValue]="equipmentsType.val">
                 {{equipmentsType.name}}
               </option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Категория</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.equipmentsCategory">
-              <option class="---select__list-item" *ngFor="let equipmentsCategory of equipmentsCategoryList"
+            <select [(ngModel)]="filters.equipmentsCategory">
+              <option *ngFor="let equipmentsCategory of equipmentsCategoryList"
                       [ngValue]="equipmentsCategory.val">
                 {{equipmentsCategory.name}}
               </option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -200,13 +203,14 @@
           <td *ngIf="activeFieldsTables['type']===1">{{equipment.type}}</td>
           <td *ngIf="activeFieldsTables['status']===1">
             <div class="---select">
-              <select class="---select__cur-value" [(ngModel)]="equipment.status"
+              <select [(ngModel)]="equipment.status"
                       (change)="changeStatus(equipment)">
-                <option class="---select__list-item" *ngFor="let equipmentsStatus of equipmentsStatusList"
+                <option *ngFor="let equipmentsStatus of equipmentsStatusList"
                         [ngValue]="equipmentsStatus.val">
                   {{equipmentsStatus.name}}
                 </option>
               </select>
+              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
             </div>
           </td>
           <td *ngIf="activeFieldsTables['selling_price']===1">{{equipment.selling_price | digitsNumbers}}</td>
