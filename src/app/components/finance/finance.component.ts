@@ -23,8 +23,12 @@ export class FinanceComponent implements OnInit {
   financeCashBox: InterFaceFinanceCashBox[] = [];
   // список финансов
   financeList: InterFaceFinance[] = [];
+  // список финансов
+  operationSum = [];
   // сумма всех финансов
   allSum = '0';
+  // сумма дохода
+  income_sum = '';
 
   // фильтр
   filters: InterFaceFinanceFilter = {
@@ -170,13 +174,19 @@ export class FinanceComponent implements OnInit {
       date_start: this.filters.date_start,
       date_end: this.filters.date_end,
       branch: this.filters.branch
-    }).then((data: InterFaceFinance[]) => {
-        this.financeList = data;
+    }).then((data: any) => {
+        this.financeList = data.list;
+        this.operationSum = data.sum;
 
         this.showFilters = false;
       },
       (error) => {
         console.log('Ошибка при получении списка финансов: ', error);
       });
+  }
+
+  changeIncomeSum(sum) {
+    console.log(sum);
+    this.income_sum = sum;
   }
 }
