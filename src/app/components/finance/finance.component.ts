@@ -24,13 +24,13 @@ export class FinanceComponent implements OnInit {
   // список финансов
   financeList: InterFaceFinance[] = [];
   // список финансов
-  operationSum = [];
+  operationSum: InterFaceFinanceSum = {rate: [], income: []};
   // сумма всех финансов
   allSum = '0';
   // сумма дохода
   income_sum = '';
   // сумма расхода
-  rate_sum
+  rate_sum = '';
 
   // фильтр
   filters: InterFaceFinanceFilter = {
@@ -179,6 +179,8 @@ export class FinanceComponent implements OnInit {
     }).then((data: any) => {
         this.financeList = data.list;
         this.operationSum = data.sum;
+        this.income_sum = '';
+        this.rate_sum = '';
 
         this.showFilters = false;
       },
