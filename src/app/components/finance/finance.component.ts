@@ -29,6 +29,8 @@ export class FinanceComponent implements OnInit {
   allSum = '0';
   // сумма дохода
   income_sum = '';
+  // сумма расхода
+  rate_sum
 
   // фильтр
   filters: InterFaceFinanceFilter = {
@@ -183,10 +185,5 @@ export class FinanceComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении списка финансов: ', error);
       });
-  }
-
-  changeIncomeSum(sum) {
-    console.log(sum);
-    this.income_sum = sum;
   }
 }
