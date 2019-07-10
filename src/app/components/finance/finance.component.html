@@ -7,29 +7,15 @@
         <div class="---stat-item__info ---pos-rel">
           <div class="---icon ---y-pos-abs">+</div>
 
-          <div class="---select ---radius-5">
+          <div class="---select">
             <select>
-              <option value="">Доход<br> за месяц</option>
-              <option value="">Доход<br> за месяц</option>
-              <option value="">Доход<br> за месяц</option>
-              <option value="">Доход<br> за месяц</option>
-              <option value="">Доход<br> за месяц</option>
+              <option>вариант 1</option>
+              <option>вариант 2</option>
+              <option>вариант 3</option>
+              <option>вариант 4</option>
+              <option>вариант 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Доход<br> за месяц</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Доход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Доход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Доход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Доход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Доход<br> за месяц</a>
-              </div>
-            </div>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -41,29 +27,15 @@
         <div class="---stat-item__info ---pos-rel">
           <div class="---icon ---font-sbold ---y-pos-abs">-</div>
 
-          <div class="---select ---radius-5">
+          <div class="---select">
             <select>
-              <option value="">Расход<br> за месяц</option>
-              <option value="">Расход<br> за месяц</option>
-              <option value="">Расход<br> за месяц</option>
-              <option value="">Расход<br> за месяц</option>
-              <option value="">Расход<br> за месяц</option>
+              <option>вариант 1</option>
+              <option>вариант 2</option>
+              <option>вариант 3</option>
+              <option>вариант 4</option>
+              <option>вариант 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Расход<br> за месяц</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Расход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Расход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Расход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Расход<br> за месяц</a>
-                <a href="#" class="---select__list-item">Расход<br> за месяц</a>
-              </div>
-            </div>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -75,29 +47,15 @@
         <div class="---stat-item__info ---pos-rel">
           <div class="---icon ---font-sbold ---y-pos-abs ifont ---icon-user"></div>
 
-          <div class="---select ---radius-5">
+          <div class="---select">
             <select>
-              <option value="">Зарплата<br> за апрель</option>
-              <option value="">Зарплата<br> за апрель</option>
-              <option value="">Зарплата<br> за апрель</option>
-              <option value="">Зарплата<br> за апрель</option>
-              <option value="">Зарплата<br> за апрель</option>
+              <option>вариант 1</option>
+              <option>вариант 2</option>
+              <option>вариант 3</option>
+              <option>вариант 4</option>
+              <option>вариант 5</option>
             </select>
-
-            <div class="---select__cur-value">
-              <span>Зарплата<br> за апрель</span>
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-            </div>
-
-            <div class="---select__list-wrapper">
-              <div class="---select__list">
-                <a href="#" class="---select__list-item">Зарплата<br> за апрель</a>
-                <a href="#" class="---select__list-item">Зарплата<br> за апрель</a>
-                <a href="#" class="---select__list-item">Зарплата<br> за апрель</a>
-                <a href="#" class="---select__list-item">Зарплата<br> за апрель</a>
-                <a href="#" class="---select__list-item">Зарплата<br> за апрель</a>
-              </div>
-            </div>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -159,22 +117,24 @@
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Категория</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.category">
-              <option class="---select__list-item" *ngFor="let category of financeCategory" [ngValue]="category.val">
+            <select [(ngModel)]="filters.category">
+              <option *ngFor="let category of financeCategory" [ngValue]="category.val">
                 {{category.name}}
               </option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Тип</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.type">
-              <option class="---select__list-item" *ngFor="let type of financeType" [ngValue]="type.val">
+            <select [(ngModel)]="filters.type">
+              <option *ngFor="let type of financeType" [ngValue]="type.val">
                 {{type.name}}
               </option>
             </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -257,10 +217,11 @@
                 <select class="---select__cur-value w-200"
                         [(ngModel)]="finance.category_id"
                         (change)="changeStatus(finance)">
-                  <option class="---select__list-item" *ngFor="let category of financeCategory" [ngValue]="category.val">
+                  <option *ngFor="let category of financeCategory" [ngValue]="category.val">
                     {{category.name}}
                   </option>
                 </select>
+                <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
               </div>
             </td>
             <td *ngIf="activeFieldsTables['type']===1">{{finance.type}}</td>
