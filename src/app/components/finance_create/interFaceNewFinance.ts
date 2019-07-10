@@ -6,4 +6,5 @@ interface InterFaceNewFinance {
   payer: number;
   sum: string;
   cashBox: number;
+  branch: number;
 }

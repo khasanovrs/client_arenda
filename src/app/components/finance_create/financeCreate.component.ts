@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FinanceService} from '../finance/finance.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {Router} from '@angular/router';
+import {DopParamsService} from '../../services/dopParams.service';
 
 @Component({
   selector: 'app-finance-create',
@@ -10,6 +11,7 @@ import {Router} from '@angular/router';
 export class FinanceCreateComponent implements OnInit {
   financeCategory: InterFaceDopParams[] = [];
   financeType: InterFaceDopParams[] = [];
+  branches: InterFaceDopParams[] = [];
   financeCashBox: InterFaceFinanceCashBox[] = [];
   finance: InterFaceNewFinance = {
     name: '',
@@ -18,11 +20,13 @@ export class FinanceCreateComponent implements OnInit {
     date: '',
     payer: null,
     sum: '',
-    cashBox: null
+    cashBox: null,
+    branch: null
   };
 
   constructor(private financeService: FinanceService,
               private globalParamsMessage: GlobalParamsMessage,
+              private dopParamsService: DopParamsService,
               private router: Router) {
   }
 
@@ -47,10 +51,19 @@ export class FinanceCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении касс: ', error);
       });
+
+    this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
+        this.branches = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении филиалов: ', error);
+      });
   }
 
   // добавление финансов
   addFinance() {
+    this.finance.payer = 1;
+
     if (this.finance.name === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать назначение', type: 'error', body: ''};
       return false;
@@ -86,6 +99,11 @@ export class FinanceCreateComponent implements OnInit {
       return false;
     }
 
+    if (this.finance.branch === null) {
+      this.globalParamsMessage.data = {title: 'Необходимо указать филиал', type: 'error', body: ''};
+      return false;
+    }
+
 
     this.financeService.addFinance({
       id: '',
@@ -95,7 +113,8 @@ export class FinanceCreateComponent implements OnInit {
       date: this.finance.date,
       payer: this.finance.payer,
       sum: this.finance.sum,
-      cashBox: this.finance.cashBox
+      cashBox: this.finance.cashBox,
+      branch: this.finance.branch
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно добавлена', type: 'success', body: ''};
         this.router.navigate(['/finance']);

@@ -8,4 +8,5 @@ interface InterFaceFinanceInfo {
   payer: number;
   sum: string;
   cashBox: number;
+  branch: number;
 }

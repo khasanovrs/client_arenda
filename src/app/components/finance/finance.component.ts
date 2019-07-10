@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FinanceService} from './finance.service';
 import {Router} from '@angular/router';
+import {DopParamsService} from '../../services/dopParams.service';
 
 @Component({
   selector: 'app-finance',
@@ -18,6 +19,7 @@ export class FinanceComponent implements OnInit {
   activeFieldsTables = {};
   financeCategory: InterFaceDopParams[] = [];
   financeType: InterFaceDopParams[] = [];
+  branches: InterFaceDopParams[] = [];
   financeCashBox: InterFaceFinanceCashBox[] = [];
   // список финансов
   financeList: InterFaceFinance[] = [];
@@ -33,10 +35,12 @@ export class FinanceComponent implements OnInit {
     sum_start: '',
     sum_end: '',
     date_start: '',
-    date_end: ''
+    date_end: '',
+    branch: null
   };
 
   constructor(private financeService: FinanceService,
+              private dopParamsService: DopParamsService,
               private router: Router) {
   }
 
@@ -72,6 +76,13 @@ export class FinanceComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении касс: ', error);
+      });
+
+    this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
+        this.branches = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении филиалов: ', error);
       });
 
     this.getFinance();
@@ -134,7 +145,8 @@ export class FinanceComponent implements OnInit {
       sum_start: '',
       sum_end: '',
       date_start: '',
-      date_end: ''
+      date_end: '',
+      branch: null
     };
 
     this.getFinance();
@@ -156,7 +168,8 @@ export class FinanceComponent implements OnInit {
       sum_start: this.filters.sum_start,
       sum_end: this.filters.sum_end,
       date_start: this.filters.date_start,
-      date_end: this.filters.date_end
+      date_end: this.filters.date_end,
+      branch: this.filters.branch
     }).then((data: InterFaceFinance[]) => {
         this.financeList = data;
 

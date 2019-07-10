@@ -33,6 +33,17 @@
         </div>
 
         <div class="---field ---col-12 ---col-sm-6">
+          <label>Филиал</label>
+          <div class="---select">
+            <select class="---select__cur-value" [(ngModel)]="finance.branch">
+              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
+                {{branch.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
           <label>Касса</label>
           <div class="---select">
             <select class="---select__cur-value" [(ngModel)]="finance.cashBox">

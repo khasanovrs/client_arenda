@@ -6,4 +6,5 @@ interface InterFaceFinance {
   date_create: string;
   payer: string;
   sum: string;
+  branch: string;
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FinanceService} from '../finance/finance.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {DopParamsService} from '../../services/dopParams.service';
 
 @Component({
   selector: 'app-finance-info',
@@ -10,6 +11,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 export class FinanceInfoComponent implements OnInit {
   financeCategory: InterFaceDopParams[] = [];
   financeType: InterFaceDopParams[] = [];
+  branches: InterFaceDopParams[] = [];
   financeCashBox: InterFaceFinanceCashBox[] = [];
   // идентификатор финансов
   financeId: null;
@@ -22,13 +24,15 @@ export class FinanceInfoComponent implements OnInit {
     date: '',
     payer: null,
     sum: '',
-    cashBox: null
+    cashBox: null,
+    branch: null
   };
 
   constructor(private financeService: FinanceService,
               private globalParamsMessage: GlobalParamsMessage,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private dopParamsService: DopParamsService) {
 
     this.activatedRoute.params.subscribe(
       (params: Params): void => {
@@ -64,6 +68,13 @@ export class FinanceInfoComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении детальной информации по записи: ', error);
+      });
+
+    this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
+        this.branches = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении филиалов: ', error);
       });
   }
 
@@ -104,6 +115,11 @@ export class FinanceInfoComponent implements OnInit {
       return false;
     }
 
+    if (this.finance.branch === null) {
+      this.globalParamsMessage.data = {title: 'Необходимо указать филиал', type: 'error', body: ''};
+      return false;
+    }
+
 
     this.financeService.addFinance({
       id: this.finance.id,
@@ -113,7 +129,8 @@ export class FinanceInfoComponent implements OnInit {
       date: this.finance.date,
       payer: this.finance.payer_id,
       sum: this.finance.sum,
-      cashBox: this.finance.cashBox
+      cashBox: this.finance.cashBox,
+      branch: this.finance.branch
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно обновлена', type: 'success', body: ''};
         this.router.navigate(['/finance']);
