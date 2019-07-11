@@ -34,7 +34,7 @@ export class ApplicationsCreateService {
   public getApplicationsSource() {
     return new Promise((resolve, reject) => {
       if (this.applicationsSourceList.length === 0) {
-        this.httpService.prepareQuery('api/get-applications-source', '')
+        this.httpService.prepareQuery('api/get-source', '')
           .then((result: InterFaceDopParams[]) => {
               this.applicationsSourceList = result;
               resolve(this.applicationsSourceList);
