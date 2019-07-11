@@ -1,291 +1,218 @@
 <div class="---page-sets">
-  
+
   <div class="h1 ---font-light">Создания и удаление наборов</div>
 
   <div class="---row">
 
-      <div class="---col-xl-8">
-          <div class="---docs-wrapper">
-              <div class="h2 ---font-sbold">Документы с арендатором</div>
-
-              <div class="---row">
-                  
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-
+    <div class="---col-xl-8">
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-sbold">Статусы для клиентов</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let status of clientStatusList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-sbold">{{status.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div class="---color" [style.background]='status.color'></div>
+                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <a href="#" class="ifont ---icon-close"></a>
               </div>
+            </div>
           </div>
-
-          <div class="---docs-wrapper">
-              <div class="h2 ---font-sbold">Филиалы</div>
-
-              <div class="---row">
-                  
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-
-              </div>
-          </div>
-
-          <div class="---docs-wrapper">
-              <div class="h2 ---font-sbold">Статус заявки</div>
-
-              <div class="---row">
-                  
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-
-              </div>
-          </div>
-          
-          <div class="---docs-wrapper">
-              <div class="h2 ---font-sbold">Статус пользователя</div>
-
-              <div class="---row">
-                  
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="---col-lg-6">
-                      <div class="---doc-item ---pos-rel ---radius-5">
-                          <div class="---title ---font-sbold">Договор-Заявка с Заказщиком</div>
-                          <div class="---date">Обновлен 26.04.2019</div>
-
-                          <div class="---icons ---y-pos-abs ---d-flex">
-                              <div class="---color" style="background: #000000;"></div>
-                              <a href="#" class="ifont ---icon-edit ---acent"></a>
-                              <a href="#" class="ifont ---icon-close"></a>
-                          </div>
-                      </div>
-                  </div>
-
-              </div>
-          </div>
+        </div>
       </div>
 
-      <div class="---col-xl-4 ---rside">
-          <div class="---add-new-field ---radius-5">
-              <div class="h2 ---pos-rel">Добавить поле</div>
-
-              <form action="#" class="---form">
-                  <div class="---field">
-                    <label>Выберите раздел</label>
-                    <div class="---select">
-                        <select>
-                          <option value="">Статус заявки 1</option>
-                          <option value="">Статус заявки 2</option>
-                          <option value="">Статус заявки 3</option>
-                          <option value="">Статус заявки 4</option>
-                          <option value="">Статус заявки 5</option>
-                        </select>
-                        
-                        <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-                    </div>
-                  </div>
-
-                  <div class="---field">
-                    <label>Выберите тип заявки</label>
-                    <div class="---select">
-                        <select>
-                          <option value="">На новые заявки 1</option>
-                          <option value="">На новые заявки 2</option>
-                          <option value="">На новые заявки 3</option>
-                          <option value="">На новые заявки 4</option>
-                          <option value="">На новые заявки 5</option>
-                        </select>
-                        
-                        <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
-                    </div>
-                  </div>
-
-                  <div class="---field">
-                    <label>Название</label>
-                    <input class="---input ---fill--bg" placeholder="Новый клиент">
-                  </div>
-                  
-                  <div class="---field">
-                    <label>впишите номер цвета</label>
-                    <div class="---input ---input--choose-color ---fill--bg ---pos-rel">
-                      <input placeholder="Пример: 0156ab">
-                      <div class="---color-example ---y-pos-abs" style="background: #0156ab"></div>
-                    </div>
-                  </div>
-
-                  <button class="---btn ---btn--fill-acent">Добавить</button>
-              </form>
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-sbold">Статусы для заявок</div>
+        <div class="---row">
+          <div class="---col-lg-6"  *ngFor="let status of applicationStatusList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-sbold">{{status.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div class="---color" [style.background]='status.color'></div>
+                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <a href="#" class="ifont ---icon-close"></a>
+              </div>
+            </div>
           </div>
+        </div>
       </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-sbold">Статусы для оборудований</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let status of equipmentsStatusList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-sbold">{{status.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div class="---color" [style.background]='status.color'></div>
+                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <a href="#" class="ifont ---icon-close"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-sbold">Источники</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let source of sourceList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-sbold">{{source.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <a href="#" class="ifont ---icon-close"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-sbold">Филиалы</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let branch of branchList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-sbold">{{branch.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <a href="#" class="ifont ---icon-close"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-sbold">Склады</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let stock of stocksList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-sbold">{{stock.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <a href="#" class="ifont ---icon-close"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-sbold">Скидки</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let discount of discountList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-sbold">{{discount.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <a href="#" class="ifont ---icon-close"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-sbold">Права</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let right of rightsList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-sbold">{{right.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <a href="#" class="ifont ---icon-close"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-sbold">Роли</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let role of rolesList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-sbold">{{role.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <a href="#" class="ifont ---icon-close"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-sbold">Кассы</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let cashBox of financeCashBox">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-sbold">{{cashBox.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <a href="#" class="ifont ---icon-close"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="---col-xl-4 ---rside">
+      <div class="---add-new-field ---radius-5">
+        <div class="h2 ---pos-rel">Добавить поле</div>
+
+        <form action="#" class="---form">
+          <div class="---field">
+            <label>Выберите раздел</label>
+            <div class="---select">
+              <select>
+                <option value="">Статус заявки 1</option>
+                <option value="">Статус заявки 2</option>
+                <option value="">Статус заявки 3</option>
+                <option value="">Статус заявки 4</option>
+                <option value="">Статус заявки 5</option>
+              </select>
+
+              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
+            </div>
+          </div>
+
+          <div class="---field">
+            <label>Выберите тип заявки</label>
+            <div class="---select">
+              <select>
+                <option value="">На новые заявки 1</option>
+                <option value="">На новые заявки 2</option>
+                <option value="">На новые заявки 3</option>
+                <option value="">На новые заявки 4</option>
+                <option value="">На новые заявки 5</option>
+              </select>
+
+              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
+            </div>
+          </div>
+
+          <div class="---field">
+            <label>Название</label>
+            <input class="---input ---fill--bg" placeholder="Новый клиент">
+          </div>
+
+          <div class="---field">
+            <label>впишите номер цвета</label>
+            <div class="---input ---input--choose-color ---fill--bg ---pos-rel">
+              <input placeholder="Пример: 0156ab">
+              <div class="---color-example ---y-pos-abs" style="background: #0156ab"></div>
+            </div>
+          </div>
+
+          <button class="---btn ---btn--fill-acent">Добавить</button>
+        </form>
+      </div>
+    </div>
 
   </div>
 

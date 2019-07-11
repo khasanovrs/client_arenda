@@ -14,11 +14,11 @@ import {FinanceService} from '../finance/finance.service';
 })
 export class SetsComponent implements OnInit {
   // список статусов для клиентов
-  clientStatusList: InterFaceDopParams[] = [];
+  clientStatusList: InterFaceDopParamsColor[] = [];
   // список статусов для заявок
-  applicationStatusList: InterFaceDopParams[] = [];
+  applicationStatusList: InterFaceDopParamsColor[] = [];
   // список статусов для оборудования
-  equipmentsStatusList: InterFaceDopParams[] = [];
+  equipmentsStatusList: InterFaceDopParamsColor[] = [];
   // список филиалов
   branchList: InterFaceDopParams[] = [];
   // список складов
@@ -53,28 +53,28 @@ export class SetsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dopParamsService.getStatusClient().then((data: InterFaceDopParams[]) => {
+    this.dopParamsService.getStatusClient().then((data: InterFaceDopParamsColor[]) => {
         this.clientStatusList = data;
       },
       (error) => {
         console.log('Ошибка при получении статусов клиентов: ', error);
       });
 
-    this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParams[]) => {
+    this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParamsColor[]) => {
         this.equipmentsStatusList = data;
       },
       (error) => {
         console.log('Ошибка при получении списка статусов оборудования: ', error);
       });
 
-    this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
+    this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParamsColor[]) => {
         this.applicationStatusList = data;
       },
       (error) => {
         console.log('Ошибка при получении статусов заявок: ', error);
       });
 
-    this.dopParamsService.getSource().then((data: InterFaceDopParams[]) => {
+    this.dopParamsService.getSource().then((data: InterFaceDopParamsColor[]) => {
         this.sourceList = data;
       },
       (error) => {
@@ -82,14 +82,14 @@ export class SetsComponent implements OnInit {
       });
 
 
-    this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
+    this.dopParamsService.getBranch().then((data: InterFaceDopParamsColor[]) => {
         this.branchList = data;
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
       });
 
-    this.dopParamsService.getDiscount().then((data: InterFaceDopParams[]) => {
+    this.dopParamsService.getDiscount().then((data: InterFaceDopParamsColor[]) => {
         this.discountList = data;
       },
       (error) => {
@@ -103,7 +103,7 @@ export class SetsComponent implements OnInit {
         console.log('Ошибка при получении прав для пользователя: ', error);
       });
 
-    this.dopParamsService.getRoles().then((data: InterFaceDopParams[]) => {
+    this.dopParamsService.getRoles().then((data: InterFaceDopParamsColor[]) => {
         this.rolesList = data;
       },
       (error) => {
