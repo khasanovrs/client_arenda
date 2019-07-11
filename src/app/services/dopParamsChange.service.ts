@@ -1,17 +1,20 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../utils/http/http.service';
+import {GlobalParamsMessage} from '../components/message_alert/global-params-message';
 
 @Injectable()
 export class DopParamsChangeService {
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService,
+              private globalParamsMessage: GlobalParamsMessage) {
   }
 
   // добавление статуса для клиента
   public addClientStatus(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-client-status', data)
-        .then(() => {
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
           (error) => {
@@ -42,7 +45,8 @@ export class DopParamsChangeService {
   public addApplicationsStatus(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-applications-status', data)
-        .then(() => {
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
           (error) => {
@@ -73,7 +77,8 @@ export class DopParamsChangeService {
   public addEquipmentStatus(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-equipment-status', data)
-        .then(() => {
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
           (error) => {
@@ -103,7 +108,8 @@ export class DopParamsChangeService {
   public addSource(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-source', data)
-        .then(() => {
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
           (error) => {
@@ -133,7 +139,8 @@ export class DopParamsChangeService {
   public addBranch(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-branch', data)
-        .then(() => {
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
           (error) => {
@@ -163,7 +170,8 @@ export class DopParamsChangeService {
   public addDiscount(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-discount', data)
-        .then(() => {
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
           (error) => {
@@ -193,7 +201,8 @@ export class DopParamsChangeService {
   public addRoles(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-roles', data)
-        .then(() => {
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
           (error) => {
@@ -223,7 +232,8 @@ export class DopParamsChangeService {
   public addRights(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-rights', data)
-        .then(() => {
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
           (error) => {

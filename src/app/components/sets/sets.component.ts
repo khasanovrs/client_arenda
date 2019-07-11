@@ -53,7 +53,8 @@ export class SetsComponent implements OnInit {
     branch: null,
     name: '',
     sum: '0',
-    color: '#000000'
+    color: '#000000',
+    val: ''
   };
 
   constructor(private setsService: SetsService,
@@ -153,7 +154,6 @@ export class SetsComponent implements OnInit {
 
     if (this.newParams.type === 'status_application') {
       this.dopParamsChangeService.addApplicationsStatus(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Статус успешно добавлен', type: 'success', body: ''};
           this.applicationsService.applicationsStatusList = [];
           this.ngOnInit();
         },
@@ -164,7 +164,6 @@ export class SetsComponent implements OnInit {
 
     if (this.newParams.type === 'status_client') {
       this.dopParamsChangeService.addClientStatus(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Статус успешно добавлен', type: 'success', body: ''};
           this.dopParamsService.status = [];
           this.ngOnInit();
         },
@@ -175,7 +174,6 @@ export class SetsComponent implements OnInit {
 
     if (this.newParams.type === 'status_equipment') {
       this.dopParamsChangeService.addEquipmentStatus(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Статус успешно добавлен', type: 'success', body: ''};
           this.equipmentsService.equipmentsAvailabilityList = [];
           this.ngOnInit();
         },
@@ -186,7 +184,6 @@ export class SetsComponent implements OnInit {
 
     if (this.newParams.type === 'source') {
       this.dopParamsChangeService.addSource(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Источник успешно добавлен', type: 'success', body: ''};
           this.dopParamsService.source = [];
           this.ngOnInit();
         },
@@ -197,7 +194,6 @@ export class SetsComponent implements OnInit {
 
     if (this.newParams.type === 'branch') {
       this.dopParamsChangeService.addBranch(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Филиал успешно добавлен', type: 'success', body: ''};
           this.dopParamsService.branch = [];
           this.ngOnInit();
         },
@@ -213,7 +209,6 @@ export class SetsComponent implements OnInit {
       }
 
       this.stockService.addStock(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Склад успешно добавлен', type: 'success', body: ''};
           this.dopParamsService.stock = [];
           this.ngOnInit();
         },
@@ -224,7 +219,6 @@ export class SetsComponent implements OnInit {
 
     if (this.newParams.type === 'discount') {
       this.dopParamsChangeService.addDiscount(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Скидка успешно добавлена', type: 'success', body: ''};
           this.dopParamsService.discount = [];
           this.ngOnInit();
         },
@@ -235,7 +229,6 @@ export class SetsComponent implements OnInit {
 
     if (this.newParams.type === 'right') {
       this.dopParamsChangeService.addRights(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Права успешно добавлены', type: 'success', body: ''};
           this.dopParamsService.rights = [];
           this.ngOnInit();
         },
@@ -246,7 +239,6 @@ export class SetsComponent implements OnInit {
 
     if (this.newParams.type === 'role') {
       this.dopParamsChangeService.addRoles(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Роль успешно добавлена', type: 'success', body: ''};
           this.dopParamsService.roles = [];
           this.ngOnInit();
         },
@@ -257,7 +249,6 @@ export class SetsComponent implements OnInit {
 
     if (this.newParams.type === 'cashBox') {
       this.financeService.addCashBox(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Касса успешно добавлена', type: 'success', body: ''};
           this.financeService.checkBox = [];
           this.ngOnInit();
         },
@@ -266,13 +257,25 @@ export class SetsComponent implements OnInit {
         });
     }
 
+    this.clearNewParams();
+  }
+
+  // очистка формы создания
+  clearNewParams() {
     this.newParams = {
       type: '',
       branch: null,
       name: '',
       sum: '0',
-      color: '#000000'
+      color: '#000000',
+      val: ''
     };
+  }
+
+  // заполенение формы готовыми данными
+  changeParams(val, type) {
+    this.newParams = val;
+    this.newParams.type = type;
   }
 
   // удаление статуса для заявки

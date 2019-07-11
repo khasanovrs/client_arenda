@@ -13,7 +13,7 @@
               <div class="---title ---font-sbold">{{status.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <div class="---color" [style.background]='status.color'></div>
-                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <div (click)="changeParams(status,'status_client')" class="ifont ---icon-edit ---acent"></div>
                 <div (click)="deleteStatusClient(status.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
@@ -29,7 +29,7 @@
               <div class="---title ---font-sbold">{{status.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <div class="---color" [style.background]='status.color'></div>
-                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <div (click)="changeParams(status,'status_application')" class="ifont ---icon-edit ---acent"></div>
                 <div (click)="deleteStatusApplication(status.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
@@ -45,7 +45,7 @@
               <div class="---title ---font-sbold">{{status.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <div class="---color" [style.background]='status.color'></div>
-                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <div (click)="changeParams(status,'status_equipment')" class="ifont ---icon-edit ---acent"></div>
                 <div (click)="deleteStatusEquipment(status.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
@@ -60,7 +60,8 @@
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-sbold">{{source.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
-                <a href="#" class="ifont ---icon-edit ---acent"></a>
+
+                <div (click)="changeParams(source,'source')" class="ifont ---icon-edit ---acent"></div>
                 <div (click)="deleteSource(source.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
@@ -75,7 +76,8 @@
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-sbold">{{branch.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
-                <a href="#" class="ifont ---icon-edit ---acent"></a>
+
+                <div (click)="changeParams(branch,'branch')" class="ifont ---icon-edit ---acent"></div>
                 <div (click)="deleteBranch(branch.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
@@ -90,7 +92,7 @@
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-sbold">{{stock.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
-                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <div (click)="changeParams(stock,'stock')" class="ifont ---icon-edit ---acent"></div>
                 <div (click)="deleteStock(stock.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
@@ -105,7 +107,7 @@
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-sbold">{{discount.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
-                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <div (click)="changeParams(discount,'discount')" class="ifont ---icon-edit ---acent"></div>
                 <div (click)="deleteDiscount(discount.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
@@ -120,7 +122,7 @@
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-sbold">{{right.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
-                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <div (click)="changeParams(right,'right')" class="ifont ---icon-edit ---acent"></div>
                 <div (click)="deleteRight(right.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
@@ -135,7 +137,7 @@
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-sbold">{{role.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
-                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <div (click)="changeParams(role,'role')" class="ifont ---icon-edit ---acent"></div>
                 <div (click)="deleteRole(role.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
@@ -150,7 +152,7 @@
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-sbold">{{cashBox.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
-                <a href="#" class="ifont ---icon-edit ---acent"></a>
+                <div (click)="changeParams(cashBox,'cashBox')" class="ifont ---icon-edit ---acent"></div>
                 <div (click)="deleteCashBox(cashBox.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
@@ -163,14 +165,15 @@
 
     <div class="---col-xl-4 ---rside">
       <div class="---add-new-field ---radius-5">
-        <div class="h2 ---pos-rel">Добавить параметр</div>
+        <div *ngIf='newParams.val==""' class="h2 ---pos-rel">Добавить параметр</div>
+        <div *ngIf='newParams.val!==""' class="h2 ---pos-rel">Изменить параметр</div>
 
         <form action="#" class="---form">
           <div class="---field">
             <label>Выберите раздел</label>
             <div class="---select">
 
-              <select class="---select__cur-value" [(ngModel)]="newParams.type" name="type">
+              <select class="---select__cur-value" [(ngModel)]="newParams.type" [ngModelOptions]="{standalone: true}">
                 <option class="---select__list-item" *ngFor="let type of typeList" [ngValue]="type.val">
                   {{type.name}}
                 </option>
@@ -180,7 +183,7 @@
             </div>
           </div>
 
-          <div class="---field" *ngIf="newParams.type==='stock'">
+          <div class="---field" *ngIf="newParams.type==='stock' && newParams.val==''">
             <label>Выберите филиал</label>
             <div class="---select">
 
@@ -204,15 +207,18 @@
             <input type="text" mask="separator" name="sum" class="---input ---fill--bg" [(ngModel)]="newParams.sum">
           </div>
 
-          <div class="---field" *ngIf="newParams.type==='status_client' || newParams.type==='status_application' || newParams.type==='status_equipment'">
+          <div class="---field"
+               *ngIf="newParams.type==='status_client' || newParams.type==='status_application' || newParams.type==='status_equipment'">
             <label>Выберите цвет</label>
             <div class="---input ---input--choose-color ---fill--bg ---pos-rel">
-              <input [ngModelOptions]="{standalone: true}" type="color"  [(ngModel)]="newParams.color">
+              <input [ngModelOptions]="{standalone: true}" type="color" [(ngModel)]="newParams.color">
 
             </div>
           </div>
 
-          <div (click)="addParams()" class="---btn ---btn--fill-acent">Добавить</div>
+          <div *ngIf='newParams.val==""' (click)="addParams()" class="---btn ---btn--fill-acent">Добавить</div>
+          <div *ngIf='newParams.val!==""' (click)="addParams()" class="---btn ---btn--fill-acent">Обновить</div>
+          <div (click)="clearNewParams()" class="---btn ---btn--fill-acent">Новое поле</div>
         </form>
       </div>
     </div>

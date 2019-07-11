@@ -4,4 +4,5 @@ interface InterFaceSets {
   name: string;
   color: string;
   sum: string;
+  val: string;
 }
