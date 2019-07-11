@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApplicationsService} from './applications.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {Router} from '@angular/router';
+import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
 
 @Component({
   selector: 'app-applications',
@@ -17,6 +18,7 @@ export class ApplicationsComponent implements OnInit {
   activeFields: InterFaceActiveFields[] = [];
   // список активных полей
   activeFieldsTables = {};
+  applicationsSource: InterFaceDopParams[] = [];
   branches: InterFaceDopParams[] = [];
 
   filters = {
@@ -35,6 +37,14 @@ export class ApplicationsComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении статусов: ', error);
+      });
+
+    this.applicationsCreateService.getApplicationsSource().then((data: InterFaceDopParams[]) => {
+        this.applicationsSource = data;
+        console.log(1,data);
+      },
+      (error) => {
+        console.log('Ошибка при получении источников: ', error);
       });
 
     this.applicationsService.getApplicationsFields().then((data: InterFaceActiveFields[]) => {
@@ -58,7 +68,8 @@ export class ApplicationsComponent implements OnInit {
 
   constructor(private applicationsService: ApplicationsService,
               private dopParamsService: DopParamsService,
-              private router: Router) {
+              private router: Router,
+              private applicationsCreateService: ApplicationsCreateService) {
   }
 
   // изменение типа источников
