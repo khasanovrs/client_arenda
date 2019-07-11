@@ -14,7 +14,7 @@
               <div class="---icons ---y-pos-abs ---d-flex">
                 <div class="---color" [style.background]='status.color'></div>
                 <a href="#" class="ifont ---icon-edit ---acent"></a>
-                <a href="#" class="ifont ---icon-close"></a>
+                <div (click)="deleteStatusClient(status.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
           </div>
@@ -24,13 +24,13 @@
       <div class="---docs-wrapper">
         <div class="h2 ---font-sbold">Статусы для заявок</div>
         <div class="---row">
-          <div class="---col-lg-6"  *ngFor="let status of applicationStatusList">
+          <div class="---col-lg-6" *ngFor="let status of applicationStatusList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-sbold">{{status.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <div class="---color" [style.background]='status.color'></div>
                 <a href="#" class="ifont ---icon-edit ---acent"></a>
-                <a href="#" class="ifont ---icon-close"></a>
+                <div (click)="deleteStatusApplication(status.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
               <div class="---icons ---y-pos-abs ---d-flex">
                 <div class="---color" [style.background]='status.color'></div>
                 <a href="#" class="ifont ---icon-edit ---acent"></a>
-                <a href="#" class="ifont ---icon-close"></a>
+                <div (click)="deleteStatusEquipment(status.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@
               <div class="---title ---font-sbold">{{source.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <a href="#" class="ifont ---icon-edit ---acent"></a>
-                <a href="#" class="ifont ---icon-close"></a>
+                <div (click)="deleteSource(source.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
               <div class="---title ---font-sbold">{{branch.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <a href="#" class="ifont ---icon-edit ---acent"></a>
-                <a href="#" class="ifont ---icon-close"></a>
+                <div (click)="deleteBranch(branch.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@
               <div class="---title ---font-sbold">{{stock.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <a href="#" class="ifont ---icon-edit ---acent"></a>
-                <a href="#" class="ifont ---icon-close"></a>
+                <div (click)="deleteStock(stock.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
           </div>
@@ -106,7 +106,7 @@
               <div class="---title ---font-sbold">{{discount.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <a href="#" class="ifont ---icon-edit ---acent"></a>
-                <a href="#" class="ifont ---icon-close"></a>
+                <div (click)="deleteDiscount(discount.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@
               <div class="---title ---font-sbold">{{right.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <a href="#" class="ifont ---icon-edit ---acent"></a>
-                <a href="#" class="ifont ---icon-close"></a>
+                <div (click)="deleteRight(right.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@
               <div class="---title ---font-sbold">{{role.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <a href="#" class="ifont ---icon-edit ---acent"></a>
-                <a href="#" class="ifont ---icon-close"></a>
+                <div (click)="deleteRole(role.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
           </div>
@@ -151,7 +151,7 @@
               <div class="---title ---font-sbold">{{cashBox.name}}</div>
               <div class="---icons ---y-pos-abs ---d-flex">
                 <a href="#" class="ifont ---icon-edit ---acent"></a>
-                <a href="#" class="ifont ---icon-close"></a>
+                <div (click)="deleteCashBox(cashBox.val)" class="ifont ---icon-close"></div>
               </div>
             </div>
           </div>
@@ -163,33 +163,31 @@
 
     <div class="---col-xl-4 ---rside">
       <div class="---add-new-field ---radius-5">
-        <div class="h2 ---pos-rel">Добавить поле</div>
+        <div class="h2 ---pos-rel">Добавить параметр</div>
 
         <form action="#" class="---form">
           <div class="---field">
             <label>Выберите раздел</label>
             <div class="---select">
-              <select>
-                <option value="">Статус заявки 1</option>
-                <option value="">Статус заявки 2</option>
-                <option value="">Статус заявки 3</option>
-                <option value="">Статус заявки 4</option>
-                <option value="">Статус заявки 5</option>
+
+              <select class="---select__cur-value" [(ngModel)]="newParams.type" name="type">
+                <option class="---select__list-item" *ngFor="let type of typeList" [ngValue]="type.val">
+                  {{type.name}}
+                </option>
               </select>
 
               <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
             </div>
           </div>
 
-          <div class="---field">
-            <label>Выберите тип заявки</label>
+          <div class="---field" *ngIf="newParams.type==='stock'">
+            <label>Выберите филиал</label>
             <div class="---select">
-              <select>
-                <option value="">На новые заявки 1</option>
-                <option value="">На новые заявки 2</option>
-                <option value="">На новые заявки 3</option>
-                <option value="">На новые заявки 4</option>
-                <option value="">На новые заявки 5</option>
+
+              <select class="---select__cur-value" [(ngModel)]="newParams.branch" name="branch">
+                <option class="---select__list-item" *ngFor="let branch of branchList" [ngValue]="branch.val">
+                  {{branch.name}}
+                </option>
               </select>
 
               <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
@@ -198,94 +196,25 @@
 
           <div class="---field">
             <label>Название</label>
-            <input class="---input ---fill--bg" placeholder="Новый клиент">
+            <input type="text" name="name" class="---input ---fill--bg" [(ngModel)]="newParams.name">
           </div>
 
-          <div class="---field">
-            <label>впишите номер цвета</label>
+          <div class="---field" *ngIf="newParams.type==='cashBox'">
+            <label>Сумма</label>
+            <input type="text" mask="separator" name="sum" class="---input ---fill--bg" [(ngModel)]="newParams.sum">
+          </div>
+
+          <div class="---field" *ngIf="newParams.type==='status_client' || newParams.type==='status_application' || newParams.type==='status_equipment'">
+            <label>Выберите цвет</label>
             <div class="---input ---input--choose-color ---fill--bg ---pos-rel">
-              <input placeholder="Пример: 0156ab">
-              <div class="---color-example ---y-pos-abs" style="background: #0156ab"></div>
+              <input [ngModelOptions]="{standalone: true}" type="color"  [(ngModel)]="newParams.color">
+
             </div>
           </div>
 
-          <button class="---btn ---btn--fill-acent">Добавить</button>
+          <div (click)="addParams()" class="---btn ---btn--fill-acent">Добавить</div>
         </form>
       </div>
     </div>
-
-  </div>
-
-</div>
-
-
-<!-- <div>
-  Статусы для клиентов
-  <div *ngFor="let status of clientStatusList">
-    {{status.name}}
   </div>
 </div>
-<hr>
-<div>
-  Статусы для заявок
-  <div *ngFor="let status of applicationStatusList">
-    {{status.name}}
-  </div>
-</div>
-<hr>
-<div>
-  Статусы для оборудований
-  <div *ngFor="let status of equipmentsStatusList">
-    {{status.name}}
-  </div>
-</div>
-<hr>
-<div>
-  Источники
-  <div *ngFor="let source of sourceList">
-    {{source.name}}
-  </div>
-</div>
-
-<hr>
-<div>
-  Филиалы
-  <div *ngFor="let branch of branchList">
-    {{branch.name}}
-  </div>
-</div>
-<hr>
-<div>
-  Склады
-  <div *ngFor="let stock of stocksList">
-    {{stock.name}}
-  </div>
-</div>
-<hr>
-<div>
-  Скидки
-  <div *ngFor="let discount of discountList">
-    {{discount.name}}
-  </div>
-</div>
-<hr>
-<div>
-  Права
-  <div *ngFor="let right of rightsList">
-    {{right.name}}
-  </div>
-</div>
-<hr>
-<div>
-  Роли
-  <div *ngFor="let role of rolesList">
-    {{role.name}}
-  </div>
-</div>
-<hr>
-<div>
-  Кассы
-  <div *ngFor="let cashBox of financeCashBox">
-    {{cashBox.name}}
-  </div>
-</div> -->

@@ -33,13 +33,27 @@ export class SetsComponent implements OnInit {
   rolesList: InterFaceDopParams[] = [];
   // кассы
   financeCashBox: InterFaceFinanceCashBox[] = [];
+
+  typeList: InterFaceTypeList[] = [
+    {val: 'status_client', name: 'Статус для клиентов'},
+    {val: 'status_application', name: 'Статус для заявок'},
+    {val: 'status_equipment', name: 'Статус для оборудования'},
+    {val: 'source', name: 'Источник'},
+    {val: 'branch', name: 'Филиал'},
+    {val: 'stock', name: 'Склад'},
+    {val: 'discount', name: 'Скидка'},
+    {val: 'right', name: 'Права'},
+    {val: 'role', name: 'Роль'},
+    {val: 'cashBox', name: 'Касса'}
+  ];
+
   // новое поле
   newParams: InterFaceSets = {
     type: '',
     branch: null,
     name: '',
-    sum: '',
-    color: ''
+    sum: '0',
+    color: '#000000'
   };
 
   constructor(private setsService: SetsService,
@@ -127,9 +141,21 @@ export class SetsComponent implements OnInit {
 
   // добавление нового поля
   addParams() {
+    if (this.newParams.type === '') {
+      this.globalParamsMessage.data = {title: 'Необходимо выбрать раздел', type: 'error', body: ''};
+      return false;
+    }
+
+    if (this.newParams.name === '') {
+      this.globalParamsMessage.data = {title: 'Необходимо указать название', type: 'error', body: ''};
+      return false;
+    }
+
     if (this.newParams.type === 'status_application') {
       this.dopParamsChangeService.addApplicationsStatus(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Статус успешно добавлен', type: 'success', body: ''};
+          this.applicationsService.applicationsStatusList = [];
+          this.ngOnInit();
         },
         (error) => {
           console.log('Ошибка при добавлении нового статуса для заявки: ', error);
@@ -139,6 +165,8 @@ export class SetsComponent implements OnInit {
     if (this.newParams.type === 'status_client') {
       this.dopParamsChangeService.addClientStatus(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Статус успешно добавлен', type: 'success', body: ''};
+          this.dopParamsService.status = [];
+          this.ngOnInit();
         },
         (error) => {
           console.log('Ошибка при добавлении нового статуса для клиента: ', error);
@@ -147,7 +175,9 @@ export class SetsComponent implements OnInit {
 
     if (this.newParams.type === 'status_equipment') {
       this.dopParamsChangeService.addEquipmentStatus(this.newParams).then(() => {
-          this.globalParamsMessage.data = {title: 'Филиал успешно добавлен', type: 'success', body: ''};
+          this.globalParamsMessage.data = {title: 'Статус успешно добавлен', type: 'success', body: ''};
+          this.equipmentsService.equipmentsAvailabilityList = [];
+          this.ngOnInit();
         },
         (error) => {
           console.log('Ошибка при добавлении нового статуса для оборудования: ', error);
@@ -157,6 +187,8 @@ export class SetsComponent implements OnInit {
     if (this.newParams.type === 'source') {
       this.dopParamsChangeService.addSource(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Источник успешно добавлен', type: 'success', body: ''};
+          this.dopParamsService.source = [];
+          this.ngOnInit();
         },
         (error) => {
           console.log('Ошибка при добавлении нового источника: ', error);
@@ -166,6 +198,8 @@ export class SetsComponent implements OnInit {
     if (this.newParams.type === 'branch') {
       this.dopParamsChangeService.addBranch(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Филиал успешно добавлен', type: 'success', body: ''};
+          this.dopParamsService.branch = [];
+          this.ngOnInit();
         },
         (error) => {
           console.log('Ошибка при добавлении нового филиала: ', error);
@@ -173,8 +207,15 @@ export class SetsComponent implements OnInit {
     }
 
     if (this.newParams.type === 'stock') {
+      if (this.newParams.branch === null) {
+        this.globalParamsMessage.data = {title: 'Необходимо выбрать филиал', type: 'error', body: ''};
+        return false;
+      }
+
       this.stockService.addStock(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Склад успешно добавлен', type: 'success', body: ''};
+          this.dopParamsService.stock = [];
+          this.ngOnInit();
         },
         (error) => {
           console.log('Ошибка при добавлении нового склада: ', error);
@@ -184,6 +225,8 @@ export class SetsComponent implements OnInit {
     if (this.newParams.type === 'discount') {
       this.dopParamsChangeService.addDiscount(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Скидка успешно добавлена', type: 'success', body: ''};
+          this.dopParamsService.discount = [];
+          this.ngOnInit();
         },
         (error) => {
           console.log('Ошибка при добавлении новой скидки: ', error);
@@ -193,6 +236,8 @@ export class SetsComponent implements OnInit {
     if (this.newParams.type === 'right') {
       this.dopParamsChangeService.addRights(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Права успешно добавлены', type: 'success', body: ''};
+          this.dopParamsService.rights = [];
+          this.ngOnInit();
         },
         (error) => {
           console.log('Ошибка при добавлении нового права: ', error);
@@ -202,6 +247,8 @@ export class SetsComponent implements OnInit {
     if (this.newParams.type === 'role') {
       this.dopParamsChangeService.addRoles(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Роль успешно добавлена', type: 'success', body: ''};
+          this.dopParamsService.roles = [];
+          this.ngOnInit();
         },
         (error) => {
           console.log('Ошибка при добавлении новой роли: ', error);
@@ -211,17 +258,29 @@ export class SetsComponent implements OnInit {
     if (this.newParams.type === 'cashBox') {
       this.financeService.addCashBox(this.newParams).then(() => {
           this.globalParamsMessage.data = {title: 'Касса успешно добавлена', type: 'success', body: ''};
+          this.financeService.checkBox = [];
+          this.ngOnInit();
         },
         (error) => {
           console.log('Ошибка при добавлении новой кассы: ', error);
         });
     }
+
+    this.newParams = {
+      type: '',
+      branch: null,
+      name: '',
+      sum: '0',
+      color: '#000000'
+    };
   }
 
   // удаление статуса для заявки
   deleteStatusApplication(id) {
     this.dopParamsChangeService.deleteApplicationsStatus({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Статус успешно удален', type: 'success', body: ''};
+        this.applicationsService.applicationsStatusList = [];
+        this.ngOnInit();
       },
       (error) => {
         console.log('Ошибка при удалении статуса для заявки: ', error);
@@ -232,6 +291,8 @@ export class SetsComponent implements OnInit {
   deleteStatusClient(id) {
     this.dopParamsChangeService.deleteClientStatus({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Статус успешно удален', type: 'success', body: ''};
+        this.dopParamsService.status = [];
+        this.ngOnInit();
       },
       (error) => {
         console.log('Ошибка при удалении статуса для клиента: ', error);
@@ -242,6 +303,8 @@ export class SetsComponent implements OnInit {
   deleteStatusEquipment(id) {
     this.dopParamsChangeService.deleteEquipmentStatus({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Статус успешно удален', type: 'success', body: ''};
+        this.equipmentsService.equipmentsAvailabilityList = [];
+        this.ngOnInit();
       },
       (error) => {
         console.log('Ошибка при удалении статуса для оборудования: ', error);
@@ -252,6 +315,8 @@ export class SetsComponent implements OnInit {
   deleteSource(id) {
     this.dopParamsChangeService.deleteSource({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Источник успешно удален', type: 'success', body: ''};
+        this.dopParamsService.source = [];
+        this.ngOnInit();
       },
       (error) => {
         console.log('Ошибка при удалении источника: ', error);
@@ -262,6 +327,8 @@ export class SetsComponent implements OnInit {
   deleteBranch(id) {
     this.dopParamsChangeService.deleteBranch({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Филиал успешно удален', type: 'success', body: ''};
+        this.dopParamsService.branch = [];
+        this.ngOnInit();
       },
       (error) => {
         console.log('Ошибка при удалении филиала: ', error);
@@ -272,6 +339,8 @@ export class SetsComponent implements OnInit {
   deleteDiscount(id) {
     this.dopParamsChangeService.deleteDiscount({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Скидка успешно удалена', type: 'success', body: ''};
+        this.dopParamsService.discount = [];
+        this.ngOnInit();
       },
       (error) => {
         console.log('Ошибка при удалении скидки: ', error);
@@ -283,6 +352,8 @@ export class SetsComponent implements OnInit {
   deleteStock(id) {
     this.stockService.deleteStock({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Склад успешно удален', type: 'success', body: ''};
+        this.dopParamsService.stock = [];
+        this.ngOnInit();
       },
       (error) => {
         console.log('Ошибка при добавлении склада: ', error);
@@ -293,6 +364,8 @@ export class SetsComponent implements OnInit {
   deleteRole(id) {
     this.dopParamsChangeService.deleteRoles({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Роль успешно удалена', type: 'success', body: ''};
+        this.dopParamsService.roles = [];
+        this.ngOnInit();
       },
       (error) => {
         console.log('Ошибка при удалении роли: ', error);
@@ -303,6 +376,8 @@ export class SetsComponent implements OnInit {
   deleteRight(id) {
     this.dopParamsChangeService.deleteRights({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Права успешно удалены', type: 'success', body: ''};
+        this.dopParamsService.rights = [];
+        this.ngOnInit();
       },
       (error) => {
         console.log('Ошибка при удалении прав: ', error);
@@ -313,9 +388,12 @@ export class SetsComponent implements OnInit {
   deleteCashBox(id) {
     this.financeService.deleteCashBox({'id': id}).then(() => {
         this.globalParamsMessage.data = {title: 'Касса успешно удалена', type: 'success', body: ''};
+        this.financeService.checkBox = [];
+        this.ngOnInit();
       },
       (error) => {
         console.log('Ошибка при удалении кассы: ', error);
       });
   }
 }
+
