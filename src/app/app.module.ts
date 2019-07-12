@@ -53,6 +53,7 @@ import {ReportService} from './components/reports/report.service';
 import {ReportComponent} from './components/reports/report.component';
 import {FinanceCreateComponent} from './components/finance_create/financeCreate.component';
 import {FinanceInfoComponent} from './components/finance_info/financeInfo.component';
+import {HireComponent} from './components/hire/hire.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -83,7 +84,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     FinanceComponent,
     ReportComponent,
     FinanceCreateComponent,
-    FinanceInfoComponent
+    FinanceInfoComponent,
+    HireComponent
   ],
   imports: [
     BrowserModule,
