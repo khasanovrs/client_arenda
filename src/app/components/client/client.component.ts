@@ -91,6 +91,8 @@ export class ClientComponent implements OnInit {
       dohod_end: this.filters.dohod_end,
     }).then((data: IClientsUr[]) => {
         this.clients = data;
+
+        this.showFilters = false;
       },
       (error) => {
         console.log('Ошибка при получении списка юр. клиентов: ', error);

@@ -24,13 +24,10 @@
         </div>
 
         <div class="---search ---field ---pos-rel">
-          <input class="---input" placeholder="Поиск по клиентам">
+          <input class="---input" placeholder="Наименование оборудования">
           <button class="---y-pos-abs ifont ---icon-loop"></button>
         </div>
       </div>
-
-      <a href="#" class="---btn ---btn--fill-acent">Добавить товар</a>
-
     </div>
 
     <div *ngIf="showFilters" class="---block--bg-white ---block-filter ---radius-5 ---form">
@@ -61,13 +58,13 @@
             <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
-        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+        <div class="---field ---col-12 ---col-xs-6 ---col-lg-3">
           <label>Цена начало</label>
-          <input type="text" class="---input" mask="separator" [(ngModel)]="filters.sum_start">
+          <input type="text" class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.sum_start">
         </div>
-        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+        <div class="---field ---col-12 ---col-xs-6 ---col-lg-3">
           <label>Цена окончание</label>
-          <input type="text" class="---input" mask="separator" [(ngModel)]="filters.sum_end">
+          <input type="text" class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.sum_end">
         </div>
       </div>
 

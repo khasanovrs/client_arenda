@@ -8,6 +8,7 @@ import {DopParamsService} from '../../services/dopParams.service';
   templateUrl: './hire.component.html',
 })
 export class HireComponent {
+  p = 1;
   statusList: InterFaceDopParams[] = [];
   // отображение фильтра
   showFilters = false;
@@ -139,6 +140,8 @@ export class HireComponent {
       sum_end: this.filters.status,
     }).then((data: InterFaceHire[]) => {
         this.hires = data;
+
+        this.showFilters = false;
       },
       (error) => {
         console.log('Ошибка при получении списка прокатов: ', error);
