@@ -41,7 +41,6 @@ export class ApplicationsComponent implements OnInit {
 
     this.applicationsCreateService.getApplicationsSource().then((data: InterFaceDopParams[]) => {
         this.applicationsSource = data;
-        console.log(1,data);
       },
       (error) => {
         console.log('Ошибка при получении источников: ', error);
@@ -53,7 +52,7 @@ export class ApplicationsComponent implements OnInit {
         this.changeShowFields();
       },
       (error) => {
-        console.log('Ошибка при получении списка полей оборудования: ', error);
+        console.log('Ошибка при получении списка полей заявки: ', error);
       });
 
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
@@ -130,7 +129,7 @@ export class ApplicationsComponent implements OnInit {
       branch: this.filters.branch,
       date_start: this.filters.date_start,
       date_end: this.filters.date_end,
-    }).then((data: any) => {
+    }).then((data: InterFaceApplications[]) => {
         this.applications = data;
       },
       (error) => {
