@@ -84,8 +84,8 @@ export class HttpService {
       prBlock: data
     };
     const headers = new HttpHeaders();
-    return this.http.post('http://localhost:8001/' + api, request, {headers: headers})
-    // return this.http.post('http://artdekor-kzn.ru/' + api, request, {headers: headers})
+    // return this.http.post('http://localhost:8001/' + api, request, {headers: headers})
+    return this.http.post('http://artdekor-kzn.ru/' + api, request, {headers: headers})
       .pipe(
         catchError(HttpService.handlerError)
       );
