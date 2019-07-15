@@ -281,6 +281,8 @@ export class ApplicationsCreateComponent implements OnInit {
 
       const daysLag = Math.ceil(Math.abs(date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
 
+      console.log(1,daysLag);
+
       sum = daysLag * sum;
     }
 

@@ -21,6 +21,7 @@ export class HireComponent {
   branches: InterFaceDopParams[] = [];
 
   filters = {
+    like: '',
     status: '',
     branch: null,
     date_start: '',
@@ -114,6 +115,7 @@ export class HireComponent {
   // очистка фильтра
   clearFilter() {
     this.filters = {
+      like: '',
       status: '',
       branch: null,
       date_start: '',
@@ -133,6 +135,7 @@ export class HireComponent {
   getHire() {
     this.hireService.getHire({
       status: this.filters.status,
+      like: this.filters.like,
       branch: this.filters.branch,
       date_start: this.filters.date_start,
       date_end: this.filters.date_end,

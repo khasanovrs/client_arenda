@@ -24,7 +24,7 @@
         </div>
 
         <div class="---search ---field ---pos-rel">
-          <input class="---input" placeholder="Наименование оборудования">
+          <input class="---input" (keyup)="getHire()" [(ngModel)]="filters.like" placeholder="Наименование оборудования">
           <button class="---y-pos-abs ifont ---icon-loop"></button>
         </div>
       </div>
