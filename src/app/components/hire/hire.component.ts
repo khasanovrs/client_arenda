@@ -133,11 +133,11 @@ export class HireComponent {
   getHire() {
     this.hireService.getHire({
       status: this.filters.status,
-      branch: this.filters.status,
-      date_start: this.filters.status,
-      date_end: this.filters.status,
-      sum_start: this.filters.status,
-      sum_end: this.filters.status,
+      branch: this.filters.branch,
+      date_start: this.filters.date_start,
+      date_end: this.filters.date_end,
+      sum_start: this.filters.sum_start,
+      sum_end: this.filters.sum_end,
     }).then((data: InterFaceHire[]) => {
         this.hires = data;
 
