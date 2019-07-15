@@ -53,6 +53,9 @@ import {ReportService} from './components/reports/report.service';
 import {ReportComponent} from './components/reports/report.component';
 import {FinanceCreateComponent} from './components/finance_create/financeCreate.component';
 import {FinanceInfoComponent} from './components/finance_info/financeInfo.component';
+import {HireComponent} from './components/hire/hire.component';
+import {HireService} from './components/hire/hire.service';
+import {HireInfoComponent} from './components/hire-info/hireInfo.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -83,7 +86,9 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     FinanceComponent,
     ReportComponent,
     FinanceCreateComponent,
-    FinanceInfoComponent
+    FinanceInfoComponent,
+    HireComponent,
+    HireInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +120,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     SetsService,
     DopParamsChangeService,
     FinanceService,
-    ReportService
+    ReportService,
+    HireService
   ],
   bootstrap: [AppComponent]
 })

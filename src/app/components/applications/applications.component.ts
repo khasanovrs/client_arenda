@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApplicationsService} from './applications.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {Router} from '@angular/router';
+import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
 
 @Component({
   selector: 'app-applications',
@@ -17,6 +18,7 @@ export class ApplicationsComponent implements OnInit {
   activeFields: InterFaceActiveFields[] = [];
   // список активных полей
   activeFieldsTables = {};
+  applicationsSource: InterFaceDopParams[] = [];
   branches: InterFaceDopParams[] = [];
 
   filters = {
@@ -37,13 +39,20 @@ export class ApplicationsComponent implements OnInit {
         console.log('Ошибка при получении статусов: ', error);
       });
 
+    this.applicationsCreateService.getApplicationsSource().then((data: InterFaceDopParams[]) => {
+        this.applicationsSource = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении источников: ', error);
+      });
+
     this.applicationsService.getApplicationsFields().then((data: InterFaceActiveFields[]) => {
         this.activeFields = data;
 
         this.changeShowFields();
       },
       (error) => {
-        console.log('Ошибка при получении списка полей оборудования: ', error);
+        console.log('Ошибка при получении списка полей заявки: ', error);
       });
 
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
@@ -58,7 +67,8 @@ export class ApplicationsComponent implements OnInit {
 
   constructor(private applicationsService: ApplicationsService,
               private dopParamsService: DopParamsService,
-              private router: Router) {
+              private router: Router,
+              private applicationsCreateService: ApplicationsCreateService) {
   }
 
   // изменение типа источников
@@ -119,7 +129,7 @@ export class ApplicationsComponent implements OnInit {
       branch: this.filters.branch,
       date_start: this.filters.date_start,
       date_end: this.filters.date_end,
-    }).then((data: any) => {
+    }).then((data: InterFaceApplications[]) => {
         this.applications = data;
       },
       (error) => {

@@ -1,0 +1,154 @@
+<div class="---page-rent">
+
+  <div class="---tabs ---tabs--finance">
+    <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
+      <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
+        <div class="---tabs__switcher ---d-flex ---align-items-center ---is-active" (click)="changeFilterStatus('')">Все</div>
+        <div class="---tabs__switcher ---d-flex ---align-items-center" data-tab="2" *ngFor="let status of statusList" (click)="changeFilterStatus(status.val)">{{status.name}}</div>
+      </div>
+    </div>
+
+    <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
+
+      <div class="---d-flex ---form ---align-items-start">
+        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+             (click)="changeShowFilters()">
+          Фильтры
+          <i class="ifont ---icon-menu-finance ---d-none ---sm-d-flex"></i>
+        </div>
+
+        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+             (click)="changeActiveFields()">
+          Активные поля
+          <i class="ifont ---icon-list ---d-none ---sm-d-flex"></i>
+        </div>
+
+        <div class="---search ---field ---pos-rel">
+          <input class="---input" (keyup)="getHire()" [(ngModel)]="filters.like" placeholder="Наименование оборудования">
+          <button class="---y-pos-abs ifont ---icon-loop"></button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showFilters" class="---block--bg-white ---block-filter ---radius-5 ---form">
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Филиал</label>
+          <div class="---select">
+            <select
+              [(ngModel)]="filters.branch">
+              <option *ngFor="let branch of branches" [ngValue]="branch.val">
+                {{branch.name}}
+              </option>
+            </select>
+            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Дата создания начало</label>
+          <div class="---input ---input--calendar ---pos-rel">
+            <input class="---datepicker ---radius-5" [(ngModel)]="filters.date_start">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Дата создания конец</label>
+          <div class="---input ---input--calendar ---pos-rel">
+            <input class="---datepicker ---radius-5" [(ngModel)]="filters.date_end">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-lg-3">
+          <label>Цена начало</label>
+          <input type="text" class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.sum_start">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-lg-3">
+          <label>Цена окончание</label>
+          <input type="text" class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.sum_end">
+        </div>
+      </div>
+
+      <div class="---btns ---d-flex">
+        <div (click)="getHire()" class="---btn ---btn--fill-acent">Применить фильтры</div>
+        <div (click)="clearFilter()" class="---btn ---btn--border-bg">
+          Сбросить фильры
+          <i class="ifont ---icon-close"></i>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showActiveFields" id="active-field" class=" ---block--bg-white ---block-filter ---radius-5 ---form">
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3" *ngFor="let activeField of activeFields; let i = index">
+          <label for="right_{{activeField.code}}" class="---checkbox" [ngClass]="{'---is-active':activeField.flag}">
+            <input type="checkbox"
+                   id="right_{{activeField.code}}"
+                   (change)="changeCheckbox(i)"
+                   [checked]="activeField.flag">
+            {{activeField.name}}
+          </label>
+        </div>
+
+      </div>
+
+      <div class="---btns ---d-flex">
+        <div (click)="changeFields()" class="---btn ---btn--fill-acent">Применить</div>
+      </div>
+    </div>
+
+    <div class="---tabs__tab ---is-visible" data-tab="1">
+
+      <div class="---t-wrapper">
+        <table>
+          <tr>
+            <th></th>
+            <ng-container *ngFor="let activeField of activeFields">
+              <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
+            </ng-container>
+          </tr>
+
+          <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer">
+            <td>
+              <div (click)="hireDetails(hire.id)" class="ifont ---icon-edit ---radius-5"></div>
+            </td>
+
+            <td *ngIf="activeFieldsTables['client']===1">{{hire.client}}</td>
+            <td *ngIf="activeFieldsTables['equipment']===1">{{hire.equipments}}</td>
+            <td *ngIf="activeFieldsTables['start_hire']===1">{{hire.start_hire}}</td>
+            <td *ngIf="activeFieldsTables['end_hire']===1">{{hire.end_hire}}</td>
+            <td *ngIf="activeFieldsTables['status']===1">
+              <div class="---select">
+                <select
+                  (change)="changeStatus(hire)"
+                  [(ngModel)]="hire.status">
+                  <option *ngFor="let status of statusList" [ngValue]="status.val">
+                    {{status.name}}
+                  </option>
+                </select>
+                <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
+              </div>
+            </td>
+            <td *ngIf="activeFieldsTables['sum']===1">{{hire.sum}}</td>
+            <td *ngIf="activeFieldsTables['sale_sum']===1">{{hire.sale_sum}}</td>
+            <td *ngIf="activeFieldsTables['total_paid']===1">{{hire.total_paid}}</td>
+            <td *ngIf="activeFieldsTables['remainder']===1">{{hire.remainder}}</td>
+            <td *ngIf="activeFieldsTables['date_create']===1">{{hire.date_create}}</td>
+            <td *ngIf="activeFieldsTables['comment']===1">{{hire.comment}}</td>
+            <td *ngIf="activeFieldsTables['date_end']===1">{{hire.date_end}}</td>
+            <td *ngIf="activeFieldsTables['branch']===1">{{hire.branch}}</td>
+            <td *ngIf="activeFieldsTables['current_pay']===1">{{hire.current_pay}}</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <div class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
+        <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
+
+        <div>Всего записей — <span class="---font-sbold">{{hires.length | digitsNumbers}}</span></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

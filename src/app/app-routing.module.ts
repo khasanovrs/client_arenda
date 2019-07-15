@@ -17,6 +17,8 @@ import {FinanceComponent} from './components/finance/finance.component';
 import {ReportComponent} from './components/reports/report.component';
 import {FinanceCreateComponent} from './components/finance_create/financeCreate.component';
 import {FinanceInfoComponent} from './components/finance_info/financeInfo.component';
+import {HireComponent} from './components/hire/hire.component';
+import {HireInfoComponent} from './components/hire-info/hireInfo.component';
 
 
 const routes: Routes = [
@@ -78,6 +80,14 @@ const routes: Routes = [
   {
     path: 'report',
     component: ReportComponent
+  },
+  {
+    path: 'hire',
+    component: HireComponent
+  },
+  {
+    path: 'hire/:id',
+    component: HireInfoComponent
   }
 ];
 

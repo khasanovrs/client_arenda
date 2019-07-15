@@ -4,9 +4,7 @@
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
       <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
         <div class="---tabs__switcher ---is-active" (click)="changeTypeApplications('')">Все заявки</div>
-        <div class="---tabs__switcher" (click)="changeTypeApplications('1')">С сайта</div>
-        <div class="---tabs__switcher" (click)="changeTypeApplications('2')">Соц. сети</div>
-        <div class="---tabs__switcher" (click)="changeTypeApplications('3')">Звонки</div>
+        <div class="---tabs__switcher" *ngFor="let source of applicationsSource" (click)="changeTypeApplications(source.val)">{{source.name}}</div>
       </div>
     </div>
 
@@ -34,7 +32,7 @@
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Статус</label>
           <div class="---select">
-            <select 
+            <select
                     [(ngModel)]="filters.status">
               <option *ngFor="let status of deliveryStatus" [ngValue]="status.val">
                 {{status.name}}
@@ -46,7 +44,7 @@
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Филиал</label>
           <div class="---select">
-            <select 
+            <select
                     [(ngModel)]="filters.branch">
               <option *ngFor="let branch of branches" [ngValue]="branch.val">
                 {{branch.name}}
@@ -122,7 +120,7 @@
           <td *ngIf="activeFieldsTables['equipments_name']===1">{{application.equipments_name}}</td>
           <td *ngIf="activeFieldsTables['status']===1">
             <div class="---select">
-              <select 
+              <select
                       (change)="changeStatus(application)"
                       [(ngModel)]="application.status">
                 <option *ngFor="let status of deliveryStatus" [ngValue]="status.val">

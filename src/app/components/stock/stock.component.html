@@ -227,5 +227,11 @@
       </table>
     </div>
 
+    <div
+      class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
+      <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
+
+      <div>Всего записей — <span class="---font-sbold">{{equipmentsList.length | digitsNumbers}}</span></div>
+    </div>
   </div>
 </div>

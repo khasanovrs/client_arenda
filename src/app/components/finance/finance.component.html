@@ -198,7 +198,7 @@
               <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
             </ng-container>
           </tr>
-          <tr *ngFor="let finance of financeList">
+          <tr *ngFor="let finance of financeList| paginate: { itemsPerPage: 10, currentPage: p }">
             <td>
               <div (click)="financeDetails(finance.id)"  class="ifont ---icon-edit ---radius-5"></div>
             </td>
