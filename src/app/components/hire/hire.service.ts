@@ -108,4 +108,19 @@ export class HireService {
         );
     });
   }
+
+  // обновлении информации по заявке
+  public updateHire(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/update-hire', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при изменении информации по заявке', error);
+            reject();
+          }
+        );
+    });
+  }
 }
