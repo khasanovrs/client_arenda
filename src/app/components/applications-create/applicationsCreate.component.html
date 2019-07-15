@@ -70,10 +70,6 @@
             </select>
           </div>
         </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Комментарий</label>
-          <textarea class="---input" [(ngModel)]="application.comment"></textarea>
-        </div>
         <div class="---field ---col-12 ---col-xs-6">
           <label>Начало аренды</label>
           <div class="---input ---input--calendar ---pos-rel">
@@ -87,6 +83,10 @@
             <input class="---datepicker" (change)="changeSum()" [(ngModel)]="application.rent_end.val">
             <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
+        </div>
+        <div class="---field ---col-12">
+          <label>Комментарий</label>
+          <textarea class="---input" [(ngModel)]="application.comment" rows="5"></textarea>
         </div>
       </div>
     </div>
@@ -213,32 +213,49 @@
 </div>
 
 
-<div *ngIf="showSearchClient.show" class="spec-abs">
-  <div class="spec-abs-mod">
-    <div (click)="showSearchClient.show=false">Закрыть</div>
-    <input type="text" class="---input" [(ngModel)]="showSearchClient.filter"
-           (keyup)="searchClient(showSearchClient.filter)">
+<div *ngIf="showSearchClient.show" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="showSearchClient.show=false"></div>
+
+    <div class="---form">
+      <div class="---field">
+        <input class="---input ---fill--bg" [(ngModel)]="showSearchClient.filter"(keyup)="searchClient(showSearchClient.filter)">
+      </div>
+    </div>
+
     <div *ngFor="let client of showSearchClient.clients; let i = index" (click)="insertClientData(i)">
       <div>{{client.client_fio}}</div>
     </div>
+
   </div>
 </div>
 
-<div *ngIf="showAddEquipments.show" class="spec-abs">
-  <div class="spec-abs-mod">
-    <div (click)="showAddEquipments.show=false">Закрыть</div>
-    <input type="text" class="---input" [(ngModel)]="showAddEquipments.filter"
-           (keyup)="searchEquipments(showAddEquipments.filter)">
+<div *ngIf="showAddEquipments.show" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="showAddEquipments.show=false"></div>
+
+    <div class="---form">
+      <div class="---field">
+        <input class="---input ---fill--bg" [(ngModel)]="showAddEquipments.filter"(keyup)="searchEquipments(showAddEquipments.filter)">
+      </div>
+    </div>
+
     <div *ngFor="let equipments of showAddEquipments.equipments; let i = index" (click)="insertEquipmentsData(i)">
       <div>{{equipments.name}}</div>
     </div>
+
   </div>
 </div>
 
 
-<div *ngIf="globalParams.showModalCreateUser" class="spec-abs">
-  <div class="spec-abs-mod">
-    <div (click)="globalParams.showModalCreateUser=false">Закрыть</div>
+<div *ngIf="globalParams.showModalCreateUser" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="globalParams.showModalCreateUser=false"></div>
+
     <app-client-create></app-client-create>
+
   </div>
 </div>
