@@ -34,16 +34,16 @@ $(document).ready(function() {
 		});
 
 	}
-	closeField('.---modal .---wrapper', function() {
+	// closeField('.---modal .---wrapper', function() {
 
-		$('#---modal-video')
-			.find('.---video')
-			.html('');
+	// 	$('#---modal-video')
+	// 		.find('.---video')
+	// 		.html('');
 		
-		$('.---modal')
-			.removeClass('---d-flex');
+	// 	$('.---modal')
+	// 		.removeClass('---d-flex');
 
-	});
+	// });
 
 
 
@@ -126,7 +126,9 @@ $(document).ready(function() {
 
 		e.preventDefault();
 
-		$('#---modal-video').find('.---video').html('');
+		$('#---modal-video')
+			.find('.---video')
+			.html('');
 
 		$('html')
 			.removeClass('---is-hidden')
