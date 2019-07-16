@@ -9,7 +9,7 @@ export class MenuComponent {
 
   constructor() {
     this.menuList = [
-      {link: '/', name: 'Рабочий стол', class: '---icon-menu-dashboard'},
+      {link: 'main', name: 'Рабочий стол', class: '---icon-menu-dashboard'},
       {link: 'hire', name: 'Прокат', class: '---icon-menu-rent'},
       {link: 'stock', name: 'Склад', class: '---icon-menu-base'},
       {link: 'clients', name: 'Клиенты', class: '---icon-menu-clients'},
