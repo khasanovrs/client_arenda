@@ -11,13 +11,15 @@
     <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
 
       <div class="---d-flex ---form ---align-items-start">
-        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+        <div [ngClass]="{'---is-active':showFilters}"
+             class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
              (click)="changeShowFilters()">
           Фильтры
           <i class="ifont ---icon-menu-finance ---d-none ---sm-d-flex"></i>
         </div>
 
-        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+        <div [ngClass]="{'---is-active':showActiveFields===true}"
+             class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
              (click)="changeActiveFields()">
           Активные поля
           <i class="ifont ---icon-list ---d-none ---sm-d-flex"></i>
@@ -107,7 +109,7 @@
             </ng-container>
           </tr>
 
-          <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer">
+          <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" [style.background]="hire.color">
             <td>
               <div (click)="hireDetails(hire.id)" class="ifont ---icon-edit ---radius-5"></div>
             </td>

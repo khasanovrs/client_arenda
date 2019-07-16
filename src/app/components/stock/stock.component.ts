@@ -25,7 +25,6 @@ export class StockComponent implements OnInit {
   // список активных полей
   activeFieldsTables = {};
 
-
   equipmentsList: any = [];
   filters: InterFaceFilterEquipments = {
     status: '',

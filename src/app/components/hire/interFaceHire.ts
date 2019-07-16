@@ -14,4 +14,5 @@ interface InterFaceHire {
   date_end: string;
   branch: string;
   current_pay: string;
+  color: string;
 }

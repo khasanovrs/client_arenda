@@ -216,9 +216,11 @@
             </div>
           </div>
 
-          <div *ngIf='newParams.val==""' (click)="addParams()" class="---btn ---btn--fill-acent">Добавить</div>
-          <div *ngIf='newParams.val!==""' (click)="addParams()" class="---btn ---btn--fill-acent">Обновить</div>
-          <div (click)="clearNewParams()" class="---btn ---btn--fill-acent">Новое поле</div>
+          <div class="---buttons ---d-flex ---flex-wrap">
+            <div *ngIf='newParams.val==""' (click)="addParams()" class="---btn ---btn--fill-acent" style="margin: 10px 10px 0 0;">Добавить</div>
+            <div *ngIf='newParams.val!==""' (click)="addParams()" class="---btn ---btn--fill-acent" style="margin: 10px 10px 0 0;">Обновить</div>
+            <div (click)="clearNewParams()" class="---btn ---btn--fill-acent" style="margin: 10px 10px 0 0;">Новое поле</div>
+          </div>
         </form>
       </div>
     </div>

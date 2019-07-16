@@ -10,4 +10,5 @@ interface InterFaceApplications {
   source: string;
   comment: string;
   user: string;
+  color: string;
 }
