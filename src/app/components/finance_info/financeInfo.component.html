@@ -13,8 +13,8 @@
         <div class="---field ---col-12 ---col-sm-6">
           <label>Категория</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="finance.category">
-              <option class="---select__list-item" *ngFor="let category of financeCategory" [ngValue]="category.val">
+            <select [(ngModel)]="finance.category">
+              <option *ngFor="let category of financeCategory" [ngValue]="category.val">
                 {{category.name}}
               </option>
             </select>
@@ -24,8 +24,8 @@
         <div class="---field ---col-12 ---col-sm-6">
           <label>Тип</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="finance.type">
-              <option class="---select__list-item" *ngFor="let type of financeType" [ngValue]="type.val">
+            <select [(ngModel)]="finance.type">
+              <option *ngFor="let type of financeType" [ngValue]="type.val">
                 {{type.name}}
               </option>
             </select>
@@ -35,8 +35,8 @@
         <div class="---field ---col-12 ---col-sm-6">
           <label>Филиал</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="finance.branch">
-              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
+            <select [(ngModel)]="finance.branch">
+              <option *ngFor="let branch of branches" [ngValue]="branch.val">
                 {{branch.name}}
               </option>
             </select>
@@ -46,8 +46,8 @@
         <div class="---field ---col-12 ---col-sm-6">
           <label>Касса</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="finance.cashBox">
-              <option class="---select__list-item" *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
+            <select [(ngModel)]="finance.cashBox">
+              <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
                 {{cashBox.name}}
               </option>
             </select>

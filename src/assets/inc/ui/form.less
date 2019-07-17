@@ -288,7 +288,12 @@
 		color: @textColor;
 	}
 
-	i {
+	&:before {
+	    content: '\004a';
+		font-family: 'crm-stroyka';
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		z-index: -1;
 		font-size: 6px;
 		right: 11px;
@@ -296,6 +301,7 @@
 		height: 18px;
 		border-radius: 2.5px;
 		background: @mainColor;
+		.---y-pos-abs;
 	}
 
 

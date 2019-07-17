@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-
-
 	/* Toggle attr function */
 	$.fn.toggleAttr = function(attr, val) {
 
@@ -44,57 +42,6 @@ $(document).ready(function() {
 	// 		.removeClass('---d-flex');
 
 	// });
-
-
-
-    /* Select */
-    $("body").on("click", ".---select .---select__cur-value", function(e) {
-   
-        e.preventDefault();
-   
-        $(".---select")
-        	.removeClass('---is-active');
-
-        $(this)
-        	.parent()
-        	.addClass('---is-active');
- 
-    });
-	closeField('.---select', function() {
-		
-		$('.---select')
-			.removeClass('---is-active');
-
-	});
-
-
-
-    /* Choose "option" in select */
-    $("body").on("click", ".---select__list-item", function(e) {
-   
-        e.preventDefault();
-   
-        var $text = $(this).html();
-   
-        $(".---select")
-        	.removeClass('---is-active')
-
-        $(this)
-        	.parent()
-        	.parent()
-    		.siblings(".---select__cur-value")
-    		.find("span")
-    		.html($text)
-
-    		.parent()
-
-    		.siblings("select")
-    		.find("option")
-    		.removeAttr("selected")
-    		.filter('[value="' + $text + '"]')
-    		.attr("selected", "")
-   
-    });
 
 
 
@@ -217,10 +164,6 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		var $tab = $(this).data('tab');
-
-
-		console.log($(this).closest('.---tabs'));
-
 
 		$(this)
 			.addClass('---is-active')

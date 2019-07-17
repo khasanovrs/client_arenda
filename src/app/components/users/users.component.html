@@ -5,7 +5,6 @@
         <select (change)="selectUsers(currentBranch)" [(ngModel)]="currentBranch">
           <option *ngFor="let branch of branches" [ngValue]="branch">{{branch.name}}</option>
         </select>
-        <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
       </div>
     </div>
   </div>
@@ -61,7 +60,6 @@
             <select [(ngModel)]="newUser.branch_id">
               <option *ngFor="let branch of branches" [ngValue]="branch.val">{{branch.name}}</option>
             </select>
-            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-xl-12">
@@ -70,7 +68,6 @@
             <select [(ngModel)]="newUser.user_type">
               <option *ngFor="let role of roles" [ngValue]="role.val">{{role.name}}</option>
             </select>
-            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
           <label>Назначение</label>
-          <input type="text" class="---input" [(ngModel)]="finance.name">
+          <input class="---input ---shadow--bg" [(ngModel)]="finance.name">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Категория</label>
@@ -16,7 +16,6 @@
             <select [(ngModel)]="finance.category">
               <option *ngFor="let category of financeCategory" [ngValue]="category.val">{{category.name}}</option>
             </select>
-            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -26,15 +25,14 @@
             <select [(ngModel)]="finance.type">
               <option *ngFor="let type of financeType" [ngValue]="type.val">{{type.name}}</option>
             </select>
-            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
         <div class="---field ---col-12 ---col-sm-6">
           <label>Филиал</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="finance.branch">
-              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
+            <select [(ngModel)]="finance.branch">
+              <option *ngFor="let branch of branches" [ngValue]="branch.val">
                 {{branch.name}}
               </option>
             </select>
@@ -47,7 +45,6 @@
             <select [(ngModel)]="finance.cashBox">
               <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">{{cashBox.name}}</option>
             </select>
-            <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
           </div>
         </div>
 
@@ -68,7 +65,7 @@
 
         <div class="---field ---col-12 ---col-sm-6">
           <label>Сумма</label>
-          <input class="---input" type="text" mask="separator" [(ngModel)]="finance.sum">
+          <input class="---input" mask="separator" [(ngModel)]="finance.sum">
         </div>
       </div>
     </div>

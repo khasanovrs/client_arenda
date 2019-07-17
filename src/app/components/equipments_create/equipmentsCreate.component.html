@@ -7,8 +7,8 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Марка</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.mark">
-              <option class="---select__list-item" *ngFor="let equipmentsMark of equipmentsMarkList"
+            <select [(ngModel)]="newEquipments.mark">
+              <option *ngFor="let equipmentsMark of equipmentsMarkList"
                       [ngValue]="equipmentsMark.val">
                 {{equipmentsMark.name}}
               </option>
@@ -24,8 +24,8 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Склад</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.stock">
-              <option class="---select__list-item" *ngFor="let stock of stocks" [ngValue]="stock.val">
+            <select [(ngModel)]="newEquipments.stock">
+              <option *ngFor="let stock of stocks" [ngValue]="stock.val">
                 {{stock.name}}
               </option>
             </select>
@@ -34,8 +34,8 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Тип оборудования</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.type">
-              <option class="---select__list-item" *ngFor="let equipmentsType of equipmentsTypeList"
+            <select [(ngModel)]="newEquipments.type">
+              <option *ngFor="let equipmentsType of equipmentsTypeList"
                       [ngValue]="equipmentsType.val">
                 {{equipmentsType.name}}
               </option>
@@ -45,8 +45,8 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Категория</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.category">
-              <option class="---select__list-item" *ngFor="let equipmentsCategory of equipmentsCategoryList"
+            <select [(ngModel)]="newEquipments.category">
+              <option *ngFor="let equipmentsCategory of equipmentsCategoryList"
                       [ngValue]="equipmentsCategory.val">
                 {{equipmentsCategory.name}}
               </option>
@@ -62,8 +62,8 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Статус</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.status">
-              <option class="---select__list-item" *ngFor="let equipmentsStatus of equipmentsStatusList"
+            <select [(ngModel)]="newEquipments.status">
+              <option *ngFor="let equipmentsStatus of equipmentsStatusList"
                       [ngValue]="equipmentsStatus.val">
                 {{equipmentsStatus.name}}
               </option>
@@ -131,8 +131,8 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Скидка</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="newEquipments.discount">
-              <option class="---select__list-item" *ngFor="let discount of discounts"
+            <select [(ngModel)]="newEquipments.discount">
+              <option *ngFor="let discount of discounts"
                       [ngValue]="discount.val">
                 {{discount.name}}
               </option>

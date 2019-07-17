@@ -7,8 +7,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Филиал</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.branch.val">
-              <option class="---select__list-item" *ngFor="let branch of branches"
+            <select [(ngModel)]="application.branch.val">
+              <option *ngFor="let branch of branches"
                       [ngValue]="branch.val">
                 {{branch.name}}
               </option>
@@ -18,8 +18,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Вид аренды</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.typeLease.val">
-              <option class="---select__list-item" *ngFor="let applicationsTypeLease of applicationsTypeLeases"
+            <select [(ngModel)]="application.typeLease.val">
+              <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
                       [ngValue]="applicationsTypeLease.val">
                 {{applicationsTypeLease.name}}
               </option>
@@ -29,8 +29,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Скидка на аренду</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.sale.val" (change)="changeSum()">
-              <option class="---select__list-item" *ngFor="let discount of discounts"
+            <select [(ngModel)]="application.sale.val" (change)="changeSum()">
+              <option *ngFor="let discount of discounts"
                       [ngValue]="discount.val">
                 {{discount.name}}
               </option>
@@ -40,8 +40,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Доставка</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.delivery.val">
-              <option class="---select__list-item" *ngFor="let delivery of applicationsDelivery"
+            <select [(ngModel)]="application.delivery.val">
+              <option *ngFor="let delivery of applicationsDelivery"
                       [ngValue]="delivery.val">
                 {{delivery.name}}
               </option>
@@ -51,8 +51,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Статус</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.status.val">
-              <option class="---select__list-item" *ngFor="let status of applicationsStatus"
+            <select [(ngModel)]="application.status.val">
+              <option *ngFor="let status of applicationsStatus"
                       [ngValue]="status.val">
                 {{status.name}}
               </option>
@@ -62,8 +62,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Источник</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.source.val">
-              <option class="---select__list-item" *ngFor="let source of applicationsSource"
+            <select [(ngModel)]="application.source.val">
+              <option *ngFor="let source of applicationsSource"
                       [ngValue]="source.val">
                 {{source.name}}
               </option>

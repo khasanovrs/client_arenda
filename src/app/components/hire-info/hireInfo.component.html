@@ -67,8 +67,8 @@
           <div class="---field">
             <label>Статус</label>
             <div class="---select">
-              <select class="---select__cur-value" [(ngModel)]="hireInfo.equipments.status">
-                <option class="---select__list-item" *ngFor="let status of statusList"
+              <select [(ngModel)]="hireInfo.equipments.status">
+                <option *ngFor="let status of statusList"
                         [ngValue]="status.val">
                   {{status.name}}
                 </option>

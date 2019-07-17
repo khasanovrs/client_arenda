@@ -2,15 +2,15 @@
 
   <div class="---col-12 ---col-lg-6 ---form">
 
-    <div class="---data-block">
+    <div class="---data-block ---radius-5">
       <div class="h2 ---font-sbold">Данные о аренде</div>
 
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
           <label>Скидка</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="client.sale">
-              <option class="---select__list-item" *ngFor="let discount of discounts" [ngValue]="discount.val">
+            <select [(ngModel)]="client.sale">
+              <option *ngFor="let discount of discounts" [ngValue]="discount.val">
                 {{discount.name}}
               </option>
             </select>
@@ -19,8 +19,8 @@
         <div class="---field ---col-12 ---col-sm-6">
           <label>Город аренды</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="client.branch">
-              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
+            <select [(ngModel)]="client.branch">
+              <option *ngFor="let branch of branches" [ngValue]="branch.val">
                 {{branch.name}}
               </option>
             </select>
@@ -29,8 +29,8 @@
         <div class="---field ---col-12 ---col-sm-6">
           <label>Статус</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="client.status">
-              <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status.val">
+            <select [(ngModel)]="client.status">
+              <option *ngFor="let status of statusList" [ngValue]="status.val">
                 {{status.name}}
               </option>
             </select>
@@ -39,8 +39,8 @@
         <div class="---field ---col-12 ---col-sm-6">
           <label>Источник</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="client.source">
-              <option class="---select__list-item" *ngFor="let source of sources" [ngValue]="source.val">
+            <select [(ngModel)]="client.source">
+              <option *ngFor="let source of sources" [ngValue]="source.val">
                 {{source.name}}
               </option>
             </select>
@@ -49,25 +49,25 @@
       </div>
     </div>
 
-    <div class="---data-block">
+    <div class="---data-block ---radius-5">
       <div class="h2 ---font-sbold">Данные клиента</div>
 
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
           <label>Название компании</label>
-          <input class="---input" [(ngModel)]="client.name">
+          <input class="---input ---shadow--bg" [(ngModel)]="client.name">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Инн</label>
-          <input class="---input" [(ngModel)]="client.inn">
+          <input class="---input ---shadow--bg" [(ngModel)]="client.inn">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Род деятельности</label>
-          <input class="---input" [(ngModel)]="client.occupation">
+          <input class="---input ---shadow--bg" [(ngModel)]="client.occupation">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Адрес регистрации</label>
-          <input class="---input" [(ngModel)]="client.address">
+          <input class="---input ---shadow--bg" [(ngModel)]="client.address">
         </div>
 
         <div class="---col-12 ---col-sm-6">
@@ -75,11 +75,11 @@
 
             <div class="---field col ---col-12 ---col-sm-6">
               <label>ОГРН</label>
-              <input class="---input" [(ngModel)]="client.ogrn">
+              <input class="---input ---shadow--bg" [(ngModel)]="client.ogrn">
             </div>
             <div class="---field col ---col-12 ---col-sm-6">
               <label>БИК</label>
-              <input class="---input" [(ngModel)]="client.bic">
+              <input class="---input ---shadow--bg" [(ngModel)]="client.bic">
             </div>
 
           </div>
@@ -90,11 +90,11 @@
 
             <div class="---field col ---col-12 ---col-sm-6">
               <label>КПП</label>
-              <input class="---input" [(ngModel)]="client.kpp">
+              <input class="---input ---shadow--bg" [(ngModel)]="client.kpp">
             </div>
             <div class="---field col ---col-12 ---col-sm-6">
               <label>Р/С</label>
-              <input class="---input" [(ngModel)]="client.schet">
+              <input class="---input ---shadow--bg" [(ngModel)]="client.schet">
             </div>
 
           </div>
@@ -102,29 +102,29 @@
       </div>
     </div>
 
-    <div class="---data-block">
+    <div class="---data-block ---radius-5">
       <div class="h2 ---font-sbold">Контакты</div>
 
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
           <label>Руководитель компании</label>
-          <input class="---input" [(ngModel)]="client.name_chief">
+          <input class="---input ---shadow--bg" [(ngModel)]="client.name_chief">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Номер телефона руководителя</label>
-          <input type="text" mask="+0 (000) 000 00 00" class="---input" [(ngModel)]="client.phone_chief">
+          <input type="text" mask="+0 (000) 000 00 00" class="---input ---shadow--bg" [(ngModel)]="client.phone_chief">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Номер телефона ответственного</label>
-          <input type="text" mask="+0 (000) 000 00 00" class="---input" [(ngModel)]="client.phone">
+          <input type="text" mask="+0 (000) 000 00 00" class="---input ---shadow--bg" [(ngModel)]="client.phone">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Номер телефона ответственного</label>
-          <input type="text" mask="+0 (000) 000 00 00" class="---input" [(ngModel)]="client.phone_2">
+          <input type="text" mask="+0 (000) 000 00 00" class="---input ---shadow--bg" [(ngModel)]="client.phone_2">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>E-mail</label>
-          <input [(ngModel)]="client.email" class="---input">
+          <input [(ngModel)]="client.email" class="---input ---shadow--bg">
         </div>
       </div>
     </div>

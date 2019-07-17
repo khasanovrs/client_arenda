@@ -173,13 +173,12 @@
             <label>Выберите раздел</label>
             <div class="---select">
 
-              <select class="---select__cur-value" [(ngModel)]="newParams.type" [ngModelOptions]="{standalone: true}">
-                <option class="---select__list-item" *ngFor="let type of typeList" [ngValue]="type.val">
+              <select [(ngModel)]="newParams.type" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let type of typeList" [ngValue]="type.val">
                   {{type.name}}
                 </option>
               </select>
 
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
             </div>
           </div>
 
@@ -187,13 +186,12 @@
             <label>Выберите филиал</label>
             <div class="---select">
 
-              <select class="---select__cur-value" [(ngModel)]="newParams.branch" name="branch">
-                <option class="---select__list-item" *ngFor="let branch of branchList" [ngValue]="branch.val">
+              <select [(ngModel)]="newParams.branch" name="branch">
+                <option *ngFor="let branch of branchList" [ngValue]="branch.val">
                   {{branch.name}}
                 </option>
               </select>
 
-              <i class="ifont ---icon-arrow-down ---y-pos-abs"></i>
             </div>
           </div>
 
