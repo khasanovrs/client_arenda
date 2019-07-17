@@ -2,7 +2,7 @@
 
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
-      <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
+      <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
         <div class="---tabs__switcher ---is-active" (click)="changeTypeApplications('')">Все заявки</div>
         <div class="---tabs__switcher" *ngFor="let source of applicationsSource" (click)="changeTypeApplications(source.val)">{{source.name}}</div>
       </div>

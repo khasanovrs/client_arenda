@@ -2,7 +2,7 @@
 
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
-      <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
+      <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
         <div class="---tabs__switcher ---is-active" (click)="changeTypeClients('all')">Все клиенты</div>
         <div class="---tabs__switcher" (click)="changeTypeClients('ur')">Юр. лица</div>
         <div class="---tabs__switcher" (click)="changeTypeClients('fiz')">Физ. лица</div>
@@ -163,7 +163,7 @@
             <td *ngIf="activeFieldsTables['phone']===1">{{client.phone | telephoneNumber}}</td>
             <td *ngIf="activeFieldsTables['status']===1">
               <div class="---select ---bg-color select-png bg-white">
-                <select class="---select__cur-value w-200"
+                <select class="w-200"
                         (change)="changeStatus(client)"
                         [(ngModel)]="client.status">
                   <option *ngFor="let status of statusList" [ngValue]="status.val">
@@ -177,10 +177,10 @@
             <td *ngIf="activeFieldsTables['source']===1">{{client.source.name}}</td>
             <td *ngIf="activeFieldsTables['rentals']===1">{{client.rentals}}</td>
             <td *ngIf="activeFieldsTables['dohod']===1">
-              <div class="---font-sbold">{{client.dohod| digitsNumbers}} ₽</div>
+              <div class="---font-600">{{client.dohod| digitsNumbers}} ₽</div>
             </td>
             <td *ngIf="activeFieldsTables['sale']===1">
-              <div class="---font-sbold">{{client.sale.name}}</div>
+              <div class="---font-600">{{client.sale.name}}</div>
             </td>
           </tr>
         </table>
@@ -190,7 +190,7 @@
         class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
         <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
 
-        <div>Всего клиентов — <span class="---font-sbold">{{clients.length | digitsNumbers}}</span></div>
+        <div>Всего клиентов — <span class="---font-600">{{clients.length | digitsNumbers}}</span></div>
       </div>
     </div>
   </div>

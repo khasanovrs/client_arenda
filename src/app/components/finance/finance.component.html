@@ -4,37 +4,31 @@
 
     <div class="---col-12 ---col-sm-6 ---col-md-4">
       <div class="---block--bg-white ---stat-item ---d-flex ---align-items-center ---justify-content-between">
-        <div class="---stat-item__info ---pos-rel">
-          <div class="---icon ---y-pos-abs">+</div>
+        <div class="---stat-item__info">
           Доходы
           <div class="---select">
             <select [(ngModel)]="income_sum">
-              <option *ngFor="let item of operationSum.income" [ngValue]="item.sum">
-                {{item.name}}
-              </option>
+              <option *ngFor="let item of operationSum.income" [ngValue]="item.sum">{{item.name}}</option>
             </select>
           </div>
         </div>
 
-        <div *ngIf='income_sum' class="---stat-item__num ---font-light">{{income_sum | digitsNumbers}} ₽</div>
+        <div *ngIf='income_sum' class="---stat-item__num ---font-300">{{income_sum | digitsNumbers}} ₽</div>
       </div>
     </div>
 
     <div class="---col-12 ---col-sm-6 ---col-md-4">
       <div class="---block--bg-white ---stat-item ---d-flex ---align-items-center ---justify-content-between">
-        <div class="---stat-item__info ---pos-rel">
-          <div class="---icon ---y-pos-abs">+</div>
+        <div class="---stat-item__info">
           Расходы
           <div class="---select">
             <select [(ngModel)]="rate_sum">
-              <option *ngFor="let item of operationSum.rate" [ngValue]="item.sum">
-                {{item.name}}
-              </option>
+              <option *ngFor="let item of operationSum.rate" [ngValue]="item.sum">{{item.name}}</option>
             </select>
           </div>
         </div>
 
-        <div *ngIf='rate_sum' class="---stat-item__num ---font-light">{{rate_sum | digitsNumbers}} ₽</div>
+        <div *ngIf='rate_sum' class="---stat-item__num ---font-300">{{rate_sum | digitsNumbers}} ₽</div>
       </div>
     </div>
 
@@ -43,10 +37,10 @@
 
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
-      <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
+      <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
         <div class="---tabs__switcher" [ngClass]="{'---is-active':filters.cashBox === null}" (click)="setCashBox(1)">
           Все кассы<br>
-          <div class="---num ---font-sbold ---d-inline-flex ---align-items-center ---radius-5">
+          <div class="---num ---font-600 ---d-inline-flex ---align-items-center ---radius-5">
             {{allSum | digitsNumbers}} ₽
             <i class="ifont ---icon-menu-settings"></i>
           </div>
@@ -55,7 +49,7 @@
         <div class="---tabs__switcher" [ngClass]="{'---is-active':cashBox.val === filters.cashBox}"
              *ngFor="let cashBox of financeCashBox" (click)="setCashBox(cashBox.val)">
           {{cashBox.name}}<br>
-          <div class="---num ---font-sbold ---d-inline-flex ---align-items-center ---radius-5">
+          <div class="---num ---font-600 ---d-inline-flex ---align-items-center ---radius-5">
             {{cashBox.sum | digitsNumbers}} ₽
             <i class="ifont ---icon-menu-settings"></i>
           </div>
@@ -141,13 +135,13 @@
 
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата начало</label>
-          <div class="---input ---input--calendar">
+          <div class="---input ---input--calendar ---shadow--bg">
             <input type="date" [(ngModel)]="filters.date_start">
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата конец</label>
-          <div class="---input ---input--calendar">
+          <div class="---input ---input--calendar ---shadow--bg">
             <input type="date" [(ngModel)]="filters.date_end">
           </div>
         </div>
@@ -199,7 +193,7 @@
             <td *ngIf="activeFieldsTables['nazn']===1">{{finance.name}}</td>
             <td *ngIf="activeFieldsTables['category']===1">
               <div class="---select ---bg-color select-png bg-white">
-                <select class="---select__cur-value w-200"
+                <select class="w-200"
                         [(ngModel)]="finance.category_id"
                         (change)="changeStatus(finance)">
                   <option *ngFor="let category of financeCategory" [ngValue]="category.val">
@@ -222,7 +216,7 @@
         class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
         <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
 
-        <div>Всего клиентов — <span class="---font-sbold">{{financeList.length | digitsNumbers}}</span></div>
+        <div>Всего клиентов — <span class="---font-600">{{financeList.length | digitsNumbers}}</span></div>
       </div>
     </div>
   </div>

@@ -13,12 +13,12 @@
 
 
   <div class="---docs-wrapper" *ngIf="usersAdmin.length>0">
-    <div class="h2 ---font-sbold">Администраторы</div>
+    <div class="h2 ---font-600">Администраторы</div>
 
     <div class="---doc-item ---doc-item--avatar ---pos-rel ---radius-5" *ngFor="let user of usersAdmin">
       <i class="---icon ifont ---icon-head-linear ---y-pos-abs"></i>
 
-      <div class="---title ---font-sbold">{{user.fio}}</div>
+      <div class="---title ---font-600">{{user.fio}}</div>
       <div class="---date">{{user.phone|telephoneNumber}} / {{user.email}}</div>
 
       <div class="---icons ---y-pos-abs ---d-flex">
@@ -30,11 +30,11 @@
   </div>
 
   <div class="---docs-wrapper" *ngIf="usersManager.length>0">
-    <div class="h2 ---font-sbold">Менеджеры</div>
+    <div class="h2 ---font-600">Менеджеры</div>
     <div class="---doc-item ---doc-item--avatar ---pos-rel ---radius-5" *ngFor="let user of usersManager">
       <i class="---icon ifont ---icon-head-linear ---y-pos-abs"></i>
 
-      <div class="---title ---font-sbold">{{user.fio}}</div>
+      <div class="---title ---font-600">{{user.fio}}</div>
       <div class="---date">{{user.phone|telephoneNumber}} / {{user.email}}</div>
 
       <div class="---icons ---y-pos-abs ---d-flex">
@@ -48,7 +48,7 @@
 
 <div class="---col-12 ---col-xl-4">
   <div class="---r-side-add-block ---block--bg-white ---radius-5">
-    <div class="h2 ---font-sbold">{{newUser.fio}}</div>
+    <div class="h2 ---font-600">{{newUser.fio}}</div>
 
     <div class="---border"></div>
 

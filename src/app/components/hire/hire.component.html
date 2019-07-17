@@ -2,7 +2,7 @@
 
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
-      <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
+      <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
         <div class="---tabs__switcher ---d-flex ---align-items-center ---is-active" (click)="changeFilterStatus('')">Все</div>
         <div class="---tabs__switcher ---d-flex ---align-items-center" data-tab="2" *ngFor="let status of statusList" (click)="changeFilterStatus(status.val)">{{status.name}}</div>
       </div>
@@ -143,7 +143,7 @@
       <div class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
         <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
 
-        <div>Всего записей — <span class="---font-sbold">{{hires.length | digitsNumbers}}</span></div>
+        <div>Всего записей — <span class="---font-600">{{hires.length | digitsNumbers}}</span></div>
       </div>
 
     </div>

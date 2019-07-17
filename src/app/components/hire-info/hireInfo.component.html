@@ -1,127 +1,121 @@
-<div class="---page-rent-in ---row">
-  <div class="---col-12 ---col-lg-6 ---form">
-    <div class="---data-block">
-      <div class="h2 ---font-sbold">Данные аренды</div>
+<div class="---page-hire">
 
-      <div class="---row">
-        <div class="---field ---col-12 ---col-xs-6">
+  <div class="---data-block">
+    <div class="h2 ---input ---input--disabled">Данные аренды</div>
 
-          <span
-            class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
-                                <img src="/assets/imgs/catalog/{{hireInfo.equipments.photo}}.png" alt=""
-                                     class="---lazyload ---img-contain">
-                            </span>
+    <div class="---row ---form">
 
-          <div class="---field">
-            <label>Филиал</label>
-            <div >{{hireInfo.branch}}</div>
-          </div>
+      <div class="---col-12">
+        <img src="/assets/imgs/catalog/{{hireInfo.equipments.photo}}.png" class="---lazyload ---img-contain ---product-img">
+      </div>
 
-          <div class="---field">
-            <label>Доставка</label>
-            <div>{{hireInfo.delivery}}</div>
-          </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Филиал</label>
+        <div class="---input ---input--disabled">{{hireInfo.branch}}</div>
+      </div>
 
-          <div class="---field">
-            <label>Тип аренды</label>
-            <div>{{hireInfo.typeLease}}</div>
-          </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Доставка</label>
+        <div class="---input ---input--disabled">{{hireInfo.delivery}}</div>
+      </div>
 
-          <div class="---field">
-            <label>Скидка</label>
-            <div>{{hireInfo.sale}}</div>
-          </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Тип аренды</label>
+        <div class="---input ---input--disabled">{{hireInfo.typeLease}}</div>
+      </div>
 
-          <div class="---field">
-            <label>Источник</label>
-            <div>{{hireInfo.source}}</div>
-          </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Скидка</label>
+        <div class="---input ---input--disabled">{{hireInfo.sale}}</div>
+      </div>
 
-          <div class="---field">
-            <label>Комментарий</label>
-            <div class="---input ---input--calendar ---pos-rel">
-              <textarea class="---input" [(ngModel)]="hireInfo.comment"></textarea>
-            </div>
-          </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Источник</label>
+        <div class="---input ---input--disabled">{{hireInfo.source}}</div>
+      </div>
 
-          <div class="---field">
-            <label>Начало аренды</label>
-            <div>{{hireInfo.rent_start}}</div>
-          </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Начало аренды</label>
+        <div class="---input ---input--disabled">{{hireInfo.rent_start}}</div>
+      </div>
 
-          <div class="---field">
-            <label>Конец аренды</label>
-            <div>{{hireInfo.rent_end}}</div>
-          </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Конец аренды</label>
+        <div class="---input ---input--disabled">{{hireInfo.rent_end}}</div>
+      </div>
 
-          <div class="---field">
-            <label>ФИО клиента</label>
-            <div>{{hireInfo.client_fio}}</div>
-          </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>ФИО клиента</label>
+        <div class="---input ---input--disabled">{{hireInfo.client_fio}}</div>
+      </div>
 
-          <div class="---field">
-            <label>Оборудование</label>
-            <div>{{hireInfo.equipments.name}}</div>
-          </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Оборудование</label>
+        <div class="---input ---input--disabled">{{hireInfo.equipments.name}}</div>
+      </div>
 
-          <div class="---field">
-            <label>Статус</label>
-            <div class="---select">
-              <select [(ngModel)]="hireInfo.equipments.status">
-                <option *ngFor="let status of statusList"
-                        [ngValue]="status.val">
-                  {{status.name}}
-                </option>
-              </select>
-            </div>
-          </div>
-
-          <div class="---field">
-            <label>Количество</label>
-            <div>{{hireInfo.count}}</div>
-          </div>
-
-
-          <div class="---field">
-            <label>Оплоченно</label>
-            <div class="---input ---input--calendar ---pos-rel">
-              <input type="text" mask="separator" [(ngModel)]="hireInfo.total_paid"> ₽
-            </div>
-          </div>
-
-          <div class="---field">
-            <label>Осталось</label>
-            <div>{{hireInfo.remainder | digitsNumbers}} ₽</div>
-          </div>
-
-          <div class="---field">
-            <label>Телефон клиента</label>
-            <div>{{hireInfo.client_phone | telephoneNumber}}</div>
-          </div>
-
-          <div class="---field">
-            <label>Доставка</label>
-            <div>{{hireInfo.delivery_sum}} ₽</div>
-          </div>
-
-
-          <div class="---field">
-            <label>Сумма</label>
-            <div>{{hireInfo.sum | digitsNumbers}} ₽</div>
-          </div>
-
-          <div class="---field">
-            <label>Сумма со скидкой</label>
-            <div>{{hireInfo.sum_sale | digitsNumbers}} ₽</div>
-          </div>
-
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Статус</label>
+        <div class="---select">
+          <select [(ngModel)]="hireInfo.equipments.status">
+            <option *ngFor="let status of statusList"
+                    [ngValue]="status.val">
+              {{status.name}}
+            </option>
+          </select>
         </div>
       </div>
 
-      <div class="---btns-wrapper">
-        <div (click)="updateHire()" class="---btn ---btn--fill-acent">Обновить</div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Количество</label>
+        <div class="---input ---input--disabled">{{hireInfo.count}}</div>
+      </div>
+
+
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Оплоченно (РУБ.)</label>
+        <div class="---input ---input--calendar ---pos-rel">
+          <input mask="separator" [(ngModel)]="hireInfo.total_paid">
+        </div>
+      </div>
+
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Осталось</label>
+        <div class="---input ---input--disabled">{{hireInfo.remainder | digitsNumbers}} ₽</div>
+      </div>
+
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Телефон клиента</label>
+        <div class="---input ---input--disabled">{{hireInfo.client_phone | telephoneNumber}}</div>
+      </div>
+
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Доставка</label>
+        <div class="---input ---input--disabled">{{hireInfo.delivery_sum}} ₽</div>
+      </div>
+
+
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Сумма</label>
+        <div class="---input ---input--disabled">{{hireInfo.sum | digitsNumbers}} ₽</div>
+      </div>
+
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Сумма со скидкой</label>
+        <div class="---input ---input--disabled">{{hireInfo.sum_sale | digitsNumbers}} ₽</div>
+      </div>
+
+      <div class="---field ---col-12">
+        <label>Комментарий</label>
+        <textarea class="---input" [(ngModel)]="hireInfo.comment" rows="5"></textarea>
       </div>
 
     </div>
+
   </div>
+
+  <div class="---btns-wrapper">
+    <div (click)="updateHire()" class="---btn ---btn--fill-acent">Обновить</div>
+  </div>
+
 </div>

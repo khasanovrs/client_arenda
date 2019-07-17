@@ -2,7 +2,7 @@
 
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
-      <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
+      <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
         <div class="---tabs__switcher ---is-active" (click)="changeTypeEquipments('')">Все позиции</div>
         <div class="---tabs__switcher" (click)="changeTypeEquipments('1')">В аренде</div>
         <div class="---tabs__switcher" (click)="changeTypeEquipments('2')">В ремонте</div>
@@ -224,7 +224,7 @@
       class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
       <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
 
-      <div>Всего записей — <span class="---font-sbold">{{equipmentsList.length | digitsNumbers}}</span></div>
+      <div>Всего записей — <span class="---font-600">{{equipmentsList.length | digitsNumbers}}</span></div>
     </div>
   </div>
 </div>
