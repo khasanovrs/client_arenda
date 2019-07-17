@@ -52,6 +52,7 @@ table {
 	td {
 		vertical-align: middle;
 		padding: 10px 13px;
+		border-bottom: 1px solid #dedede;
 
 		.---icon-edit {
 			width: 30px;
@@ -64,28 +65,19 @@ table {
 	}
 
 	tr {
-		
-		&:nth-child(odd) {
-
-			td {
-				background: #fff;
-
-				&:first-child {
-					border-radius: 5px 0 0 5px;
-				}
-
-				&:last-child {
-					border-radius: 0 5px 5px 0;
-				}
-
-			}
-
-		}
 
 		&:hover {
 
 			td {
 				background: @textColor;
+				color: #fff;
+			}
+
+		}
+
+		&.---has-status {
+
+			td {
 				color: #fff;
 			}
 

@@ -55,16 +55,14 @@
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения начало</label>
-          <div class="---input ---input--calendar ---pos-rel">
-            <input class="---datepicker ---radius-5" [(ngModel)]="filters.date_start">
-            <i class="---y-pos-abs ifont ---icon-calendar"></i>
+          <div class="---input ---input--calendar">
+            <input type="date" [(ngModel)]="filters.date_start">
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения конец</label>
-          <div class="---input ---input--calendar ---pos-rel">
-            <input class="---datepicker ---radius-5" [(ngModel)]="filters.date_end">
-            <i class="---y-pos-abs ifont ---icon-calendar"></i>
+          <div class="---input ---input--calendar">
+            <input type="date" [(ngModel)]="filters.date_end">
           </div>
         </div>
       </div>
