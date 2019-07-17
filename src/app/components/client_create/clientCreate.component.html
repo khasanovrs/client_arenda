@@ -116,7 +116,9 @@
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Дата выдачи паспорта</label>
-          <input type="date" class="---input ---fill--bg" [(ngModel)]="newClient.date_passport">
+          <div class="---input ---fill--bg ---input--calendar">
+            <input type="date" [(ngModel)]="newClient.date_passport">
+          </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Адрес прописки</label>

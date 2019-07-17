@@ -104,7 +104,7 @@
           </ng-container>
         </tr>
 
-        <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" [style.background]='application.color'>
+        <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }" [style.background]='application.color'>
           <td>
             <div (click)="applicationDetails(application.equipments_id)" class="ifont ---icon-edit ---radius-5"></div>
           </td>
