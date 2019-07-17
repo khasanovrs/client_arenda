@@ -9,6 +9,7 @@ import {ApplicationsCreateService} from '../applications-create/applicationsCrea
   templateUrl: './applications.component.html',
 })
 export class ApplicationsComponent implements OnInit {
+  p = 1;
   deliveryStatus: InterFaceDopParams[] = [];
   // отображение фильтра
   showFilters = false;
