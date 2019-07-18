@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../../utils/http/http.service';
+import {GlobalParamsMessage} from '../message_alert/global-params-message';
 
 @Injectable()
 export class HireService {
   hireFieldsList: InterFaceActiveFields[] = [];
   hireStatusList: InterFaceDopParams[] = [];
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService,
+              private globalParamsMessage: GlobalParamsMessage) {
   }
 
   // получение списка активных полей
@@ -118,6 +120,22 @@ export class HireService {
           },
           (error) => {
             console.log('Ошибка при изменении информации по заявке', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // добавление статуса для проката
+  public addHireStatus(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-hire-status', data)
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении статуса для проката', error);
             reject();
           }
         );

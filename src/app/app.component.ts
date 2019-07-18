@@ -26,6 +26,10 @@ export class AppComponent {
   checkAuthRedirect() {
     if (this.checkAuth !== true) {
       this.router.navigate(['/']);
+    } else {
+      if (this.router.url === '/') {
+        this.router.navigate(['/main']);
+      }
     }
   }
 }

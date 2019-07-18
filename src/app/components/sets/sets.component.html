@@ -30,7 +30,21 @@
               <div class="---icons ---y-pos-abs ---d-flex">
                 <div class="---color" [style.background]='status.color'></div>
                 <div (click)="changeParams(status,'status_application')" class="ifont ---icon-edit ---acent"></div>
-                <div (click)="deleteStatusApplication(status.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Статусы для проката</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let status of hireStatusList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{status.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div class="---color" [style.background]='status.color'></div>
+                <div (click)="changeParams(status,'status_hire')" class="ifont ---icon-edit ---acent"></div>
               </div>
             </div>
           </div>
@@ -206,7 +220,7 @@
           </div>
 
           <div class="---field"
-               *ngIf="newParams.type==='status_client' || newParams.type==='status_application' || newParams.type==='status_equipment'">
+               *ngIf="newParams.type==='status_client' || newParams.type==='status_application' || newParams.type==='status_equipment' || newParams.type==='status_hire'">
             <label>Выберите цвет</label>
             <div class="---input ---input--choose-color ---fill--bg ---pos-rel">
               <input [ngModelOptions]="{standalone: true}" type="color" [(ngModel)]="newParams.color">
@@ -215,9 +229,15 @@
           </div>
 
           <div class="---buttons ---d-flex ---flex-wrap">
-            <div *ngIf='newParams.val==""' (click)="addParams()" class="---btn ---btn--fill-acent" style="margin: 10px 10px 0 0;">Добавить</div>
-            <div *ngIf='newParams.val!==""' (click)="addParams()" class="---btn ---btn--fill-acent" style="margin: 10px 10px 0 0;">Обновить</div>
-            <div (click)="clearNewParams()" class="---btn ---btn--fill-acent" style="margin: 10px 10px 0 0;">Новое поле</div>
+            <div *ngIf='newParams.val==""' (click)="addParams()" class="---btn ---btn--fill-acent"
+                 style="margin: 10px 10px 0 0;">Добавить
+            </div>
+            <div *ngIf='newParams.val!==""' (click)="addParams()" class="---btn ---btn--fill-acent"
+                 style="margin: 10px 10px 0 0;">Обновить
+            </div>
+            <div (click)="clearNewParams()" class="---btn ---btn--fill-acent" style="margin: 10px 10px 0 0;">Новое
+              поле
+            </div>
           </div>
         </form>
       </div>

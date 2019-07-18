@@ -7,6 +7,7 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {EquipmentsService} from '../equipments/equipments.service';
 import {StockService} from '../stock/stock.service';
 import {FinanceService} from '../finance/finance.service';
+import {HireService} from '../hire/hire.service';
 
 @Component({
   selector: 'app-sets',
@@ -17,6 +18,8 @@ export class SetsComponent implements OnInit {
   clientStatusList: InterFaceDopParamsColor[] = [];
   // список статусов для заявок
   applicationStatusList: InterFaceDopParamsColor[] = [];
+  // список статусов для проката
+  hireStatusList: InterFaceDopParamsColor[] = [];
   // список статусов для оборудования
   equipmentsStatusList: InterFaceDopParamsColor[] = [];
   // список филиалов
@@ -37,6 +40,7 @@ export class SetsComponent implements OnInit {
   typeList: InterFaceTypeList[] = [
     {val: 'status_client', name: 'Статус для клиентов'},
     {val: 'status_application', name: 'Статус для заявок'},
+    {val: 'status_hire', name: 'Статус для проката'},
     {val: 'status_equipment', name: 'Статус для оборудования'},
     {val: 'source', name: 'Источник'},
     {val: 'branch', name: 'Филиал'},
@@ -64,7 +68,8 @@ export class SetsComponent implements OnInit {
               private globalParamsMessage: GlobalParamsMessage,
               private equipmentsService: EquipmentsService,
               private stockService: StockService,
-              private financeService: FinanceService) {
+              private financeService: FinanceService,
+              private hireService: HireService) {
   }
 
   ngOnInit() {
@@ -138,6 +143,13 @@ export class SetsComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении касс: ', error);
       });
+
+    this.hireService.getHireStatus().then((data: InterFaceDopParamsColor[]) => {
+        this.hireStatusList = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении статусов проката: ', error);
+      });
   }
 
   // добавление нового поля
@@ -159,6 +171,16 @@ export class SetsComponent implements OnInit {
         },
         (error) => {
           console.log('Ошибка при добавлении нового статуса для заявки: ', error);
+        });
+    }
+
+    if (this.newParams.type === 'status_hire') {
+      this.hireService.addHireStatus(this.newParams).then(() => {
+          this.applicationsService.applicationsStatusList = [];
+          this.ngOnInit();
+        },
+        (error) => {
+          console.log('Ошибка при добавлении нового статуса для проката: ', error);
         });
     }
 
@@ -274,6 +296,8 @@ export class SetsComponent implements OnInit {
 
   // заполенение формы готовыми данными
   changeParams(val, type) {
+    console.log(1, val);
+    console.log(2, type);
     this.newParams = val;
     this.newParams.type = type;
   }
