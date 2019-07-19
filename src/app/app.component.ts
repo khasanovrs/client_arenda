@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { Location } from '@angular/common';
 import {GlobalParams} from './storage/global-params';
 import {AuthService} from './components/auth/auth.service';
 import {Router} from '@angular/router';
@@ -13,7 +14,8 @@ export class AppComponent {
 
   constructor(private globalParams: GlobalParams,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private location: Location) {
 
     const auth = localStorage.getItem('auth');
     this.checkAuth = auth === 'true';
@@ -26,6 +28,8 @@ export class AppComponent {
   checkAuthRedirect() {
     if (this.checkAuth !== true) {
       this.router.navigate(['/']);
+    } else if (this.location.path() === '') {
+      this.router.navigate(['/main']);
     }
   }
 }
