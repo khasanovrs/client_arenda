@@ -160,6 +160,51 @@
         </div>
       </div>
 
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Категории оборудования</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let category of equipmentsCategoryList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{category.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(category,'category_eq')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteCategoryEq(category.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Тип оборудования</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let category of equipmentsTypeList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{category.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(category,'type_eq')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteTypeEq(category.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Марки оборудования</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let category of equipmentsMarkList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{category.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(category,'mark_eq')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteMarkEq(category.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     </div>
 

@@ -1,14 +1,17 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../../utils/http/http.service';
+import {GlobalParamsMessage} from '../message_alert/global-params-message';
 
 @Injectable()
 export class EquipmentsService {
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsCategoryList: InterFaceDopParams[] = [];
   equipmentsAvailabilityList: InterFaceDopParams[] = [];
+  equipmentsMarkList: InterFaceDopParams[] = [];
   equipmentsFieldsList: InterFaceActiveFields[] = [];
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService,
+              private globalParamsMessage: GlobalParamsMessage) {
   }
 
 
@@ -49,6 +52,102 @@ export class EquipmentsService {
       } else {
         resolve(this.equipmentsCategoryList);
       }
+    });
+  }
+
+  // добавление категорий товаров
+  public addEquipmentsCategory(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-equipments-category', data)
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении новой категорий оборудования', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // удаление категорий товаров
+  public deleteEquipmentsCategory(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/delete-equipments-category', data)
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при удалении категории оборудования', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // добавление типа товаров
+  public addEquipmentsType(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-equipments-type', data)
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении нового типа оборудования', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // удаление типа товаров
+  public deleteEquipmentsType(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/delete-equipments-type', data)
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при удалении типа оборудования', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // добавление марки товаров
+  public addEquipmentsMark(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-equipments-mark', data)
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении новой марки оборудования', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // удаление типа марки
+  public deleteEquipmentsMark(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/delete-equipments-mark', data)
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при удалении марки оборудования', error);
+            reject();
+          }
+        );
     });
   }
 
@@ -155,15 +254,20 @@ export class EquipmentsService {
   // получение списка марок
   public getEquipmentsMark() {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/get-equipment-mark', '')
-        .then((result: any) => {
-            resolve(result);
-          },
-          (error) => {
-            console.log('Ошибка при получении списка марок', error);
-            reject(error);
-          }
-        );
+      if (this.equipmentsMarkList.length === 0) {
+        this.httpService.prepareQuery('api/get-equipment-mark', '')
+          .then((result: any) => {
+              this.equipmentsMarkList = result;
+              resolve(result);
+            },
+            (error) => {
+              console.log('Ошибка при получении списка марок', error);
+              reject(error);
+            }
+          );
+      } else {
+        resolve(this.equipmentsMarkList);
+      }
     });
   }
 
