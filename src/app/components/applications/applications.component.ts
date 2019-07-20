@@ -10,7 +10,7 @@ import {ApplicationsCreateService} from '../applications-create/applicationsCrea
 })
 export class ApplicationsComponent implements OnInit {
   p = 1;
-  deliveryStatus: InterFaceDopParams[] = [];
+  deliveryStatus: InterFaceDopParamsColor[] = [];
   // отображение фильтра
   showFilters = false;
   // отображение фильтра
@@ -33,7 +33,7 @@ export class ApplicationsComponent implements OnInit {
   applications: InterFaceApplications[] = [];
 
   ngOnInit() {
-    this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
+    this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParamsColor[]) => {
         this.deliveryStatus = data;
       },
       (error) => {
@@ -117,6 +117,11 @@ export class ApplicationsComponent implements OnInit {
       application_id: application.equipments_id,
       application_status: application.status
     }).then(() => {
+        for (const value of this.deliveryStatus) {
+          if (value.val === application.status) {
+            application.color = value.color;
+          }
+        }
       },
       (error) => {
         console.log('Ошибка при изменении статуса у оборудования: ', error);

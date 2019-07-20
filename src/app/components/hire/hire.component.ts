@@ -9,7 +9,7 @@ import {DopParamsService} from '../../services/dopParams.service';
 })
 export class HireComponent {
   p = 1;
-  statusList: InterFaceDopParams[] = [];
+  statusList: InterFaceDopParamsColor[] = [];
   // отображение фильтра
   showFilters = false;
   // отображение фильтра
@@ -36,7 +36,7 @@ export class HireComponent {
   constructor(public hireService: HireService,
               private router: Router,
               private dopParamsService: DopParamsService) {
-    this.hireService.getHireStatus().then((data: InterFaceDopParams[]) => {
+    this.hireService.getHireStatus().then((data: InterFaceDopParamsColor[]) => {
         this.statusList = data;
       },
       (error) => {
@@ -101,6 +101,11 @@ export class HireComponent {
       id: hire.id,
       status: hire.status
     }).then(() => {
+        for (const value of this.statusList) {
+          if (value.val === hire.status) {
+            hire.color = value.color;
+          }
+        }
       },
       (error) => {
         console.log('Ошибка при изменении статуса у проката: ', error);

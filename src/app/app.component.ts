@@ -27,7 +27,7 @@ export class AppComponent {
     if (this.checkAuth !== true) {
       this.router.navigate(['/']);
     } else {
-      if (this.router.url === '/') {
+      if (window.location.href === '') {
         this.router.navigate(['/main']);
       }
     }

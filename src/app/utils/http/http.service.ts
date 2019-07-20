@@ -55,7 +55,7 @@ export class HttpService {
               console.log('Результат ответа: ', rez);
               resolve(rez);
             } else {
-              resolve(result.status);
+              resolve(result);
             }
 
             if (typeof result.session_id !== 'undefined') {
