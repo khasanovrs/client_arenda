@@ -36,6 +36,12 @@ export class SetsComponent implements OnInit {
   rolesList: InterFaceDopParams[] = [];
   // кассы
   financeCashBox: InterFaceFinanceCashBox[] = [];
+  // категории оборудования
+  equipmentsCategoryList: InterFaceDopParams[] = [];
+  // тип оборудования
+  equipmentsTypeList: InterFaceDopParams[] = [];
+  // марка оборудования
+  equipmentsMarkList: InterFaceDopParams[] = [];
 
   typeList: InterFaceTypeList[] = [
     {val: 'status_client', name: 'Статус для клиентов'},
@@ -48,7 +54,10 @@ export class SetsComponent implements OnInit {
     {val: 'discount', name: 'Скидка'},
     {val: 'right', name: 'Права'},
     {val: 'role', name: 'Роль'},
-    {val: 'cashBox', name: 'Касса'}
+    {val: 'cashBox', name: 'Касса'},
+    {val: 'category_eq', name: 'Категория оборудования'},
+    {val: 'type_eq', name: 'Тип оборудования'},
+    {val: 'mark_eq', name: 'Марка оборудования'}
   ];
 
   // новое поле
@@ -142,6 +151,27 @@ export class SetsComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении касс: ', error);
+      });
+
+    this.equipmentsService.getEquipmentsCategory().then((data: InterFaceDopParams[]) => {
+        this.equipmentsCategoryList = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка категорий оборудования: ', error);
+      });
+
+    this.equipmentsService.getEquipmentsType().then((data: InterFaceDopParams[]) => {
+        this.equipmentsTypeList = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка категорий оборудования: ', error);
+      });
+
+    this.equipmentsService.getEquipmentsMark().then((data: InterFaceDopParams[]) => {
+        this.equipmentsMarkList = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка марков оборудования: ', error);
       });
 
     this.hireService.getHireStatus().then((data: InterFaceDopParamsColor[]) => {
@@ -276,6 +306,36 @@ export class SetsComponent implements OnInit {
         },
         (error) => {
           console.log('Ошибка при добавлении новой кассы: ', error);
+        });
+    }
+
+    if (this.newParams.type === 'category_eq') {
+      this.equipmentsService.addEquipmentsCategory(this.newParams).then(() => {
+          this.equipmentsService.equipmentsCategoryList = [];
+          this.ngOnInit();
+        },
+        (error) => {
+          console.log('Ошибка при добавлении новой категории оборудования: ', error);
+        });
+    }
+
+    if (this.newParams.type === 'type_eq') {
+      this.equipmentsService.addEquipmentsType(this.newParams).then(() => {
+          this.equipmentsService.equipmentsTypeList = [];
+          this.ngOnInit();
+        },
+        (error) => {
+          console.log('Ошибка при добавлении нового типа оборудования: ', error);
+        });
+    }
+
+    if (this.newParams.type === 'mark_eq') {
+      this.equipmentsService.addEquipmentsMark(this.newParams).then(() => {
+          this.equipmentsService.equipmentsMarkList = [];
+          this.ngOnInit();
+        },
+        (error) => {
+          console.log('Ошибка при добавлении новой марки оборудования: ', error);
         });
     }
 
@@ -420,6 +480,42 @@ export class SetsComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при удалении кассы: ', error);
+      });
+  }
+
+  // удаление категории
+  deleteCategoryEq(id) {
+    this.equipmentsService.deleteEquipmentsCategory({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Категория оборудования успешно удалена', type: 'success', body: ''};
+        this.equipmentsService.equipmentsCategoryList = [];
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log('Ошибка при удалении категории оборудования: ', error);
+      });
+  }
+
+  // удаление типа
+  deleteTypeEq(id) {
+    this.equipmentsService.deleteEquipmentsType({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Тип оборудования успешно удален', type: 'success', body: ''};
+        this.equipmentsService.equipmentsTypeList = [];
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log('Ошибка при удалении типа оборудования: ', error);
+      });
+  }
+
+  // удаление типа
+  deleteMarkEq(id) {
+    this.equipmentsService.deleteEquipmentsMark({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Марка оборудования успешно удалена', type: 'success', body: ''};
+        this.equipmentsService.equipmentsMarkList = [];
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log('Ошибка при удалении марки оборудования: ', error);
       });
   }
 }

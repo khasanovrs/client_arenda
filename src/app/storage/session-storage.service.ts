@@ -3,16 +3,14 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class SessionStorageService {
 
-    private _pubId = '';
+  constructor() {
+  }
 
-    constructor() {
-    }
+  get pubId(): string {
+    return localStorage.getItem('pubId');
+  }
 
-    get pubId(): string {
-        return this._pubId;
-    }
-
-    set pubId(value: string) {
-        this._pubId = value;
-    }
+  set pubId(value: string) {
+    localStorage.setItem('pubId', value);
+  }
 }
