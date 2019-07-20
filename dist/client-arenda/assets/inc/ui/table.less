@@ -1,0 +1,93 @@
+.---t-wrapper {
+	overflow: hidden;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+table {
+	width: 100%;
+	min-width: 1500px;
+	border-collapse: separate;
+	border-spacing: 3px 0;
+	font-size: 14/@px;
+
+	.---checkbox {
+		padding: 0;
+		height: 19px;
+		width: 19px;
+		border-radius: 2.5px;
+		box-shadow: 0 0 0 #fff !important;
+
+		&:before {
+			left: 0;
+		}
+
+		&:after {
+			left: 4px;
+		}
+
+	}
+
+	th {
+		vertical-align: middle;
+		padding: 12px 13px 11px;
+		text-align: left;
+		color: #99a0aa;
+		text-transform: uppercase;
+		font-size: 12/@px;
+		letter-spacing: .4px;
+		background: #e3e7ed;
+		font-weight: 400;
+
+		&:first-child {
+			border-radius: 5px 0 0 5px;
+		}
+
+		&:last-child {
+			border-radius: 0 5px 5px 0;
+		}
+
+	}
+
+	td {
+		vertical-align: middle;
+		padding: 10px 13px;
+		border-bottom: 1px solid #dedede;
+
+		.---icon-edit {
+			width: 30px;
+			height: 30px;
+			background: @mainColor;
+			font-size: 16px;
+			color: #000;
+			cursor: pointer;
+		}
+
+	}
+
+	tr {
+
+		&:hover {
+
+			td {
+				background: @textColor;
+				color: #fff;
+			}
+
+		}
+
+		&.---has-status {
+
+			td {
+				color: #fff;
+			}
+
+		}
+
+	}
+
+	.---select {
+		width: 200px;
+	}
+
+}
