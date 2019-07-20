@@ -1,0 +1,40 @@
+.background(@path, @position: center center, @repeat: no-repeat) {
+  background: url(@path) @position @repeat;
+  background-size: cover;
+}
+.text-overflow(@lineClamp, @lineHeight) {
+  display: -webkit-box;
+  display: -moz-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @lineClamp;
+  overflow: hidden;
+  height: @lineClamp * @lineHeight;
+}
+.placeholder-style(@placeholder-font, @placeholder-color) {
+
+  &::-webkit-input-placeholder {
+    font: @placeholder-font;
+    color: @placeholder-color;
+  }
+
+  &::-moz-placeholder {
+    font: @placeholder-font;
+    color: @placeholder-color;
+  }
+
+  &:-moz-placeholder {
+    font: @placeholder-font;
+    color: @placeholder-color;
+  }
+
+  &:-ms-input-placeholder {
+    font: @placeholder-font;
+    color: @placeholder-color;
+  }
+
+}
+
+.flex-width(@width) {
+  width: 100%;
+  max-width: @width;
+}
