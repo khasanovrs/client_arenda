@@ -42,12 +42,15 @@ export class SetsComponent implements OnInit {
   equipmentsTypeList: InterFaceDopParams[] = [];
   // марка оборудования
   equipmentsMarkList: InterFaceDopParams[] = [];
+  // категория финансов
+  financeCategory: InterFaceDopParams[] = [];
 
   typeList: InterFaceTypeList[] = [
     {val: 'status_client', name: 'Статус для клиентов'},
     {val: 'status_application', name: 'Статус для заявок'},
     {val: 'status_hire', name: 'Статус для проката'},
     {val: 'status_equipment', name: 'Статус для оборудования'},
+    {val: 'finance_category', name: 'Категория финансов'},
     {val: 'source', name: 'Источник'},
     {val: 'branch', name: 'Филиал'},
     {val: 'stock', name: 'Склад'},
@@ -179,6 +182,13 @@ export class SetsComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении статусов проката: ', error);
+      });
+
+    this.financeService.getFinanceCategory().then((data: InterFaceDopParams[]) => {
+        this.financeCategory = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении категорий: ', error);
       });
   }
 
@@ -336,6 +346,16 @@ export class SetsComponent implements OnInit {
         },
         (error) => {
           console.log('Ошибка при добавлении новой марки оборудования: ', error);
+        });
+    }
+
+    if (this.newParams.type === 'finance_category') {
+      this.financeService.addFinanceCategory(this.newParams).then(() => {
+          this.financeService.category = [];
+          this.ngOnInit();
+        },
+        (error) => {
+          console.log('Ошибка при добавлении новой категории для финансов: ', error);
         });
     }
 
@@ -516,6 +536,18 @@ export class SetsComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при удалении марки оборудования: ', error);
+      });
+  }
+
+  // удаление типа
+  deleteFinanceCategory(id) {
+    this.financeService.deleteFinanceCategory({'id': id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Категория финансов успешно удалена', type: 'success', body: ''};
+        this.equipmentsService.equipmentsMarkList = [];
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log('Ошибка при удалении категории финансов: ', error);
       });
   }
 }

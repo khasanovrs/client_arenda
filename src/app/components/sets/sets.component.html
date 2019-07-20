@@ -68,6 +68,21 @@
       </div>
 
       <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Категории финансов</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let status of financeCategory">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{status.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(status,'finance_category')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteFinanceCategory(status.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
         <div class="h2 ---font-600">Источники</div>
         <div class="---row">
           <div class="---col-lg-6" *ngFor="let source of sourceList">

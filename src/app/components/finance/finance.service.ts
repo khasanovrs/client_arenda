@@ -199,4 +199,36 @@ export class FinanceService {
         );
     });
   }
+
+  // удаление категории финансов
+  public deleteFinanceCategory(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/delete-finance-category', data)
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при удалении категории финансов', error);
+            reject(error);
+          }
+        );
+    });
+  }
+
+  // добавление категории финансов
+  public addFinanceCategory(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-finance-category', data)
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении категории финансов', error);
+            reject(error);
+          }
+        );
+    });
+  }
 }
