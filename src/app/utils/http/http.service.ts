@@ -46,7 +46,7 @@ export class HttpService {
 
     return new Promise((resolve, reject) => {
 
-      this.sendPostQuery(url, data).subscribe((result: { status: string, msg: string, session_id: string, data: string }) => {
+      this.sendPostQuery(url, data).subscribe((result: { status: string, msg: string, session_id: string, data: string, code: string }) => {
           console.log('HttpService Ответ получен: ', result);
           if (result.status === 'OK') {
             if (typeof result.data !== 'undefined') {
@@ -63,7 +63,12 @@ export class HttpService {
             }
 
           } else if (result.status === 'ERROR') {
-            this.globalParamsMessage.data = {title: 'Ошибка', body: result.msg, type: 'error'};
+            if (typeof result.code !== 'undefined' && result.code === 'NEED SESSION') {
+              this.globalParamsMessage.data = {title: 'Ошибка', body: 'Истек срок сессии', type: 'error'};
+              this.sessionStorage.exit();
+            } else {
+              this.globalParamsMessage.data = {title: 'Ошибка', body: result.msg, type: 'error'};
+            }
             reject();
           } else {
             this.globalParamsMessage.data = {title: 'Ошибка', body: 'Система врменно недостпуна', type: 'error'};
@@ -84,9 +89,9 @@ export class HttpService {
       prBlock: data
     };
     const headers = new HttpHeaders();
-    
-    // return this.http.post('http://localhost:8001/' + api, request, {headers: headers})
-    return this.http.post('http://artdekor-kzn.ru/' + api, request, {headers: headers})
+
+    return this.http.post('http://localhost:8001/' + api, request, {headers: headers})
+    // return this.http.post('http://artdekor-kzn.ru/' + api, request, {headers: headers})
       .pipe(
         catchError(HttpService.handlerError)
       );

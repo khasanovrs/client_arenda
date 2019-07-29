@@ -15,9 +15,7 @@ export class HeaderComponent {
 
   exit() {
     this.authService.exit().then(() => {
-        this.sessionStorageService.pubId = '';
-        localStorage.setItem('auth', 'false');
-        this.router.navigate(['/']);
+        console.log('Выход успешный');
       },
       (error) => {
         console.log('Ошибка при выходе: ', error);
