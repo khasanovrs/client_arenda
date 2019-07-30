@@ -8,22 +8,22 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  checkAuth: Boolean = false;
+  checkAuth: Boolean = this.sessionStorageService.pubId !== null;
 
   constructor(private sessionStorageService: SessionStorageService,
               private router: Router) {
-
 
     this.checkAuthRedirect();
   }
 
   ngOnInit() {
-    this.sessionStorageService.getEmittedValue()
-      .subscribe(item => this.checkAuth = item);
+    this.sessionStorageService.authenticated.subscribe(item => {
+      this.checkAuth = item;
+    });
   }
 
   checkAuthRedirect() {
-    if (this.checkAuth !== true) {
+    if (!this.checkAuth) {
       this.router.navigate(['/']);
     } else {
       if (window.location.href === '') {
