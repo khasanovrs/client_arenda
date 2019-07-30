@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  overflow-x: hidden;
+  overflow-scrolling: touch;
+}
+html {
+  -webkit-text-size-adjust: none;
+  height: 100%;
+  transition: transform .3s;
+  font-size: 18px;
+
+  &.---is-hidden {
+    overflow: hidden;
+
+    body {
+      overflow: hidden;
+    }
+    
+  }
+
+  &.---is-menu-visible {
+
+    .---left-main-menu {
+      transform: translate(220px, 0);
+    }
+
+    .---main-content {
+      transform: translate(220px, 0);
+    }
+
+  }
+
+}
+body {
+  height: 100%;
+  font-smoothing: antialiased;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: Helvetica, Arial, sans-serif;
+  text-rendering: auto;
+  color: @textColor;
+  letter-spacing: .2px;
+  background: @bgColor;
+
+  &.---is-font-loaded {
+    letter-spacing: 0;
+    font-family: @font__main;
+  }
+
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, 
+blockquote:after,
+q:before, 
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+input, 
+textarea, 
+button, 
+select {
+  font-family: inherit;
+  resize: none;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  padding: 0;
+}
+button {
+  cursor: pointer;
+  user-select: none;
+}
+img {
+  border: 0;
+  vertical-align: top;
+
+  &.---lazyload {
+    opacity: 0;
+    will-change: opacity;
+    transition: all .15s;
+  }
+
+  &.------lazyloaded {
+    opacity: 1;
+  }
+
+}
+
+.---main-content {
+  display: none;
+  flex: 1;
+}
+
+
+app-root {
+  height: 100%;
+}
+
+app-client,
+app-main {
+  flex: 1;
+}
