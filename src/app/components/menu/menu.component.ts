@@ -9,14 +9,15 @@ export class MenuComponent {
 
   constructor() {
     this.menuList = [
-      {link: '/', name: 'Рабочий стол', class: '---icon-menu-dashboard'},
-      {link: '/rent.php', name: 'Прокат', class: '---icon-menu-rent'},
-      {link: '/stock', name: 'Склад', class: '---icon-menu-base'},
-      {link: '/clients', name: 'Клиенты', class: '---icon-menu-clients'},
-      {link: '/reports.php', name: 'Отчеты', class: '---icon-menu-report'},
+      {link: 'main', name: 'Рабочий стол', class: '---icon-menu-dashboard'},
+      {link: 'hire', name: 'Прокат', class: '---icon-menu-rent'},
+      {link: 'stock', name: 'Склад', class: '---icon-menu-base'},
+      {link: 'clients', name: 'Клиенты', class: '---icon-menu-clients'},
+      {link: 'report', name: 'Отчеты', class: '---icon-menu-report'},
       {link: 'settings', name: 'Настройки', class: '---icon-menu-settings'},
-      {link: '/finance.php', name: 'Финансы', class: '---icon-menu-finance'},
-      {link: 'application', name: 'Заявки', class: '---icon-menu-orders'}
+      {link: 'finance', name: 'Финансы', class: '---icon-menu-finance'},
+      {link: 'application', name: 'Заявки', class: '---icon-menu-orders'},
+      {link: 'sets', name: 'Наборы', class: '---icon-menu-orders'}
     ];
   }
 }

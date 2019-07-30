@@ -1,0 +1,202 @@
+// Width variables (appears count calculates by raw css)
+@width0: 100%; // Appears 5 times
+@width1: 44px; // Appears 2 times
+
+// Height variables (appears count calculates by raw css)
+@height0: 100%; // Appears 5 times
+@height1: 60px; // Appears 2 times
+
+#baguetteBox-overlay {
+  -webkit-transition: opacity .5s ease;
+  background-color: #222222;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  height: @height0;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  transition: opacity .5s ease;
+  width: @width0;
+  z-index: 1000000;
+
+  .full-image {
+    display: inline-block;
+    height: @height0;
+    position: relative;
+    text-align: center;
+    width: @width0;
+
+    figure {
+      display: inline;
+      height: @height0;
+      margin: 0;
+    }
+
+    img {
+      -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      display: inline-block;
+      height: auto;
+      max-height: @height0;
+      max-width: @width0;
+      vertical-align: middle;
+      width: auto;
+    }
+
+    figcaption {
+      background-color: #000000;
+      background-color: rgba(0, 0, 0, 0.6);
+      bottom: 0;
+      color: #cccccc;
+      display: block;
+      font-family: sans-serif;
+      line-height: 1.8;
+      position: absolute;
+      text-align: center;
+      white-space: normal;
+      width: @width0;
+    }
+
+    &:before {
+      content: "";
+      display: inline-block;
+      height: 50%;
+      margin-right: -1px;
+      width: 1px;
+    }
+
+  }
+
+}
+
+#baguetteBox-overlay.visible {
+  opacity: 1;
+}
+
+#baguetteBox-slider {
+  -webkit-transition: left .4s ease, -webkit-transform .4s ease;
+  height: @height0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: left .4s ease, -webkit-transform .4s ease;
+  transition: left .4s ease, transform .4s ease;
+  transition: left .4s ease, transform .4s ease, -webkit-transform .4s ease, -moz-transform .4s ease;
+  white-space: nowrap;
+  width: @width0;
+}
+
+#baguetteBox-slider.bounce-from-right {
+  -webkit-animation: bounceFromRight .4s ease-out;
+  animation: bounceFromRight .4s ease-out;
+}
+
+#baguetteBox-slider.bounce-from-left {
+  -webkit-animation: bounceFromLeft .4s ease-out;
+  animation: bounceFromLeft .4s ease-out;
+}
+
+@-webkit-keyframes bounceFromRight {
+  0% {
+    margin-left: 0; 
+  }
+  50% {
+    margin-left: -30px; 
+  }
+  100% {
+    margin-left: 0; 
+  }
+}
+
+@keyframes bounceFromRight {
+  0% {
+    margin-left: 0; 
+  }
+  50% {
+    margin-left: -30px; 
+  }
+  100% {
+    margin-left: 0; 
+  } 
+}
+
+@-webkit-keyframes bounceFromLeft {
+  0% {
+    margin-left: 0; 
+  }
+  50% {
+    margin-left: 30px; 
+  }
+  100% {
+    margin-left: 0; 
+  } 
+}
+
+@keyframes bounceFromLeft {
+  0% {
+    margin-left: 0; 
+  }
+  50% {
+    margin-left: 30px; 
+  }
+  100% {
+    margin-left: 0; 
+  } 
+}
+
+.baguetteBox-button#next-button {
+  height: @height1;
+  right: 2%;
+  top: 50%;
+  top: calc(50% - 30px);
+  width: @width1;
+}
+.baguetteBox-button#previous-button {
+  height: @height1;
+  left: 2%;
+  top: 50%;
+  top: calc(50% - 30px);
+  width: @width1;
+}
+.baguetteBox-button {
+  -moz-border-radius: 15%;
+  -webkit-transition: background-color .4s ease;
+  background-color: #323232;
+  background-color: rgba(50, 50, 50, 0.5);
+  border-radius: 15%;
+  border: 0;
+  color: #dddddd;
+  cursor: pointer;
+  font: 1.6em sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  position: absolute;
+  transition: background-color .4s ease;
+
+  svg {
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+
+  &:focus {
+    background-color: rgba(50, 50, 50, 0.9);
+  }
+
+  &:hover {
+    background-color: rgba(50, 50, 50, 0.9);
+  }
+
+}
+
+.baguetteBox-button#close-button {
+  height: 30px;
+  right: 2%;
+  right: calc(2% + 6px);
+  top: 20px;
+  width: 30px;
+}

@@ -1,0 +1,224 @@
+<div class="---page-finance">
+
+  <div class="---finance-stat-wrapper ---row">
+
+    <div class="---col-12 ---col-sm-6 ---col-md-4">
+      <div class="---block--bg-white ---stat-item ---d-flex ---align-items-center ---justify-content-between">
+        <div class="---stat-item__info">
+          Доходы
+          <div class="---select">
+            <select [(ngModel)]="income_sum">
+              <option *ngFor="let item of operationSum.income" [ngValue]="item.sum">{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf='income_sum' class="---stat-item__num ---font-300">{{income_sum | digitsNumbers}} ₽</div>
+      </div>
+    </div>
+
+    <div class="---col-12 ---col-sm-6 ---col-md-4">
+      <div class="---block--bg-white ---stat-item ---d-flex ---align-items-center ---justify-content-between">
+        <div class="---stat-item__info">
+          Расходы
+          <div class="---select">
+            <select [(ngModel)]="rate_sum">
+              <option *ngFor="let item of operationSum.rate" [ngValue]="item.sum">{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf='rate_sum' class="---stat-item__num ---font-300">{{rate_sum | digitsNumbers}} ₽</div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="---tabs ---tabs--finance">
+    <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
+      <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
+        <div class="---tabs__switcher" [ngClass]="{'---is-active':filters.cashBox === null}" (click)="setCashBox(1)">
+          Все кассы<br>
+          <div class="---num ---font-600 ---d-inline-flex ---align-items-center ---radius-5">
+            {{allSum | digitsNumbers}} ₽
+            <i class="ifont ---icon-menu-settings"></i>
+          </div>
+        </div>
+
+        <div class="---tabs__switcher" [ngClass]="{'---is-active':cashBox.val === filters.cashBox}"
+             *ngFor="let cashBox of financeCashBox" (click)="setCashBox(cashBox.val)">
+          {{cashBox.name}}<br>
+          <div class="---num ---font-600 ---d-inline-flex ---align-items-center ---radius-5">
+            {{cashBox.sum | digitsNumbers}} ₽
+            <i class="ifont ---icon-menu-settings"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
+
+      <div class="---d-flex ---form ---align-items-start">
+        <div [ngClass]="{'---is-active':showFilters}"
+             class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
+             (click)="changeShowFilters()">
+          Фильтры
+          <i class="ifont ---icon-menu-finance ---d-none ---sm-d-flex"></i>
+        </div>
+
+        <div [ngClass]="{'---is-active':showActiveFields}"
+             class="---filters  ---radius-5 ---d-inline-flex ---align-items-center"
+             (click)="changeActiveFields()">
+          Активные поля
+          <i class="ifont ---icon-list ---d-none ---sm-d-flex"></i>
+        </div>
+
+        <div class="---search ---field ---pos-rel">
+          <input class="---input" placeholder="Поиск по названию" [(ngModel)]="filters.like" (keyup)="getFinance()">
+          <button class="---y-pos-abs ifont ---icon-loop"></button>
+        </div>
+      </div>
+
+      <div routerLink='/finance-create' class="---btn ---btn--fill-acent">Добавить</div>
+
+    </div>
+
+    <div *ngIf="showFilters" id="filter" class="---block--bg-white ---block-filter ---radius-5 ---form">
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Категория</label>
+          <div class="---select">
+            <select [(ngModel)]="filters.category">
+              <option *ngFor="let category of financeCategory" [ngValue]="category.val">
+                {{category.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Тип</label>
+          <div class="---select">
+            <select [(ngModel)]="filters.type">
+              <option *ngFor="let type of financeType" [ngValue]="type.val">
+                {{type.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Филиал</label>
+          <div class="---select">
+            <select [(ngModel)]="filters.branch">
+              <option *ngFor="let branch of branches" [ngValue]="branch.val">
+                {{branch.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Сумма от</label>
+          <div>
+            <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.sum_start">
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Сумма до</label>
+          <div>
+            <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.sum_end">
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Дата начало</label>
+          <div class="---input ---input--calendar ---shadow--bg">
+            <input type="date" [(ngModel)]="filters.date_start">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Дата конец</label>
+          <div class="---input ---input--calendar ---shadow--bg">
+            <input type="date" [(ngModel)]="filters.date_end">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="---btns ---d-flex">
+        <div (click)="getFinance()" class="---btn ---btn--fill-acent">Применить фильтры</div>
+        <div (click)="clearFilters()" class="---btn ---btn--border-bg">
+          Сбросить фильтры
+          <i class="ifont ---icon-close"></i>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showActiveFields" id="active-field" class=" ---block--bg-white ---block-filter ---radius-5 ---form">
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3" *ngFor="let activeField of activeFields; let i = index">
+          <label for="right_{{activeField.code}}" class="---checkbox" [ngClass]="{'---is-active':activeField.flag}">
+            <input type="checkbox"
+                   id="right_{{activeField.code}}"
+                   (change)="changeCheckbox(i)"
+                   [checked]="activeField.flag">
+            {{activeField.name}}
+          </label>
+        </div>
+
+      </div>
+
+      <div class="---btns ---d-flex">
+        <div (click)="changeFields()" class="---btn ---btn--fill-acent">Применить</div>
+      </div>
+    </div>
+
+    <div class="---tabs__tab ---is-visible" data-tab="1">
+      <div class="---t-wrapper">
+        <table>
+          <tr>
+            <th></th>
+            <ng-container *ngFor="let activeField of activeFields">
+              <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
+            </ng-container>
+          </tr>
+          <tr *ngFor="let finance of financeList| paginate: { itemsPerPage: 10, currentPage: p }">
+            <td>
+              <div (click)="financeDetails(finance.id)"  class="ifont ---icon-edit ---radius-5"></div>
+            </td>
+            <td *ngIf="activeFieldsTables['number']===1">{{finance.id}}</td>
+            <td *ngIf="activeFieldsTables['nazn']===1">{{finance.name}}</td>
+            <td *ngIf="activeFieldsTables['category']===1">
+              <div class="---select ---bg-color select-png bg-white">
+                <select class="w-200"
+                        [(ngModel)]="finance.category_id"
+                        (change)="changeStatus(finance)">
+                  <option *ngFor="let category of financeCategory" [ngValue]="category.val">
+                    {{category.name}}
+                  </option>
+                </select>
+              </div>
+            </td>
+            <td *ngIf="activeFieldsTables['type']===1">{{finance.type}}</td>
+            <td *ngIf="activeFieldsTables['date']===1">{{finance.date_create}}</td>
+            <td *ngIf="activeFieldsTables['payer']===1">{{finance.payer}}</td>
+            <td *ngIf="activeFieldsTables['sum']===1">{{finance.sum | digitsNumbers}} ₽</td>
+            <td *ngIf="activeFieldsTables['branch']===1">{{finance.branch}}</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <div
+        class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
+        <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
+
+        <div>Всего клиентов — <span class="---font-600">{{financeList.length | digitsNumbers}}</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>

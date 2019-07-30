@@ -1,15 +1,285 @@
-<clr-modal [(clrModalOpen)]="data.data.type" [clrModalSize]="'xs'" class="modal-window modal-message">
+<!-- <div *ngIf="data.data.type" id="modal-alert">
   <div class="modal-body">
-    <div class="text-center red-modal" *ngIf="data.data.type==='error'">
-      <div>{{data.data.title}}</div>
+      <div [ngClass]="{'success':data.data.type==='success','error':data.data.type==='error'}">{{data.data.title}}</div>
       <div>{{data.data.body}}</div>
       <div class="btn" (click)="clear()">Ок, понял</div>
-    </div>
-
-    <div class="text-center green-modal" *ngIf="data.data.type==='success'">
-      <div>{{data.data.title}}</div>
-      <div>{{data.data.body}}</div>
-      <div class="btn" (click)="clear()">Ок, понял</div>
-    </div>
   </div>
-</clr-modal>
+</div>-->
+
+
+<!-- Модальные окна -->
+<div *ngIf="data.data.type" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+    <div class="---wrapper ---wrapper--small">
+
+        <div class="---js-close-modal ---js-close-modal-icon"></div>
+
+        <div class="modal-body">
+
+            <div class="---modal__header" [ngClass]="{'success':data.data.type==='success','error':data.data.type==='error'}">{{data.data.title}}</div>
+
+            <div class="---notify-text">{{data.data.body}}</div>
+
+            <div class="---modal__footer-btns ---d-flex">
+                <div class="---btn ---btn--fill-acent ---btn--sm" (click)="clear()">Ок, понял</div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="---modal-image" class="---modal --justify-content-center ---align-items-start ---justify-content-center">
+    <div class="---wrapper ---wrapper--image ---wrapper--big">
+        
+        <div class="---js-close-modal ---js-close-modal-icon"></div>
+
+        <div class="---modal-img__img"></div>
+
+    </div>
+</div>
+
+<div id="---modal-video" class="---modal --justify-content-center ---align-items-start ---justify-content-center">
+    <div class="---wrapper ---wrapper--video">
+        
+        <div class="---js-close-modal ---js-close-modal-icon"></div>
+
+        <div class="---modal-video__video"></div>
+
+    </div>
+</div>
+
+<div id="---modal-add-eq" class="---modal --justify-content-center ---align-items-start ---justify-content-center">
+    <div class="---wrapper">
+        
+        <div class="---js-close-modal ---js-close-modal-icon"></div>
+
+        <div class="---modal__header ---font-300 ---d-flex ---align-items-start ---justify-content-between">
+            Добавить
+
+            <div class="---select">
+                <select>
+                    <option value="">Электроинструменты 1</option>
+                    <option value="">Электроинструменты 2</option>
+                    <option value="">Электроинструменты 3</option>
+                    <option value="">Электроинструменты 4</option>
+                    <option value="">Электроинструменты 5</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="---equipment-list">
+            <div class="---form ---pos-rel">
+                <button class="ifont ---icon-loop ---y-pos-abs"></button>
+                <input class="---input" placeholder="Поиск по оборудованию">
+            </div>
+
+            <a href="#" class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
+                <span class="---prod-item__info ---d-inline-flex ---align-items-center">
+                    <span class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
+                        <img data-src="/static/imgs/catalog/1.png" alt="" class="---lazyload ---img-contain">
+                    </span>
+                    <span class="---prod-item__title ---font-600">Отбойный молоток<br> MAKITA HM1203C</span>
+                </span>
+
+                <span class="---prod-item__thumb ---d-inline-flex">
+                    <span class="---thumb-item">
+                        За единицу<br> 
+                        <span class="---font-600">750 ₽</span>
+                    </span>
+                    <span class="---thumb-item">
+                        В наличии<br> 
+                        <span class="---font-600">0 шт.</span>
+                    </span>
+                </span>
+
+                <span class="---add-to-cart ---pos-rel ---font-600">
+                    <i class="ifont ---icon-basket-linear ---y-pos-abs"></i>
+                    Добавить
+                </span>
+            </a>
+            <a href="#" class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
+                <span class="---prod-item__info ---d-inline-flex ---align-items-center">
+                    <span class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
+                        <img data-src="/static/imgs/catalog/1.png" alt="" class="---lazyload ---img-contain">
+                    </span>
+                    <span class="---prod-item__title ---font-600">Отбойный молоток<br> MAKITA HM1203C</span>
+                </span>
+
+                <span class="---prod-item__thumb ---d-inline-flex">
+                    <span class="---thumb-item">
+                        За единицу<br> 
+                        <span class="---font-600">750 ₽</span>
+                    </span>
+                    <span class="---thumb-item">
+                        В наличии<br> 
+                        <span class="---font-600">0 шт.</span>
+                    </span>
+                </span>
+
+                <span class="---add-to-cart ---is-added ---pos-rel ---font-600">
+                    <i class="ifont ---icon-check-linear ---y-pos-abs"></i>
+                    Добавлено
+                </span>
+            </a>
+        </div>
+
+        <a href="#" class="---btn ---btn--fill-bg ---btn--sm ---js-close-modal">Закрыть</a>
+
+    </div>
+</div>
+
+<div id="---modal-add-new-cashbox" class="---modal --justify-content-center ---align-items-start ---justify-content-center">
+    <div class="---wrapper ---wrapper--small">
+        
+        <div class="---js-close-modal ---js-close-modal-icon"></div>
+
+        <div class="---modal__header">Добавить новую кассу</div>
+
+        <div class="---add-new-cashbox__form">
+            <div class="---form">
+                <div class="---field">
+                    <label>Название кассы</label>
+                    <input class="---input ---fill--bg">
+                </div>
+                <div class="---field">
+                    <label>Выберите филиал</label>
+                    <div class="---select">
+                        <select>
+                            <option value="">Электроинструменты 1</option>
+                            <option value="">Электроинструменты 2</option>
+                            <option value="">Электроинструменты 3</option>
+                            <option value="">Электроинструменты 4</option>
+                            <option value="">Электроинструменты 5</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="---form">
+                <p class="---font-600">Доступ сотрудникам</p>
+
+                <div class="---row ---_xs">
+                    <div class="col ---col-12 ---col-sm-6">
+                        <label for="" class="---checkbox"><input> Администраторы</label>
+                    </div>
+                    <div class="col ---col-12 ---col-sm-6">
+                        <label for="" class="---checkbox"><input> Менеджеры</label>
+                    </div>
+                    <div class="col ---col-12 ---col-sm-6">
+                        <label for="" class="---checkbox"><input> Третья категория</label>
+                    </div>
+                    <div class="col ---col-12 ---col-sm-6">
+                        <label for="" class="---checkbox"><input> Четвертая категория</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="---modal__footer-btns ---d-flex">
+            <a href="#" class="---btn ---btn--fill-acent">Добавить</a>
+            <a href="#" class="---btn ---btn--fill-bg ---js-close-modal">Отмена</a>
+        </div>
+
+    </div>
+</div>
+
+<div id="---modal-add-payment" class="---modal --justify-content-center ---align-items-start ---justify-content-center">
+    <div class="---wrapper">
+        
+        <div class="---js-close-modal ---js-close-modal-icon"></div>
+
+        <div class="---modal__header ---d-flex ---justify-content-between --align-items-center">
+            Добавить платеж
+            
+            <div class="---payment-type ---font-600 ---d-inline-flex ---radius-5">
+                <a href="#" class="---payment-type__item ---is-active ---radius-5">Приход</a>
+                <a href="#" class="---payment-type__item ---radius-5">Расход</a>
+            </div>
+        </div>
+
+        <div class="---form ---add-payment-form">
+            <div class="---row ---_xs">
+                
+                <div class="col ---col-12 ---col-sm-6">
+                    <div class="---field">
+                        <label>Выберите кассу</label>
+                        <div class="---select">
+                            <select>
+                                <option value="">Электроинструменты 1</option>
+                                <option value="">Электроинструменты 2</option>
+                                <option value="">Электроинструменты 3</option>
+                                <option value="">Электроинструменты 4</option>
+                                <option value="">Электроинструменты 5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col ---col-12 ---col-sm-6">
+                    <div class="---field">
+                        <label>Выберите кассу</label>
+                        <div class="---select">
+                            <select>
+                                <option value="">Электроинструменты 1</option>
+                                <option value="">Электроинструменты 2</option>
+                                <option value="">Электроинструменты 3</option>
+                                <option value="">Электроинструменты 4</option>
+                                <option value="">Электроинструменты 5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col ---col-12">
+                    <div class="---field">
+                        <label>назначение платежа</label>
+                        <input class="---input ---fill--bg">
+                    </div>
+                </div>
+
+                <div class="col ---col-12 ---col-sm-6">
+                    <div class="---field">
+                        <label>Плательщик</label>
+                        <input class="---input ---fill--bg">
+                    </div>
+                </div>
+                <div class="col ---col-12 ---col-sm-6">
+                    <div class="---field">
+                        <label></label>
+                        <div class="---add-client-from-base ---pos-rel ---radius-5">
+                            Добавить клиента из базы
+                            <i class="ifont ---icon-loop ---y-pos-abs"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col ---col-12 ---col-sm-6">
+                    <div class="---field">
+                        <label>Сумма платежа</label>
+                        <input type="money" class="---input ---fill--bg ---font-600">
+                    </div>
+                </div>
+                <div class="col ---col-12 ---col-sm-6">
+                    <div class="---field">
+                        <label>Выберите номер заказа</label>
+                        <div class="---select">
+                            <select>
+                                <option value="">8475 3569</option>
+                                <option value="">8475 3569</option>
+                                <option value="">8475 3569</option>
+                                <option value="">8475 3569</option>
+                                <option value="">8475 3569</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="---modal__footer-btns ---d-flex">
+            <a href="#" class="---btn ---btn--fill-acent">Добавить</a>
+            <a href="#" class="---btn ---btn--fill-bg ---js-close-modal">Отмена</a>
+        </div>
+
+    </div>
+</div>

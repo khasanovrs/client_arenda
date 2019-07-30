@@ -2,23 +2,26 @@
 
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
-      <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
+      <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
         <div class="---tabs__switcher ---is-active" (click)="changeTypeClients('all')">Все клиенты</div>
         <div class="---tabs__switcher" (click)="changeTypeClients('ur')">Юр. лица</div>
         <div class="---tabs__switcher" (click)="changeTypeClients('fiz')">Физ. лица</div>
       </div>
     </div>
 
+
     <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
 
       <div class="---d-flex ---form ---align-items-start">
-        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+        <div [ngClass]="{'---is-active':showFilters}"
+             class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
              (click)="changeShowFilters()">
           Фильтры
           <i class="ifont ---icon-menu-finance ---d-none ---sm-d-flex"></i>
         </div>
 
-        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+        <div [ngClass]="{'---is-active':showActiveFields===true}"
+             class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
              (click)="changeActiveFields()">
           Активные поля
           <i class="ifont ---icon-list ---d-none ---sm-d-flex"></i>
@@ -40,67 +43,75 @@
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Филиал</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.branch">
-              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
+            <select [(ngModel)]="filters.branch">
+              <option *ngFor="let branch of branches" [ngValue]="branch.val">
                 {{branch.name}}
               </option>
             </select>
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Источник</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.source">
-              <option class="---select__list-item" *ngFor="let source of sourceList" [ngValue]="source.val">
+            <select [(ngModel)]="filters.source">
+              <option *ngFor="let source of sourceList" [ngValue]="source.val">
                 {{source.name}}
               </option>
             </select>
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Статус</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="filters.status">
-              <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status.val">
+            <select [(ngModel)]="filters.status">
+              <option *ngFor="let status of statusList" [ngValue]="status.val">
                 {{status.name}}
               </option>
             </select>
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения начало</label>
-          <div>
-            <input type="date" [(ngModel)]="filters.date_start">
+          <div class="---input ---input--calendar ---shadow--bg">
+            <input [(ngModel)]="filters.date_start" type="date">
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения конец</label>
-          <div class="---select">
-            <input type="date" [(ngModel)]="filters.date_end">
+          <div class="---input ---input--calendar ---shadow--bg">
+            <input [(ngModel)]="filters.date_end" type="date">
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Выручка от</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.dohod_start">
+          <div>
+            <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.dohod_start">
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Выручка до</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.dohod_end">
+          <div>
+            <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.dohod_end">
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество прокатов от</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.rentals_start">
+          <div>
+            <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.rentals_start">
           </div>
         </div>
+
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Количество прокатов до</label>
-          <div class="---select">
-            <input type="text" mask="separator" [(ngModel)]="filters.rentals_end">
+          <div>
+            <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="filters.rentals_end">
           </div>
         </div>
       </div>
@@ -108,7 +119,7 @@
       <div class="---btns ---d-flex">
         <div (click)="getClients()" class="---btn ---btn--fill-acent">Применить фильтры</div>
         <div (click)="clearFilter()" class="---btn ---btn--border-bg">
-          Сбросить фильры
+          Сбросить фильтры
           <i class="ifont ---icon-close"></i>
         </div>
       </div>
@@ -117,7 +128,7 @@
     <div *ngIf="showActiveFields" id="active-field" class=" ---block--bg-white ---block-filter ---radius-5 ---form">
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3" *ngFor="let activeField of activeFields; let i = index">
-          <label for="right_{{activeField.code}}" class="---checkbox">
+          <label for="right_{{activeField.code}}" class="---checkbox" [ngClass]="{'---is-active':activeField.flag}">
             <input type="checkbox"
                    id="right_{{activeField.code}}"
                    (change)="changeCheckbox(i)"
@@ -138,27 +149,25 @@
       <div class="---t-wrapper">
         <table>
           <tr>
+            <th></th>
             <ng-container *ngFor="let activeField of activeFields">
               <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
             </ng-container>
           </tr>
 
-          <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer"
-              (click)="clientDetails(client.id)">
+          <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" [style.background]="client.color">
+            <td>
+              <div class="ifont ---icon-edit ---radius-5" (click)="clientDetails(client.id)"></div>
+            </td>
             <td *ngIf="activeFieldsTables['org']===1">{{client.org}}</td>
             <td *ngIf="activeFieldsTables['fio']===1">{{client.fio}}</td>
             <td *ngIf="activeFieldsTables['phone']===1">{{client.phone | telephoneNumber}}</td>
             <td *ngIf="activeFieldsTables['status']===1">
-              <div [ngClass]="{
-              '---purple':client.status===1,
-              '---dark':client.status===2,
-              '---dark-red':client.status===3,
-              '---light-red':client.status===4
-              }" class="---select ---bg-color select-png bg-white">
-                <select class="---select__cur-value w-200"
+              <div class="---select ---bg-color select-png bg-white">
+                <select class="w-200"
                         (change)="changeStatus(client)"
                         [(ngModel)]="client.status">
-                  <option class="---select__list-item" *ngFor="let status of statusList" [ngValue]="status.val">
+                  <option *ngFor="let status of statusList" [ngValue]="status.val">
                     {{status.name}}
                   </option>
                 </select>
@@ -169,10 +178,10 @@
             <td *ngIf="activeFieldsTables['source']===1">{{client.source.name}}</td>
             <td *ngIf="activeFieldsTables['rentals']===1">{{client.rentals}}</td>
             <td *ngIf="activeFieldsTables['dohod']===1">
-              <div class="---font-sbold">{{client.dohod| digitsNumbers}} ₽</div>
+              <div class="---font-600">{{client.dohod| digitsNumbers}} ₽</div>
             </td>
             <td *ngIf="activeFieldsTables['sale']===1">
-              <div class="---font-sbold">{{client.sale.name}}</div>
+              <div class="---font-600">{{client.sale.name}}</div>
             </td>
           </tr>
         </table>
@@ -182,7 +191,7 @@
         class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
         <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
 
-        <div>Всего клиентов — <span class="---font-sbold">{{clients.length | digitsNumbers}}</span></div>
+        <div>Всего клиентов — <span class="---font-600">{{clients.length | digitsNumbers}}</span></div>
       </div>
     </div>
   </div>

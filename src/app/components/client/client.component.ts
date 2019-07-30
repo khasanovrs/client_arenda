@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 export class ClientComponent implements OnInit {
   clients: IClientsUr[] = [];
   p = 1;
-  statusList: InterFaceDopParams[] = [];
+  statusList: InterFaceDopParamsColor[] = [];
   sourceList: InterFaceDopParams[] = [];
   branches: InterFaceDopParams[] = [];
   // отображение фильтра
@@ -42,7 +42,7 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dopParamsService.getStatus().then((data: InterFaceDopParams[]) => {
+    this.dopParamsService.getStatusClient().then((data: InterFaceDopParamsColor[]) => {
         this.statusList = data;
       },
       (error) => {
@@ -91,6 +91,8 @@ export class ClientComponent implements OnInit {
       dohod_end: this.filters.dohod_end,
     }).then((data: IClientsUr[]) => {
         this.clients = data;
+
+        this.showFilters = false;
       },
       (error) => {
         console.log('Ошибка при получении списка юр. клиентов: ', error);
@@ -100,6 +102,11 @@ export class ClientComponent implements OnInit {
   // изменение статуса
   changeStatus(client) {
     this.clientService.updateStatusClientUr({client_id: client.id, client_status: client.status}).then(() => {
+        for (const value of this.statusList) {
+          if (value.val === client.status) {
+            client.color = value.color;
+          }
+        }
       },
       (error) => {
         console.log('Ошибка при изменении статуса у юр. клиента: ', error);
@@ -111,7 +118,7 @@ export class ClientComponent implements OnInit {
     this.showFilters = !this.showFilters;
   }
 
-  // отображение фильтра
+  // отображение активных полей
   changeActiveFields() {
     this.showActiveFields = !this.showActiveFields;
   }

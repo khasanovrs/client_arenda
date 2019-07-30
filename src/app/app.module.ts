@@ -43,6 +43,19 @@ import {ApplicationsService} from './components/applications/applications.servic
 import {ApplicationsCreateService} from './components/applications-create/applicationsCreate.service';
 import {ApplicationsCreateComponent} from './components/applications-create/applicationsCreate.component';
 import {ApplicationsInfoComponent} from './components/applications-info/applicationsInfo.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {SetsService} from './components/sets/sets.service';
+import {SetsComponent} from './components/sets/sets.component';
+import {DopParamsChangeService} from './services/dopParamsChange.service';
+import {FinanceComponent} from './components/finance/finance.component';
+import {FinanceService} from './components/finance/finance.service';
+import {ReportService} from './components/reports/report.service';
+import {ReportComponent} from './components/reports/report.component';
+import {FinanceCreateComponent} from './components/finance_create/financeCreate.component';
+import {FinanceInfoComponent} from './components/finance_info/financeInfo.component';
+import {HireComponent} from './components/hire/hire.component';
+import {HireService} from './components/hire/hire.service';
+import {HireInfoComponent} from './components/hire-info/hireInfo.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -67,7 +80,15 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     EquipmentsComponent,
     ApplicationsComponent,
     ApplicationsCreateComponent,
-    ApplicationsInfoComponent
+    ApplicationsInfoComponent,
+    FooterComponent,
+    SetsComponent,
+    FinanceComponent,
+    ReportComponent,
+    FinanceCreateComponent,
+    FinanceInfoComponent,
+    HireComponent,
+    HireInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +116,12 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     AuthService,
     EquipmentsCreateService,
     ApplicationsService,
-    ApplicationsCreateService
+    ApplicationsCreateService,
+    SetsService,
+    DopParamsChangeService,
+    FinanceService,
+    ReportService,
+    HireService
   ],
   bootstrap: [AppComponent]
 })

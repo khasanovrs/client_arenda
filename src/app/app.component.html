@@ -1,18 +1,13 @@
-<!--
 <app-message-alert></app-message-alert>
-<app-menu *ngIf="checkAuth===true"></app-menu>
-<div [ngClass]="{'---main-content':checkAuth===true}" class="---d-block">
-  <app-header *ngIf="checkAuth===true"></app-header>
-  <div [ngClass]="{'---main-wrapper':checkAuth===true}">
-    <router-outlet></router-outlet>
-  </div>
-</div>
--->
-<app-message-alert></app-message-alert>
-<app-menu class="---left-main-menu"></app-menu>
-<div class="---d-block" id="---main-content">
-  <app-header></app-header>
-  <div class='---main-wrapper'>
-    <router-outlet></router-outlet>
-  </div>
+
+<app-menu *ngIf="checkAuth===true" class="---left-main-menu"></app-menu>
+
+<div [ngClass]="{'---main-content':checkAuth===true}" class="---d-flex ---flex-nowrap ---flex-column">
+	<app-header *ngIf="checkAuth===true"></app-header>
+	<div [ngClass]="{'---main-wrapper':checkAuth===true}" style="height: 100%;" class="---d-flex ---flex-column ---flex-nowrap">
+		<router-outlet></router-outlet>
+
+  		<!-- На странице авторизации убрать футер -->
+  		<app-footer *ngIf="checkAuth===true"></app-footer>
+	</div>
 </div>

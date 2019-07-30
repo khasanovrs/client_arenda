@@ -1,14 +1,14 @@
 <div class="---page-rent-in ---row">
   <div class="---col-12 ---col-lg-6 ---form">
     <div class="---data-block">
-      <div class="h2 ---font-sbold">Данные аренды</div>
+      <div class="h2 ---font-600">Данные аренды</div>
 
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6">
           <label>Филиал</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.branch.val">
-              <option class="---select__list-item" *ngFor="let branch of branches"
+            <select [(ngModel)]="application.branch.val">
+              <option *ngFor="let branch of branches"
                       [ngValue]="branch.val">
                 {{branch.name}}
               </option>
@@ -18,8 +18,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Вид аренды</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.typeLease.val">
-              <option class="---select__list-item" *ngFor="let applicationsTypeLease of applicationsTypeLeases"
+            <select [(ngModel)]="application.typeLease.val">
+              <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
                       [ngValue]="applicationsTypeLease.val">
                 {{applicationsTypeLease.name}}
               </option>
@@ -29,8 +29,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Скидка на аренду</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.sale.val">
-              <option class="---select__list-item" *ngFor="let discount of discounts" [ngValue]="discount.val">
+            <select [(ngModel)]="application.sale.val">
+              <option *ngFor="let discount of discounts" [ngValue]="discount.val">
                 {{discount.name}}
               </option>
             </select>
@@ -39,8 +39,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Доставка</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.delivery.val">
-              <option class="---select__list-item" *ngFor="let delivery of applicationsDelivery"
+            <select [(ngModel)]="application.delivery.val">
+              <option *ngFor="let delivery of applicationsDelivery"
                       [ngValue]="delivery.val">
                 {{delivery.name}}
               </option>
@@ -50,51 +50,47 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Источник</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.source.val">
-              <option class="---select__list-item" *ngFor="let source of applicationsSource"
+            <select [(ngModel)]="application.source.val">
+              <option *ngFor="let source of applicationsSource"
                       [ngValue]="source.val">
                 {{source.name}}
               </option>
             </select>
           </div>
         </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Комментарий</label>
-          <textarea class="---input" [(ngModel)]="application.comment"></textarea>
-        </div>
         <div class="---field ---col-12 ---col-xs-6">
           <label>Начало аренды</label>
-          <div class="---input ---input--calendar ---pos-rel">
-            <div class="---select">
+          <div class="---input ---input--calendar">
               <input type="date" [(ngModel)]="application.rent_start.val">
-            </div>
-            <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
         <div class="---field ---col-12 ---col-xs-6">
           <label>Окончание аренды</label>
-          <div class="---input ---input--calendar ---pos-rel">
+          <div class="---input ---input--calendar">
             <input type="date" [(ngModel)]="application.rent_end.val">
-            <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
+        </div>
+        <div class="---field ---col-12">
+          <label>Комментарий</label>
+          <textarea class="---input" [(ngModel)]="application.comment"></textarea>
         </div>
       </div>
     </div>
 
     <div class="---data-block">
-      <div class="h2 ---font-sbold ---d-flex ---flex-wrap ---align-items-center ---justify-content-between">
+      <div class="h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between">
         Данные арендатора
       </div>
 
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
           <label>ФИО клиента</label>
-          <div>{{application.client_fio}}</div>
+          <div class="---font-600">{{application.client_fio}}</div>
         </div>
 
         <div class="---field ---col-12 ---col-xs-6">
           <label>Номер телефона</label>
-          <div>{{application.client_phone | telephoneNumber}}</div>
+          <div class="---font-600">{{application.client_phone | telephoneNumber}}</div>
         </div>
       </div>
     </div>
@@ -102,7 +98,7 @@
   <div class="---col-12 ---col-lg-6">
 
     <div class="---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form">
-      <div class="h2 ---font-sbold">Запрашиваемое оборудование</div>
+      <div class="h2 ---font-600">Запрашиваемое оборудование</div>
       <div class="---devider ---devider-mt0"></div>
 
       <div class="---prod-list">
@@ -113,21 +109,21 @@
                                 <img src="/assets/imgs/catalog/{{application.equipments.photo}}.png" alt=""
                                      class="---lazyload ---img-contain">
                             </span>
-                            <span class="---prod-item__title ---font-sbold">{{application.equipments.name}}</span>
+                            <span class="---prod-item__title ---font-600">{{application.equipments.name}}</span>
                         </span>
 
           <span class="---prod-item__thumb ---d-inline-flex">
                             <span class="---thumb-item">
                                 Количество<br>
-                                <span class="---font-sbold">{{application.equipments.count}}</span>
+                                <span class="---font-600">{{application.equipments.count}}</span>
                             </span>
                         </span>
         </div>
       </div>
 
 
-      <div class="---total-price ---font-sbold h2">
-        <div class="---delivery ---font-light">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>
+      <div class="---total-price ---font-600 h2">
+        <div class="---delivery ---font-300">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>
         Итого: {{application.sum | digitsNumbers}} ₽
       </div>
 

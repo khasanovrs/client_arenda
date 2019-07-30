@@ -2,24 +2,24 @@
 
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
-      <div class="---tabs__switchers ---h1 ---font-light ---d-flex">
+      <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
         <div class="---tabs__switcher ---is-active" (click)="changeTypeApplications('')">Все заявки</div>
-        <div class="---tabs__switcher" (click)="changeTypeApplications('1')">С сайта</div>
-        <div class="---tabs__switcher" (click)="changeTypeApplications('2')">Соц. сети</div>
-        <div class="---tabs__switcher" (click)="changeTypeApplications('3')">Звонки</div>
+        <div class="---tabs__switcher" *ngFor="let source of applicationsSource" (click)="changeTypeApplications(source.val)">{{source.name}}</div>
       </div>
     </div>
 
     <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
 
       <div class="---d-flex ---form ---align-items-start">
-        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+        <div [ngClass]="{'---is-active':showFilters}"
+             class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
              (click)="changeShowFilters()">
           Фильтры
           <i class="ifont ---icon-menu-finance ---d-none ---sm-d-flex"></i>
         </div>
 
-        <div class="---filters ---js-toggle-show ---radius-5 ---d-inline-flex ---align-items-center"
+        <div [ngClass]="{'---is-active':showActiveFields===true}"
+             class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
              (click)="changeActiveFields()">
           Активные поля
           <i class="ifont ---icon-list ---d-none ---sm-d-flex"></i>
@@ -34,9 +34,9 @@
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Статус</label>
           <div class="---select">
-            <select class="---select__cur-value"
+            <select
                     [(ngModel)]="filters.status">
-              <option class="---select__list-item" *ngFor="let status of deliveryStatus" [ngValue]="status.val">
+              <option *ngFor="let status of deliveryStatus" [ngValue]="status.val">
                 {{status.name}}
               </option>
             </select>
@@ -45,9 +45,9 @@
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Филиал</label>
           <div class="---select">
-            <select class="---select__cur-value"
+            <select
                     [(ngModel)]="filters.branch">
-              <option class="---select__list-item" *ngFor="let branch of branches" [ngValue]="branch.val">
+              <option *ngFor="let branch of branches" [ngValue]="branch.val">
                 {{branch.name}}
               </option>
             </select>
@@ -55,13 +55,13 @@
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения начало</label>
-          <div>
+          <div class="---input ---input--calendar">
             <input type="date" [(ngModel)]="filters.date_start">
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Дата обращения конец</label>
-          <div class="---select">
+          <div class="---input ---input--calendar">
             <input type="date" [(ngModel)]="filters.date_end">
           </div>
         </div>
@@ -79,7 +79,7 @@
     <div *ngIf="showActiveFields" id="active-field" class=" ---block--bg-white ---block-filter ---radius-5 ---form">
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3" *ngFor="let activeField of activeFields; let i = index">
-          <label for="right_{{activeField.code}}" class="---checkbox">
+          <label for="right_{{activeField.code}}" class="---checkbox" [ngClass]="{'---is-active':activeField.flag}">
             <input type="checkbox"
                    id="right_{{activeField.code}}"
                    (change)="changeCheckbox(i)"
@@ -98,23 +98,25 @@
     <div class="---t-wrapper">
       <table>
         <tr>
+          <th></th>
           <ng-container *ngFor="let activeField of activeFields">
             <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
           </ng-container>
         </tr>
 
-        <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }"
-            (click)="applicationDetails(application.equipments_id)"
-            class="cursor-pointer">
+        <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }" [style.background]='application.color'>
+          <td>
+            <div (click)="applicationDetails(application.equipments_id)" class="ifont ---icon-edit ---radius-5"></div>
+          </td>
           <td *ngIf="activeFieldsTables['client']===1">{{application.client}}</td>
           <td *ngIf="activeFieldsTables['phone']===1">{{application.phone | telephoneNumber}}</td>
           <td *ngIf="activeFieldsTables['equipments_name']===1">{{application.equipments_name}}</td>
           <td *ngIf="activeFieldsTables['status']===1">
             <div class="---select">
-              <select class="---select__cur-value"
+              <select
                       (change)="changeStatus(application)"
                       [(ngModel)]="application.status">
-                <option class="---select__list-item" *ngFor="let status of deliveryStatus" [ngValue]="status.val">
+                <option *ngFor="let status of deliveryStatus" [ngValue]="status.val">
                   {{status.name}}
                 </option>
               </select>

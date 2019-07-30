@@ -1,0 +1,81 @@
+<div class="---page-client-in ---row">
+
+  <div class="---col-12 ---col-lg-6 ---form">
+
+    <div class="---data-block">
+      <div class="h2 ---font-600">Новая заявка</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Назначение</label>
+          <input type="text" class="---input" [(ngModel)]="finance.name">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Категория</label>
+          <div class="---select">
+            <select [(ngModel)]="finance.category">
+              <option *ngFor="let category of financeCategory" [ngValue]="category.val">
+                {{category.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Тип</label>
+          <div class="---select">
+            <select [(ngModel)]="finance.type">
+              <option *ngFor="let type of financeType" [ngValue]="type.val">
+                {{type.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Филиал</label>
+          <div class="---select">
+            <select [(ngModel)]="finance.branch">
+              <option *ngFor="let branch of branches" [ngValue]="branch.val">
+                {{branch.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Касса</label>
+          <div class="---select">
+            <select [(ngModel)]="finance.cashBox">
+              <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
+                {{cashBox.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Дата</label>
+          {{finance.date}}
+        </div>
+
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Плательщик</label>
+          {{finance.payer}}
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Сумма</label>
+          <input class="---input" type="text" mask="separator" [(ngModel)]="finance.sum">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="---btns-wrapper">
+      <div (click)="updateFinance()" class="---btn ---btn--fill-acent">Обновить</div>
+    </div>
+
+  </div>
+</div>

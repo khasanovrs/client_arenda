@@ -1,0 +1,306 @@
+<div class="---page-sets">
+
+  <div class="h1 ---font-300">Создания и удаление наборов</div>
+
+  <div class="---row">
+
+    <div class="---col-xl-8">
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Статусы для клиентов</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let status of clientStatusList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{status.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div class="---color" [style.background]='status.color'></div>
+                <div (click)="changeParams(status,'status_client')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteStatusClient(status.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Статусы для заявок</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let status of applicationStatusList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{status.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div class="---color" [style.background]='status.color'></div>
+                <div (click)="changeParams(status,'status_application')" class="ifont ---icon-edit ---acent"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Статусы для проката</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let status of hireStatusList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{status.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div class="---color" [style.background]='status.color'></div>
+                <div (click)="changeParams(status,'status_hire')" class="ifont ---icon-edit ---acent"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Статусы для оборудований</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let status of equipmentsStatusList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{status.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div class="---color" [style.background]='status.color'></div>
+                <div (click)="changeParams(status,'status_equipment')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteStatusEquipment(status.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Категории финансов</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let status of financeCategory">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{status.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(status,'finance_category')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteFinanceCategory(status.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Источники</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let source of sourceList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{source.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+
+                <div (click)="changeParams(source,'source')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteSource(source.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Филиалы</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let branch of branchList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{branch.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+
+                <div (click)="changeParams(branch,'branch')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteBranch(branch.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Склады</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let stock of stocksList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{stock.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(stock,'stock')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteStock(stock.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Скидки</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let discount of discountList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{discount.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(discount,'discount')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteDiscount(discount.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Права</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let right of rightsList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{right.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(right,'right')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteRight(right.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Роли</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let role of rolesList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{role.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(role,'role')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteRole(role.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Кассы</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let cashBox of financeCashBox">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{cashBox.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(cashBox,'cashBox')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteCashBox(cashBox.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Категории оборудования</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let category of equipmentsCategoryList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{category.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(category,'category_eq')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteCategoryEq(category.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Тип оборудования</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let category of equipmentsTypeList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{category.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(category,'type_eq')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteTypeEq(category.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="---docs-wrapper">
+        <div class="h2 ---font-600">Марки оборудования</div>
+        <div class="---row">
+          <div class="---col-lg-6" *ngFor="let category of equipmentsMarkList">
+            <div class="---doc-item ---pos-rel ---radius-5">
+              <div class="---title ---font-600">{{category.name}}</div>
+              <div class="---icons ---y-pos-abs ---d-flex">
+                <div (click)="changeParams(category,'mark_eq')" class="ifont ---icon-edit ---acent"></div>
+                <div (click)="deleteMarkEq(category.val)" class="ifont ---icon-close"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="---col-xl-4 ---rside">
+      <div class="---add-new-field ---radius-5">
+        <div *ngIf='newParams.val==""' class="h2 ---pos-rel">Добавить параметр</div>
+        <div *ngIf='newParams.val!==""' class="h2 ---pos-rel">Изменить параметр</div>
+
+        <form action="#" class="---form">
+          <div class="---field">
+            <label>Выберите раздел</label>
+            <div class="---select">
+
+              <select [(ngModel)]="newParams.type" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let type of typeList" [ngValue]="type.val">
+                  {{type.name}}
+                </option>
+              </select>
+
+            </div>
+          </div>
+
+          <div class="---field" *ngIf="newParams.type==='stock' && newParams.val==''">
+            <label>Выберите филиал</label>
+            <div class="---select">
+
+              <select [(ngModel)]="newParams.branch" name="branch">
+                <option *ngFor="let branch of branchList" [ngValue]="branch.val">
+                  {{branch.name}}
+                </option>
+              </select>
+
+            </div>
+          </div>
+
+          <div class="---field">
+            <label>Название</label>
+            <input type="text" name="name" class="---input ---fill--bg" [(ngModel)]="newParams.name">
+          </div>
+
+          <div class="---field" *ngIf="newParams.type==='cashBox'">
+            <label>Сумма</label>
+            <input type="text" mask="separator" name="sum" class="---input ---fill--bg" [(ngModel)]="newParams.sum">
+          </div>
+
+          <div class="---field"
+               *ngIf="newParams.type==='status_client' || newParams.type==='status_application' || newParams.type==='status_equipment' || newParams.type==='status_hire'">
+            <label>Выберите цвет</label>
+            <div class="---input ---input--choose-color ---fill--bg ---pos-rel">
+              <input [ngModelOptions]="{standalone: true}" type="color" [(ngModel)]="newParams.color">
+
+            </div>
+          </div>
+
+          <div class="---buttons ---d-flex ---flex-wrap">
+            <div *ngIf='newParams.val==""' (click)="addParams()" class="---btn ---btn--fill-acent"
+                 style="margin: 10px 10px 0 0;">Добавить
+            </div>
+            <div *ngIf='newParams.val!==""' (click)="addParams()" class="---btn ---btn--fill-acent"
+                 style="margin: 10px 10px 0 0;">Обновить
+            </div>
+            <div (click)="clearNewParams()" class="---btn ---btn--fill-acent" style="margin: 10px 10px 0 0;">Новое
+              поле
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

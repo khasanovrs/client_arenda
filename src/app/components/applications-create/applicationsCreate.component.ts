@@ -6,6 +6,7 @@ import {ClientService} from '../client/client.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {Router} from '@angular/router';
 import {GlobalParams} from '../../storage/global-params';
+import {ApplicationsService} from '../applications/applications.service';
 
 @Component({
   selector: 'app-applications-create',
@@ -58,6 +59,7 @@ export class ApplicationsCreateComponent implements OnInit {
   };
 
   constructor(private applicationsCreateService: ApplicationsCreateService,
+              private applicationsService: ApplicationsService,
               private dopParamsService: DopParamsService,
               private equipmentsService: EquipmentsService,
               private clientService: ClientService,
@@ -67,7 +69,7 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.applicationsCreateService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
+    this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
         this.applicationsStatus = data;
       },
       (error) => {
@@ -209,7 +211,11 @@ export class ApplicationsCreateComponent implements OnInit {
 
   addApplication() {
     for (const value in this.application) {
-      if (this.application.hasOwnProperty(value)) {
+      if (value === 'client_id') {
+        continue;
+      }
+      if (this.application.hasOwnProperty(value) && typeof this.application[value].required === 'undefined') {
+
         if (this.application[value].required && this.application[value].val === '') {
           this.globalParamsMessage.data = {title: `Необходимо заполнить поле "${this.application[value].name}"`, type: 'error', body: ''};
           return false;

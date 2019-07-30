@@ -8,4 +8,5 @@ interface IClientsUr {
   sale: { code: string, name: string };
   source: { name: string, id: number };
   status: number;
+  color: string;
 }

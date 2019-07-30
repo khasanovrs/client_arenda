@@ -1,14 +1,14 @@
 <div class="---page-rent-in ---row">
   <div class="---col-12 ---col-lg-6 ---form">
     <div class="---data-block">
-      <div class="h2 ---font-sbold">Данные аренды</div>
+      <div class="h2 ---font-600">Данные аренды</div>
 
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6">
           <label>Филиал</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.branch.val">
-              <option class="---select__list-item" *ngFor="let branch of branches"
+            <select [(ngModel)]="application.branch.val">
+              <option *ngFor="let branch of branches"
                       [ngValue]="branch.val">
                 {{branch.name}}
               </option>
@@ -18,8 +18,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Вид аренды</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.typeLease.val">
-              <option class="---select__list-item" *ngFor="let applicationsTypeLease of applicationsTypeLeases"
+            <select [(ngModel)]="application.typeLease.val">
+              <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
                       [ngValue]="applicationsTypeLease.val">
                 {{applicationsTypeLease.name}}
               </option>
@@ -29,8 +29,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Скидка на аренду</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.sale.val" (change)="changeSum()">
-              <option class="---select__list-item" *ngFor="let discount of discounts"
+            <select [(ngModel)]="application.sale.val" (change)="changeSum()">
+              <option *ngFor="let discount of discounts"
                       [ngValue]="discount.val">
                 {{discount.name}}
               </option>
@@ -40,8 +40,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Доставка</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.delivery.val">
-              <option class="---select__list-item" *ngFor="let delivery of applicationsDelivery"
+            <select [(ngModel)]="application.delivery.val">
+              <option *ngFor="let delivery of applicationsDelivery"
                       [ngValue]="delivery.val">
                 {{delivery.name}}
               </option>
@@ -51,8 +51,8 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Статус</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.status.val">
-              <option class="---select__list-item" *ngFor="let status of applicationsStatus"
+            <select [(ngModel)]="application.status.val">
+              <option *ngFor="let status of applicationsStatus"
                       [ngValue]="status.val">
                 {{status.name}}
               </option>
@@ -62,39 +62,35 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Источник</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="application.source.val">
-              <option class="---select__list-item" *ngFor="let source of applicationsSource"
+            <select [(ngModel)]="application.source.val">
+              <option *ngFor="let source of applicationsSource"
                       [ngValue]="source.val">
                 {{source.name}}
               </option>
             </select>
           </div>
         </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Комментарий</label>
-          <textarea class="---input" [(ngModel)]="application.comment"></textarea>
-        </div>
         <div class="---field ---col-12 ---col-xs-6">
           <label>Начало аренды</label>
-          <div class="---input ---input--calendar ---pos-rel">
-            <div class="---select">
-              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_start.val">
-            </div>
-            <i class="---y-pos-abs ifont ---icon-calendar"></i>
+          <div class="---input ---input--calendar">
+            <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_start.val">
           </div>
         </div>
         <div class="---field ---col-12 ---col-xs-6">
           <label>Окончание аренды</label>
-          <div class="---input ---input--calendar ---pos-rel">
+          <div class="---input ---input--calendar">
             <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_end.val">
-            <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
+        </div>
+        <div class="---field ---col-12">
+          <label>Комментарий</label>
+          <textarea class="---input" [(ngModel)]="application.comment" rows="5"></textarea>
         </div>
       </div>
     </div>
 
     <div class="---data-block">
-      <div class="h2 ---font-sbold ---d-flex ---flex-wrap ---align-items-center ---justify-content-between">
+      <div class="h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between">
         Данные арендатора
 
         <a href="#" class="---check-by-bailiff">Проверить через сервис приставов</a>
@@ -138,9 +134,8 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6">
           <label>Дата выдачи паспорта</label>
-          <div class="---input ---input--calendar ---pos-rel">
-            <input type="date" class="---radius-5" [(ngModel)]="application.client_date_passport.val">
-            <i class="---y-pos-abs ifont ---icon-calendar"></i>
+          <div class="---input ---input--calendar">
+            <input type="date" [(ngModel)]="application.client_date_passport.val">
           </div>
         </div>
         <div class="---field ---col-12 ---col-xs-6">
@@ -158,7 +153,7 @@
   <div class="---col-12 ---col-lg-6">
 
     <div class="---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form">
-      <div class="h2 ---font-sbold">Запрашиваемое оборудование</div>
+      <div class="h2 ---font-600">Запрашиваемое оборудование</div>
       <div class="---devider ---devider-mt0"></div>
 
       <div class="---prod-list">
@@ -170,25 +165,25 @@
                                 <img src="/assets/imgs/catalog/{{equipment.photo}}.png" alt=""
                                      class="---lazyload ---img-contain">
                             </span>
-                            <span class="---prod-item__title ---font-sbold">{{equipment.name}}</span>
+                            <span class="---prod-item__title ---font-600">{{equipment.name}}</span>
                             <span style="color: red" (click)="deleteEquipment(i)">Удалить</span>
                         </span>
 
           <span class="---prod-item__thumb ---d-inline-flex">
                             <span class="---thumb-item">
                                 За единицу<br>
-                                <span class="---font-sbold">{{equipment.price | digitsNumbers}} ₽</span>
+                                <span class="---font-600">{{equipment.price | digitsNumbers}} ₽</span>
                             </span>
                             <span class="---thumb-item">
                                 В наличии<br>
-                                <span class="---font-sbold">{{equipment.in_stock}} шт.</span>
+                                <span class="---font-600">{{equipment.in_stock}} шт.</span>
                             </span>
                         </span>
 
           <span class="---prod-qnty-wrapper ---radius-5 ---d-inline-flex ---align-items-center">
                             <span (click)="changeCount(equipment,'decrease')"
                                   class="c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center">-</span>
-                            <span class="---qnty ---font-sbold">{{equipment.count}}</span>
+                            <span class="---qnty ---font-600">{{equipment.count}}</span>
                             <span (click)="changeCount(equipment,'increase')"
                                   class="c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center ---plus">+</span>
                         </span>
@@ -199,8 +194,8 @@
 
       <div class="---devider"></div>
 
-      <div class="---total-price ---font-sbold h2">
-        <div class="---delivery ---font-light">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>
+      <div class="---total-price ---font-600 h2">
+        <div class="---delivery ---font-300">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>
         Итого: {{application.sum | digitsNumbers}} ₽
       </div>
 
@@ -215,32 +210,49 @@
 </div>
 
 
-<div *ngIf="showSearchClient.show" class="spec-abs">
-  <div class="spec-abs-mod">
-    <div (click)="showSearchClient.show=false">Закрыть</div>
-    <input type="text" class="---input" [(ngModel)]="showSearchClient.filter"
-           (keyup)="searchClient(showSearchClient.filter)">
+<div *ngIf="showSearchClient.show" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="showSearchClient.show=false"></div>
+
+    <div class="---form">
+      <div class="---field">
+        <input class="---input ---fill--bg" [(ngModel)]="showSearchClient.filter"(keyup)="searchClient(showSearchClient.filter)">
+      </div>
+    </div>
+
     <div *ngFor="let client of showSearchClient.clients; let i = index" (click)="insertClientData(i)">
       <div>{{client.client_fio}}</div>
     </div>
+
   </div>
 </div>
 
-<div *ngIf="showAddEquipments.show" class="spec-abs">
-  <div class="spec-abs-mod">
-    <div (click)="showAddEquipments.show=false">Закрыть</div>
-    <input type="text" class="---input" [(ngModel)]="showAddEquipments.filter"
-           (keyup)="searchEquipments(showAddEquipments.filter)">
+<div *ngIf="showAddEquipments.show" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="showAddEquipments.show=false"></div>
+
+    <div class="---form">
+      <div class="---field">
+        <input class="---input ---fill--bg" [(ngModel)]="showAddEquipments.filter"(keyup)="searchEquipments(showAddEquipments.filter)">
+      </div>
+    </div>
+
     <div *ngFor="let equipments of showAddEquipments.equipments; let i = index" (click)="insertEquipmentsData(i)">
       <div>{{equipments.name}}</div>
     </div>
+
   </div>
 </div>
 
 
-<div *ngIf="globalParams.showModalCreateUser" class="spec-abs">
-  <div class="spec-abs-mod">
-    <div (click)="globalParams.showModalCreateUser=false">Закрыть</div>
+<div *ngIf="globalParams.showModalCreateUser" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="globalParams.showModalCreateUser=false"></div>
+
     <app-client-create></app-client-create>
+
   </div>
 </div>

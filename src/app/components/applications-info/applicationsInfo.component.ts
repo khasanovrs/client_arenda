@@ -66,7 +66,7 @@ export class ApplicationsInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.applicationsCreateService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
+    this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
         this.applicationsStatus = data;
       },
       (error) => {
@@ -128,7 +128,7 @@ export class ApplicationsInfoComponent implements OnInit {
         this.application.client_id = data.client_id;
         this.application.client_fio = data.client_fio;
         this.application.client_phone = data.client_phone;
-        this.application.delivery_sum = data.client_phone;
+        this.application.delivery_sum = data.delivery_sum;
         this.application.equipments = data.equipments;
         this.application.sum = data.sum;
       },

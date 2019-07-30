@@ -12,6 +12,13 @@ import {EquipmentsComponent} from './components/equipments/equipments.component'
 import {ApplicationsComponent} from './components/applications/applications.component';
 import {ApplicationsCreateComponent} from './components/applications-create/applicationsCreate.component';
 import {ApplicationsInfoComponent} from './components/applications-info/applicationsInfo.component';
+import {SetsComponent} from './components/sets/sets.component';
+import {FinanceComponent} from './components/finance/finance.component';
+import {ReportComponent} from './components/reports/report.component';
+import {FinanceCreateComponent} from './components/finance_create/financeCreate.component';
+import {FinanceInfoComponent} from './components/finance_info/financeInfo.component';
+import {HireComponent} from './components/hire/hire.component';
+import {HireInfoComponent} from './components/hire-info/hireInfo.component';
 
 
 const routes: Routes = [
@@ -38,6 +45,9 @@ const routes: Routes = [
     path: 'stock',
     component: StockComponent
   }, {
+    path: 'sets',
+    component: SetsComponent
+  }, {
     path: 'equipments-create',
     component: EquipmentsCreateComponent
   }, {
@@ -54,6 +64,30 @@ const routes: Routes = [
   {
     path: 'application/:id',
     component: ApplicationsInfoComponent
+  },
+  {
+    path: 'finance',
+    component: FinanceComponent
+  },
+  {
+    path: 'finance-create',
+    component: FinanceCreateComponent
+  },
+  {
+    path: 'finance/:id',
+    component: FinanceInfoComponent
+  },
+  {
+    path: 'report',
+    component: ReportComponent
+  },
+  {
+    path: 'hire',
+    component: HireComponent
+  },
+  {
+    path: 'hire/:id',
+    component: HireInfoComponent
   }
 ];
 

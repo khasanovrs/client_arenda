@@ -3,32 +3,11 @@ import {HttpService} from '../../utils/http/http.service';
 
 @Injectable()
 export class ApplicationsCreateService {
-  applicationsStatusList: InterFaceDopParams[] = [];
   applicationsSourceList: InterFaceDopParams[] = [];
   applicationsTypeLeaseList: InterFaceDopParams[] = [];
   applicationsDeliveryList: InterFaceDopParams[] = [];
 
   constructor(private httpService: HttpService) {
-  }
-
-  // получение списка статусов
-  public getApplicationsStatus() {
-    return new Promise((resolve, reject) => {
-      if (this.applicationsStatusList.length === 0) {
-        this.httpService.prepareQuery('api/get-applications-status', '')
-          .then((result: InterFaceDopParams[]) => {
-              this.applicationsStatusList = result;
-              resolve(this.applicationsStatusList);
-            },
-            (error) => {
-              console.log('Ошибка при получении списка статусов заявки', error);
-              reject();
-            }
-          );
-      } else {
-        resolve(this.applicationsStatusList);
-      }
-    });
   }
 
   // получение списка типов аренды
@@ -55,7 +34,7 @@ export class ApplicationsCreateService {
   public getApplicationsSource() {
     return new Promise((resolve, reject) => {
       if (this.applicationsSourceList.length === 0) {
-        this.httpService.prepareQuery('api/get-applications-source', '')
+        this.httpService.prepareQuery('api/get-source', '')
           .then((result: InterFaceDopParams[]) => {
               this.applicationsSourceList = result;
               resolve(this.applicationsSourceList);

@@ -2,13 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {ApplicationsService} from './applications.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {Router} from '@angular/router';
+import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
 
 @Component({
   selector: 'app-applications',
   templateUrl: './applications.component.html',
 })
 export class ApplicationsComponent implements OnInit {
-  deliveryStatus: InterFaceDopParams[] = [];
+  p = 1;
+  deliveryStatus: InterFaceDopParamsColor[] = [];
   // отображение фильтра
   showFilters = false;
   // отображение фильтра
@@ -17,6 +19,7 @@ export class ApplicationsComponent implements OnInit {
   activeFields: InterFaceActiveFields[] = [];
   // список активных полей
   activeFieldsTables = {};
+  applicationsSource: InterFaceDopParams[] = [];
   branches: InterFaceDopParams[] = [];
 
   filters = {
@@ -30,11 +33,18 @@ export class ApplicationsComponent implements OnInit {
   applications: InterFaceApplications[] = [];
 
   ngOnInit() {
-    this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
+    this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParamsColor[]) => {
         this.deliveryStatus = data;
       },
       (error) => {
         console.log('Ошибка при получении статусов: ', error);
+      });
+
+    this.applicationsCreateService.getApplicationsSource().then((data: InterFaceDopParams[]) => {
+        this.applicationsSource = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении источников: ', error);
       });
 
     this.applicationsService.getApplicationsFields().then((data: InterFaceActiveFields[]) => {
@@ -43,7 +53,7 @@ export class ApplicationsComponent implements OnInit {
         this.changeShowFields();
       },
       (error) => {
-        console.log('Ошибка при получении списка полей оборудования: ', error);
+        console.log('Ошибка при получении списка полей заявки: ', error);
       });
 
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
@@ -58,7 +68,8 @@ export class ApplicationsComponent implements OnInit {
 
   constructor(private applicationsService: ApplicationsService,
               private dopParamsService: DopParamsService,
-              private router: Router) {
+              private router: Router,
+              private applicationsCreateService: ApplicationsCreateService) {
   }
 
   // изменение типа источников
@@ -106,6 +117,11 @@ export class ApplicationsComponent implements OnInit {
       application_id: application.equipments_id,
       application_status: application.status
     }).then(() => {
+        for (const value of this.deliveryStatus) {
+          if (value.val === application.status) {
+            application.color = value.color;
+          }
+        }
       },
       (error) => {
         console.log('Ошибка при изменении статуса у оборудования: ', error);
@@ -119,7 +135,7 @@ export class ApplicationsComponent implements OnInit {
       branch: this.filters.branch,
       date_start: this.filters.date_start,
       date_end: this.filters.date_end,
-    }).then((data: any) => {
+    }).then((data: InterFaceApplications[]) => {
         this.applications = data;
       },
       (error) => {

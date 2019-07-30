@@ -53,6 +53,8 @@
 @import url('assets/inc/pages/reports.less');
 @import url('assets/inc/pages/clients.less');
 @import url('assets/inc/pages/rent.less');
+@import url('assets/inc/pages/sets.less');
+@import url('assets/inc/pages/hire.less');
 
 
 
@@ -74,7 +76,7 @@
 	Main Content
 *
 **/
-#---main-content {
+.---main-content {
 	width: calc(100% - 220px);
 
 	.---main-wrapper {
@@ -88,7 +90,7 @@
 		border-top: 2px solid #e3e8f0;
 		margin-top: 40px;
 
-		.copy {
+		.---copy {
 			margin-right: 25px;
 		}
 
@@ -382,3 +384,11 @@
 @import url('assets/inc/plugins/owl-carousel.less');
 @import url('assets/inc/plugins/datepicker.less');
 // @import url('assets/inc/plugins/baguette-box.less');
+
+app-message-alert {
+  position: absolute;
+}
+
+.spec-abs {
+  position: absolute;
+}

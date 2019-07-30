@@ -1,14 +1,14 @@
 <div class="---page-client-in ---row">
   <div class="---col-12 ---col-lg-6 ---form">
     <div class="---data-block">
-      <div class="h2 ---font-sbold">О товаре</div>
+      <div class="h2 ---font-600">О товаре</div>
 
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Марка</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="equipment.mark">
-              <option class="---select__list-item" *ngFor="let equipmentsMark of equipmentsMarkList"
+            <select [(ngModel)]="equipment.mark">
+              <option *ngFor="let equipmentsMark of equipmentsMarkList"
                       [ngValue]="equipmentsMark.val">
                 {{equipmentsMark.name}}
               </option>
@@ -17,15 +17,15 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Модель</label>
-          <input type="text" class="---input" [(ngModel)]="equipment.model">
+          <input class="---input ---shadow--bg" [(ngModel)]="equipment.model">
         </div>
       </div>
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Склад</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="equipment.stock">
-              <option class="---select__list-item" *ngFor="let stock of stocks" [ngValue]="stock.val">
+            <select [(ngModel)]="equipment.stock">
+              <option *ngFor="let stock of stocks" [ngValue]="stock.val">
                 {{stock.name}}
               </option>
             </select>
@@ -34,8 +34,8 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Тип оборудования</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="equipment.type">
-              <option class="---select__list-item" *ngFor="let equipmentsType of equipmentsTypeList"
+            <select [(ngModel)]="equipment.type">
+              <option *ngFor="let equipmentsType of equipmentsTypeList"
                       [ngValue]="equipmentsType.val">
                 {{equipmentsType.name}}
               </option>
@@ -45,8 +45,8 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Категория</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="equipment.category">
-              <option class="---select__list-item" *ngFor="let equipmentsCategory of equipmentsCategoryList"
+            <select [(ngModel)]="equipment.category">
+              <option *ngFor="let equipmentsCategory of equipmentsCategoryList"
                       [ngValue]="equipmentsCategory.val">
                 {{equipmentsCategory.name}}
               </option>
@@ -55,15 +55,15 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>номер инструмента</label>
-          <input type="number" class="---input" [(ngModel)]="equipment.tool_number">
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.tool_number">
         </div>
       </div>
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Статус</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="equipment.status">
-              <option class="---select__list-item" *ngFor="let equipmentsStatus of equipmentsStatusList"
+            <select [(ngModel)]="equipment.status">
+              <option *ngFor="let equipmentsStatus of equipmentsStatusList"
                       [ngValue]="equipmentsStatus.val">
                 {{equipmentsStatus.name}}
               </option>
@@ -72,19 +72,21 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Количество</label>
-          <input type="number" class="---input" [(ngModel)]="equipment.count">
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.count">
         </div>
       </div>
     </div>
 
     <div class="---data-block">
-      <div class="h2 ---font-sbold">Данные на аренду</div>
+      <div class="h2 ---font-600">Данные на аренду</div>
 
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Износ оборудования</label>
-          <div class="---input ---input--wear ---font-sbold ---d-flex ---align-items-center ---justify-content-between">
-            <input type="text" class="mini-input" [(ngModel)]="equipment.degree_wear">%
+          <div class="---input ---input--wear ---font-600 ---d-flex ---align-items-center ---justify-content-between">
+            <div>
+              <input class="mini-input" [(ngModel)]="equipment.degree_wear" style="width: 30px; color: #fff;">%
+            </div>
 
             <div class="---d-flex">
               <div class="---dot" [ngClass]="{'---dot--acent':equipment.degree_wear > 9}"></div>
@@ -102,37 +104,37 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Цена аренды за сутки</label>
-          <input type="text" class="---input" mask="separator" [(ngModel)]="equipment.price_per_day">
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="equipment.price_per_day">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Цена продажи</label>
-          <input type="text" class="---input" mask="separator" [(ngModel)]="equipment.selling_price">
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="equipment.selling_price">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Количество прокатов</label>
-          <input type="number" class="---input" [(ngModel)]="equipment.rentals">
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.rentals">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Количество ремонтов</label>
-          <input type="number" class="---input" [(ngModel)]="equipment.repairs">
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.repairs">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Сумма ремонтов</label>
-          <input type="text" class="---input" mask="separator" [(ngModel)]="equipment.repairs_sum">
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="equipment.repairs_sum">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Коэффициент окупаемости</label>
-          <input type="number" class="---input" [(ngModel)]="equipment.payback_ratio">
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.payback_ratio">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Выручка</label>
-          <input type="text" class="---input" mask="separator" [(ngModel)]="equipment.revenue">
+          <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="equipment.revenue">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Скидка</label>
           <div class="---select">
-            <select class="---select__cur-value" [(ngModel)]="equipment.discount">
-              <option class="---select__list-item" *ngFor="let discount of discounts"
+            <select [(ngModel)]="equipment.discount">
+              <option *ngFor="let discount of discounts"
                       [ngValue]="discount.val">
                 {{discount.name}}
               </option>
@@ -143,12 +145,12 @@
     </div>
 
     <div class="---data-block">
-      <div class="h2 ---font-sbold">Описание товара на сайте</div>
+      <div class="h2 ---font-600">Описание товара на сайте</div>
 
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label></label>
-          <label class="---pos-rel ---input ---input--file-upload">
+          <label class="---pos-rel ---input ---input--file-upload ---shadow--bg">
             <i class="ifont ---icon-camera ---y-pos-abs"></i>
             <input type="file" class="---d-none" multiple>
             <span class="---input__file-name">Загрузить фотографию</span>
@@ -156,23 +158,23 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Энергия удара, Дж</label>
-          <input type="number" class="---input" [(ngModel)]="equipment.power_energy">
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.power_energy">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Габаритная длина, мм</label>
-          <input type="number" class="---input" [(ngModel)]="equipment.length">
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.length">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Сетевой шнур, м</label>
-          <input type="number" class="---input" [(ngModel)]="equipment.network_cord">
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.network_cord">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Мощность, Вт</label>
-          <input type="number" class="---input" [(ngModel)]="equipment.power">
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.power">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Частота ударов, уд/мин</label>
-          <input type="number" class="---input" [(ngModel)]="equipment.frequency_hits">
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.frequency_hits">
         </div>
       </div>
     </div>
