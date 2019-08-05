@@ -6,6 +6,8 @@ export class SessionStorageService {
   authenticated: EventEmitter<any> = new EventEmitter(false);
 
   constructor(private router: Router) {
+
+    this.change(this.pubId !== '');
   }
 
   get pubId(): string {
@@ -26,8 +28,4 @@ export class SessionStorageService {
     localStorage.removeItem('pubId');
   }
 
-
-  getEmittedValue() {
-    return this.authenticated;
-  }
 }

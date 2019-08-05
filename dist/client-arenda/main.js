@@ -193,9 +193,8 @@ module.exports = "<app-message-alert></app-message-alert>\n\n<app-menu *ngIf=\"c
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _storage_global_params__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage/global-params */ "./src/app/storage/global-params.ts");
-/* harmony import */ var _components_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/auth/auth.service */ "./src/app/components/auth/auth.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _storage_session_storage_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage/session-storage.service */ "./src/app/storage/session-storage.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -208,21 +207,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var AppComponent = /** @class */ (function () {
-    function AppComponent(globalParams, authService, router) {
-        var _this = this;
-        this.globalParams = globalParams;
-        this.authService = authService;
+    function AppComponent(sessionStorageService, router) {
+        this.sessionStorageService = sessionStorageService;
         this.router = router;
-        this.checkAuth = false;
-        var auth = localStorage.getItem('auth');
-        this.checkAuth = auth === 'true';
-        this.authService.getEmittedValue().subscribe(function (item) { return _this.checkAuth = item; });
+        this.checkAuth = this.sessionStorageService.pubId !== null;
         this.checkAuthRedirect();
     }
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sessionStorageService.authenticated.subscribe(function (item) {
+            _this.checkAuth = item;
+        });
+    };
     AppComponent.prototype.checkAuthRedirect = function () {
-        if (this.checkAuth !== true) {
+        if (!this.checkAuth) {
             this.router.navigate(['/']);
         }
         else {
@@ -236,9 +235,8 @@ var AppComponent = /** @class */ (function () {
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
         }),
-        __metadata("design:paramtypes", [_storage_global_params__WEBPACK_IMPORTED_MODULE_1__["GlobalParams"],
-            _components_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        __metadata("design:paramtypes", [_storage_session_storage_service__WEBPACK_IMPORTED_MODULE_1__["SessionStorageService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -1516,6 +1514,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _utils_http_http_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/http/http.service */ "./src/app/utils/http/http.service.ts");
+/* harmony import */ var _storage_session_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../storage/session-storage.service */ "./src/app/storage/session-storage.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1527,10 +1526,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var AuthService = /** @class */ (function () {
-    function AuthService(httpService) {
+    function AuthService(httpService, sessionStorageService) {
         this.httpService = httpService;
-        this.authenticated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.sessionStorageService = sessionStorageService;
     }
     // получение детальной информации по клиенту
     AuthService.prototype.auth = function (data) {
@@ -1538,8 +1538,7 @@ var AuthService = /** @class */ (function () {
         return new Promise(function (resolve, reject) {
             _this.httpService.prepareQuery('api/auth', data)
                 .then(function () {
-                _this.authenticated.emit(true);
-                localStorage.setItem('auth', 'true');
+                _this.sessionStorageService.change(true);
                 resolve();
             }, function (error) {
                 console.log('Ошибка при авторизации', error);
@@ -1553,8 +1552,7 @@ var AuthService = /** @class */ (function () {
         return new Promise(function (resolve, reject) {
             _this.httpService.prepareQuery('api/exit', '')
                 .then(function () {
-                _this.authenticated.emit(false);
-                localStorage.setItem('auth', 'false');
+                _this.sessionStorageService.exit();
                 resolve();
             }, function (error) {
                 console.log('Ошибка при выходе', error);
@@ -1562,12 +1560,10 @@ var AuthService = /** @class */ (function () {
             });
         });
     };
-    AuthService.prototype.getEmittedValue = function () {
-        return this.authenticated;
-    };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_utils_http_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"]])
+        __metadata("design:paramtypes", [_utils_http_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"],
+            _storage_session_storage_service__WEBPACK_IMPORTED_MODULE_2__["SessionStorageService"]])
     ], AuthService);
     return AuthService;
 }());
@@ -4008,11 +4004,8 @@ var HeaderComponent = /** @class */ (function () {
         this.authService = authService;
     }
     HeaderComponent.prototype.exit = function () {
-        var _this = this;
         this.authService.exit().then(function () {
-            _this.sessionStorageService.pubId = '';
-            localStorage.setItem('auth', 'false');
-            _this.router.navigate(['/']);
+            console.log('Выход успешный');
         }, function (error) {
             console.log('Ошибка при выходе: ', error);
         });
@@ -4498,7 +4491,7 @@ var HireService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "Главная страница\n"
+module.exports = "<div class=\"---block ---block--bg-white ---block-data-by-city ---d-flex ---justify-content-between\">\n\n  <div class=\"---block__lside ---pos-rel ---font-sbold\">\n    <i class=\"ifont ---icon-location ---y-pos-abs\"></i>\n    Данные<br>\n    по городам\n  </div>\n\n  <div class=\"---block__rside ---d-flex\">\n    <a href=\"#\" class=\"---city\">Казань <span class=\"---icon ---y-pos-abs\">-</span></a>\n    <a href=\"#\" class=\"---city ---city--add ---font-regular\">Добавить <span class=\"---icon ---y-pos-abs\">+</span></a>\n  </div>\n\n</div>\n\n\n<div class=\"---block ---block-charts ---row\">\n\n  <div class=\"---col-12 ---col-sm-6 ---col-md-4\">\n    <div class=\"---chart-item ---chart-item--today\">\n      <div class=\"---graphic\">\n\n      </div>\n      <div class=\"---content ---d-flex ---justify-content-between ---align-items-center\">\n        <div class=\"---title ---pos-rel ---font-sbold\">\n          <i class=\"ifont ---icon-lighting ---y-pos-abs\"></i>\n          Доход<br>\n          за сегодня\n        </div>\n\n        <div class=\"---num ---font-ebold\">9 870 ₽</div>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-12 ---col-sm-6 ---col-md-4\">\n    <div class=\"---chart-item\">\n      <div class=\"---graphic\">\n\n      </div>\n      <div class=\"---content ---d-flex ---justify-content-between ---align-items-center\">\n        <div class=\"---title ---pos-rel ---font-sbold\">\n          <i class=\"ifont ---icon-calendar ---y-pos-abs\"></i>\n          Доход<br>\n          за месяц\n        </div>\n\n        <div class=\"---num ---font-light\">398 560 ₽</div>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-12 ---col-sm-6 ---col-md-4\">\n    <div class=\"---chart-item\">\n      <div class=\"---graphic\">\n\n      </div>\n      <div class=\"---content ---d-flex ---justify-content-between ---align-items-center\">\n        <div class=\"---title ---pos-rel ---font-sbold\">\n          <i class=\"ifont ---icon-basket-fill ---y-pos-abs\"></i>\n          В аренде<br>\n          за месяц\n        </div>\n\n        <div class=\"---num ---font-light\">392 позиций</div>\n      </div>\n    </div>\n  </div>\n\n</div>\n\n\n<div class=\"---block ---block-index-stat ---row\">\n\n  <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n    <div class=\"---stat-item\">\n      <div class=\"---stat-item__icon ---pos-rel\">\n        <img data-src=\"/static/imgs/icons/index/1.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n      </div>\n\n      <div class=\"---stat-item__title\">\n        Конверсия<br>\n        сайта\n      </div>\n\n      <div class=\"---num ---pos-rel ---font-ebold\">\n        4,5%\n        <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n      </div>\n\n      <div class=\"---stat-item__foter ---pos-rel\">\n        За этот месяц\n        <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n    <div class=\"---stat-item\">\n      <div class=\"---stat-item__icon ---pos-rel\">\n        <img data-src=\"/static/imgs/icons/index/2.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n      </div>\n\n      <div class=\"---stat-item__title\">\n        Новых<br>\n        клиентов\n      </div>\n\n      <div class=\"---num ---pos-rel ---font-ebold\">\n        19\n        <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n      </div>\n\n      <div class=\"---stat-item__foter ---pos-rel\">\n        За этот месяц\n        <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n    <div class=\"---stat-item\">\n      <div class=\"---stat-item__icon ---pos-rel\">\n        <img data-src=\"/static/imgs/icons/index/3.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n      </div>\n\n      <div class=\"---stat-item__title\">\n        Постоянных<br>\n        клиентов\n      </div>\n\n      <div class=\"---num ---pos-rel ---font-ebold\">\n        73%\n        <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n      </div>\n\n      <div class=\"---stat-item__foter ---pos-rel\">\n        За этот месяц\n        <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n    <div class=\"---stat-item\">\n      <div class=\"---stat-item__icon ---pos-rel\">\n        <img data-src=\"/static/imgs/icons/index/4.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n      </div>\n\n      <div class=\"---stat-item__title\">\n        Просроченные<br>\n        в аренде\n      </div>\n\n      <div class=\"---num ---pos-rel ---font-ebold\">\n        16\n        <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n      </div>\n\n      <div class=\"---stat-item__foter ---pos-rel\">\n        За этот месяц\n        <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n    <div class=\"---stat-item\">\n      <div class=\"---stat-item__icon ---pos-rel\">\n        <img data-src=\"/static/imgs/icons/index/5.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n      </div>\n\n      <div class=\"---stat-item__title\">\n        В ожидании<br>\n        оплаты\n      </div>\n\n      <div class=\"---num ---pos-rel ---font-ebold\">\n        7\n        <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n      </div>\n\n      <div class=\"---stat-item__foter ---pos-rel\">\n        За этот месяц\n        <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n    <div class=\"---stat-item\">\n      <div class=\"---stat-item__icon ---pos-rel\">\n        <img data-src=\"/static/imgs/icons/index/6.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n      </div>\n\n      <div class=\"---stat-item__title\">\n        Новых заявок<br>\n        за сегодня\n      </div>\n\n      <div class=\"---num ---pos-rel ---font-ebold\">\n        22\n        <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n      </div>\n\n      <div class=\"---stat-item__foter ---pos-rel\">\n        За этот месяц\n        <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n      </div>\n    </div>\n  </div>\n\n</div>\n\n\n<div class=\"---col-12 ---devider-line\"></div>\n\n<div class=\"---block-catalog\">\n  <div class=\"---block__title ---font-light ---d-flex ---align-items-center ---justify-content-between\">\n    Популярные позиции\n    <a href=\"#\" class=\"---show-all ---font-sbold ---pos-rel\">Показать все <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i></a>\n  </div>\n\n  <div class=\"---cat-wrapper ---row ---_xs\">\n    <div class=\"---col col\">\n      <a href=\"#\" class=\"---cat-item ---d-flex ---flex-column\">\n                    <span class=\"---cat-item__img\">\n                        <img data-src=\"/static/imgs/catalog/1.png\" alt=\"\" class=\"---lazyload ---img-contain\">\n                    </span>\n        <span class=\"---cat-item__title\">\n                        Отбойный молоток MAKITA HM1203C\n                    </span>\n        <span class=\"---cat-item__orders\">\n                        <span class=\"---font-sbold\">864</span> заказаов\n                    </span>\n        <span class=\"---cat-item__btn ---font-sbold ---btn ---btn--sm\">\n                        <i class=\"ifont ---icon-basket-linear\"></i>\n                        от 750 ₽\n                    </span>\n      </a>\n    </div>\n  </div>\n</div>\n\n\n<div class=\"---col-12 ---devider-line\"></div>\n\n<div class=\"---block-catalog\">\n  <div class=\"---block__title ---font-light ---d-flex ---align-items-center ---justify-content-between\">\n    <div class=\"---d-inline-flex ---flex-wrap ---align-items-center\">\n      Новинки каталога\n\n      <div class=\"---select\">\n        <select>\n          <option value=\"\">Электроинструменты 1</option>\n          <option value=\"\">Электроинструменты 2</option>\n          <option value=\"\">Электроинструменты 3</option>\n          <option value=\"\">Электроинструменты 4</option>\n          <option value=\"\">Электроинструменты 5</option>\n        </select>\n\n        <div class=\"---select__cur-value\">\n          <span>Электроинструменты</span>\n          <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n        </div>\n\n        <div class=\"---select__list-wrapper\">\n          <div class=\"---select__list\">\n            <a href=\"#\" class=\"---select__list-item\">Электроинструменты 1</a>\n            <a href=\"#\" class=\"---select__list-item\">Электроинструменты 2</a>\n            <a href=\"#\" class=\"---select__list-item\">Электроинструменты 3</a>\n            <a href=\"#\" class=\"---select__list-item\">Электроинструменты 4</a>\n            <a href=\"#\" class=\"---select__list-item\">Электроинструменты 5</a>\n          </div>\n        </div>\n      </div>\n    </div>\n    <a href=\"#\" class=\"---show-all ---font-sbold ---pos-rel\">Показать все <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i></a>\n  </div>\n\n  <div class=\"---cat-wrapper ---row ---_xs\">\n    <div class=\"---col col\">\n      <a href=\"#\" class=\"---cat-item ---d-flex ---flex-column\">\n                    <span class=\"---cat-item__img\">\n                        <img data-src=\"/static/imgs/catalog/1.png\" alt=\"\" class=\"---lazyload ---img-contain\">\n                    </span>\n        <span class=\"---cat-item__title\">\n                        Отбойный молоток MAKITA HM1203C\n                    </span>\n        <span class=\"---cat-item__orders\">\n                        <span class=\"---font-sbold\">864</span> заказаов\n                    </span>\n        <span class=\"---cat-item__btn ---font-sbold ---btn ---btn--sm\">\n                        <i class=\"ifont ---icon-basket-linear\"></i>\n                        от 750 ₽\n                    </span>\n      </a>\n    </div>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -4752,7 +4745,7 @@ module.exports = "#modal-alert {\n  position: absolute;\n  top: 50%;\n  left: 50
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "Отчеты\n"
+module.exports = "<div class=\"---page-reports\">\n\n  <div class=\"---tabs ---tabs--finance\">\n    <div class=\"---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between\">\n      <div class=\"---tabs__switchers ---h1 ---font-light ---d-flex\">\n        <div class=\"---tabs__switcher ---is-active\" data-tab=\"1\">По количеству заказов</div>\n        <div class=\"---tabs__switcher\" data-tab=\"2\">По прибыли</div>\n        <div class=\"---tabs__switcher\" data-tab=\"3\">По сроку аренды</div>\n      </div>\n\n      <div class=\"---select\">\n        <select>\n          <option value=\"\">Закрытые 1</option>\n          <option value=\"\">Закрытые 2</option>\n          <option value=\"\">Закрытые 3</option>\n          <option value=\"\">Закрытые 4</option>\n          <option value=\"\">Закрытые 5</option>\n        </select>\n\n        <div class=\"---select__cur-value\">\n          <span>Закрытые</span>\n          <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n        </div>\n\n        <div class=\"---select__list-wrapper\">\n          <div class=\"---select__list\">\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 1</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 2</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 3</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 4</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 5</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"---tabs__tab ---is-visible\" data-tab=\"1\">\n      <div class=\"---block-catalog\">\n        <div class=\"---cat-wrapper ---row ---_xs\">\n\n          <div class=\"---col col\">\n            <a href=\"#\" class=\"---cat-item ---d-flex ---flex-column\">\n                                <span class=\"---cat-item__img\">\n                                    <img data-src=\"/static/imgs/catalog/1.png\" alt=\"\" class=\"---lazyload ---img-contain\">\n                                </span>\n              <span class=\"---cat-item__title\">\n                                    Отбойный молоток MAKITA HM1203C\n                                </span>\n              <span class=\"---cat-item__orders\">\n                                    <span class=\"---font-sbold\">864</span> заказаов\n                                </span>\n              <span class=\"---cat-item__btn ---font-sbold ---btn ---btn--sm\">\n                                    <i class=\"ifont ---icon-basket-linear\"></i>\n                                    от 750 ₽\n                                </span>\n            </a>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5\">\n\n        <div class=\"---nums ---d-flex ---align-items-center ---justify-content-between ---sm-justify-content-start\">\n          <a href=\"#\" class=\"---button ---radius-5 ifont ---icon-arrow-left\"></a>\n          <ul class=\"---d-flex ---font-sbold\">\n            <li><a href=\"#\" class=\"---radius-5 ---is-active\">1</a></li>\n            <li><a href=\"#\">2</a></li>\n            <li><a href=\"#\">3</a></li>\n            <li><a href=\"#\">4</a></li>\n            <li><a href=\"#\">5</a></li>\n            <li><span>...</span></li>\n            <li><a href=\"#\">36</a></li>\n          </ul>\n          <a href=\"#\" class=\"---button ---radius-5 ---pos-rel ---next ---d-inline-flex ---align-items-center\">\n            <span class=\"---d-none ---xs-d-block\">Далее</span>\n            <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n          </a>\n        </div>\n\n        <div class=\"---pagination__total-count\">\n          Всего платежей — <span class=\"---font-sbold\">8 521</span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"---tabs__tab\" data-tab=\"2\">\n      <div class=\"---block-catalog\">\n        <div class=\"---cat-wrapper ---row ---_xs\">\n          <div class=\"---col col\">\n            <a href=\"#\" class=\"---cat-item ---d-flex ---flex-column\">\n                                <span class=\"---cat-item__img\">\n                                    <img data-src=\"/static/imgs/catalog/1.png\" alt=\"\" class=\"---lazyload ---img-contain\">\n                                </span>\n              <span class=\"---cat-item__title\">\n                                    Отбойный молоток MAKITA HM1203C\n                                </span>\n              <span class=\"---cat-item__orders\">\n                                    <span class=\"---font-sbold\">864</span> заказаов\n                                </span>\n              <span class=\"---cat-item__btn ---font-sbold ---btn ---btn--sm\">\n                                    <i class=\"ifont ---icon-basket-linear\"></i>\n                                    от 750 ₽\n                                </span>\n            </a>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5\">\n\n        <div class=\"---nums ---d-flex ---align-items-center ---justify-content-between ---sm-justify-content-start\">\n          <a href=\"#\" class=\"---button ---radius-5 ifont ---icon-arrow-left\"></a>\n          <ul class=\"---d-flex ---font-sbold\">\n            <li><a href=\"#\" class=\"---radius-5 ---is-active\">1</a></li>\n            <li><a href=\"#\">2</a></li>\n            <li><a href=\"#\">3</a></li>\n            <li><a href=\"#\">4</a></li>\n            <li><a href=\"#\">5</a></li>\n            <li><span>...</span></li>\n            <li><a href=\"#\">36</a></li>\n          </ul>\n          <a href=\"#\" class=\"---button ---radius-5 ---pos-rel ---next ---d-inline-flex ---align-items-center\">\n            <span class=\"---d-none ---xs-d-block\">Далее</span>\n            <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n          </a>\n        </div>\n\n        <div class=\"---pagination__total-count\">\n          Всего платежей — <span class=\"---font-sbold\">8 521</span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"---tabs__tab\" data-tab=\"3\">\n      <div class=\"---block-catalog\">\n        <div class=\"---cat-wrapper ---row ---_xs\">\n          <div class=\"---col col\">\n            <a href=\"#\" class=\"---cat-item ---d-flex ---flex-column\">\n                                <span class=\"---cat-item__img\">\n                                    <img data-src=\"/static/imgs/catalog/1.png\" alt=\"\" class=\"---lazyload ---img-contain\">\n                                </span>\n              <span class=\"---cat-item__title\">\n                                    Отбойный молоток MAKITA HM1203C\n                                </span>\n              <span class=\"---cat-item__orders\">\n                                    <span class=\"---font-sbold\">864</span> заказаов\n                                </span>\n              <span class=\"---cat-item__btn ---font-sbold ---btn ---btn--sm\">\n                                    <i class=\"ifont ---icon-basket-linear\"></i>\n                                    от 750 ₽\n                                </span>\n            </a>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5\">\n\n        <div class=\"---nums ---d-flex ---align-items-center ---justify-content-between ---sm-justify-content-start\">\n          <a href=\"#\" class=\"---button ---radius-5 ifont ---icon-arrow-left\"></a>\n          <ul class=\"---d-flex ---font-sbold\">\n            <li><a href=\"#\" class=\"---radius-5 ---is-active\">1</a></li>\n            <li><a href=\"#\">2</a></li>\n            <li><a href=\"#\">3</a></li>\n            <li><a href=\"#\">4</a></li>\n            <li><a href=\"#\">5</a></li>\n            <li><span>...</span></li>\n            <li><a href=\"#\">36</a></li>\n          </ul>\n          <a href=\"#\" class=\"---button ---radius-5 ---pos-rel ---next ---d-inline-flex ---align-items-center\">\n            <span class=\"---d-none ---xs-d-block\">Далее</span>\n            <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n          </a>\n        </div>\n\n        <div class=\"---pagination__total-count\">\n          Всего платежей — <span class=\"---font-sbold\">8 521</span>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"---col-12 ---devider-line\"></div>\n\n  <div class=\"---block ---block-index-stat ---row\">\n\n    <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n      <div class=\"---stat-item\">\n        <div class=\"---stat-item__icon ---pos-rel\">\n          <img data-src=\"/static/imgs/icons/index/1.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n        </div>\n\n        <div class=\"---stat-item__title\">\n          Конверсия<br>\n          сайта\n        </div>\n\n        <div class=\"---num ---pos-rel ---font-ebold\">\n          4,5%\n          <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n        </div>\n\n        <div class=\"---stat-item__foter ---pos-rel\">\n          За этот месяц\n          <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n        </div>\n      </div>\n    </div>\n    <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n      <div class=\"---stat-item\">\n        <div class=\"---stat-item__icon ---pos-rel\">\n          <img data-src=\"/static/imgs/icons/index/2.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n        </div>\n\n        <div class=\"---stat-item__title\">\n          Новых<br>\n          клиентов\n        </div>\n\n        <div class=\"---num ---pos-rel ---font-ebold\">\n          19\n          <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n        </div>\n\n        <div class=\"---stat-item__foter ---pos-rel\">\n          За этот месяц\n          <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n        </div>\n      </div>\n    </div>\n    <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n      <div class=\"---stat-item\">\n        <div class=\"---stat-item__icon ---pos-rel\">\n          <img data-src=\"/static/imgs/icons/index/3.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n        </div>\n\n        <div class=\"---stat-item__title\">\n          Постоянных<br>\n          клиентов\n        </div>\n\n        <div class=\"---num ---pos-rel ---font-ebold\">\n          73%\n          <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n        </div>\n\n        <div class=\"---stat-item__foter ---pos-rel\">\n          За этот месяц\n          <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n        </div>\n      </div>\n    </div>\n    <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n      <div class=\"---stat-item\">\n        <div class=\"---stat-item__icon ---pos-rel\">\n          <img data-src=\"/static/imgs/icons/index/4.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n        </div>\n\n        <div class=\"---stat-item__title\">\n          Просроченные<br>\n          в аренде\n        </div>\n\n        <div class=\"---num ---pos-rel ---font-ebold\">\n          16\n          <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n        </div>\n\n        <div class=\"---stat-item__foter ---pos-rel\">\n          За этот месяц\n          <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n        </div>\n      </div>\n    </div>\n    <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n      <div class=\"---stat-item\">\n        <div class=\"---stat-item__icon ---pos-rel\">\n          <img data-src=\"/static/imgs/icons/index/5.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n        </div>\n\n        <div class=\"---stat-item__title\">\n          В ожидании<br>\n          оплаты\n        </div>\n\n        <div class=\"---num ---pos-rel ---font-ebold\">\n          7\n          <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n        </div>\n\n        <div class=\"---stat-item__foter ---pos-rel\">\n          За этот месяц\n          <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n        </div>\n      </div>\n    </div>\n    <div class=\"---col-6 ---col-xs-4 ---col-xl-2\">\n      <div class=\"---stat-item\">\n        <div class=\"---stat-item__icon ---pos-rel\">\n          <img data-src=\"/static/imgs/icons/index/6.svg\" alt=\"\" class=\"---lazyload ---x-pos-abs\">\n        </div>\n\n        <div class=\"---stat-item__title\">\n          Новых заявок<br>\n          за сегодня\n        </div>\n\n        <div class=\"---num ---pos-rel ---font-ebold\">\n          22\n          <i class=\"ifont ---icon-arrow-right ---y-pos-abs\"></i>\n        </div>\n\n        <div class=\"---stat-item__foter ---pos-rel\">\n          За этот месяц\n          <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"---col-12 ---devider-line\"></div>\n\n  <div class=\"---fin-report\">\n    <div class=\"h2 ---font-sbold\">Финансовые отчеты</div>\n\n    <div class=\"---report-item ---radius-5 ---d-flex ---align-items-center ---justify-content-between\">\n      <div class=\"---report__info\">\n        <div class=\"---report__title ---font-sbold\">Отчет о продажах</div>\n        <div class=\"---date\">Последнее скачивание 26.04.2019</div>\n      </div>\n\n      <div class=\"---form ---report__period ---d-inline-flex ---align-items-center\">\n        <span>Период с</span>\n        <div class=\"---field\">\n          <div class=\"---input ---input--calendar ---pos-rel\">\n            <input type=\"datepicker\" class=\"---radius-5\">\n            <i class=\"---y-pos-abs ifont ---icon-calendar\"></i>\n          </div>\n        </div>\n        <span>до</span>\n        <div class=\"---field\">\n          <div class=\"---input ---input--calendar ---pos-rel\">\n            <input type=\"datepicker\" class=\"---radius-5\">\n            <i class=\"---y-pos-abs ifont ---icon-calendar\"></i>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"---select\">\n        <select>\n          <option value=\"\">Закрытые 1</option>\n          <option value=\"\">Закрытые 2</option>\n          <option value=\"\">Закрытые 3</option>\n          <option value=\"\">Закрытые 4</option>\n          <option value=\"\">Закрытые 5</option>\n        </select>\n\n        <div class=\"---select__cur-value\">\n          <span>Закрытые</span>\n          <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n        </div>\n\n        <div class=\"---select__list-wrapper\">\n          <div class=\"---select__list\">\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 1</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 2</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 3</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 4</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 5</a>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"---report__icons ---d-inline-flex\">\n        <a href=\"#\" class=\"---btn ---btn--fill-acent\">Создать</a>\n        <a href=\"#\" class=\"ifont ---icon-upload\"></a>\n        <a href=\"#\" class=\"ifont ---icon-print\"></a>\n      </div>\n    </div>\n    <div class=\"---report-item ---radius-5 ---d-flex ---align-items-center ---justify-content-between\">\n      <div class=\"---report__info\">\n        <div class=\"---report__title ---font-sbold\">Отчет о продажах</div>\n        <div class=\"---date\">Последнее скачивание 26.04.2019</div>\n      </div>\n\n      <div class=\"---form ---report__period ---d-inline-flex ---align-items-center\">\n        <span>Период с</span>\n        <div class=\"---field\">\n          <div class=\"---input ---input--calendar ---pos-rel\">\n            <input type=\"datepicker\" class=\"---radius-5\">\n            <i class=\"---y-pos-abs ifont ---icon-calendar\"></i>\n          </div>\n        </div>\n        <span>до</span>\n        <div class=\"---field\">\n          <div class=\"---input ---input--calendar ---pos-rel\">\n            <input type=\"datepicker\" class=\"---radius-5\">\n            <i class=\"---y-pos-abs ifont ---icon-calendar\"></i>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"---select\">\n        <select>\n          <option value=\"\">Закрытые 1</option>\n          <option value=\"\">Закрытые 2</option>\n          <option value=\"\">Закрытые 3</option>\n          <option value=\"\">Закрытые 4</option>\n          <option value=\"\">Закрытые 5</option>\n        </select>\n\n        <div class=\"---select__cur-value\">\n          <span>Закрытые</span>\n          <i class=\"ifont ---icon-arrow-down ---y-pos-abs\"></i>\n        </div>\n\n        <div class=\"---select__list-wrapper\">\n          <div class=\"---select__list\">\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 1</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 2</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 3</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 4</a>\n            <a href=\"#\" class=\"---select__list-item\">Закрытые 5</a>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"---report__icons ---d-inline-flex\">\n        <a href=\"#\" class=\"---btn ---btn--fill-acent\">Создать</a>\n        <a href=\"#\" class=\"ifont ---icon-upload\"></a>\n        <a href=\"#\" class=\"ifont ---icon-print\"></a>\n      </div>\n    </div>\n  </div>\n\n</div>\n"
 
 /***/ }),
 
@@ -6657,6 +6650,7 @@ var GlobalParams = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SessionStorageService", function() { return SessionStorageService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6667,8 +6661,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var SessionStorageService = /** @class */ (function () {
-    function SessionStorageService() {
+    function SessionStorageService(router) {
+        this.router = router;
+        this.authenticated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"](false);
+        this.change(this.pubId !== '');
     }
     Object.defineProperty(SessionStorageService.prototype, "pubId", {
         get: function () {
@@ -6680,9 +6678,17 @@ var SessionStorageService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    SessionStorageService.prototype.change = function (data) {
+        this.authenticated.emit(data);
+    };
+    SessionStorageService.prototype.exit = function () {
+        this.authenticated.emit(false);
+        this.router.navigate(['/']);
+        localStorage.removeItem('pubId');
+    };
     SessionStorageService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], SessionStorageService);
     return SessionStorageService;
 }());
@@ -6787,7 +6793,13 @@ var HttpService = /** @class */ (function () {
                     }
                 }
                 else if (result.status === 'ERROR') {
-                    _this.globalParamsMessage.data = { title: 'Ошибка', body: result.msg, type: 'error' };
+                    if (typeof result.code !== 'undefined' && result.code === 'NEED SESSION') {
+                        _this.globalParamsMessage.data = { title: 'Ошибка', body: 'Истек срок сессии', type: 'error' };
+                        _this.sessionStorage.exit();
+                    }
+                    else {
+                        _this.globalParamsMessage.data = { title: 'Ошибка', body: result.msg, type: 'error' };
+                    }
                     reject();
                 }
                 else {
@@ -6807,8 +6819,8 @@ var HttpService = /** @class */ (function () {
             prBlock: data
         };
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
-        // return this.http.post('http://localhost:8001/' + api, request, {headers: headers})
-        return this.http.post('http://artdekor-kzn.ru/' + api, request, { headers: headers })
+        return this.http.post('http://localhost:8001/' + api, request, { headers: headers })
+            // return this.http.post('http://artdekor-kzn.ru/' + api, request, {headers: headers})
             .pipe(Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(HttpService_1.handlerError));
     };
     var HttpService_1;
