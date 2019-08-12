@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     if (!this.checkAuth) {
       this.router.navigate(['/']);
     } else {
-      if (window.location.href === '') {
+      if (location.pathname === '/') {
         this.router.navigate(['/main']);
       }
     }

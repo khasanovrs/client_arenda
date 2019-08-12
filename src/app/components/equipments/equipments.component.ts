@@ -30,6 +30,7 @@ export class EquipmentsComponent implements OnInit {
     mark: null,
     selling_price: '',
     price_per_day: '',
+    photo: '',
     rentals: 0,
     repairs: 0,
     repairs_sum: '0',

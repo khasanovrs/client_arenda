@@ -21,6 +21,7 @@ interface InterFaceInfoEquipments {
   power_energy: string;
   length: string;
   network_cord: string;
+  photo:string;
   power: string;
   frequency_hits: string;
 }
