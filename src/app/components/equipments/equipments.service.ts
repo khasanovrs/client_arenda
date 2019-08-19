@@ -300,4 +300,19 @@ export class EquipmentsService {
         );
     });
   }
+
+  // изменение списка активных полей для таблицы
+  public allEquipmentsBranch(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-all-equipments-branch', data)
+        .then((result) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при поиске товаров', error);
+            reject();
+          }
+        );
+    });
+  }
 }

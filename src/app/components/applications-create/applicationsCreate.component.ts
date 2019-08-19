@@ -122,6 +122,15 @@ export class ApplicationsCreateComponent implements OnInit {
     this.application.rent_start.val = today.toISOString().substring(0, 10);
   }
 
+  changeBranch() {
+    this.equipmentsService.allEquipmentsBranch({branch: this.application.branch.val}).then((data: InterFaceSearchClient[]) => {
+        this.showAddEquipments.equipments = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка оборудования: ', error);
+      });
+  }
+
   changeTypeLease() {
     const tomorrow = new Date();
 
