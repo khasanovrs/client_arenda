@@ -45,8 +45,8 @@ export class ApplicationsCreateComponent implements OnInit {
     status: {val: null, required: true, name: 'статус'},
     source: {val: null, required: true, name: 'источник'},
     branch: {val: null, required: true, name: 'филиал'},
-    rent_start: {val: null, required: true, name: 'начало аренды'},
-    rent_end: {val: null, required: true, name: 'конец аренды'},
+    rent_start: {val: '', required: true, name: 'начало аренды'},
+    rent_end: {val: '', required: true, name: 'конец аренды'},
     delivery: {val: null, required: true, name: 'тип доставки'},
     client_fio: {val: '', required: true, name: 'фио клиента'},
     client_email: {val: '', required: false, name: ''},
@@ -117,6 +117,21 @@ export class ApplicationsCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
       });
+
+    const today = new Date();
+    this.application.rent_start.val = today.toISOString().substring(0, 10);
+  }
+
+  changeTypeLease() {
+    const tomorrow = new Date();
+
+    if (this.application.typeLease.val === 1) {
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      this.application.rent_end.val = tomorrow.toISOString().substring(0, 10);
+    } else {
+      tomorrow.setDate(tomorrow.getDate() + 30);
+      this.application.rent_end.val = tomorrow.toISOString().substring(0, 10);
+    }
   }
 
   // поиск клиентов из бд

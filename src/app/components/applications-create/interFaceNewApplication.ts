@@ -4,8 +4,8 @@ interface InterFaceNewApplication {
   sale: { val: number, required: true, name: string };
   status: { val: number, required: true, name: string };
   source: { val: number, required: true, name: string };
-  rent_start: { val: number, required: true, name: string };
-  rent_end: { val: number, required: true, name: string };
+  rent_start: { val: string, required: true, name: string };
+  rent_end: { val: string, required: true, name: string };
   delivery: { val: number, required: true, name: string };
   branch: { val: number, required: true, name: string };
   client_id: number;

@@ -7,8 +7,13 @@
   </div>
 
   <div class="---block__rside ---d-flex">
-    <a href="#" class="---city">Казань <span class="---icon ---y-pos-abs">-</span></a>
-    <a href="#" class="---city ---city--add ---font-regular">Добавить <span class="---icon ---y-pos-abs">+</span></a>
+    <div class="---select">
+      <select [(ngModel)]="current_branch" (change)="getData()">
+        <option *ngFor="let branch of branches" [ngValue]="branch.val">
+          {{branch.name}}
+        </option>
+      </select>
+    </div>
   </div>
 
 </div>

@@ -18,7 +18,7 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Вид аренды</label>
           <div class="---select">
-            <select [(ngModel)]="application.typeLease.val">
+            <select [(ngModel)]="application.typeLease.val" (change)="changeTypeLease()">
               <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
                       [ngValue]="applicationsTypeLease.val">
                 {{applicationsTypeLease.name}}
