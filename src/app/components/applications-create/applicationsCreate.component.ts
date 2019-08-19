@@ -129,6 +129,13 @@ export class ApplicationsCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении списка оборудования: ', error);
       });
+
+    this.clientService.searchAllClient({branch: this.application.branch.val}).then((data: InterFaceSearchClient[]) => {
+        this.showSearchClient.clients = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка клиентов: ', error);
+      });
   }
 
   changeTypeLease() {
