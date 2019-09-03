@@ -73,7 +73,7 @@ export class ApplicationsCreateService {
   // создание заявки
   public addApplication(data) {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/add-application', data)
+      this.httpService.prepareQuery('api/a', data)
         .then(() => {
             resolve();
           },

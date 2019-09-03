@@ -178,7 +178,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-message-alert></app-message-alert>\n\n<app-menu *ngIf=\"checkAuth===true\" class=\"---left-main-menu\"></app-menu>\n\n<div [ngClass]=\"{'---main-content':checkAuth===true}\" class=\"---d-flex ---flex-nowrap ---flex-column\">\n\t<app-header *ngIf=\"checkAuth===true\"></app-header>\n\t<div [ngClass]=\"{'---main-wrapper':checkAuth===true}\" style=\"height: 100%;\" class=\"---d-flex ---flex-column ---flex-nowrap\">\n\t\t<router-outlet></router-outlet>\n\n  \t\t<!-- На странице авторизации убрать футер -->\n  \t\t<app-footer *ngIf=\"checkAuth===true\"></app-footer>\n\t</div>\n</div>\n"
+module.exports = "<app-message-alert></app-message-alert>\n<app-pay-list></app-pay-list>\n<app-menu *ngIf=\"checkAuth===true\" class=\"---left-main-menu\"></app-menu>\n\n<div [ngClass]=\"{'---main-content':checkAuth===true}\" class=\"---d-flex ---flex-nowrap ---flex-column\">\n\t<app-header *ngIf=\"checkAuth===true\"></app-header>\n\t<div [ngClass]=\"{'---main-wrapper':checkAuth===true}\" style=\"height: 100%;\" class=\"---d-flex ---flex-column ---flex-nowrap\">\n\t\t<router-outlet></router-outlet>\n\n  \t\t<!-- На странице авторизации убрать футер -->\n  \t\t<app-footer *ngIf=\"checkAuth===true\"></app-footer>\n\t</div>\n</div>\n"
 
 /***/ }),
 
@@ -315,12 +315,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_hire_hire_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./components/hire/hire.component */ "./src/app/components/hire/hire.component.ts");
 /* harmony import */ var _components_hire_hire_service__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./components/hire/hire.service */ "./src/app/components/hire/hire.service.ts");
 /* harmony import */ var _components_hire_info_hireInfo_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./components/hire-info/hireInfo.component */ "./src/app/components/hire-info/hireInfo.component.ts");
+/* harmony import */ var _components_pay_list_global_pay_list__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./components/pay_list/global-pay-list */ "./src/app/components/pay_list/global-pay-list.ts");
+/* harmony import */ var _components_pay_list_pay_list_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./components/pay_list/pay_list.component */ "./src/app/components/pay_list/pay_list.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -391,6 +395,7 @@ var AppModule = /** @class */ (function () {
                 _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
                 _components_main_main_component__WEBPACK_IMPORTED_MODULE_21__["MainComponent"],
                 _components_message_alert_message_alert_component__WEBPACK_IMPORTED_MODULE_7__["MessageAlertComponent"],
+                _components_pay_list_pay_list_component__WEBPACK_IMPORTED_MODULE_59__["PayListComponent"],
                 _components_menu_menu_component__WEBPACK_IMPORTED_MODULE_12__["MenuComponent"],
                 _components_header_header_component__WEBPACK_IMPORTED_MODULE_13__["HeaderComponent"],
                 _components_client_client_component__WEBPACK_IMPORTED_MODULE_14__["ClientComponent"],
@@ -429,6 +434,7 @@ var AppModule = /** @class */ (function () {
                 _components_main_main_service__WEBPACK_IMPORTED_MODULE_4__["MainService"],
                 _utils_http_http_service__WEBPACK_IMPORTED_MODULE_5__["HttpService"],
                 _components_message_alert_global_params_message__WEBPACK_IMPORTED_MODULE_9__["GlobalParamsMessage"],
+                _components_pay_list_global_pay_list__WEBPACK_IMPORTED_MODULE_58__["GlobalPayList"],
                 _storage_global_params__WEBPACK_IMPORTED_MODULE_36__["GlobalParams"],
                 _storage_session_storage_service__WEBPACK_IMPORTED_MODULE_11__["SessionStorageService"],
                 _components_client_client_service__WEBPACK_IMPORTED_MODULE_16__["ClientService"],
@@ -465,7 +471,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"---page-rent-in ---row\">\n  <div class=\"---col-12 ---col-lg-6 ---form\">\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600\">Данные аренды</div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Филиал</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.branch.val\">\n              <option *ngFor=\"let branch of branches\"\n                      [ngValue]=\"branch.val\">\n                {{branch.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Вид аренды</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.typeLease.val\" (change)=\"changeTypeLease()\">\n              <option *ngFor=\"let applicationsTypeLease of applicationsTypeLeases\"\n                      [ngValue]=\"applicationsTypeLease.val\">\n                {{applicationsTypeLease.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Скидка на аренду</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.sale.val\" (change)=\"changeSum()\">\n              <option *ngFor=\"let discount of discounts\"\n                      [ngValue]=\"discount.val\">\n                {{discount.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Доставка</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.delivery.val\">\n              <option *ngFor=\"let delivery of applicationsDelivery\"\n                      [ngValue]=\"delivery.val\">\n                {{delivery.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Статус</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.status.val\">\n              <option *ngFor=\"let status of applicationsStatus\"\n                      [ngValue]=\"status.val\">\n                {{status.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Источник</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.source.val\">\n              <option *ngFor=\"let source of applicationsSource\"\n                      [ngValue]=\"source.val\">\n                {{source.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Начало аренды</label>\n          <div class=\"---input ---input--calendar\">\n            <input type=\"date\" (change)=\"changeSum()\" [(ngModel)]=\"application.rent_start.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Окончание аренды</label>\n          <div class=\"---input ---input--calendar\">\n            <input type=\"date\" (change)=\"changeSum()\" [(ngModel)]=\"application.rent_end.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12\">\n          <label>Комментарий</label>\n          <textarea class=\"---input\" [(ngModel)]=\"application.comment\" rows=\"5\"></textarea>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between\">\n        Данные арендатора\n\n        <a href=\"#\" class=\"---check-by-bailiff\">Проверить через сервис приставов</a>\n      </div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12 ---col-sm-6\">\n          <label></label>\n          <div class=\"---add-client-from-base ---pos-rel ---radius-5\" (click)=\"showSearchClient.show=true;\">\n            Добавить клиента из базы\n            <i class=\"ifont ---icon-loop ---y-pos-abs\"></i>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-sm-6\">\n          <label></label>\n          <div class=\"---add-client-from-base ---pos-rel ---radius-5\" (click)=\"globalParams.showModalCreateUser=true;\">\n            Добавить нового клиента\n          </div>\n        </div>\n\n        <div class=\"---field ---col-12 ---col-sm-6\">\n          <label>ФИО клиента</label>\n          <input class=\"---input\" [(ngModel)]=\"application.client_fio.val\">\n        </div>\n\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Электронная почта</label>\n          <input type=\"email\" class=\"---input\" [(ngModel)]=\"application.client_email.val\">\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Номер телефона</label>\n          <input type=\"tel\" class=\"---input\" [(ngModel)]=\"application.client_phone.val\">\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Номер и серия паспорта</label>\n          <input class=\"---input\" [(ngModel)]=\"application.client_number_passport.val\">\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Паспорт выдан</label>\n          <input class=\"---input\" [(ngModel)]=\"application.client_where_passport.val\">\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Дата выдачи паспорта</label>\n          <div class=\"---input ---input--calendar\">\n            <input type=\"date\" [(ngModel)]=\"application.client_date_passport.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Адрес прописки</label>\n          <input class=\"---input\" [(ngModel)]=\"application.client_address_passport.val\">\n        </div>\n      </div>\n    </div>\n\n    <div class=\"---btns-wrapper\">\n      <div (click)=\"addApplication()\" class=\"---btn ---btn--fill-acent\">Создать заявку</div>\n    </div>\n\n  </div>\n  <div class=\"---col-12 ---col-lg-6\">\n\n    <div class=\"---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form\">\n      <div class=\"h2 ---font-600\">Запрашиваемое оборудование</div>\n      <div class=\"---devider ---devider-mt0\"></div>\n\n      <div class=\"---prod-list\">\n        <div *ngFor=\"let equipment of application.equipments; let i = index\"\n             class=\"---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between\">\n                        <span class=\"---prod-item__info ---d-inline-flex ---align-items-center\">\n                            <span\n                              class=\"---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center\">\n                                <img src=\"/assets/imgs/catalog/{{equipment.photo}}\" alt=\"\"\n                                     class=\"---lazyload ---img-contain\">\n                            </span>\n                            <span class=\"---prod-item__title ---font-600\">{{equipment.name}}</span>\n                            <span style=\"color: red\" (click)=\"deleteEquipment(i)\">Удалить</span>\n                        </span>\n\n          <span class=\"---prod-item__thumb ---d-inline-flex\">\n                            <span class=\"---thumb-item\">\n                                За единицу<br>\n                                <span class=\"---font-600\">{{equipment.price | digitsNumbers}} ₽</span>\n                            </span>\n                            <span class=\"---thumb-item\">\n                                В наличии<br>\n                                <span class=\"---font-600\">{{equipment.in_stock}} шт.</span>\n                            </span>\n                        </span>\n\n          <span class=\"---prod-qnty-wrapper ---radius-5 ---d-inline-flex ---align-items-center\">\n                            <span (click)=\"changeCount(equipment,'decrease')\"\n                                  class=\"c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center\">-</span>\n                            <span class=\"---qnty ---font-600\">{{equipment.count}}</span>\n                            <span (click)=\"changeCount(equipment,'increase')\"\n                                  class=\"c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center ---plus\">+</span>\n                        </span>\n        </div>\n\n        <div (click)=\"showAddEquipments.show=true\" class=\"---btn ---btn--fill-dark\">Добавить</div>\n      </div>\n\n      <div class=\"---devider\"></div>\n\n      <div class=\"---total-price ---font-600 h2\">\n        <div class=\"---delivery ---font-300\">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>\n        Итого: {{application.sum | digitsNumbers}} ₽\n      </div>\n\n      <div class=\"---devider\"></div>\n\n      <a href=\"#\" class=\"---btn ---btn--fill-acent\">Добавить платеж</a>\n\n    </div>\n\n  </div>\n\n</div>\n\n\n<div *ngIf=\"showSearchClient.show\" class=\"---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center\">\n  <div class=\"---wrapper\">\n\n    <div class=\"---js-close-modal ---js-close-modal-icon\" (click)=\"showSearchClient.show=false\"></div>\n\n    <div class=\"---form\">\n      <div class=\"---field\">\n        <input class=\"---input ---fill--bg\" [(ngModel)]=\"showSearchClient.filter\"(keyup)=\"searchClient(showSearchClient.filter)\">\n      </div>\n    </div>\n\n    <div *ngFor=\"let client of showSearchClient.clients; let i = index\" (click)=\"insertClientData(i)\">\n      <div>{{client.client_fio}}</div>\n    </div>\n\n  </div>\n</div>\n\n<div *ngIf=\"showAddEquipments.show\" class=\"---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center\">\n  <div class=\"---wrapper\">\n\n    <div class=\"---js-close-modal ---js-close-modal-icon\" (click)=\"showAddEquipments.show=false\"></div>\n\n    <div class=\"---form\">\n      <div class=\"---field\">\n        <input class=\"---input ---fill--bg\" [(ngModel)]=\"showAddEquipments.filter\"(keyup)=\"searchEquipments(showAddEquipments.filter)\">\n      </div>\n    </div>\n\n    <div *ngFor=\"let equipments of showAddEquipments.equipments; let i = index\" (click)=\"insertEquipmentsData(i)\">\n      <div>{{equipments.name}}</div>\n    </div>\n\n  </div>\n</div>\n\n\n<div *ngIf=\"globalParams.showModalCreateUser\" class=\"---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center\">\n  <div class=\"---wrapper\">\n\n    <div class=\"---js-close-modal ---js-close-modal-icon\" (click)=\"globalParams.showModalCreateUser=false\"></div>\n\n    <app-client-create></app-client-create>\n\n  </div>\n</div>\n"
+module.exports = "<div class=\"---page-rent-in ---row\">\n  <div class=\"---col-12 ---col-lg-6 ---form\">\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600\">Данные аренды</div>\n      <form action='' autocomplete='off'>\n        <div class=\"---row\">\n          <div class=\"---field ---col-12 ---col-xs-6\">\n            <label>Филиал</label>\n            <div class=\"---select\">\n              <select name='sd' [(ngModel)]=\"application.branch.val\" (change)=\"changeBranch()\" autocomplete=\"off\">\n                <option *ngFor=\"let branch of branches\"\n                        [ngValue]=\"branch.val\">\n                  {{branch.name}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"---field ---col-12 ---col-xs-6\">\n            <label>Вид аренды</label>\n            <div class=\"---select\">\n              <select [(ngModel)]=\"application.typeLease.val\" (change)=\"changeTypeLease()\" autocomplete=\"none\">\n                <option *ngFor=\"let applicationsTypeLease of applicationsTypeLeases\"\n                        [ngValue]=\"applicationsTypeLease.val\">\n                  {{applicationsTypeLease.name}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"---field ---col-12 ---col-xs-6\">\n            <label>Скидка на аренду</label>\n            <div class=\"---select\">\n              <select [(ngModel)]=\"application.sale.val\" (change)=\"changeSum()\">\n                <option *ngFor=\"let discount of discounts\"\n                        [ngValue]=\"discount.val\">\n                  {{discount.name}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"---field ---col-12 ---col-xs-6\">\n            <label>Доставка</label>\n            <div class=\"---select\">\n              <select [(ngModel)]=\"application.delivery.val\">\n                <option *ngFor=\"let delivery of applicationsDelivery\"\n                        [ngValue]=\"delivery.val\">\n                  {{delivery.name}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"---field ---col-12 ---col-xs-6\">\n            <label>Статус</label>\n            <div class=\"---select\">\n              <select [(ngModel)]=\"application.status.val\">\n                <option *ngFor=\"let status of applicationsStatus\"\n                        [ngValue]=\"status.val\">\n                  {{status.name}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"---field ---col-12 ---col-xs-6\">\n            <label>Источник</label>\n            <div class=\"---select\">\n              <select [(ngModel)]=\"application.source.val\">\n                <option *ngFor=\"let source of applicationsSource\"\n                        [ngValue]=\"source.val\">\n                  {{source.name}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"---field ---col-12 ---col-xs-6\">\n            <label>Начало аренды</label>\n            <div class=\"---input ---input--calendar\">\n              <input type=\"date\" (change)=\"changeSum()\" [(ngModel)]=\"application.rent_start.val\">\n            </div>\n          </div>\n          <div class=\"---field ---col-12 ---col-xs-6\">\n            <label>Окончание аренды</label>\n            <div class=\"---input ---input--calendar\">\n              <input type=\"date\" (change)=\"changeSum()\" [(ngModel)]=\"application.rent_end.val\">\n            </div>\n          </div>\n          <div class=\"---field ---col-12\">\n            <label>Комментарий</label>\n            <textarea class=\"---input\" [(ngModel)]=\"application.comment\" rows=\"5\"></textarea>\n          </div>\n        </div>\n      </form>\n    </div>\n\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between\">\n        Данные арендатора\n\n        <a href=\"#\" class=\"---check-by-bailiff\">Проверить через сервис приставов</a>\n      </div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12 ---col-sm-6\">\n          <label></label>\n          <div class=\"---add-client-from-base ---pos-rel ---radius-5\" (click)=\"showSearchClient.show=true;\">\n            Добавить клиента из базы\n            <i class=\"ifont ---icon-loop ---y-pos-abs\"></i>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-sm-6\">\n          <label></label>\n          <div class=\"---add-client-from-base ---pos-rel ---radius-5\" (click)=\"globalParams.showModalCreateUser=true;\">\n            Добавить нового клиента\n          </div>\n        </div>\n\n        <div class=\"---field ---col-12 ---col-sm-6\">\n          <label>ФИО клиента</label>\n          <input class=\"---input\" [(ngModel)]=\"application.client_fio.val\">\n        </div>\n\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Электронная почта</label>\n          <input type=\"email\" class=\"---input\" [(ngModel)]=\"application.client_email.val\">\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Номер телефона</label>\n          <input type=\"tel\" class=\"---input\" [(ngModel)]=\"application.client_phone.val\">\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Номер и серия паспорта</label>\n          <input class=\"---input\" [(ngModel)]=\"application.client_number_passport.val\">\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Паспорт выдан</label>\n          <input class=\"---input\" [(ngModel)]=\"application.client_where_passport.val\">\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Дата выдачи паспорта</label>\n          <div class=\"---input ---input--calendar\">\n            <input type=\"date\" [(ngModel)]=\"application.client_date_passport.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Адрес прописки</label>\n          <input class=\"---input\" [(ngModel)]=\"application.client_address_passport.val\">\n        </div>\n      </div>\n    </div>\n\n    <div class=\"---btns-wrapper\">\n      <div (click)=\"addApplication()\" class=\"---btn ---btn--fill-acent\">Создать заявку</div>\n    </div>\n\n  </div>\n  <div class=\"---col-12 ---col-lg-6\">\n\n    <div class=\"---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form\">\n      <div class=\"h2 ---font-600\">Запрашиваемое оборудование</div>\n      <div class=\"---devider ---devider-mt0\"></div>\n\n      <div class=\"---prod-list\">\n        <div *ngFor=\"let equipment of application.equipments; let i = index\"\n             class=\"---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between\">\n                        <span class=\"---prod-item__info ---d-inline-flex ---align-items-center\">\n                            <span\n                              class=\"---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center\">\n                                <img src=\"/assets/imgs/catalog/{{equipment.photo}}\" alt=\"\"\n                                     class=\"---lazyload ---img-contain\">\n                            </span>\n                            <span class=\"---prod-item__title ---font-600\">{{equipment.name}}</span>\n                            <span style=\"color: red\" (click)=\"deleteEquipment(i)\">Удалить</span>\n                        </span>\n\n          <span class=\"---prod-item__thumb ---d-inline-flex\">\n                            <span class=\"---thumb-item\">\n                                За единицу<br>\n                                <span class=\"---font-600\">{{equipment.price | digitsNumbers}} ₽</span>\n                            </span>\n                            <span class=\"---thumb-item\">\n                                В наличии<br>\n                                <span class=\"---font-600\">{{equipment.in_stock}} шт.</span>\n                            </span>\n                        </span>\n\n          <span class=\"---prod-qnty-wrapper ---radius-5 ---d-inline-flex ---align-items-center\">\n                            <span (click)=\"changeCount(equipment,'decrease')\"\n                                  class=\"c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center\">-</span>\n                            <span class=\"---qnty ---font-600\">{{equipment.count}}</span>\n                            <span (click)=\"changeCount(equipment,'increase')\"\n                                  class=\"c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center ---plus\">+</span>\n                        </span>\n        </div>\n\n        <div (click)=\"showAddEquipments.show=true\" class=\"---btn ---btn--fill-dark\">Добавить</div>\n      </div>\n\n      <div class=\"---devider\"></div>\n\n      <div class=\"---total-price ---font-600 h2\">\n        <div class=\"---delivery ---font-300\">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>\n        Итого: {{application.sum | digitsNumbers}} ₽\n      </div>\n\n      <div class=\"---devider\"></div>\n\n      <a href=\"#\" class=\"---btn ---btn--fill-acent\">Добавить платеж</a>\n\n    </div>\n\n  </div>\n\n</div>\n\n\n<div *ngIf=\"showSearchClient.show\"\n     class=\"---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center\">\n  <div class=\"---wrapper\">\n\n    <div class=\"---js-close-modal ---js-close-modal-icon\" (click)=\"showSearchClient.show=false\"></div>\n\n    <div class=\"---form\">\n      <div class=\"---field\">\n        <input class=\"---input ---fill--bg\" [(ngModel)]=\"showSearchClient.filter\"\n               (keyup)=\"searchClient(showSearchClient.filter)\">\n      </div>\n    </div>\n\n    <div *ngFor=\"let client of showSearchClient.clients; let i = index\" (click)=\"insertClientData(i)\">\n      <div>{{client.client_fio}}</div>\n    </div>\n\n  </div>\n</div>\n\n<div *ngIf=\"showAddEquipments.show\"\n     class=\"---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center\">\n  <div class=\"---wrapper\">\n\n    <div class=\"---js-close-modal ---js-close-modal-icon\" (click)=\"showAddEquipments.show=false\"></div>\n\n    <div class=\"---form\">\n      <div class=\"---field\">\n        <input class=\"---input ---fill--bg\" [(ngModel)]=\"showAddEquipments.filter\"\n               (keyup)=\"searchEquipments(showAddEquipments.filter)\">\n      </div>\n    </div>\n\n    <div *ngFor=\"let equipments of showAddEquipments.equipments; let i = index\" (click)=\"insertEquipmentsData(i)\">\n      <div>{{equipments.name}}</div>\n    </div>\n\n  </div>\n</div>\n\n\n<div *ngIf=\"globalParams.showModalCreateUser\"\n     class=\"---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center\">\n  <div class=\"---wrapper\">\n\n    <div class=\"---js-close-modal ---js-close-modal-icon\" (click)=\"globalParams.showModalCreateUser=false\"></div>\n\n    <app-client-create></app-client-create>\n\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -542,10 +548,10 @@ var ApplicationsCreateComponent = /** @class */ (function () {
             sum: '0',
             delivery_sum: '0',
             typeLease: { val: null, required: true, name: 'тип аренды' },
-            sale: { val: null, required: true, name: 'скидка' },
+            sale: { val: 0, required: true, name: 'скидка' },
             status: { val: null, required: true, name: 'статус' },
             source: { val: null, required: true, name: 'источник' },
-            branch: { val: null, required: true, name: 'филиал' },
+            branch: { val: 0, required: true, name: 'филиал' },
             rent_start: { val: '', required: true, name: 'начало аренды' },
             rent_end: { val: '', required: true, name: 'конец аренды' },
             delivery: { val: null, required: true, name: 'тип доставки' },
@@ -596,8 +602,21 @@ var ApplicationsCreateComponent = /** @class */ (function () {
         }, function (error) {
             console.log('Ошибка при получении филиалов: ', error);
         });
+        this.clientService.searchAllClient({ branch: this.application.branch.val }).then(function (data) {
+            _this.showSearchClient.clients = data;
+        }, function (error) {
+            console.log('Ошибка при получении списка клиентов: ', error);
+        });
         var today = new Date();
         this.application.rent_start.val = today.toISOString().substring(0, 10);
+    };
+    ApplicationsCreateComponent.prototype.changeBranch = function () {
+        var _this = this;
+        this.equipmentsService.allEquipmentsBranch({ branch: this.application.branch.val }).then(function (data) {
+            _this.showAddEquipments.equipments = data;
+        }, function (error) {
+            console.log('Ошибка при получении списка оборудования: ', error);
+        });
     };
     ApplicationsCreateComponent.prototype.changeTypeLease = function () {
         var tomorrow = new Date();
@@ -884,7 +903,7 @@ var ApplicationsCreateService = /** @class */ (function () {
     ApplicationsCreateService.prototype.addApplication = function (data) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.httpService.prepareQuery('api/add-application', data)
+            _this.httpService.prepareQuery('api/a', data)
                 .then(function () {
                 resolve();
             }, function (error) {
@@ -911,7 +930,7 @@ var ApplicationsCreateService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"---page-rent-in ---row\">\n  <div class=\"---col-12 ---col-lg-6 ---form\">\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600\">Данные аренды</div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Филиал</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.branch.val\">\n              <option *ngFor=\"let branch of branches\"\n                      [ngValue]=\"branch.val\">\n                {{branch.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Вид аренды</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.typeLease.val\">\n              <option *ngFor=\"let applicationsTypeLease of applicationsTypeLeases\"\n                      [ngValue]=\"applicationsTypeLease.val\">\n                {{applicationsTypeLease.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Скидка на аренду</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.sale.val\">\n              <option *ngFor=\"let discount of discounts\" [ngValue]=\"discount.val\">\n                {{discount.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Доставка</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.delivery.val\">\n              <option *ngFor=\"let delivery of applicationsDelivery\"\n                      [ngValue]=\"delivery.val\">\n                {{delivery.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Источник</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.source.val\">\n              <option *ngFor=\"let source of applicationsSource\"\n                      [ngValue]=\"source.val\">\n                {{source.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Начало аренды</label>\n          <div class=\"---input ---input--calendar\">\n              <input type=\"date\" [(ngModel)]=\"application.rent_start.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Окончание аренды</label>\n          <div class=\"---input ---input--calendar\">\n            <input type=\"date\" [(ngModel)]=\"application.rent_end.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12\">\n          <label>Комментарий</label>\n          <textarea class=\"---input\" [(ngModel)]=\"application.comment\"></textarea>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between\">\n        Данные арендатора\n      </div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12 ---col-sm-6\">\n          <label>ФИО клиента</label>\n          <div class=\"---font-600\">{{application.client_fio}}</div>\n        </div>\n\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Номер телефона</label>\n          <div class=\"---font-600\">{{application.client_phone | telephoneNumber}}</div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-12 ---col-lg-6\">\n\n    <div class=\"---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form\">\n      <div class=\"h2 ---font-600\">Запрашиваемое оборудование</div>\n      <div class=\"---devider ---devider-mt0\"></div>\n\n      <div class=\"---prod-list\">\n        <div class=\"---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between\">\n                        <span class=\"---prod-item__info ---d-inline-flex ---align-items-center\">\n                            <span\n                              class=\"---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center\">\n                                <img src=\"http://u68857.netangels.ru/{{application.equipments.photo}}\" alt=\"\"\n                                     class=\"---lazyload ---img-contain\">\n                            </span>\n                            <span class=\"---prod-item__title ---font-600\">{{application.equipments.name}}</span>\n                        </span>\n\n          <span class=\"---prod-item__thumb ---d-inline-flex\">\n                            <span class=\"---thumb-item\">\n                                Количество<br>\n                                <span class=\"---font-600\">{{application.equipments.count}}</span>\n                            </span>\n                        </span>\n        </div>\n      </div>\n\n\n      <div class=\"---total-price ---font-600 h2\">\n        <div class=\"---delivery ---font-300\">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>\n        Итого: {{application.sum | digitsNumbers}} ₽\n      </div>\n\n    </div>\n\n  </div>\n</div>\n"
+module.exports = "<div class=\"---page-rent-in ---row\">\n  <div class=\"---col-12 ---col-lg-6 ---form\">\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600\">Данные аренды</div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12\">\n          <div (click)=\"open_pay_list()\" class=\"---btn ---btn--fill-acent\">Платежи</div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Филиал</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.branch.val\">\n              <option *ngFor=\"let branch of branches\"\n                      [ngValue]=\"branch.val\">\n                {{branch.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Вид аренды</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.typeLease.val\">\n              <option *ngFor=\"let applicationsTypeLease of applicationsTypeLeases\"\n                      [ngValue]=\"applicationsTypeLease.val\">\n                {{applicationsTypeLease.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Скидка на аренду</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.sale.val\">\n              <option *ngFor=\"let discount of discounts\" [ngValue]=\"discount.val\">\n                {{discount.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Доставка</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.delivery.val\">\n              <option *ngFor=\"let delivery of applicationsDelivery\"\n                      [ngValue]=\"delivery.val\">\n                {{delivery.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Источник</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.source.val\">\n              <option *ngFor=\"let source of applicationsSource\"\n                      [ngValue]=\"source.val\">\n                {{source.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Начало аренды</label>\n          <div class=\"---input ---input--calendar\">\n              <input type=\"date\" [(ngModel)]=\"application.rent_start.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Окончание аренды</label>\n          <div class=\"---input ---input--calendar\">\n            <input type=\"date\" [(ngModel)]=\"application.rent_end.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12\">\n          <label>Комментарий</label>\n          <textarea class=\"---input\" [(ngModel)]=\"application.comment\"></textarea>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between\">\n        Данные арендатора\n      </div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12 ---col-sm-6\">\n          <label>ФИО клиента</label>\n          <div class=\"---font-600\">{{application.client_fio}}</div>\n        </div>\n\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Номер телефона</label>\n          <div class=\"---font-600\">{{application.client_phone | telephoneNumber}}</div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-12 ---col-lg-6\">\n\n    <div class=\"---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form\">\n      <div class=\"h2 ---font-600\">Запрашиваемое оборудование</div>\n      <div class=\"---devider ---devider-mt0\"></div>\n\n      <div class=\"---prod-list\">\n        <div class=\"---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between\">\n                        <span class=\"---prod-item__info ---d-inline-flex ---align-items-center\">\n                            <span\n                              class=\"---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center\">\n                                <img src=\"http://u68857.netangels.ru/{{application.equipments.photo}}\" alt=\"\"\n                                     class=\"---lazyload ---img-contain\">\n                            </span>\n                            <span class=\"---prod-item__title ---font-600\">{{application.equipments.name}}</span>\n                        </span>\n\n          <span class=\"---prod-item__thumb ---d-inline-flex\">\n                            <span class=\"---thumb-item\">\n                                Количество<br>\n                                <span class=\"---font-600\">{{application.equipments.count}}</span>\n                            </span>\n                        </span>\n        </div>\n      </div>\n\n\n      <div class=\"---total-price ---font-600 h2\">\n        <div class=\"---delivery ---font-300\">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>\n        Итого: {{application.sum | digitsNumbers}} ₽\n      </div>\n\n    </div>\n\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -933,6 +952,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _applications_create_applicationsCreate_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../applications-create/applicationsCreate.service */ "./src/app/components/applications-create/applicationsCreate.service.ts");
 /* harmony import */ var _applications_applications_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../applications/applications.service */ "./src/app/components/applications/applications.service.ts");
+/* harmony import */ var _pay_list_global_pay_list__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pay_list/global-pay-list */ "./src/app/components/pay_list/global-pay-list.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -950,8 +970,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var ApplicationsInfoComponent = /** @class */ (function () {
-    function ApplicationsInfoComponent(applicationsCreateService, dopParamsService, equipmentsService, clientService, globalParamsMessage, activatedRoute, applicationsService, router) {
+    function ApplicationsInfoComponent(applicationsCreateService, dopParamsService, equipmentsService, clientService, globalParamsMessage, activatedRoute, applicationsService, globalPayList, router) {
         var _this = this;
         this.applicationsCreateService = applicationsCreateService;
         this.dopParamsService = dopParamsService;
@@ -960,6 +981,7 @@ var ApplicationsInfoComponent = /** @class */ (function () {
         this.globalParamsMessage = globalParamsMessage;
         this.activatedRoute = activatedRoute;
         this.applicationsService = applicationsService;
+        this.globalPayList = globalPayList;
         this.router = router;
         this.applicationsStatus = [];
         this.applicationsSource = [];
@@ -992,6 +1014,11 @@ var ApplicationsInfoComponent = /** @class */ (function () {
                 photo: '',
                 price: '',
                 stock: null
+            },
+            pay_list: {
+                'date': null,
+                'user_id': null,
+                'sum': ''
             }
         };
         this.activatedRoute.params.subscribe(function (params) {
@@ -1077,13 +1104,21 @@ var ApplicationsInfoComponent = /** @class */ (function () {
             delivery_sum: this.application.delivery_sum,
             comment: this.application.comment,
             source: this.application.source.val,
-            branch: this.application.branch.val
+            branch: this.application.branch.val,
+            pay_list: this.application.branch.val
         }).then(function () {
             _this.globalParamsMessage.data = { title: 'Заявка успешно изменена', type: 'success', body: '' };
             _this.router.navigate(['/application']);
         }, function (error) {
             console.log('Ошибка при внесении изменений в заявку: ', error);
         });
+    };
+    ApplicationsInfoComponent.prototype.open_pay_list = function () {
+        this.globalPayList.data = {
+            id_equipments: this.application.equipments.id,
+            client_id: this.application.client_id,
+            pay_list: this.application.pay_list
+        };
     };
     ApplicationsInfoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1097,6 +1132,7 @@ var ApplicationsInfoComponent = /** @class */ (function () {
             _message_alert_global_params_message__WEBPACK_IMPORTED_MODULE_4__["GlobalParamsMessage"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"],
             _applications_applications_service__WEBPACK_IMPORTED_MODULE_7__["ApplicationsService"],
+            _pay_list_global_pay_list__WEBPACK_IMPORTED_MODULE_8__["GlobalPayList"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
     ], ApplicationsInfoComponent);
     return ApplicationsInfoComponent;
@@ -1881,6 +1917,19 @@ var ClientService = /** @class */ (function () {
                 resolve(result);
             }, function (error) {
                 console.log('Ошибка при поиске клиентов', error);
+                reject();
+            });
+        });
+    };
+    // изменение списка активных полей для таблицы
+    ClientService.prototype.searchAllClient = function (data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.httpService.prepareQuery('api/get-all-client', data)
+                .then(function (result) {
+                resolve(result);
+            }, function (error) {
+                console.log('Ошибка при получении клиентов', error);
                 reject();
             });
         });
@@ -2837,6 +2886,19 @@ var EquipmentsService = /** @class */ (function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             _this.httpService.prepareQuery('api/get-equipments-search', data)
+                .then(function (result) {
+                resolve(result);
+            }, function (error) {
+                console.log('Ошибка при поиске товаров', error);
+                reject();
+            });
+        });
+    };
+    // изменение списка активных полей для таблицы
+    EquipmentsService.prototype.allEquipmentsBranch = function (data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.httpService.prepareQuery('api/get-all-equipments-branch', data)
                 .then(function (result) {
                 resolve(result);
             }, function (error) {
@@ -4789,6 +4851,119 @@ var MessageAlertComponent = /** @class */ (function () {
 /*!*************************************************************!*\
   !*** ./src/app/components/message_alert/message_alert.scss ***!
   \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "#modal-alert {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  height: 30%;\n  width: 30%;\n  background: #fff;\n  padding: 15px;\n  z-index: 9;\n  margin: auto;\n  border-radius: 10px;\n  display: flex;\n  text-align: center; }\n  #modal-alert .modal-body {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    justify-content: space-evenly;\n    flex-direction: column; }\n  #modal-alert .modal-body .error {\n      color: red; }\n  #modal-alert .modal-body .success {\n      color: green; }\n  #modal-alert .modal-body .btn {\n      background: #fed34f;\n      text-align: center;\n      width: -webkit-max-content;\n      width: -moz-max-content;\n      width: max-content;\n      padding: 15px;\n      border-radius: 10px;\n      margin: 0 auto; }\n"
+
+/***/ }),
+
+/***/ "./src/app/components/pay_list/global-pay-list.ts":
+/*!********************************************************!*\
+  !*** ./src/app/components/pay_list/global-pay-list.ts ***!
+  \********************************************************/
+/*! exports provided: GlobalPayList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalPayList", function() { return GlobalPayList; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var GlobalPayList = /** @class */ (function () {
+    function GlobalPayList() {
+        this.data = {
+            client_id: null,
+            id_equipments: null,
+            pay_list: {
+                'date': null,
+                'user_id': null,
+                'sum': ''
+            }
+        };
+    }
+    GlobalPayList = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
+    ], GlobalPayList);
+    return GlobalPayList;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/pay_list/pay_list.component.html":
+/*!*************************************************************!*\
+  !*** ./src/app/components/pay_list/pay_list.component.html ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"data.data.client_id\" id=\"---modal-text\" class=\"---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center\">\n  <div class=\"---wrapper ---wrapper--small\">\n    <div (click)=\"clear()\" class=\"---js-close-modal ---js-close-modal-icon\"></div>\n    <div class=\"modal-body\">\n      {{data.data.client_id}}\n      <div class=\"---modal__footer-btns ---d-flex\">\n        <div class=\"---btn ---btn--fill-acent ---btn--sm\" (click)=\"clear()\">Добавить</div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/pay_list/pay_list.component.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/components/pay_list/pay_list.component.ts ***!
+  \***********************************************************/
+/*! exports provided: PayListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PayListComponent", function() { return PayListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _global_pay_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./global-pay-list */ "./src/app/components/pay_list/global-pay-list.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var PayListComponent = /** @class */ (function () {
+    function PayListComponent(globalPayList) {
+        this.globalPayList = globalPayList;
+        this.data = globalPayList;
+        console.log(1, this.data);
+    }
+    PayListComponent.prototype.ngOnInit = function () {
+    };
+    PayListComponent.prototype.clear = function () {
+        this.data.data.client_id = null;
+        this.data.data.id_equipments = null;
+        this.data.data.pay_list = {};
+    };
+    PayListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-pay-list',
+            template: __webpack_require__(/*! ./pay_list.component.html */ "./src/app/components/pay_list/pay_list.component.html"),
+            styles: [__webpack_require__(/*! ./pay_list.scss */ "./src/app/components/pay_list/pay_list.scss")]
+        }),
+        __metadata("design:paramtypes", [_global_pay_list__WEBPACK_IMPORTED_MODULE_1__["GlobalPayList"]])
+    ], PayListComponent);
+    return PayListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/pay_list/pay_list.scss":
+/*!***************************************************!*\
+  !*** ./src/app/components/pay_list/pay_list.scss ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -6947,8 +7122,8 @@ var HttpService = /** @class */ (function () {
             prBlock: data
         };
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
-        // return this.http.post('http://localhost:8001/' + api, request, {headers: headers})
-        return this.http.post('http://u68857.netangels.ru/' + api, request, { headers: headers })
+        return this.http.post('http://localhost:8001/' + api, request, { headers: headers })
+            // return this.http.post('http://u68857.netangels.ru/' + api, request, {headers: headers})
             // return this.http.post('http://artdekor-kzn.ru/' + api, request, {headers: headers})
             .pipe(Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(HttpService_1.handlerError));
     };

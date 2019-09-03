@@ -2,91 +2,92 @@
   <div class="---col-12 ---col-lg-6 ---form">
     <div class="---data-block">
       <div class="h2 ---font-600">Данные аренды</div>
-
-      <div class="---row">
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Филиал</label>
-          <div class="---select">
-            <select [(ngModel)]="application.branch.val" (change)="changeBranch()">
-              <option *ngFor="let branch of branches"
-                      [ngValue]="branch.val">
-                {{branch.name}}
-              </option>
-            </select>
+      <form action='' autocomplete='off'>
+        <div class="---row">
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Филиал</label>
+            <div class="---select">
+              <select name='sd' [(ngModel)]="application.branch.val" (change)="changeBranch()" autocomplete="off">
+                <option *ngFor="let branch of branches"
+                        [ngValue]="branch.val">
+                  {{branch.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Вид аренды</label>
+            <div class="---select">
+              <select [(ngModel)]="application.typeLease.val" (change)="changeTypeLease()" autocomplete="none">
+                <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
+                        [ngValue]="applicationsTypeLease.val">
+                  {{applicationsTypeLease.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Скидка на аренду</label>
+            <div class="---select">
+              <select [(ngModel)]="application.sale.val" (change)="changeSum()">
+                <option *ngFor="let discount of discounts"
+                        [ngValue]="discount.val">
+                  {{discount.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Доставка</label>
+            <div class="---select">
+              <select [(ngModel)]="application.delivery.val">
+                <option *ngFor="let delivery of applicationsDelivery"
+                        [ngValue]="delivery.val">
+                  {{delivery.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Статус</label>
+            <div class="---select">
+              <select [(ngModel)]="application.status.val">
+                <option *ngFor="let status of applicationsStatus"
+                        [ngValue]="status.val">
+                  {{status.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Источник</label>
+            <div class="---select">
+              <select [(ngModel)]="application.source.val">
+                <option *ngFor="let source of applicationsSource"
+                        [ngValue]="source.val">
+                  {{source.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Начало аренды</label>
+            <div class="---input ---input--calendar">
+              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_start.val">
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Окончание аренды</label>
+            <div class="---input ---input--calendar">
+              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_end.val">
+            </div>
+          </div>
+          <div class="---field ---col-12">
+            <label>Комментарий</label>
+            <textarea class="---input" [(ngModel)]="application.comment" rows="5"></textarea>
           </div>
         </div>
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Вид аренды</label>
-          <div class="---select">
-            <select [(ngModel)]="application.typeLease.val" (change)="changeTypeLease()">
-              <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
-                      [ngValue]="applicationsTypeLease.val">
-                {{applicationsTypeLease.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Скидка на аренду</label>
-          <div class="---select">
-            <select [(ngModel)]="application.sale.val" (change)="changeSum()">
-              <option *ngFor="let discount of discounts"
-                      [ngValue]="discount.val">
-                {{discount.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Доставка</label>
-          <div class="---select">
-            <select [(ngModel)]="application.delivery.val">
-              <option *ngFor="let delivery of applicationsDelivery"
-                      [ngValue]="delivery.val">
-                {{delivery.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Статус</label>
-          <div class="---select">
-            <select [(ngModel)]="application.status.val">
-              <option *ngFor="let status of applicationsStatus"
-                      [ngValue]="status.val">
-                {{status.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Источник</label>
-          <div class="---select">
-            <select [(ngModel)]="application.source.val">
-              <option *ngFor="let source of applicationsSource"
-                      [ngValue]="source.val">
-                {{source.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Начало аренды</label>
-          <div class="---input ---input--calendar">
-            <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_start.val">
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Окончание аренды</label>
-          <div class="---input ---input--calendar">
-            <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_end.val">
-          </div>
-        </div>
-        <div class="---field ---col-12">
-          <label>Комментарий</label>
-          <textarea class="---input" [(ngModel)]="application.comment" rows="5"></textarea>
-        </div>
-      </div>
+      </form>
     </div>
 
     <div class="---data-block">
@@ -210,14 +211,16 @@
 </div>
 
 
-<div *ngIf="showSearchClient.show" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+<div *ngIf="showSearchClient.show"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
   <div class="---wrapper">
 
     <div class="---js-close-modal ---js-close-modal-icon" (click)="showSearchClient.show=false"></div>
 
     <div class="---form">
       <div class="---field">
-        <input class="---input ---fill--bg" [(ngModel)]="showSearchClient.filter"(keyup)="searchClient(showSearchClient.filter)">
+        <input class="---input ---fill--bg" [(ngModel)]="showSearchClient.filter"
+               (keyup)="searchClient(showSearchClient.filter)">
       </div>
     </div>
 
@@ -228,14 +231,16 @@
   </div>
 </div>
 
-<div *ngIf="showAddEquipments.show" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+<div *ngIf="showAddEquipments.show"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
   <div class="---wrapper">
 
     <div class="---js-close-modal ---js-close-modal-icon" (click)="showAddEquipments.show=false"></div>
 
     <div class="---form">
       <div class="---field">
-        <input class="---input ---fill--bg" [(ngModel)]="showAddEquipments.filter"(keyup)="searchEquipments(showAddEquipments.filter)">
+        <input class="---input ---fill--bg" [(ngModel)]="showAddEquipments.filter"
+               (keyup)="searchEquipments(showAddEquipments.filter)">
       </div>
     </div>
 
@@ -247,7 +252,8 @@
 </div>
 
 
-<div *ngIf="globalParams.showModalCreateUser" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+<div *ngIf="globalParams.showModalCreateUser"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
   <div class="---wrapper">
 
     <div class="---js-close-modal ---js-close-modal-icon" (click)="globalParams.showModalCreateUser=false"></div>

@@ -6,6 +6,7 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
 import {ApplicationsService} from '../applications/applications.service';
+import {GlobalPayList} from '../pay_list/global-pay-list';
 
 @Component({
   selector: 'app-applications-info',
@@ -45,6 +46,11 @@ export class ApplicationsInfoComponent implements OnInit {
       photo: '',
       price: '',
       stock: null
+    },
+    pay_list: {
+      'date': null,
+      'user_id': null,
+      'sum': ''
     }
   };
 
@@ -55,6 +61,7 @@ export class ApplicationsInfoComponent implements OnInit {
               private globalParamsMessage: GlobalParamsMessage,
               private activatedRoute: ActivatedRoute,
               private applicationsService: ApplicationsService,
+              private globalPayList: GlobalPayList,
               private router: Router) {
 
     this.activatedRoute.params.subscribe(
@@ -159,7 +166,8 @@ export class ApplicationsInfoComponent implements OnInit {
       delivery_sum: this.application.delivery_sum,
       comment: this.application.comment,
       source: this.application.source.val,
-      branch: this.application.branch.val
+      branch: this.application.branch.val,
+      pay_list: this.application.branch.val
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно изменена', type: 'success', body: ''};
 
@@ -168,5 +176,13 @@ export class ApplicationsInfoComponent implements OnInit {
       (error) => {
         console.log('Ошибка при внесении изменений в заявку: ', error);
       });
+  }
+
+  open_pay_list() {
+    this.globalPayList.data = {
+      id_equipments: this.application.equipments.id,
+      client_id: this.application.client_id,
+      pay_list: this.application.pay_list
+    };
   }
 }

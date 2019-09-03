@@ -1,0 +1,11 @@
+<div *ngIf="data.data.client_id" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--small">
+    <div (click)="clear()" class="---js-close-modal ---js-close-modal-icon"></div>
+    <div class="modal-body">
+      {{data.data.client_id}}
+      <div class="---modal__footer-btns ---d-flex">
+        <div class="---btn ---btn--fill-acent ---btn--sm" (click)="clear()">Добавить</div>
+      </div>
+    </div>
+  </div>
+</div>

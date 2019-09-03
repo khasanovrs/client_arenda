@@ -22,4 +22,9 @@ interface InterFaceApplicationInfo {
     photo: string,
     price: string,
   };
+  pay_list: {
+    'date': string,
+    'user_id': number,
+    'sum': string
+  };
 }

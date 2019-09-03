@@ -25,21 +25,14 @@ export class ClientCreateComponent implements OnInit {
     source: null,
     name: '',
     inn: null,
-    occupation: '',
-    address: '',
-    ogrn: null,
-    bic: null,
     kpp: null,
-    schet: null,
     name_chief: '',
-    phone_chief: '',
-    phone: '',
+    fio: '',
+    phone_1: '',
     phone_2: '',
+    phone_3: '',
     email: '',
-    number_passport: '',
-    where_passport: '',
-    date_passport: '',
-    address_passport: '',
+    number_passport: ''
   };
 
   constructor(private clientCreateService: ClientCreateService,
@@ -66,6 +59,7 @@ export class ClientCreateComponent implements OnInit {
 
     this.dopParamsService.getDiscount().then((data: InterFaceDopParams[]) => {
         this.discounts = data;
+        this.newClient.sale = this.discounts[0].val;
       },
       (error) => {
         console.log('Ошибка при получении списка скидок: ', error);
@@ -95,7 +89,7 @@ export class ClientCreateComponent implements OnInit {
       return false;
     }
 
-    if (this.newClient.phone_chief === '' && this.newClient.phone === '' && this.newClient.phone_2 === '') {
+    if (this.newClient.phone_1 === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать хотя бы 1 номер телефона', type: 'error', body: ''};
       return false;
     }
@@ -107,17 +101,13 @@ export class ClientCreateComponent implements OnInit {
       source: this.newClient.source,
       name: this.newClient.name,
       inn: this.newClient.inn,
-      occupation: this.newClient.occupation,
-      address: this.newClient.address,
-      ogrn: this.newClient.ogrn,
-      bic: this.newClient.bic,
       kpp: this.newClient.kpp,
-      schet: this.newClient.schet,
       name_chief: this.newClient.name_chief,
+      fio: this.newClient.fio,
       email: this.newClient.email,
-      phone_chief: this.newClient.phone_chief.replace(/[\),\(,\-,+,\s]/g, ''),
-      phone: this.newClient.phone.replace(/[\),\(,\-,+,\s]/g, ''),
-      phone_2: this.newClient.phone_2.replace(/[\),\(,\-,+,\s]/g, '')
+      phone_1: this.newClient.phone_1.replace(/[\),\(,\-,+,\s]/g, ''),
+      phone_2: this.newClient.phone_2.replace(/[\),\(,\-,+,\s]/g, ''),
+      phone_3: this.newClient.phone_3.replace(/[\),\(,\-,+,\s]/g, '')
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Пользователь успешно добавлен', type: 'success', body: ''};
         this.globalParams.showModalCreateUser = false;

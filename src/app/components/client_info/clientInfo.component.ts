@@ -24,21 +24,14 @@ export class ClientInfoComponent implements OnInit {
     source: null,
     name: '',
     inn: null,
-    occupation: '',
-    address: '',
-    ogrn: null,
-    bic: null,
     kpp: null,
-    schet: null,
     name_chief: '',
-    phone_chief: '',
-    phone: '',
+    fio: '',
+    phone_1: '',
     phone_2: '',
+    phone_3: '',
     email: '',
-    number_passport: '',
-    where_passport: '',
-    date_passport: '',
-    address_passport: ''
+    number_passport: ''
   };
 
   // идентификатор клиента
@@ -109,7 +102,7 @@ export class ClientInfoComponent implements OnInit {
       return false;
     }
 
-    if (this.client.phone_chief === '' && this.client.phone === '' && this.client.phone_2 === '') {
+    if (this.client.phone_1 === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать хотя бы 1 номер телефона', type: 'error', body: ''};
       return false;
     }
@@ -121,16 +114,12 @@ export class ClientInfoComponent implements OnInit {
       source: this.client.source,
       name: this.client.name,
       inn: this.client.inn,
-      occupation: this.client.occupation,
-      address: this.client.address,
-      ogrn: this.client.ogrn,
-      bic: this.client.bic,
       kpp: this.client.kpp,
-      schet: this.client.schet,
       name_chief: this.client.name_chief,
-      phone_chief: this.client.phone_chief.replace(/[\),\(,\-,+,\s]/g, ''),
-      phone: this.client.phone.replace(/[\),\(,\-,+,\s]/g, ''),
+      fio: this.client.fio,
+      phone_1: this.client.phone_1.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_2: this.client.phone_2.replace(/[\),\(,\-,+,\s]/g, ''),
+      phone_3: this.client.phone_3.replace(/[\),\(,\-,+,\s]/g, ''),
       clientId: this.clientId,
       email: this.client.email
     }).then(() => {

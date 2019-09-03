@@ -56,6 +56,8 @@ import {FinanceInfoComponent} from './components/finance_info/financeInfo.compon
 import {HireComponent} from './components/hire/hire.component';
 import {HireService} from './components/hire/hire.service';
 import {HireInfoComponent} from './components/hire-info/hireInfo.component';
+import {GlobalPayList} from './components/pay_list/global-pay-list';
+import {PayListComponent} from './components/pay_list/pay_list.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -66,6 +68,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     AppComponent,
     MainComponent,
     MessageAlertComponent,
+    PayListComponent,
     MenuComponent,
     HeaderComponent,
     ClientComponent,
@@ -104,6 +107,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MainService,
     HttpService,
     GlobalParamsMessage,
+    GlobalPayList,
     GlobalParams,
     SessionStorageService,
     ClientService,

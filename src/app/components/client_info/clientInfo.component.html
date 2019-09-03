@@ -54,50 +54,28 @@
 
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
-          <label>Название компании</label>
-          <input class="---input ---shadow--bg" [(ngModel)]="client.name">
+          <label>Название компании (юр.лицо)</label>
+          <input class="---input ---fill--bg" [(ngModel)]="client.name">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Представитель (юр.лицо)</label>
+          <input class="---input ---fill--bg" [(ngModel)]="client.name_chief">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>ФИО (физ.лицо)</label>
+          <input class="---input ---fill--bg" [(ngModel)]="client.fio">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Инн</label>
-          <input class="---input ---shadow--bg" [(ngModel)]="client.inn">
+          <input class="---input ---fill--bg" [(ngModel)]="client.inn">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
-          <label>Род деятельности</label>
-          <input class="---input ---shadow--bg" [(ngModel)]="client.occupation">
+          <label>КПП</label>
+          <input class="---input ---fill--bg" [(ngModel)]="client.kpp">
         </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Адрес регистрации</label>
-          <input class="---input ---shadow--bg" [(ngModel)]="client.address">
-        </div>
-
-        <div class="---col-12 ---col-sm-6">
-          <div class="---row ---_sm">
-
-            <div class="---field col ---col-12 ---col-sm-6">
-              <label>ОГРН</label>
-              <input class="---input ---shadow--bg" [(ngModel)]="client.ogrn">
-            </div>
-            <div class="---field col ---col-12 ---col-sm-6">
-              <label>БИК</label>
-              <input class="---input ---shadow--bg" [(ngModel)]="client.bic">
-            </div>
-
-          </div>
-        </div>
-
-        <div class="---col-12 ---col-sm-6">
-          <div class="---row ---_sm">
-
-            <div class="---field col ---col-12 ---col-sm-6">
-              <label>КПП</label>
-              <input class="---input ---shadow--bg" [(ngModel)]="client.kpp">
-            </div>
-            <div class="---field col ---col-12 ---col-sm-6">
-              <label>Р/С</label>
-              <input class="---input ---shadow--bg" [(ngModel)]="client.schet">
-            </div>
-
-          </div>
+        <div class="---field col ---col-12 ---col-sm-6">
+          <label>Серия номер паспорта</label>
+          <input class="---input ---fill--bg" [(ngModel)]="client.number_passport">
         </div>
       </div>
     </div>
@@ -107,24 +85,21 @@
 
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
-          <label>Руководитель компании</label>
-          <input class="---input ---shadow--bg" [(ngModel)]="client.name_chief">
+          <label>Номер телефона 1</label>
+          <input type="tel" class="---input ---fill--bg" [(ngModel)]="client.phone_1">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
-          <label>Номер телефона руководителя</label>
-          <input type="text" mask="+0 (000) 000 00 00" class="---input ---shadow--bg" [(ngModel)]="client.phone_chief">
+          <label>Номер телефона 2</label>
+          <input type="tel" class="---input ---fill--bg" [(ngModel)]="client.phone_2">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
-          <label>Номер телефона ответственного</label>
-          <input type="text" mask="+0 (000) 000 00 00" class="---input ---shadow--bg" [(ngModel)]="client.phone">
+          <label>Номер телефона 3</label>
+          <input type="tel" class="---input ---fill--bg" [(ngModel)]="client.phone_3">
         </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Номер телефона ответственного</label>
-          <input type="text" mask="+0 (000) 000 00 00" class="---input ---shadow--bg" [(ngModel)]="client.phone_2">
-        </div>
+
         <div class="---field ---col-12 ---col-sm-6">
           <label>E-mail</label>
-          <input [(ngModel)]="client.email" class="---input ---shadow--bg">
+          <input [(ngModel)]="client.email" class="---input ---fill--bg">
         </div>
       </div>
     </div>
