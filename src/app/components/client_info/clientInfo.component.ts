@@ -3,6 +3,7 @@ import {ClientInfoService} from './clientInfo.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ClientCreateService} from '../client_create/clientCreate.service';
 
 @Component({
   selector: 'app-client-info',
@@ -39,6 +40,7 @@ export class ClientInfoComponent implements OnInit {
 
   constructor(private clientInfoService: ClientInfoService,
               private dopParamsService: DopParamsService,
+              private clientCreateService: ClientCreateService,
               private globalParamsMessage: GlobalParamsMessage,
               private router: ActivatedRoute) {
 
@@ -107,7 +109,7 @@ export class ClientInfoComponent implements OnInit {
       return false;
     }
 
-    this.clientInfoService.updateClientInfo({
+    this.clientCreateService.addClient({
       sale: this.client.sale,
       branch: this.client.branch,
       status: this.client.status,
@@ -117,16 +119,16 @@ export class ClientInfoComponent implements OnInit {
       kpp: this.client.kpp,
       name_chief: this.client.name_chief,
       fio: this.client.fio,
+      email: this.client.email,
+      clientId: this.clientId,
       phone_1: this.client.phone_1.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_2: this.client.phone_2.replace(/[\),\(,\-,+,\s]/g, ''),
-      phone_3: this.client.phone_3.replace(/[\),\(,\-,+,\s]/g, ''),
-      clientId: this.clientId,
-      email: this.client.email
+      phone_3: this.client.phone_3.replace(/[\),\(,\-,+,\s]/g, '')
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Пользователь успешно изменен', type: 'success', body: ''};
       },
       (error) => {
-        console.log('Ошибка при добавлении нового пользователей: ', error);
+        console.log('Ошибка при изменении пользователей: ', error);
       });
   }
 }

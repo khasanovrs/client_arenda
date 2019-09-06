@@ -55,15 +55,15 @@
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
           <label>Название компании (юр.лицо)</label>
-          <input class="---input ---fill--bg" [(ngModel)]="newClient.name">
+          <input class="---input ---fill--bg" [(ngModel)]="newClient.name" [disabled]="newClient.fio!=''">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Представитель (юр.лицо)</label>
-          <input class="---input ---fill--bg" [(ngModel)]="newClient.name_chief">
+          <input class="---input ---fill--bg" [(ngModel)]="newClient.name_chief" [disabled]="newClient.fio!=''">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>ФИО (физ.лицо)</label>
-          <input class="---input ---fill--bg" [(ngModel)]="newClient.fio">
+          <input class="---input ---fill--bg" [disabled]="newClient.name!='' || newClient.name_chief !=''" [(ngModel)]="newClient.fio">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Инн</label>
@@ -86,15 +86,15 @@
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
           <label>Номер телефона 1</label>
-          <input type="tel" class="---input ---fill--bg" [(ngModel)]="newClient.phone_1">
+          <input type="tel" mask="+0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="newClient.phone_1">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Номер телефона 2</label>
-          <input type="tel" class="---input ---fill--bg" [(ngModel)]="newClient.phone_2">
+          <input type="tel" mask="+0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="newClient.phone_2">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Номер телефона 3</label>
-          <input type="tel" class="---input ---fill--bg" [(ngModel)]="newClient.phone_3">
+          <input type="tel" mask="+0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="newClient.phone_3">
         </div>
 
         <div class="---field ---col-12 ---col-sm-6">

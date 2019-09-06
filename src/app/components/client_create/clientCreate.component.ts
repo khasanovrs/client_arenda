@@ -105,6 +105,7 @@ export class ClientCreateComponent implements OnInit {
       name_chief: this.newClient.name_chief,
       fio: this.newClient.fio,
       email: this.newClient.email,
+      clientId: '',
       phone_1: this.newClient.phone_1.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_2: this.newClient.phone_2.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_3: this.newClient.phone_3.replace(/[\),\(,\-,+,\s]/g, '')

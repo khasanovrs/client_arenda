@@ -55,15 +55,15 @@
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
           <label>Название компании (юр.лицо)</label>
-          <input class="---input ---fill--bg" [(ngModel)]="client.name">
+          <input class="---input ---fill--bg" [(ngModel)]="client.name" [disabled]="client.fio!=''">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Представитель (юр.лицо)</label>
-          <input class="---input ---fill--bg" [(ngModel)]="client.name_chief">
+          <input class="---input ---fill--bg" [(ngModel)]="client.name_chief" [disabled]="client.fio!=''">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>ФИО (физ.лицо)</label>
-          <input class="---input ---fill--bg" [(ngModel)]="client.fio">
+          <input class="---input ---fill--bg" [disabled]="client.name!='' || client.name_chief !=''" [(ngModel)]="client.fio">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Инн</label>
@@ -86,15 +86,15 @@
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6">
           <label>Номер телефона 1</label>
-          <input type="tel" class="---input ---fill--bg" [(ngModel)]="client.phone_1">
+          <input type="tel" mask="+0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="client.phone_1">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Номер телефона 2</label>
-          <input type="tel" class="---input ---fill--bg" [(ngModel)]="client.phone_2">
+          <input type="tel" mask="+0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="client.phone_2">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Номер телефона 3</label>
-          <input type="tel" class="---input ---fill--bg" [(ngModel)]="client.phone_3">
+          <input type="tel" mask="+0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="client.phone_3">
         </div>
 
         <div class="---field ---col-12 ---col-sm-6">
