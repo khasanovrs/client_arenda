@@ -193,7 +193,7 @@
 
       <div class="---devider"></div>
 
-      <a href="#" class="---btn ---btn--fill-acent">Добавить платеж</a>
+      <div (click)="showInsertSum()" *ngIf="application.equipments.length!=0" class="---btn ---btn--fill-acent">Добавить платеж</div>
 
     </div>
 

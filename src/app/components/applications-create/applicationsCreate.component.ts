@@ -7,6 +7,7 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {Router} from '@angular/router';
 import {GlobalParams} from '../../storage/global-params';
 import {ApplicationsService} from '../applications/applications.service';
+import {GlobalParamsPay} from '../pay/global-params-pay';
 
 @Component({
   selector: 'app-applications-create',
@@ -65,7 +66,8 @@ export class ApplicationsCreateComponent implements OnInit {
               private clientService: ClientService,
               private globalParamsMessage: GlobalParamsMessage,
               public globalParams: GlobalParams,
-              private router: Router) {
+              private router: Router,
+              private globalParamsPay: GlobalParamsPay) {
   }
 
   ngOnInit() {
@@ -205,6 +207,10 @@ export class ApplicationsCreateComponent implements OnInit {
     this.changeSum();
   }
 
+  showInsertSum() {
+    this.globalParamsPay.data = {show: true, sum: ''};
+  }
+
   // заполнение данными из справочника
   insertClientData(index) {
     this.application.client_id = this.showSearchClient.clients[index].client_id;
@@ -282,7 +288,7 @@ export class ApplicationsCreateComponent implements OnInit {
       client_where_passport: this.application.client_where_passport.val,
       client_date_passport: this.application.client_date_passport.val,
       client_address_passport: this.application.client_address_passport.val,
-      sum: this.application.sum,
+      sum:  this.globalParamsPay.data.sum,
       delivery_sum: this.application.delivery_sum,
       comment: this.application.comment,
       source: this.application.source.val,
