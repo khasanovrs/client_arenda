@@ -1,3 +1,13 @@
+<div class="---tabs ---tabs--finance">
+  <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
+    <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
+      <div class="---tabs__switcher" [ngClass]="{'---is-active':status.val==application.status.val}"
+           *ngFor="let status of applicationsStatus"
+           (click)="changeStatusApplications(status.val)">{{status.name}}
+      </div>
+    </div>
+  </div>
+</div>
 <div class="---page-rent-in ---row">
   <div class="---col-12 ---col-lg-6 ---form">
     <div class="---data-block">
@@ -18,7 +28,8 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Вид аренды</label>
             <div class="---select">
-              <select [(ngModel)]="application.typeLease.val" (change)="changeTypeLease()" autocomplete="none">
+              <select [(ngModel)]="application.typeLease.val" (change)="changeTypeLease()" autocomplete="none"
+                      [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
                         [ngValue]="applicationsTypeLease.val">
                   {{applicationsTypeLease.name}}
@@ -29,7 +40,7 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Скидка на аренду</label>
             <div class="---select">
-              <select [(ngModel)]="application.sale.val" (change)="changeSum()">
+              <select [(ngModel)]="application.sale.val" (change)="changeSum()" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let discount of discounts"
                         [ngValue]="discount.val">
                   {{discount.name}}
@@ -40,7 +51,7 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Доставка</label>
             <div class="---select">
-              <select [(ngModel)]="application.delivery.val">
+              <select [(ngModel)]="application.delivery.val" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let delivery of applicationsDelivery"
                         [ngValue]="delivery.val">
                   {{delivery.name}}
@@ -49,20 +60,9 @@
             </div>
           </div>
           <div class="---field ---col-12 ---col-xs-6">
-            <label>Статус</label>
-            <div class="---select">
-              <select [(ngModel)]="application.status.val">
-                <option *ngFor="let status of applicationsStatus"
-                        [ngValue]="status.val">
-                  {{status.name}}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="---field ---col-12 ---col-xs-6">
             <label>Источник</label>
             <div class="---select">
-              <select [(ngModel)]="application.source.val">
+              <select [(ngModel)]="application.source.val" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let source of applicationsSource"
                         [ngValue]="source.val">
                   {{source.name}}
@@ -73,18 +73,23 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Начало аренды</label>
             <div class="---input ---input--calendar">
-              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_start.val">
+              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_start.val"
+                     [disabled]="application.status.val===1"
+                     [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="---field ---col-12 ---col-xs-6">
             <label>Окончание аренды</label>
             <div class="---input ---input--calendar">
-              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_end.val">
+              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_end.val"
+                     disabled
+                     [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="---field ---col-12">
             <label>Комментарий</label>
-            <textarea class="---input" [(ngModel)]="application.comment" rows="5"></textarea>
+            <textarea class="---input" [(ngModel)]="application.comment" rows="5"
+                      [ngModelOptions]="{standalone: true}"></textarea>
           </div>
         </div>
       </form>
@@ -128,20 +133,6 @@
         <div class="---field ---col-12 ---col-xs-6">
           <label>Номер и серия паспорта</label>
           <input class="---input" [(ngModel)]="application.client_number_passport.val">
-        </div>
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Паспорт выдан</label>
-          <input class="---input" [(ngModel)]="application.client_where_passport.val">
-        </div>
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Дата выдачи паспорта</label>
-          <div class="---input ---input--calendar">
-            <input type="date" [(ngModel)]="application.client_date_passport.val">
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6">
-          <label>Адрес прописки</label>
-          <input class="---input" [(ngModel)]="application.client_address_passport.val">
         </div>
       </div>
     </div>

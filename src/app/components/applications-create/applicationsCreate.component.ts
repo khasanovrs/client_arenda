@@ -71,6 +71,7 @@ export class ApplicationsCreateComponent implements OnInit {
   ngOnInit() {
     this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
         this.applicationsStatus = data;
+        this.application.status.val = this.applicationsStatus[0].val;
       },
       (error) => {
         console.log('Ошибка при получении статусов: ', error);
@@ -118,13 +119,6 @@ export class ApplicationsCreateComponent implements OnInit {
         console.log('Ошибка при получении филиалов: ', error);
       });
 
-    this.clientService.searchAllClient({branch: this.application.branch.val}).then((data: InterFaceSearchClient[]) => {
-        this.showSearchClient.clients = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка клиентов: ', error);
-      });
-
     const today = new Date();
     this.application.rent_start.val = today.toISOString().substring(0, 10);
   }
@@ -136,6 +130,17 @@ export class ApplicationsCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении списка оборудования: ', error);
       });
+
+    this.clientService.searchAllClientBranch({branch: this.application.branch.val}).then((data: InterFaceSearchClient[]) => {
+        this.showSearchClient.clients = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка клиентов: ', error);
+      });
+  }
+
+  changeStatusApplications(val) {
+    this.application.status = val;
   }
 
   changeTypeLease() {
