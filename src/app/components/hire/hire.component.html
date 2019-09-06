@@ -3,7 +3,6 @@
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
       <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
-        <div class="---tabs__switcher ---d-flex ---align-items-center ---is-active" (click)="changeFilterStatus('')">Все</div>
         <div class="---tabs__switcher ---d-flex ---align-items-center" data-tab="2" *ngFor="let status of statusList" (click)="changeFilterStatus(status.val)">{{status.name}}</div>
       </div>
     </div>
@@ -115,6 +114,7 @@
             <td *ngIf="activeFieldsTables['equipment']===1">{{hire.equipments}}</td>
             <td *ngIf="activeFieldsTables['start_hire']===1">{{hire.start_hire}}</td>
             <td *ngIf="activeFieldsTables['end_hire']===1">{{hire.end_hire}}</td>
+            <td *ngIf="activeFieldsTables['state']===1">{{hire.state}}</td>
             <td *ngIf="activeFieldsTables['status']===1">
               <div class="---select">
                 <select

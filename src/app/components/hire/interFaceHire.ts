@@ -5,6 +5,7 @@ interface InterFaceHire {
   start_hire: string;
   end_hire: string;
   status: number;
+  state: number;
   sum: string;
   sale_sum: string;
   total_paid: string;

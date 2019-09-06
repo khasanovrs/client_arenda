@@ -6,6 +6,7 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
 export class HireService {
   hireFieldsList: InterFaceActiveFields[] = [];
   hireStatusList: InterFaceDopParams[] = [];
+  hireStateList: InterFaceDopParams[] = [];
 
   constructor(private httpService: HttpService,
               private globalParamsMessage: GlobalParamsMessage) {
