@@ -11,16 +11,12 @@ export class PayListComponent implements OnInit {
 
   constructor(private globalPayList: GlobalPayList) {
     this.data = globalPayList;
-
-    console.log(1,this.data);
   }
 
   ngOnInit() {
   }
 
   clear() {
-    this.data.data.client_id = null;
-    this.data.data.id_equipments = null;
-    this.data.data.pay_list = {};
+    this.data.data = {show: false, pay_list: {}};
   }
 }

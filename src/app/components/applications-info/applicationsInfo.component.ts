@@ -7,6 +7,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
 import {ApplicationsService} from '../applications/applications.service';
 import {GlobalPayList} from '../pay_list/global-pay-list';
+import {GlobalParamsPay} from '../pay/global-params-pay';
 
 @Component({
   selector: 'app-applications-info',
@@ -62,7 +63,8 @@ export class ApplicationsInfoComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private applicationsService: ApplicationsService,
               private globalPayList: GlobalPayList,
-              private router: Router) {
+              private router: Router,
+              private globalParamsPay: GlobalParamsPay) {
 
     this.activatedRoute.params.subscribe(
       (params: Params): void => {
@@ -138,51 +140,22 @@ export class ApplicationsInfoComponent implements OnInit {
         this.application.delivery_sum = data.delivery_sum;
         this.application.equipments = data.equipments;
         this.application.sum = data.sum;
+        this.application.pay_list = data.pay_list;
       },
       (error) => {
         console.log('Ошибка при получении детальной информации по клиенту: ', error);
       });
   }
 
-  updateApplication() {
-    for (const value in this.application) {
-      if (this.application.hasOwnProperty(value)) {
-        if (this.application[value].required && this.application[value].val === '') {
-          this.globalParamsMessage.data = {title: `Необходимо заполнить поле "${this.application[value].name}"`, type: 'error', body: ''};
-          return false;
-        }
-      }
-    }
-
-    this.applicationsCreateService.addApplication({
-      client_id: this.application.client_id,
-      equipments: this.application.equipments,
-      typeLease: this.application.typeLease.val,
-      sale: this.application.sale.val,
-      rent_start: this.application.rent_start.val,
-      rent_end: this.application.rent_end.val,
-      delivery: this.application.delivery.val,
-      sum: this.application.sum,
-      delivery_sum: this.application.delivery_sum,
-      comment: this.application.comment,
-      source: this.application.source.val,
-      branch: this.application.branch.val,
-      pay_list: this.application.branch.val
-    }).then(() => {
-        this.globalParamsMessage.data = {title: 'Заявка успешно изменена', type: 'success', body: ''};
-
-        this.router.navigate(['/application']);
-      },
-      (error) => {
-        console.log('Ошибка при внесении изменений в заявку: ', error);
-      });
+  showInsertSum() {
+    this.globalParamsPay.data = {show: true, sum: '', eq_id: this.application.equipments.id};
   }
 
   open_pay_list() {
     this.globalPayList.data = {
-      id_equipments: this.application.equipments.id,
-      client_id: this.application.client_id,
+      show: true,
       pay_list: this.application.pay_list
-    };
+    }
+    ;
   }
 }

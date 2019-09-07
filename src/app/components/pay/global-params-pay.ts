@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 export class GlobalParamsPay {
   data = {
     show: false,
-    sum: ''
+    sum: '',
+    eq_id: null
   };
 }

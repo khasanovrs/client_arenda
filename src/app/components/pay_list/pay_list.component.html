@@ -1,11 +1,19 @@
-<div *ngIf="data.data.client_id" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+<div *ngIf="data.data.show===true" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
   <div class="---wrapper ---wrapper--small">
     <div (click)="clear()" class="---js-close-modal ---js-close-modal-icon"></div>
     <div class="modal-body">
-      {{data.data.client_id}}
-      <div class="---modal__footer-btns ---d-flex">
-        <div class="---btn ---btn--fill-acent ---btn--sm" (click)="clear()">Добавить</div>
-      </div>
+      <table>
+        <tr>
+          <td>Дата</td>
+          <td>Сумма</td>
+          <td>Менеджер</td>
+        </tr>
+        <tr *ngFor="let pay of data.data.pay_list">
+          <td>{{pay.date}}</td>
+          <td>{{pay.sum}}</td>
+          <td>{{pay.user_id}}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
