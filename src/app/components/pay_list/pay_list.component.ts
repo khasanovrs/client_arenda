@@ -7,9 +7,19 @@ import {GlobalPayList} from './global-pay-list';
   styleUrls: ['./pay_list.scss']
 })
 export class PayListComponent implements OnInit {
-  data: any;
+  data: any = {
+    data: {
+      show: false,
+      pay_list: {
+        'date': '',
+        'user_id': null,
+        'sum': ''
+      }
+    }
+  };
 
   constructor(private globalPayList: GlobalPayList) {
+    console.log(1, globalPayList);
     this.data = globalPayList;
   }
 

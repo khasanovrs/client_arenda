@@ -684,7 +684,7 @@ var ApplicationsCreateComponent = /** @class */ (function () {
         this.changeSum();
     };
     ApplicationsCreateComponent.prototype.showInsertSum = function () {
-        this.globalParamsPay.data = { show: true, sum: '' };
+        this.globalParamsPay.data = { show: true, sum: '', eq_id: null };
     };
     // заполнение данными из справочника
     ApplicationsCreateComponent.prototype.insertClientData = function (index) {
@@ -947,7 +947,7 @@ var ApplicationsCreateService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"---page-rent-in ---row\">\n  <div class=\"---col-12 ---col-lg-6 ---form\">\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600\">Данные аренды</div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12\">\n          <div (click)=\"open_pay_list()\" class=\"---btn ---btn--fill-acent\">Платежи</div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Филиал</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.branch.val\">\n              <option *ngFor=\"let branch of branches\"\n                      [ngValue]=\"branch.val\">\n                {{branch.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Вид аренды</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.typeLease.val\">\n              <option *ngFor=\"let applicationsTypeLease of applicationsTypeLeases\"\n                      [ngValue]=\"applicationsTypeLease.val\">\n                {{applicationsTypeLease.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Скидка на аренду</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.sale.val\">\n              <option *ngFor=\"let discount of discounts\" [ngValue]=\"discount.val\">\n                {{discount.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Доставка</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.delivery.val\">\n              <option *ngFor=\"let delivery of applicationsDelivery\"\n                      [ngValue]=\"delivery.val\">\n                {{delivery.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Источник</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.source.val\">\n              <option *ngFor=\"let source of applicationsSource\"\n                      [ngValue]=\"source.val\">\n                {{source.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Начало аренды</label>\n          <div class=\"---input ---input--calendar\">\n              <input type=\"date\" [(ngModel)]=\"application.rent_start.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Окончание аренды</label>\n          <div class=\"---input ---input--calendar\">\n            <input type=\"date\" [(ngModel)]=\"application.rent_end.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12\">\n          <label>Комментарий</label>\n          <textarea class=\"---input\" [(ngModel)]=\"application.comment\"></textarea>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between\">\n        Данные арендатора\n      </div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12 ---col-sm-6\">\n          <label>ФИО клиента</label>\n          <div class=\"---font-600\">{{application.client_fio}}</div>\n        </div>\n\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Номер телефона</label>\n          <div class=\"---font-600\">{{application.client_phone | telephoneNumber}}</div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-12 ---col-lg-6\">\n\n    <div class=\"---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form\">\n      <div class=\"h2 ---font-600\">Запрашиваемое оборудование</div>\n      <div class=\"---devider ---devider-mt0\"></div>\n\n      <div class=\"---prod-list\">\n        <div class=\"---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between\">\n                        <span class=\"---prod-item__info ---d-inline-flex ---align-items-center\">\n                            <span\n                              class=\"---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center\">\n                                <img src=\"http://u68857.netangels.ru/{{application.equipments.photo}}\" alt=\"\"\n                                     class=\"---lazyload ---img-contain\">\n                            </span>\n                            <span class=\"---prod-item__title ---font-600\">{{application.equipments.name}}</span>\n                        </span>\n\n          <span class=\"---prod-item__thumb ---d-inline-flex\">\n                            <span class=\"---thumb-item\">\n                                Количество<br>\n                                <span class=\"---font-600\">{{application.equipments.count}}</span>\n                            </span>\n                        </span>\n        </div>\n      </div>\n\n\n      <div class=\"---total-price ---font-600 h2\">\n        <div class=\"---delivery ---font-300\">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>\n        Итого: {{application.sum | digitsNumbers}} ₽\n      </div>\n\n    </div>\n\n  </div>\n</div>\n"
+module.exports = "<div class=\"---page-rent-in ---row\">\n  <div class=\"---col-12 ---col-lg-6 ---form\">\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600\">Данные аренды</div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12\">\n          <div (click)=\"open_pay_list()\" class=\"---btn ---btn--fill-acent\">Платежи</div>\n<br>\n          <div (click)=\"showInsertSum()\" class=\"---btn ---btn--fill-acent\">Добавить платеж</div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Филиал</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.branch.val\">\n              <option *ngFor=\"let branch of branches\"\n                      [ngValue]=\"branch.val\">\n                {{branch.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Вид аренды</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.typeLease.val\">\n              <option *ngFor=\"let applicationsTypeLease of applicationsTypeLeases\"\n                      [ngValue]=\"applicationsTypeLease.val\">\n                {{applicationsTypeLease.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Скидка на аренду</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.sale.val\">\n              <option *ngFor=\"let discount of discounts\" [ngValue]=\"discount.val\">\n                {{discount.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Доставка</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.delivery.val\">\n              <option *ngFor=\"let delivery of applicationsDelivery\"\n                      [ngValue]=\"delivery.val\">\n                {{delivery.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Источник</label>\n          <div class=\"---select\">\n            <select [(ngModel)]=\"application.source.val\">\n              <option *ngFor=\"let source of applicationsSource\"\n                      [ngValue]=\"source.val\">\n                {{source.name}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Начало аренды</label>\n          <div class=\"---input ---input--calendar\">\n              <input type=\"date\" [(ngModel)]=\"application.rent_start.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Окончание аренды</label>\n          <div class=\"---input ---input--calendar\">\n            <input type=\"date\" [(ngModel)]=\"application.rent_end.val\">\n          </div>\n        </div>\n        <div class=\"---field ---col-12\">\n          <label>Комментарий</label>\n          <textarea class=\"---input\" [(ngModel)]=\"application.comment\"></textarea>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"---data-block\">\n      <div class=\"h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between\">\n        Данные арендатора\n      </div>\n\n      <div class=\"---row\">\n        <div class=\"---field ---col-12 ---col-sm-6\">\n          <label>ФИО клиента</label>\n          <div class=\"---font-600\">{{application.client_fio}}</div>\n        </div>\n\n        <div class=\"---field ---col-12 ---col-xs-6\">\n          <label>Номер телефона</label>\n          <div class=\"---font-600\">{{application.client_phone | telephoneNumber}}</div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"---col-12 ---col-lg-6\">\n\n    <div class=\"---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form\">\n      <div class=\"h2 ---font-600\">Запрашиваемое оборудование</div>\n      <div class=\"---devider ---devider-mt0\"></div>\n\n      <div class=\"---prod-list\">\n        <div class=\"---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between\">\n                        <span class=\"---prod-item__info ---d-inline-flex ---align-items-center\">\n                            <span\n                              class=\"---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center\">\n                                <img src=\"http://u68857.netangels.ru/{{application.equipments.photo}}\" alt=\"\"\n                                     class=\"---lazyload ---img-contain\">\n                            </span>\n                            <span class=\"---prod-item__title ---font-600\">{{application.equipments.name}}</span>\n                        </span>\n\n          <span class=\"---prod-item__thumb ---d-inline-flex\">\n                            <span class=\"---thumb-item\">\n                                Количество<br>\n                                <span class=\"---font-600\">{{application.equipments.count}}</span>\n                            </span>\n                        </span>\n        </div>\n      </div>\n\n\n      <div class=\"---total-price ---font-600 h2\">\n        <div class=\"---delivery ---font-300\">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>\n        Итого: {{application.sum | digitsNumbers}} ₽\n      </div>\n\n    </div>\n\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -970,6 +970,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _applications_create_applicationsCreate_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../applications-create/applicationsCreate.service */ "./src/app/components/applications-create/applicationsCreate.service.ts");
 /* harmony import */ var _applications_applications_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../applications/applications.service */ "./src/app/components/applications/applications.service.ts");
 /* harmony import */ var _pay_list_global_pay_list__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pay_list/global-pay-list */ "./src/app/components/pay_list/global-pay-list.ts");
+/* harmony import */ var _pay_global_params_pay__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pay/global-params-pay */ "./src/app/components/pay/global-params-pay.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -988,8 +989,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var ApplicationsInfoComponent = /** @class */ (function () {
-    function ApplicationsInfoComponent(applicationsCreateService, dopParamsService, equipmentsService, clientService, globalParamsMessage, activatedRoute, applicationsService, globalPayList, router) {
+    function ApplicationsInfoComponent(applicationsCreateService, dopParamsService, equipmentsService, clientService, globalParamsMessage, activatedRoute, applicationsService, globalPayList, router, globalParamsPay) {
         var _this = this;
         this.applicationsCreateService = applicationsCreateService;
         this.dopParamsService = dopParamsService;
@@ -1000,6 +1002,7 @@ var ApplicationsInfoComponent = /** @class */ (function () {
         this.applicationsService = applicationsService;
         this.globalPayList = globalPayList;
         this.router = router;
+        this.globalParamsPay = globalParamsPay;
         this.applicationsStatus = [];
         this.applicationsSource = [];
         this.applicationsDelivery = [];
@@ -1095,45 +1098,17 @@ var ApplicationsInfoComponent = /** @class */ (function () {
             _this.application.delivery_sum = data.delivery_sum;
             _this.application.equipments = data.equipments;
             _this.application.sum = data.sum;
+            _this.application.pay_list = data.pay_list;
         }, function (error) {
             console.log('Ошибка при получении детальной информации по клиенту: ', error);
         });
     };
-    ApplicationsInfoComponent.prototype.updateApplication = function () {
-        var _this = this;
-        for (var value in this.application) {
-            if (this.application.hasOwnProperty(value)) {
-                if (this.application[value].required && this.application[value].val === '') {
-                    this.globalParamsMessage.data = { title: "\u041D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u0437\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u044C \u043F\u043E\u043B\u0435 \"" + this.application[value].name + "\"", type: 'error', body: '' };
-                    return false;
-                }
-            }
-        }
-        this.applicationsCreateService.addApplication({
-            client_id: this.application.client_id,
-            equipments: this.application.equipments,
-            typeLease: this.application.typeLease.val,
-            sale: this.application.sale.val,
-            rent_start: this.application.rent_start.val,
-            rent_end: this.application.rent_end.val,
-            delivery: this.application.delivery.val,
-            sum: this.application.sum,
-            delivery_sum: this.application.delivery_sum,
-            comment: this.application.comment,
-            source: this.application.source.val,
-            branch: this.application.branch.val,
-            pay_list: this.application.branch.val
-        }).then(function () {
-            _this.globalParamsMessage.data = { title: 'Заявка успешно изменена', type: 'success', body: '' };
-            _this.router.navigate(['/application']);
-        }, function (error) {
-            console.log('Ошибка при внесении изменений в заявку: ', error);
-        });
+    ApplicationsInfoComponent.prototype.showInsertSum = function () {
+        this.globalParamsPay.data = { show: true, sum: '', eq_id: this.application.equipments.id };
     };
     ApplicationsInfoComponent.prototype.open_pay_list = function () {
         this.globalPayList.data = {
-            id_equipments: this.application.equipments.id,
-            client_id: this.application.client_id,
+            show: true,
             pay_list: this.application.pay_list
         };
     };
@@ -1150,7 +1125,8 @@ var ApplicationsInfoComponent = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"],
             _applications_applications_service__WEBPACK_IMPORTED_MODULE_7__["ApplicationsService"],
             _pay_list_global_pay_list__WEBPACK_IMPORTED_MODULE_8__["GlobalPayList"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _pay_global_params_pay__WEBPACK_IMPORTED_MODULE_9__["GlobalParamsPay"]])
     ], ApplicationsInfoComponent);
     return ApplicationsInfoComponent;
 }());
@@ -1449,6 +1425,19 @@ var ApplicationsService = /** @class */ (function () {
                 resolve(result);
             }, function (error) {
                 console.log('Ошибка при изменении статуса заявки', error);
+                reject();
+            });
+        });
+    };
+    // добавление платежа
+    ApplicationsService.prototype.addPay = function (data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.httpService.prepareQuery('api/add-pay', data)
+                .then(function (result) {
+                resolve(result);
+            }, function (error) {
+                console.log('Ошибка при добавлении нового платежа', error);
                 reject();
             });
         });
@@ -4882,7 +4871,8 @@ var GlobalParamsPay = /** @class */ (function () {
     function GlobalParamsPay() {
         this.data = {
             show: false,
-            sum: ''
+            sum: '',
+            eq_id: null
         };
     }
     GlobalParamsPay = __decorate([
@@ -4918,6 +4908,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PayComponent", function() { return PayComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _global_params_pay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./global-params-pay */ "./src/app/components/pay/global-params-pay.ts");
+/* harmony import */ var _applications_applications_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../applications/applications.service */ "./src/app/components/applications/applications.service.ts");
+/* harmony import */ var _message_alert_global_params_message__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../message_alert/global-params-message */ "./src/app/components/message_alert/global-params-message.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4929,25 +4921,43 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var PayComponent = /** @class */ (function () {
-    function PayComponent(globalParamsPay) {
+    function PayComponent(globalParamsPay, applicationsService, globalParamsMessage) {
         this.globalParamsPay = globalParamsPay;
+        this.applicationsService = applicationsService;
+        this.globalParamsMessage = globalParamsMessage;
         this.data = globalParamsPay;
     }
     PayComponent.prototype.ngOnInit = function () {
     };
     PayComponent.prototype.clear = function () {
-        this.data.data = { show: false, sum: '' };
+        this.data.data = { show: false, sum: '', eq_id: null };
     };
     PayComponent.prototype.send = function () {
+        var _this = this;
         this.data.data.show = false;
+        console.log(1, this.data.data);
+        if (this.data.data.eq_id !== null) {
+            this.applicationsService.addPay({
+                sum: this.globalParamsPay.data.sum,
+                eq_app_id: this.globalParamsPay.data.eq_id
+            }).then(function () {
+                _this.globalParamsMessage.data = { title: 'Оплата успешно добавлена', type: 'success', body: '' };
+            }, function (error) {
+                console.log('Ошибка при добавлении нового платежа: ', error);
+            });
+        }
     };
     PayComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-pay',
             template: __webpack_require__(/*! ./pay.component.html */ "./src/app/components/pay/pay.component.html"),
         }),
-        __metadata("design:paramtypes", [_global_params_pay__WEBPACK_IMPORTED_MODULE_1__["GlobalParamsPay"]])
+        __metadata("design:paramtypes", [_global_params_pay__WEBPACK_IMPORTED_MODULE_1__["GlobalParamsPay"],
+            _applications_applications_service__WEBPACK_IMPORTED_MODULE_2__["ApplicationsService"],
+            _message_alert_global_params_message__WEBPACK_IMPORTED_MODULE_3__["GlobalParamsMessage"]])
     ], PayComponent);
     return PayComponent;
 }());
@@ -4976,15 +4986,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var GlobalPayList = /** @class */ (function () {
     function GlobalPayList() {
-        this.data = {
-            client_id: null,
-            id_equipments: null,
-            pay_list: {
-                'date': null,
-                'user_id': null,
-                'sum': ''
-            }
-        };
     }
     GlobalPayList = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
@@ -5003,7 +5004,7 @@ var GlobalPayList = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"data.data.client_id\" id=\"---modal-text\" class=\"---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center\">\n  <div class=\"---wrapper ---wrapper--small\">\n    <div (click)=\"clear()\" class=\"---js-close-modal ---js-close-modal-icon\"></div>\n    <div class=\"modal-body\">\n      {{data.data.client_id}}\n      <div class=\"---modal__footer-btns ---d-flex\">\n        <div class=\"---btn ---btn--fill-acent ---btn--sm\" (click)=\"clear()\">Добавить</div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div *ngIf=\"data.data.show===true\" id=\"---modal-text\" class=\"---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center\">\n  <div class=\"---wrapper ---wrapper--small\">\n    <div (click)=\"clear()\" class=\"---js-close-modal ---js-close-modal-icon\"></div>\n    <div class=\"modal-body\">\n      <table>\n        <tr>\n          <td>Дата</td>\n          <td>Сумма</td>\n          <td>Менеджер</td>\n        </tr>\n        <tr *ngFor=\"let pay of data.data.pay_list\">\n          <td>{{pay.date}}</td>\n          <td>{{pay.sum}}</td>\n          <td>{{pay.user_id}}</td>\n        </tr>\n      </table>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -5033,15 +5034,23 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var PayListComponent = /** @class */ (function () {
     function PayListComponent(globalPayList) {
         this.globalPayList = globalPayList;
+        this.data = {
+            data: {
+                show: false,
+                pay_list: {
+                    'date': '',
+                    'user_id': null,
+                    'sum': ''
+                }
+            }
+        };
+        console.log(1, globalPayList);
         this.data = globalPayList;
-        console.log(1, this.data);
     }
     PayListComponent.prototype.ngOnInit = function () {
     };
     PayListComponent.prototype.clear = function () {
-        this.data.data.client_id = null;
-        this.data.data.id_equipments = null;
-        this.data.data.pay_list = {};
+        this.data.data = { show: false, pay_list: {} };
     };
     PayListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
