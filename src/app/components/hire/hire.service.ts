@@ -127,6 +127,21 @@ export class HireService {
     });
   }
 
+  // возврат товара на склад
+  public closeHire(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/close-hire', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при возврате товара на склад', error);
+            reject();
+          }
+        );
+    });
+  }
+
   // добавление статуса для проката
   public addHireStatus(data) {
     return new Promise((resolve, reject) => {

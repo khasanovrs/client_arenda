@@ -127,6 +127,17 @@ export class HireInfoComponent {
       });
   }
 
+  closeHire() {
+    this.hireService.closeHire({
+      id: this.hireInfo.id
+    }).then(() => {
+        this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при обновлении заявки: ', error);
+      });
+  }
+
   showInsertSum() {
     this.globalParamsPay.data = {show: true, sum: '', eq_id: this.hireInfo.id};
   }
