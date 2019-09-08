@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class GlobalPayList {
-  data: {
-    show: boolean;
+  data = {
+    show: false,
     pay_list: {
-      'date': string,
-      'user_id': number,
-      'sum': string
-    };
+      'date': '',
+      'user_id': null,
+      'sum': ''
+    }
   };
 }

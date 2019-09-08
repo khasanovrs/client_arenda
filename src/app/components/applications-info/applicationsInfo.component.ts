@@ -155,7 +155,6 @@ export class ApplicationsInfoComponent implements OnInit {
     this.globalPayList.data = {
       show: true,
       pay_list: this.application.pay_list
-    }
-    ;
+    };
   }
 }
