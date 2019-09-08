@@ -158,11 +158,12 @@ export class HireComponent {
       });
   }
 
-  showInsertRental(app_id, typeLease_id, rent_end) {
+  showInsertRental(app_eq_id, app_id, typeLease_id, rent_end) {
     this.globalParamsRental.data = {
       show: true,
       date_end: rent_end,
       type_lease: typeLease_id,
+      app_eq_id: app_eq_id,
       app_id: app_id
     };
   }

@@ -24,6 +24,7 @@ export class RentalComponent implements OnInit {
       show: false,
       date_end: '',
       type_lease: null,
+      app_eq_id: null,
       app_id: null,
       count: ''
     };
@@ -34,9 +35,11 @@ export class RentalComponent implements OnInit {
     if (this.data.data.eq_id !== null) {
       this.hireService.extendRental({
         count: this.data.data.count,
+        app_eq_id: this.data.data.app_eq_id,
         app_id: this.data.data.app_id
       }).then((data: any) => {
           this.globalParamsMessage.data = {title: 'Аренда успешно обновлена', type: 'success', body: ''};
+          window.location.reload();
         },
         (error) => {
           console.log('Ошибка при добавлении нового платежа: ', error);
