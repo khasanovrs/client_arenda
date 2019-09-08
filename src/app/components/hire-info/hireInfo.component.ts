@@ -5,6 +5,8 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {GlobalPayList} from '../pay_list/global-pay-list';
 import {GlobalParamsPay} from '../pay/global-params-pay';
 import {GlobalParamsRental} from '../rental/global-params-rental';
+import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
+import {DopParamsService} from '../../services/dopParams.service';
 
 @Component({
   selector: 'app-hire-info',
@@ -14,16 +16,18 @@ export class HireInfoComponent {
   statusList: InterFaceDopParams[] = [];
   // идентификатор заявки
   hireId: null;
+  discounts: InterFaceDopParams[] = [];
+  delivery: InterFaceDopParams[] = [];
 
   // список прокатов
   hireInfo: InterFaceHireInfo = {
     id: null,
     app_id: null,
     branch: '',
-    delivery: '',
+    delivery: null,
     typeLease: '',
     typeLease_id: null,
-    sale: '',
+    sale: null,
     source: null,
     comment: '',
     rent_start: '',
@@ -54,13 +58,29 @@ export class HireInfoComponent {
               private globalParamsMessage: GlobalParamsMessage,
               private globalPayList: GlobalPayList,
               private globalParamsPay: GlobalParamsPay,
-              private globalParamsRental: GlobalParamsRental) {
+              private globalParamsRental: GlobalParamsRental,
+              private applicationsCreateService: ApplicationsCreateService,
+              private dopParamsService: DopParamsService) {
 
     this.router.params.subscribe(
       (params: Params): void => {
         this.hireId = params.id;
       }
     );
+
+    this.applicationsCreateService.getApplicationsDelivery().then((data: InterFaceDopParams[]) => {
+        this.delivery = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении статусов доставки: ', error);
+      });
+
+    this.dopParamsService.getDiscount().then((data: InterFaceDopParams[]) => {
+        this.discounts = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка скидок: ', error);
+      });
 
     this.hireService.getHireStatus().then((data: InterFaceDopParams[]) => {
         this.statusList = data;
@@ -72,6 +92,8 @@ export class HireInfoComponent {
 
     this.hireService.getHireInfo({id: this.hireId}).then((data: InterFaceHireInfo) => {
         this.hireInfo = data;
+        this.hireInfo.rent_start = new Date(this.hireInfo.rent_start).toISOString().slice(0, 16);
+        this.hireInfo.rent_end = new Date(this.hireInfo.rent_end).toISOString().slice(0, 16);
         this.globalPayList.data.pay_list = this.hireInfo.pay_list;
       },
       (error) => {
@@ -80,8 +102,20 @@ export class HireInfoComponent {
   }
 
   updateHire() {
+    const date1 = new Date(this.hireInfo.rent_start);
+    const date2 = new Date(this.hireInfo.rent_end);
+
+    if (date2 < date1) {
+      this.globalParamsMessage.data = {title: `Период аренды указан некорректно`, type: 'error', body: ''};
+      return false;
+    }
+
     this.hireService.updateHire({
       id: this.hireInfo.id,
+      delivery: this.hireInfo.delivery,
+      sale: this.hireInfo.sale,
+      rent_start: this.hireInfo.rent_start,
+      rent_end: this.hireInfo.rent_end,
       comment: this.hireInfo.comment,
       status: this.hireInfo.equipments.status,
       total_paid: this.hireInfo.total_paid,

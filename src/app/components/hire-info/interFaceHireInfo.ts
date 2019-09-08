@@ -2,10 +2,10 @@ interface InterFaceHireInfo {
   id: number;
   app_id: number;
   branch: string;
-  delivery: string;
+  delivery: number;
   typeLease: string;
   typeLease_id: number;
-  sale: string;
+  sale: number;
   source: number;
   comment: string;
   rent_start: string;

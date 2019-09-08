@@ -24,7 +24,14 @@
 
       <div class="---field ---col-sm-6 ---col-lg-4">
         <label>Доставка</label>
-        <div class="---input ---input--disabled">{{hireInfo.delivery}}</div>
+        <div class="---select">
+          <select [(ngModel)]="hireInfo.delivery" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let delivery of delivery"
+                    [ngValue]="delivery.val">
+              {{delivery.name}}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
@@ -34,7 +41,14 @@
 
       <div class="---field ---col-sm-6 ---col-lg-4">
         <label>Скидка</label>
-        <div class="---input ---input--disabled">{{hireInfo.sale}}</div>
+        <div class="---select">
+          <select [(ngModel)]="hireInfo.sale" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let discount of discounts"
+                    [ngValue]="discount.val">
+              {{discount.name}}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
@@ -44,12 +58,12 @@
 
       <div class="---field ---col-sm-6 ---col-lg-4">
         <label>Начало аренды</label>
-        <div class="---input ---input--disabled">{{hireInfo.rent_start}}</div>
+        <input type="datetime-local" [(ngModel)]="hireInfo.rent_start" [ngModelOptions]="{standalone: true}">
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
         <label>Конец аренды</label>
-        <div class="---input ---input--disabled">{{hireInfo.rent_end}}</div>
+        <input type="datetime-local" [(ngModel)]="hireInfo.rent_end" [ngModelOptions]="{standalone: true}">
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
