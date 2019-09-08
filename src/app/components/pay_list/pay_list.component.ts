@@ -19,7 +19,6 @@ export class PayListComponent implements OnInit {
   };
 
   constructor(private globalPayList: GlobalPayList) {
-    console.log(1, globalPayList);
     this.data = globalPayList;
   }
 
@@ -27,6 +26,6 @@ export class PayListComponent implements OnInit {
   }
 
   clear() {
-    this.data.data = {show: false, pay_list: {}};
+    this.data.data.show = false;
   }
 }

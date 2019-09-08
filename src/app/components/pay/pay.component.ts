@@ -32,7 +32,7 @@ export class PayComponent implements OnInit {
         sum: this.globalParamsPay.data.sum,
         eq_app_id: this.globalParamsPay.data.eq_id
       }).then((data: any) => {
-          this.globalPayList.data.pay_list = data.data;
+          this.globalPayList.data.pay_list = data;
           this.globalParamsMessage.data = {title: 'Оплата успешно добавлена', type: 'success', body: ''};
         },
         (error) => {

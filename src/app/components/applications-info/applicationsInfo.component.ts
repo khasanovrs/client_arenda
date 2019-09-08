@@ -63,8 +63,8 @@ export class ApplicationsInfoComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private applicationsService: ApplicationsService,
               private globalPayList: GlobalPayList,
-              private router: Router,
-              private globalParamsPay: GlobalParamsPay) {
+              private globalParamsPay: GlobalParamsPay,
+              private router: Router) {
 
     this.activatedRoute.params.subscribe(
       (params: Params): void => {
@@ -141,6 +141,7 @@ export class ApplicationsInfoComponent implements OnInit {
         this.application.equipments = data.equipments;
         this.application.sum = data.sum;
         this.application.pay_list = data.pay_list;
+        this.globalPayList.data.pay_list = this.application.pay_list;
       },
       (error) => {
         console.log('Ошибка при получении детальной информации по клиенту: ', error);
@@ -152,9 +153,6 @@ export class ApplicationsInfoComponent implements OnInit {
   }
 
   open_pay_list() {
-    this.globalPayList.data = {
-      show: true,
-      pay_list: this.application.pay_list
-    };
+    this.globalPayList.data.show = true;
   }
 }

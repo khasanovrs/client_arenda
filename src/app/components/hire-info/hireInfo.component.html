@@ -9,6 +9,12 @@
         <img src="/assets/imgs/catalog/{{hireInfo.equipments.photo}}.png" class="---lazyload ---img-contain ---product-img">
       </div>
 
+      <div class="---field ---col-12">
+        <div *ngIf="globalPayList.data.pay_list.length != 0" (click)="open_pay_list()" class="---btn ---btn--fill-acent">Платежи</div>
+        <br>
+        <div (click)="showInsertSum()" class="---btn ---btn--fill-acent">Добавить платеж</div>
+      </div>
+
       <div class="---field ---col-sm-6 ---col-lg-4">
         <label>Филиал</label>
         <div class="---input ---input--disabled">{{hireInfo.branch}}</div>

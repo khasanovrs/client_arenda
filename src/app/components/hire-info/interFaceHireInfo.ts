@@ -22,4 +22,9 @@ interface InterFaceHireInfo {
     status: number;
     photo: number;
   };
+  pay_list: {
+    'date': string,
+    'user_id': number,
+    'sum': string
+  };
 }

@@ -376,8 +376,6 @@ export class SetsComponent implements OnInit {
 
   // заполенение формы готовыми данными
   changeParams(val, type) {
-    console.log(1, val);
-    console.log(2, type);
     this.newParams = val;
     this.newParams.type = type;
   }

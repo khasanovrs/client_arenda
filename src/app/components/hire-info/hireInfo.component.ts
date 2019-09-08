@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {HireService} from '../hire/hire.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
+import {GlobalPayList} from '../pay_list/global-pay-list';
+import {GlobalParamsPay} from '../pay/global-params-pay';
 
 @Component({
   selector: 'app-hire-info',
@@ -36,12 +38,19 @@ export class HireInfoComponent {
       name: '',
       status: null,
       photo: null,
+    },
+    pay_list: {
+      'date': null,
+      'user_id': null,
+      'sum': ''
     }
   };
 
   constructor(public hireService: HireService,
               private router: ActivatedRoute,
-              private globalParamsMessage: GlobalParamsMessage) {
+              private globalParamsMessage: GlobalParamsMessage,
+              private globalPayList: GlobalPayList,
+              private globalParamsPay: GlobalParamsPay) {
 
     this.router.params.subscribe(
       (params: Params): void => {
@@ -59,6 +68,7 @@ export class HireInfoComponent {
 
     this.hireService.getHireInfo({id: this.hireId}).then((data: InterFaceHireInfo) => {
         this.hireInfo = data;
+        this.globalPayList.data.pay_list = this.hireInfo.pay_list;
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
@@ -77,5 +87,13 @@ export class HireInfoComponent {
       (error) => {
         console.log('Ошибка при обновлении заявки: ', error);
       });
+  }
+
+  showInsertSum() {
+    this.globalParamsPay.data = {show: true, sum: '', eq_id: this.hireInfo.id};
+  }
+
+  open_pay_list() {
+    this.globalPayList.data.show = true;
   }
 }
