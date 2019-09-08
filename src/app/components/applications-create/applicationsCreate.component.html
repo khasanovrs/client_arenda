@@ -73,7 +73,7 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Начало аренды</label>
             <div class="---input ---input--calendar">
-              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_start.val"
+              <input type="datetime-local" (change)="changeDate()"  [(ngModel)]="application.rent_start.val"
                      [disabled]="application.status.val===1"
                      [ngModelOptions]="{standalone: true}">
             </div>
@@ -81,7 +81,7 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Окончание аренды</label>
             <div class="---input ---input--calendar">
-              <input type="date" (change)="changeSum()" [(ngModel)]="application.rent_end.val"
+              <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_end.val"
                      disabled
                      [ngModelOptions]="{standalone: true}">
             </div>

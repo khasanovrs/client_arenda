@@ -121,8 +121,7 @@ export class ApplicationsCreateComponent implements OnInit {
         console.log('Ошибка при получении филиалов: ', error);
       });
 
-    const today = new Date();
-    this.application.rent_start.val = today.toISOString().substring(0, 10);
+    this.application.rent_start.val = new Date().toISOString().slice(0, 16);
   }
 
   changeBranch() {
@@ -146,14 +145,14 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   changeTypeLease() {
-    const tomorrow = new Date();
+    const tomorrow = new Date(this.application.rent_start.val);
 
     if (this.application.typeLease.val === 1) {
       tomorrow.setDate(tomorrow.getDate() + 1);
-      this.application.rent_end.val = tomorrow.toISOString().substring(0, 10);
+      this.application.rent_end.val = tomorrow.toISOString().slice(0, 16);
     } else {
       tomorrow.setDate(tomorrow.getDate() + 30);
-      this.application.rent_end.val = tomorrow.toISOString().substring(0, 10);
+      this.application.rent_end.val = tomorrow.toISOString().slice(0, 16);
     }
   }
 
@@ -288,7 +287,8 @@ export class ApplicationsCreateComponent implements OnInit {
       client_where_passport: this.application.client_where_passport.val,
       client_date_passport: this.application.client_date_passport.val,
       client_address_passport: this.application.client_address_passport.val,
-      sum: this.globalParamsPay.data.sum,
+      sum_pay: this.globalParamsPay.data.sum,
+      sum: this.application.sum,
       delivery_sum: this.application.delivery_sum,
       comment: this.application.comment,
       source: this.application.source.val,
@@ -304,10 +304,15 @@ export class ApplicationsCreateComponent implements OnInit {
       });
   }
 
+  changeDate() {
+    this.application.typeLease.val = null;
+    this.application.rent_end.val = '';
+    this.changeSum();
+  }
+
   // вычесляем сумму аренды
   changeSum() {
     let sum = null;
-
     if (this.application.equipments.length !== 0) {
       for (const value of this.application.equipments) {
         sum += value.count * parseFloat(value.price);
