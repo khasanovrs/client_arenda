@@ -4,6 +4,7 @@ import {HireService} from '../hire/hire.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {GlobalPayList} from '../pay_list/global-pay-list';
 import {GlobalParamsPay} from '../pay/global-params-pay';
+import {GlobalParamsRental} from '../rental/global-params-rental';
 
 @Component({
   selector: 'app-hire-info',
@@ -17,9 +18,11 @@ export class HireInfoComponent {
   // список прокатов
   hireInfo: InterFaceHireInfo = {
     id: null,
+    app_id: null,
     branch: '',
     delivery: '',
     typeLease: '',
+    typeLease_id: null,
     sale: '',
     source: null,
     comment: '',
@@ -50,7 +53,8 @@ export class HireInfoComponent {
               private router: ActivatedRoute,
               private globalParamsMessage: GlobalParamsMessage,
               private globalPayList: GlobalPayList,
-              private globalParamsPay: GlobalParamsPay) {
+              private globalParamsPay: GlobalParamsPay,
+              private globalParamsRental: GlobalParamsRental) {
 
     this.router.params.subscribe(
       (params: Params): void => {
@@ -91,6 +95,15 @@ export class HireInfoComponent {
 
   showInsertSum() {
     this.globalParamsPay.data = {show: true, sum: '', eq_id: this.hireInfo.id};
+  }
+
+  showInsertRental() {
+    this.globalParamsRental.data = {
+      show: true,
+      date_end: this.hireInfo.rent_end,
+      type_lease: this.hireInfo.typeLease_id,
+      app_id: this.hireInfo.app_id
+    };
   }
 
   open_pay_list() {

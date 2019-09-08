@@ -100,6 +100,7 @@
         <table>
           <tr>
             <th></th>
+            <th></th>
             <ng-container *ngFor="let activeField of activeFields">
               <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
             </ng-container>
@@ -108,6 +109,9 @@
           <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" [style.background]="hire.color">
             <td>
               <div (click)="hireDetails(hire.id)" class="ifont ---icon-edit ---radius-5"></div>
+            </td>
+            <td>
+              <div (click)="showInsertRental(hire.app_id, hire.typeLease_id, hire.end_hire)" class="ifont ---icon-edit ---radius-5"></div>
             </td>
 
             <td *ngIf="activeFieldsTables['client']===1">{{hire.client}}</td>

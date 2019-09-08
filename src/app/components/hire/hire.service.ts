@@ -142,4 +142,20 @@ export class HireService {
         );
     });
   }
+
+  // продлить контракт
+  public extendRental(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/extend-rental', data)
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении статуса для проката', error);
+            reject();
+          }
+        );
+    });
+  }
 }

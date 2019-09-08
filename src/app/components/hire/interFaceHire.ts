@@ -1,5 +1,7 @@
 interface InterFaceHire {
   id: number;
+  app_id: number;
+  typeLease_id: number;
   client: string;
   equipment: string;
   start_hire: string;

@@ -60,6 +60,8 @@ import {GlobalPayList} from './components/pay_list/global-pay-list';
 import {PayListComponent} from './components/pay_list/pay_list.component';
 import {PayComponent} from './components/pay/pay.component';
 import {GlobalParamsPay} from './components/pay/global-params-pay';
+import {RentalComponent} from './components/rental/rental.component';
+import {GlobalParamsRental} from './components/rental/global-params-rental';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -94,7 +96,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     FinanceInfoComponent,
     HireComponent,
     HireInfoComponent,
-    PayComponent
+    PayComponent,
+    RentalComponent
   ],
   imports: [
     BrowserModule,
@@ -111,6 +114,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     HttpService,
     GlobalParamsMessage,
     GlobalParamsPay,
+    GlobalParamsRental,
     GlobalPayList,
     GlobalParams,
     SessionStorageService,

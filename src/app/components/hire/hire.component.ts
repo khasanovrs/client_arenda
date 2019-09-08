@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {HireService} from './hire.service';
 import {Router} from '@angular/router';
 import {DopParamsService} from '../../services/dopParams.service';
+import {GlobalParamsRental} from '../rental/global-params-rental';
 
 @Component({
   selector: 'app-hire',
@@ -35,7 +36,8 @@ export class HireComponent {
 
   constructor(public hireService: HireService,
               private router: Router,
-              private dopParamsService: DopParamsService) {
+              private dopParamsService: DopParamsService,
+              private globalParamsRental: GlobalParamsRental) {
     this.hireService.getHireStatus().then((data: InterFaceDopParamsColor[]) => {
         this.statusList = data;
       },
@@ -154,5 +156,14 @@ export class HireComponent {
       (error) => {
         console.log('Ошибка при получении списка прокатов: ', error);
       });
+  }
+
+  showInsertRental(app_id, typeLease_id, rent_end) {
+    this.globalParamsRental.data = {
+      show: true,
+      date_end: rent_end,
+      type_lease: typeLease_id,
+      app_id: app_id
+    };
   }
 }
