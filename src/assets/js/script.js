@@ -247,7 +247,7 @@ $(document).ready(function() {
 
 
 	/* Init datepicker */
-    $(".---datepicker").datepicker();
+    $(".---datepicker-input").datepicker();
 
 
 

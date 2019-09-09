@@ -4,9 +4,8 @@
       <div class="h2 ---font-600">Данные аренды</div>
 
       <div class="---row">
-        <div class="---field ---col-12">
+        <div class="---field ---d-flex ---flex-wrap ---justify-content-between ---col-12">
           <div (click)="open_pay_list()" class="---btn ---btn--fill-acent">Платежи</div>
-<br>
           <div (click)="showInsertSum()" class="---btn ---btn--fill-acent">Добавить платеж</div>
         </div>
         <div class="---field ---col-12 ---col-xs-6">
@@ -65,14 +64,16 @@
         </div>
         <div class="---field ---col-12 ---col-xs-6">
           <label>Начало аренды</label>
-          <div class="---input ---input--calendar">
-              <input type="date" [(ngModel)]="application.rent_start.val">
+          <div class="---input ---input--calendar ---pos-rel">
+            <input class="---datepicker-input" [(ngModel)]="application.rent_start.val">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
         <div class="---field ---col-12 ---col-xs-6">
           <label>Окончание аренды</label>
-          <div class="---input ---input--calendar">
-            <input type="date" [(ngModel)]="application.rent_end.val">
+          <div class="---input ---input--calendar ---pos-rel">
+            <input class="---datepicker-input" [(ngModel)]="application.rent_end.val">
+            <i class="---y-pos-abs ifont ---icon-calendar"></i>
           </div>
         </div>
         <div class="---field ---col-12">
@@ -100,6 +101,7 @@
       </div>
     </div>
   </div>
+
   <div class="---col-12 ---col-lg-6">
 
     <div class="---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form">

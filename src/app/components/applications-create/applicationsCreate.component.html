@@ -72,18 +72,22 @@
           </div>
           <div class="---field ---col-12 ---col-xs-6">
             <label>Начало аренды</label>
-            <div class="---input ---input--calendar">
+            <div class="---input ---input--calendar ---pos-rel">
               <input type="datetime-local" (change)="changeDate()"  [(ngModel)]="application.rent_start.val"
                      [disabled]="application.status.val===1"
-                     [ngModelOptions]="{standalone: true}">
+                     [ngModelOptions]="{standalone: true}"
+                     class="---datepicker-input">
+              <i class="---y-pos-abs ifont ---icon-calendar"></i>
             </div>
           </div>
           <div class="---field ---col-12 ---col-xs-6">
             <label>Окончание аренды</label>
-            <div class="---input ---input--calendar">
+            <div class="---input ---input--calendar ---pos-rel">
               <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_end.val"
                      disabled
-                     [ngModelOptions]="{standalone: true}">
+                     [ngModelOptions]="{standalone: true}"
+                     class="---datepicker-input">
+              <i class="---y-pos-abs ifont ---icon-calendar"></i>
             </div>
           </div>
           <div class="---field ---col-12">
