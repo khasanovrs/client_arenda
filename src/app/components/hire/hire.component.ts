@@ -38,13 +38,6 @@ export class HireComponent {
               private router: Router,
               private dopParamsService: DopParamsService,
               private globalParamsRental: GlobalParamsRental) {
-    this.hireService.getHireStatus().then((data: InterFaceDopParamsColor[]) => {
-        this.statusList = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении статусов: ', error);
-      });
-
     this.hireService.getHireFields().then((data: InterFaceActiveFields[]) => {
         this.activeFields = data;
 
@@ -95,23 +88,6 @@ export class HireComponent {
   changeCheckbox(i) {
     this.activeFields[i].flag = this.activeFields[i].flag === 0 ? 1 : 0;
     this.changeShowFields();
-  }
-
-  // изменение статуса
-  changeStatus(hire) {
-    this.hireService.updateHireStatus({
-      id: hire.id,
-      status: hire.status
-    }).then(() => {
-        for (const value of this.statusList) {
-          if (value.val === hire.status) {
-            hire.color = value.color;
-          }
-        }
-      },
-      (error) => {
-        console.log('Ошибка при изменении статуса у проката: ', error);
-      });
   }
 
   changeFilterStatus(val) {

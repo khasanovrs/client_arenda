@@ -13,7 +13,6 @@ import {DopParamsService} from '../../services/dopParams.service';
   templateUrl: './hireInfo.component.html',
 })
 export class HireInfoComponent {
-  statusList: InterFaceDopParams[] = [];
   // идентификатор заявки
   hireId: null;
   discounts: InterFaceDopParams[] = [];
@@ -46,7 +45,7 @@ export class HireInfoComponent {
     equipments: {
       equipments_id: '',
       name: '',
-      status: null,
+      state: '',
       photo: null,
     },
     pay_list: {
@@ -85,14 +84,6 @@ export class HireInfoComponent {
         console.log('Ошибка при получении списка скидок: ', error);
       });
 
-    this.hireService.getHireStatus().then((data: InterFaceDopParams[]) => {
-        this.statusList = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении статусов: ', error);
-      });
-
-
     this.hireService.getHireInfo({id: this.hireId}).then((data: InterFaceHireInfo) => {
         this.hireInfo = data;
         this.hireInfo.rent_start = new Date(this.hireInfo.rent_start).toISOString().slice(0, 16);
@@ -120,7 +111,6 @@ export class HireInfoComponent {
       rent_start: this.hireInfo.rent_start,
       rent_end: this.hireInfo.rent_end,
       comment: this.hireInfo.comment,
-      status: this.hireInfo.equipments.status,
       total_paid: this.hireInfo.total_paid,
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно обновлена', type: 'success', body: ''};
@@ -131,7 +121,7 @@ export class HireInfoComponent {
   }
 
   closeHire() {
-    this.showModalClose=false;
+    this.showModalClose = false;
     this.hireService.closeHire({
       id: this.hireInfo.id,
       checkPrim: this.checkPrim

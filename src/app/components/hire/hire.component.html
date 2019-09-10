@@ -118,17 +118,7 @@
             <td *ngIf="activeFieldsTables['equipment']===1">{{hire.equipments}}</td>
             <td *ngIf="activeFieldsTables['start_hire']===1">{{hire.start_hire}}</td>
             <td *ngIf="activeFieldsTables['end_hire']===1">{{hire.end_hire}}</td>
-            <td *ngIf="activeFieldsTables['status']===1">
-              <div class="---select">
-                <select
-                  (change)="changeStatus(hire)"
-                  [(ngModel)]="hire.status">
-                  <option *ngFor="let status of statusList" [ngValue]="status.val">
-                    {{status.name}}
-                  </option>
-                </select>
-              </div>
-            </td>
+            <td *ngIf="activeFieldsTables['state']===1">{{hire.state}}</td>
             <td *ngIf="activeFieldsTables['sum']===1">{{hire.sum}}</td>
             <td *ngIf="activeFieldsTables['sale_sum']===1">{{hire.sale_sum}}</td>
             <td *ngIf="activeFieldsTables['total_paid']===1">{{hire.total_paid}}</td>
@@ -138,7 +128,6 @@
             <td *ngIf="activeFieldsTables['date_end']===1">{{hire.date_end}}</td>
             <td *ngIf="activeFieldsTables['branch']===1">{{hire.branch}}</td>
             <td *ngIf="activeFieldsTables['current_pay']===1">{{hire.current_pay}}</td>
-            <td *ngIf="activeFieldsTables['state']===1">{{hire.state}}</td>
           </tr>
 
         </table>

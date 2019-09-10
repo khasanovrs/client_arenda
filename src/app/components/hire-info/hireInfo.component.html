@@ -85,15 +85,8 @@
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
-        <label>Статус</label>
-        <div class="---select">
-          <select [(ngModel)]="hireInfo.equipments.status">
-            <option *ngFor="let status of statusList"
-                    [ngValue]="status.val">
-              {{status.name}}
-            </option>
-          </select>
-        </div>
+        <label>Состояние</label>
+        <div class="---input ---input--disabled">{{hireInfo.equipments.state}}</div>
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">

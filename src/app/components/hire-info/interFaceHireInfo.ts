@@ -21,7 +21,7 @@ interface InterFaceHireInfo {
   equipments: {
     equipments_id: string;
     name: string;
-    status: number;
+    state: string;
     photo: number;
   };
   pay_list: {
