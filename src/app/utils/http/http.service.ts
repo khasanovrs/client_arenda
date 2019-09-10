@@ -49,7 +49,7 @@ export class HttpService {
       this.sendPostQuery(url, data).subscribe((result: { status: string, msg: string, session_id: string, data: string, code: string }) => {
           console.log('HttpService Ответ получен: ', result);
           if (result.status === 'OK') {
-            if (typeof result.data !== 'undefined') {
+            if (typeof result.data !== 'undefined' && result.data !== '') {
               let rez = atob(result.data);
               rez = JSON.parse(rez);
               console.log('Результат ответа: ', rez);
@@ -90,8 +90,8 @@ export class HttpService {
     };
     const headers = new HttpHeaders();
 
-    // return this.http.post('http://localhost:8001/' + api, request, {headers: headers})
-    return this.http.post('http://u68857.netangels.ru/' + api, request, {headers: headers})
+    return this.http.post('http://localhost:8001/' + api, request, {headers: headers})
+    // return this.http.post('http://u68857.netangels.ru/' + api, request, {headers: headers})
     // return this.http.post('http://artdekor-kzn.ru/' + api, request, {headers: headers})
       .pipe(
         catchError(HttpService.handlerError)

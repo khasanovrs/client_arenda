@@ -19,6 +19,9 @@ export class HireInfoComponent {
   discounts: InterFaceDopParams[] = [];
   delivery: InterFaceDopParams[] = [];
 
+  showModalClose = false;
+  checkPrim = false;
+
   // список прокатов
   hireInfo: InterFaceHireInfo = {
     id: null,
@@ -128,8 +131,10 @@ export class HireInfoComponent {
   }
 
   closeHire() {
+    this.showModalClose=false;
     this.hireService.closeHire({
-      id: this.hireInfo.id
+      id: this.hireInfo.id,
+      checkPrim: this.checkPrim
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
       },

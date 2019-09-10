@@ -16,7 +16,7 @@
 
         <div (click)="showInsertRental()" class="---btn ---btn--fill-acent">Продлить прокат</div>
 
-        <div (click)="closeHire()" class="---btn ---btn--fill-acent">Возврат оборудования на склад</div>
+        <div (click)="showModalClose=true" class="---btn ---btn--fill-acent">Возврат оборудования на склад</div>
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
@@ -147,4 +147,20 @@
     <div (click)="updateHire()" class="---btn ---btn--fill-acent">Обновить</div>
   </div>
 
+</div>
+
+<div *ngIf="showModalClose" id="---modal-text"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--small">
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="showModalClose=false"></div>
+    <div class="modal-body">
+      <div class="---form">
+        <div class="---field">
+          <input type="checkbox" id="prim" [(ngModel)]="checkPrim">
+          <label for="prim">Остались замечания по прокату</label>
+        </div>
+        <div class="---btn ---btn--fill-acent ---btn--sm" (click)="closeHire()">Отправить</div>
+      </div>
+    </div>
+  </div>
 </div>
