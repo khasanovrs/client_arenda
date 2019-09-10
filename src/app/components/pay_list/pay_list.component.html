@@ -1,12 +1,12 @@
 <div *ngIf="data.data.show===true" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
-  <div class="---wrapper ---wrapper--small">
+  <div class="---wrapper ---wrapper--big">
     <div (click)="clear()" class="---js-close-modal ---js-close-modal-icon"></div>
-    <div class="modal-body">
-      <table>
+    <div class="modal-body ---t-wrapper">
+      <table style="min-width: 360px;">
         <tr>
-          <td>Дата</td>
-          <td>Сумма</td>
-          <td>Сотрудник</td>
+          <th>Дата</th>
+          <th>Сумма</th>
+          <th>Сотрудник</th>
         </tr>
         <tr *ngFor="let pay of data.data.pay_list">
           <td>{{pay.date}}</td>

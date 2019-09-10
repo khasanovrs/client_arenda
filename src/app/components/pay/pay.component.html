@@ -3,13 +3,14 @@
   <div class="---wrapper ---wrapper--small">
     <div class="---js-close-modal ---js-close-modal-icon" (click)="clear()"></div>
     <div class="modal-body">
-      <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-        <label>Сумма</label>
-        <div class="---input ---input--calendar ---shadow--bg">
-          <input [(ngModel)]="data.data.sum" mask="separator">
+      <div class="---form">
+        <div class="---field">
+          <label>Сумма</label>
+
+          <input class="---input ---fill--bg" [(ngModel)]="data.data.sum" mask="separator">
         </div>
+        <div class="---btn ---btn--fill-acent ---btn--sm" (click)="send()">Добавить</div>
       </div>
-      <div class="---btn ---btn--fill-acent ---btn--sm" (click)="send()">Добавить</div>
     </div>
   </div>
 </div>
