@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DopParamsService} from '../../services/dopParams.service';
-import {MainService} from './main.service';
+import {EquipmentsService} from '../equipments/equipments.service';
 
 @Component({
   selector: 'app-main',
@@ -10,25 +10,25 @@ export class MainComponent implements OnInit {
   branches: InterFaceDopParams[] = [];
   current_branch: number = null;
   info: any;
+  equipments: InterFaceMainEquipments[];
 
   constructor(private dopParamsService: DopParamsService,
-              private mainService: MainService) {
+              private equipmentsService: EquipmentsService) {
   }
 
   ngOnInit() {
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
         this.branches = data;
-
         this.current_branch = this.branches[0].val;
-
-        this.getData();
+        //this.getData();
+        this.getEquipments();
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
       });
   }
 
-  getData() {
+  /*getData() {
     this.mainService.getData({
       type: this.current_branch
     }).then((data: any) => {
@@ -36,6 +36,17 @@ export class MainComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении информации для рабочего стола: ', error);
+      });
+  }*/
+
+  getEquipments() {
+    this.equipmentsService.getEquipmentsBranch({
+      branch: this.current_branch
+    }).then((data: InterFaceMainEquipments[]) => {
+        this.equipments = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка оборудования: ', error);
       });
   }
 }
