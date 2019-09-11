@@ -8,11 +8,23 @@
 
   <div class="---block__rside ---d-flex">
     <div class="---select">
-      <select [(ngModel)]="current_branch" (change)="getData()">
+      <select [(ngModel)]="filter.branch" (change)="changeBranch()">
         <option *ngFor="let branch of branches" [ngValue]="branch.val">
           {{branch.name}}
         </option>
       </select>
+    </div>
+  </div>
+  <div class="---block__rside ---d-flex">
+    <label>Дата периода</label>
+    <div class="---input ---input--calendar">
+      <input type="date" [(ngModel)]="filter.date_start" (change)="getData()">
+    </div>
+  </div>
+  <div class="---block__rside ---d-flex">
+    <label>Конец периода</label>
+    <div class="---input ---input--calendar">
+      <input type="date" [(ngModel)]="filter.date_end">
     </div>
   </div>
 
@@ -216,10 +228,9 @@
 <div class="---block-catalog">
   <div class="---block__title ---font-light ---d-flex ---align-items-center ---justify-content-between">
     Популярные позиции
-    <a href="#" class="---show-all ---font-sbold ---pos-rel">Показать все <i class="ifont ---icon-arrow-right ---y-pos-abs"></i></a>
   </div>
 
-  <div class="---cat-wrapper ---row ---_xs">
+  <div class="---cat-wrapper ---row ---_xs" *ngIf="equipments.length>0">
     <div class="---col col" *ngFor="let equipment of equipments">
       <a href="#" class="---cat-item ---d-flex ---flex-column">
                     <span class="---cat-item__img">
@@ -229,7 +240,7 @@
                         {{equipment.name}}
                     </span>
         <span class="---cat-item__orders">
-                        <span class="---font-sbold">{{equipment.count}}</span> заказаов
+                        заказаов: <span class="---font-sbold">{{equipment.count}}</span>
                     </span>
         <span class="---cat-item__btn ---font-sbold ---btn ---btn--sm">
                         <i class="ifont ---icon-basket-linear"></i>
@@ -238,47 +249,9 @@
       </a>
     </div>
   </div>
-</div>
 
-
-<div class="---col-12 ---devider-line"></div>
-
-<div class="---block-catalog">
-  <div class="---block__title ---font-light ---d-flex ---align-items-center ---justify-content-between">
-    <div class="---d-inline-flex ---flex-wrap ---align-items-center">
-      Новинки каталога
-
-      <div class="---select">
-        <select>
-          <option value="">Электроинструменты 1</option>
-          <option value="">Электроинструменты 2</option>
-          <option value="">Электроинструменты 3</option>
-          <option value="">Электроинструменты 4</option>
-          <option value="">Электроинструменты 5</option>
-        </select>
-      </div>
-    </div>
-    <a href="#" class="---show-all ---font-sbold ---pos-rel">Показать все <i class="ifont ---icon-arrow-right ---y-pos-abs"></i></a>
-  </div>
-
-  <div class="---cat-wrapper ---row ---_xs">
-    <div class="---col col">
-      <a href="#" class="---cat-item ---d-flex ---flex-column">
-                    <span class="---cat-item__img">
-                        <img data-src="/static/imgs/catalog/1.png" alt="" class="---lazyload ---img-contain">
-                    </span>
-        <span class="---cat-item__title">
-                        Отбойный молоток MAKITA HM1203C
-                    </span>
-        <span class="---cat-item__orders">
-                        <span class="---font-sbold">864</span> заказаов
-                    </span>
-        <span class="---cat-item__btn ---font-sbold ---btn ---btn--sm">
-                        <i class="ifont ---icon-basket-linear"></i>
-                        от 750 ₽
-                    </span>
-      </a>
-    </div>
+  <div class="---cat-wrapper ---row ---_xs" *ngIf="equipments.length===0">
+    Заказов нет
   </div>
 </div>
 

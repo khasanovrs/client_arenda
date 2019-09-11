@@ -1,52 +1,55 @@
 import {Component, OnInit} from '@angular/core';
 import {DopParamsService} from '../../services/dopParams.service';
 import {EquipmentsService} from '../equipments/equipments.service';
+import {MainService} from './main.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
 })
 export class MainComponent implements OnInit {
+  date = new Date().toISOString().split('T')[0];
+
   branches: InterFaceDopParams[] = [];
-  current_branch: number = null;
+  filter: InterFaceMainFilter = {
+    branch: null,
+    date_start: this.date,
+    date_end: this.date,
+  };
   info: any;
-  equipments: InterFaceMainEquipments[];
+  equipments: InterFaceMainEquipments[] = [];
 
   constructor(private dopParamsService: DopParamsService,
-              private equipmentsService: EquipmentsService) {
+              private equipmentsService: EquipmentsService,
+              private mainService: MainService) {
   }
 
   ngOnInit() {
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
         this.branches = data;
-        this.current_branch = this.branches[0].val;
-        //this.getData();
-        this.getEquipments();
+        this.filter.branch = this.branches[0].val;
+        this.getData();
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
       });
   }
 
-  /*getData() {
+  changeBranch() {
+    this.getData();
+  }
+
+  getData() {
     this.mainService.getData({
-      type: this.current_branch
+      branch: this.filter.branch,
+      date_start: this.filter.date_start,
+      date_end: this.filter.date_end
     }).then((data: any) => {
         this.info = data;
+        this.equipments = data.equipments;
       },
       (error) => {
         console.log('Ошибка при получении информации для рабочего стола: ', error);
-      });
-  }*/
-
-  getEquipments() {
-    this.equipmentsService.getEquipmentsBranch({
-      branch: this.current_branch
-    }).then((data: InterFaceMainEquipments[]) => {
-        this.equipments = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка оборудования: ', error);
       });
   }
 }

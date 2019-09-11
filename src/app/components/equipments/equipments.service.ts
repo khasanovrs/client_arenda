@@ -186,21 +186,6 @@ export class EquipmentsService {
     });
   }
 
-  // получение списка товаров
-  public getEquipmentsBranch(data) {
-    return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/get-equipments-branch', data)
-        .then((result: any) => {
-            resolve(result);
-          },
-          (error) => {
-            console.log('Ошибка при получении списка оборудований', error);
-            reject();
-          }
-        );
-    });
-  }
-
   // получение конкретной информации о товаре
   public getEquipmentInfo(data) {
     return new Promise((resolve, reject) => {
