@@ -33,7 +33,7 @@
 
 <div class="---block ---block-charts ---row">
 
-  <div class="---col-12 ---col-sm-6 ---col-md-4">
+  <div class="---col-12 ---col-sm-6 ---col-md-4" *ngFor="let income of incomes">
     <div class="---chart-item">
       <div class="---graphic">
 
@@ -41,11 +41,10 @@
       <div class="---content ---d-flex ---justify-content-between ---align-items-center">
         <div class="---title ---pos-rel ---font-sbold">
           <i class="ifont ---icon-calendar ---y-pos-abs"></i>
-          Доход<br>
-          за месяц
+          {{income.name}}
         </div>
 
-        <div class="---num ---font-light">398 560 ₽</div>
+        <div  class="---num ---font-light">{{income.count | digitsNumbers}} <span *ngIf="income.currency">₽</span></div>
       </div>
     </div>
   </div>

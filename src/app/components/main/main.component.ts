@@ -16,8 +16,9 @@ export class MainComponent implements OnInit {
     date_start: this.date,
     date_end: this.date,
   };
-  info: any;
+  incomes: InterFaceMainIncomes[] = [];
   equipments: InterFaceMainEquipments[] = [];
+
 
   constructor(private dopParamsService: DopParamsService,
               private equipmentsService: EquipmentsService,
@@ -45,7 +46,7 @@ export class MainComponent implements OnInit {
       date_start: this.filter.date_start,
       date_end: this.filter.date_end
     }).then((data: any) => {
-        this.info = data;
+        this.incomes = Object.keys(data.income).map(i => data.income[i]);
         this.equipments = data.equipments;
       },
       (error) => {
