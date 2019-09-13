@@ -21,4 +21,19 @@ export class MainService {
         );
     });
   }
+
+  // получение выручки
+  public getRevenue(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-header-revenue', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении выручки', error);
+            reject(error);
+          }
+        );
+    });
+  }
 }
