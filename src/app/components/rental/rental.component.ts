@@ -31,6 +31,10 @@ export class RentalComponent implements OnInit {
   }
 
   send() {
+    if (this.data.data.count === '') {
+      this.globalParamsMessage.data = {title: 'Не указан количество дней/месяцев для продления', type: 'error', body: ''};
+      return false;
+    }
     this.data.data.show = false;
     if (this.data.data.eq_id !== null) {
       this.hireService.extendRental({

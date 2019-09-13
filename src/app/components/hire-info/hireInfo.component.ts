@@ -48,17 +48,17 @@ export class HireInfoComponent {
       state: '',
       photo: null,
     },
-    pay_list: {
+    pay_list: [{
       'date': null,
       'user_id': null,
       'sum': ''
-    }
+    }]
   };
 
   constructor(public hireService: HireService,
               private router: ActivatedRoute,
               private globalParamsMessage: GlobalParamsMessage,
-              private globalPayList: GlobalPayList,
+              public globalPayList: GlobalPayList,
               private globalParamsPay: GlobalParamsPay,
               private globalParamsRental: GlobalParamsRental,
               private applicationsCreateService: ApplicationsCreateService,
@@ -110,8 +110,7 @@ export class HireInfoComponent {
       sale: this.hireInfo.sale,
       rent_start: this.hireInfo.rent_start,
       rent_end: this.hireInfo.rent_end,
-      comment: this.hireInfo.comment,
-      total_paid: this.hireInfo.total_paid,
+      comment: this.hireInfo.comment
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно обновлена', type: 'success', body: ''};
       },

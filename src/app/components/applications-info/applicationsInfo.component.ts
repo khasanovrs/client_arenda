@@ -48,11 +48,11 @@ export class ApplicationsInfoComponent implements OnInit {
       price: '',
       stock: null
     },
-    pay_list: {
+    pay_list: [{
       'date': null,
       'user_id': null,
       'sum': ''
-    }
+    }]
   };
 
   constructor(private applicationsCreateService: ApplicationsCreateService,

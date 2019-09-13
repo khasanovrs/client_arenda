@@ -63,7 +63,7 @@ import {GlobalParamsPay} from './components/pay/global-params-pay';
 import {RentalComponent} from './components/rental/rental.component';
 import {GlobalParamsRental} from './components/rental/global-params-rental';
 
-export let options: Partial<IConfig> | (() => Partial<IConfig>);
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
   declarations: [

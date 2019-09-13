@@ -4,10 +4,10 @@ import {Injectable} from '@angular/core';
 export class GlobalPayList {
   data = {
     show: false,
-    pay_list: {
+    pay_list: [{
       'date': '',
       'user_id': null,
       'sum': ''
-    }
+    }]
   };
 }

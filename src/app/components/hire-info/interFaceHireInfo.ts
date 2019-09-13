@@ -28,5 +28,5 @@ interface InterFaceHireInfo {
     'date': string,
     'user_id': number,
     'sum': string
-  };
+  }[];
 }
