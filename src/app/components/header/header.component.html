@@ -34,7 +34,7 @@
       <div class="---h-block__title ---d-none ---xl-d-block">
         <div class="---select">
           <select
-            [(ngModel)]="branch">
+            [(ngModel)]="branch" (change)="getRevenue()">
             <option *ngFor="let branch of branches" [ngValue]="branch.val">
               {{branch.name}}
             </option>
@@ -42,7 +42,7 @@
         </div>
       </div>
       <i class="ifont ---icon-database ---d-none ---sm-d-inline-flex"></i>
-      <span class="---font-600">810 560 ₽</span>
+      <span class="---font-600">{{revenue | digitsNumbers}} ₽</span>
     </div>
 
 

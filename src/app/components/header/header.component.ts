@@ -23,7 +23,7 @@ export class HeaderComponent {
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
         this.branches = data;
         this.branch = this.branches[0].val;
-        //this.getRevenue();
+        this.getRevenue();
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
@@ -39,7 +39,7 @@ export class HeaderComponent {
       });
   }
 
-/*  // получение выручки по филиалам
+  // получение выручки по филиалам
   getRevenue() {
     this.mainService.getRevenue({
       branch: this.branch
@@ -49,5 +49,5 @@ export class HeaderComponent {
       (error) => {
         console.log('Ошибка при получении выручки: ', error);
       });
-  }*/
+  }
 }
