@@ -46,7 +46,8 @@ export class EquipmentsCreateComponent implements OnInit {
     power: '',
     frequency_hits: '',
     photo_name: '',
-    photo_content: ''
+    photo_content: '',
+    photo_alias: ''
   };
 
   constructor(private equipmentsCreateService: EquipmentsCreateService,
@@ -165,7 +166,8 @@ export class EquipmentsCreateComponent implements OnInit {
       network_cord: this.newEquipments.network_cord,
       power: this.newEquipments.power,
       frequency_hits: this.newEquipments.frequency_hits,
-      photo: this.newEquipments.photo_name
+      photo: this.newEquipments.photo_name,
+      photo_alias: this.newEquipments.photo_alias,
     }).then(() => {
 
         if (this.newEquipments.photo_name !== '') {

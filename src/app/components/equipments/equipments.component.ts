@@ -31,6 +31,7 @@ export class EquipmentsComponent implements OnInit {
     selling_price: '',
     price_per_day: '',
     photo: '',
+    photo_alias: '',
     rentals: 0,
     repairs: 0,
     repairs_sum: '0',
@@ -174,6 +175,7 @@ export class EquipmentsComponent implements OnInit {
       network_cord: this.equipment.network_cord,
       power: this.equipment.power,
       frequency_hits: this.equipment.frequency_hits,
+      photo_alias: this.equipment.photo_alias,
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно изменено', type: 'success', body: ''};
 

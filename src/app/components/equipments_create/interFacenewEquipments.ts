@@ -24,4 +24,5 @@ interface InterFacenewEquipments {
   frequency_hits: string;
   photo_name: string;
   photo_content: string;
+  photo_alias: string;
 }

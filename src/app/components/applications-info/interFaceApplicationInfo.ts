@@ -20,6 +20,7 @@ interface InterFaceApplicationInfo {
     status: number,
     stock: number,
     photo: string,
+    photo_alias: string,
     price: string,
   };
   pay_list: {

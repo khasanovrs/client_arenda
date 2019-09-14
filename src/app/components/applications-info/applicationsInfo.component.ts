@@ -45,6 +45,7 @@ export class ApplicationsInfoComponent implements OnInit {
       count: null,
       status: null,
       photo: '',
+      photo_alias: '',
       price: '',
       stock: null
     },
