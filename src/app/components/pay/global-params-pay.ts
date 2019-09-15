@@ -5,6 +5,7 @@ export class GlobalParamsPay {
   data = {
     show: false,
     sum: '',
+    cashBox: null,
     eq_id: null
   };
 }

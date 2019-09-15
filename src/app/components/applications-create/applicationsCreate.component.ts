@@ -207,7 +207,7 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   showInsertSum() {
-    this.globalParamsPay.data = {show: true, sum: '', eq_id: null};
+    this.globalParamsPay.data = {show: true, sum: '', eq_id: null, cashBox: null};
   }
 
   // заполнение данными из справочника
@@ -288,6 +288,7 @@ export class ApplicationsCreateComponent implements OnInit {
       client_date_passport: this.application.client_date_passport.val,
       client_address_passport: this.application.client_address_passport.val,
       sum_pay: this.globalParamsPay.data.sum,
+      cashBox: this.globalParamsPay.data.cashBox,
       sum: this.application.sum,
       delivery_sum: this.application.delivery_sum,
       comment: this.application.comment,

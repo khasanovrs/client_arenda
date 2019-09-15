@@ -134,7 +134,7 @@ export class HireInfoComponent {
   }
 
   showInsertSum() {
-    this.globalParamsPay.data = {show: true, sum: '', eq_id: this.hireInfo.id};
+    this.globalParamsPay.data = {show: true, sum: '', eq_id: this.hireInfo.id, cashBox: null};
   }
 
   showInsertRental() {

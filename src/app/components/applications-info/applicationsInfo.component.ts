@@ -150,7 +150,7 @@ export class ApplicationsInfoComponent implements OnInit {
   }
 
   showInsertSum() {
-    this.globalParamsPay.data = {show: true, sum: '', eq_id: this.application.equipments.id};
+    this.globalParamsPay.data = {show: true, sum: '', eq_id: this.application.equipments.id, cashBox: null};
   }
 
   open_pay_list() {
