@@ -6,7 +6,10 @@
     <div class="---row ---form">
 
       <div class="---col-12">
-        <img src="/assets/imgs/catalog/{{hireInfo.equipments.photo}}.png" class="---lazyload ---img-contain ---product-img">
+        <img *ngIf="hireInfo.equipments.photo!=''" src="http://u68857.netangels.ru/{{hireInfo.equipments.photo}}" alt=""
+             class="---lazyload ---img-contain ---product-img">
+        <img *ngIf="hireInfo.equipments.photo_alias!=''" src="{{hireInfo.equipments.photo_alias}}" alt=""
+             class="---lazyload ---img-contain ---product-img">
       </div>
 
       <div class="---field ---d-flex ---flex-wrap ---justify-content-between ---col-12">

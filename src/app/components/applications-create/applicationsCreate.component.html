@@ -73,8 +73,8 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Начало аренды</label>
             <div class="---input ---input--calendar ---pos-rel">
-              <input type="datetime-local" (change)="changeDate()"  [(ngModel)]="application.rent_start.val"
-                     [disabled]="application.status.val===1"
+              <input type="datetime-local" (change)="changeDate()" [(ngModel)]="application.rent_start.val"
+                     [disabled]='application.status.val !== 2'
                      [ngModelOptions]="{standalone: true}"
                      class="---datepicker-input">
               <i class="---y-pos-abs ifont ---icon-calendar"></i>
@@ -197,7 +197,9 @@
 
       <div class="---devider"></div>
 
-      <div (click)="showInsertSum()" *ngIf="application.equipments.length!=0" class="---btn ---btn--fill-acent">Добавить платеж</div>
+      <div (click)="showInsertSum()" *ngIf="application.equipments.length!=0" class="---btn ---btn--fill-acent">Добавить
+        платеж
+      </div>
 
     </div>
 

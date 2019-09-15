@@ -141,7 +141,7 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   changeStatusApplications(val) {
-    this.application.status = val;
+    this.application.status.val = val;
   }
 
   changeTypeLease() {
@@ -305,8 +305,9 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   changeDate() {
-    this.application.typeLease.val = null;
-    this.application.rent_end.val = '';
+    // this.application.typeLease.val = null;
+    // this.application.rent_end.val = '';
+    this.changeTypeLease();
     this.changeSum();
   }
 

@@ -47,6 +47,7 @@ export class HireInfoComponent {
       name: '',
       state: '',
       photo: null,
+      photo_alias: '',
     },
     pay_list: [{
       'date': null,

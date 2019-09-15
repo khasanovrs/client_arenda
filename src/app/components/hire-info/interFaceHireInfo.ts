@@ -23,6 +23,7 @@ interface InterFaceHireInfo {
     name: string;
     state: string;
     photo: number;
+    photo_alias: string;
   };
   pay_list: {
     'date': string,
