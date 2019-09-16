@@ -6,9 +6,9 @@
     <div class="---row ---form">
 
       <div class="---col-12">
-        <img *ngIf="hireInfo.equipments.photo!=''" src="http://u68857.netangels.ru/{{hireInfo.equipments.photo}}" alt=""
+        <img *ngIf="hireInfo.equipments.photo!==null" src="http://u68857.netangels.ru/{{hireInfo.equipments.photo}}" alt=""
              class="---lazyload ---img-contain ---product-img">
-        <img *ngIf="hireInfo.equipments.photo_alias!=''" src="{{hireInfo.equipments.photo_alias}}" alt=""
+        <img *ngIf="hireInfo.equipments.photo_alias!==''" src="{{hireInfo.equipments.photo_alias}}" alt=""
              class="---lazyload ---img-contain ---product-img">
       </div>
 
