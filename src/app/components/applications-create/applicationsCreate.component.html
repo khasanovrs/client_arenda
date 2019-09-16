@@ -74,7 +74,7 @@
             <label>Начало аренды</label>
             <div class="---input ---input--calendar ---pos-rel">
               <input type="datetime-local" (change)="changeDate()"  [(ngModel)]="application.rent_start.val"
-                     [disabled]="application.status.val===1"
+                     [disabled]="application.status.val!==2"
                      [ngModelOptions]="{standalone: true}"
                      class="---datepicker-input">
               <i class="---y-pos-abs ifont ---icon-calendar"></i>

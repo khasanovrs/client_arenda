@@ -141,7 +141,7 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   changeStatusApplications(val) {
-    this.application.status = val;
+    this.application.status.val = val;
   }
 
   changeTypeLease() {
@@ -255,11 +255,13 @@ export class ApplicationsCreateComponent implements OnInit {
       if (value === 'client_id') {
         continue;
       }
-      if (this.application.hasOwnProperty(value) && typeof this.application[value].required === 'undefined') {
+      if (this.application.status.val === 2 || this.application.status.val === 1) {
+        if (this.application.hasOwnProperty(value) && typeof this.application[value].required === 'undefined') {
 
-        if (this.application[value].required && this.application[value].val === '') {
-          this.globalParamsMessage.data = {title: `Необходимо заполнить поле "${this.application[value].name}"`, type: 'error', body: ''};
-          return false;
+          if (this.application[value].required && this.application[value].val === '') {
+            this.globalParamsMessage.data = {title: `Необходимо заполнить поле "${this.application[value].name}"`, type: 'error', body: ''};
+            return false;
+          }
         }
       }
     }
