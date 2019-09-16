@@ -64,8 +64,7 @@ export class ApplicationsInfoComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private applicationsService: ApplicationsService,
               private globalPayList: GlobalPayList,
-              private globalParamsPay: GlobalParamsPay,
-              private router: Router) {
+              private globalParamsPay: GlobalParamsPay) {
 
     this.activatedRoute.params.subscribe(
       (params: Params): void => {
@@ -73,6 +72,9 @@ export class ApplicationsInfoComponent implements OnInit {
       }
     );
 
+    this.applicationsService.refreshInfo.subscribe(() => {
+      this.getApplicationInfo();
+    });
   }
 
   ngOnInit() {
@@ -125,6 +127,10 @@ export class ApplicationsInfoComponent implements OnInit {
         console.log('Ошибка при получении филиалов: ', error);
       });
 
+    this.getApplicationInfo();
+  }
+
+  getApplicationInfo() {
     this.applicationsService.getApplicationInfo({applicationId: this.applicationId}).then((data: any) => {
         this.application.id = data.id;
         this.application.branch.val = data.branch;

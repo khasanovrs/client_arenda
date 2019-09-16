@@ -95,6 +95,7 @@ export class EquipmentsCreateComponent implements OnInit {
 
     this.dopParamsService.getDiscount().then((data: InterFaceDopParams[]) => {
         this.discounts = data;
+        this.newEquipments.discount = this.discounts[0].val;
       },
       (error) => {
         console.log('Ошибка при получении списка скидок: ', error);
@@ -129,16 +130,6 @@ export class EquipmentsCreateComponent implements OnInit {
 
     if (this.newEquipments.category === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать категорию оборудования', type: 'error', body: ''};
-      return false;
-    }
-
-    if (this.newEquipments.count === null) {
-      this.globalParamsMessage.data = {title: 'Необходимо указать количество оборудования', type: 'error', body: ''};
-      return false;
-    }
-
-    if (this.newEquipments.tool_number === null) {
-      this.globalParamsMessage.data = {title: 'Необходимо указать номер оборудования', type: 'error', body: ''};
       return false;
     }
 
