@@ -30,4 +30,9 @@ interface InterFaceHireInfo {
     'user_id': number,
     'sum': string
   }[];
+  extensions: {
+    'date': string,
+    'user_id': string,
+    'count': number
+  }[];
 }

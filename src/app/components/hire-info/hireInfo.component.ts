@@ -8,6 +8,7 @@ import {GlobalParamsRental} from '../rental/global-params-rental';
 import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {ApplicationsService} from '../applications/applications.service';
+import {GlobalExtensionsList} from '../extensions_list/global-extensions-list';
 
 @Component({
   selector: 'app-hire-info',
@@ -54,6 +55,11 @@ export class HireInfoComponent {
       'date': null,
       'user_id': null,
       'sum': ''
+    }],
+    extensions: [{
+      'date': null,
+      'user_id': '',
+      'count': null
     }]
   };
 
@@ -65,7 +71,8 @@ export class HireInfoComponent {
               private globalParamsRental: GlobalParamsRental,
               private applicationsService: ApplicationsService,
               private applicationsCreateService: ApplicationsCreateService,
-              private dopParamsService: DopParamsService) {
+              private dopParamsService: DopParamsService,
+              private globalExtensionsList: GlobalExtensionsList) {
 
     this.router.params.subscribe(
       (params: Params): void => {
@@ -100,6 +107,7 @@ export class HireInfoComponent {
         this.hireInfo.rent_start = new Date(this.hireInfo.rent_start).toISOString().slice(0, 16);
         this.hireInfo.rent_end = new Date(this.hireInfo.rent_end).toISOString().slice(0, 16);
         this.globalPayList.data.pay_list = this.hireInfo.pay_list;
+        this.globalExtensionsList.data.extension_list = this.hireInfo.extensions;
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
@@ -159,5 +167,9 @@ export class HireInfoComponent {
 
   open_pay_list() {
     this.globalPayList.data.show = true;
+  }
+
+  open_extensions_list() {
+    this.globalExtensionsList.data.show = true;
   }
 }

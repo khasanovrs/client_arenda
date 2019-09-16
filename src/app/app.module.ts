@@ -62,6 +62,8 @@ import {PayComponent} from './components/pay/pay.component';
 import {GlobalParamsPay} from './components/pay/global-params-pay';
 import {RentalComponent} from './components/rental/rental.component';
 import {GlobalParamsRental} from './components/rental/global-params-rental';
+import {GlobalExtensionsList} from './components/extensions_list/global-extensions-list';
+import {ExtensionsListComponent} from './components/extensions_list/extensions_list.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -97,6 +99,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HireComponent,
     HireInfoComponent,
     PayComponent,
+    ExtensionsListComponent,
     RentalComponent
   ],
   imports: [
@@ -116,6 +119,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     GlobalParamsPay,
     GlobalParamsRental,
     GlobalPayList,
+    GlobalExtensionsList,
     GlobalParams,
     SessionStorageService,
     ClientService,

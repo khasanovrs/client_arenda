@@ -1,0 +1,19 @@
+<div *ngIf="data.data.show===true" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--big">
+    <div (click)="clear()" class="---js-close-modal ---js-close-modal-icon"></div>
+    <div class="modal-body ---t-wrapper">
+      <table style="min-width: 360px;">
+        <tr>
+          <th>Дата</th>
+          <th>Продление</th>
+          <th>Сотрудник</th>
+        </tr>
+        <tr *ngFor="let extension of data.data.extension_list">
+          <td>{{extension.date}}</td>
+          <td>{{extension.count}}</td>
+          <td>{{extension.user_id}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

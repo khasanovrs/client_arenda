@@ -8,12 +8,14 @@
       <div class="---col-12">
         <img *ngIf="hireInfo.equipments.photo!==null" src="http://u68857.netangels.ru/{{hireInfo.equipments.photo}}" alt=""
              class="---lazyload ---img-contain ---product-img">
-        <img *ngIf="hireInfo.equipments.photo_alias!==''" src="{{hireInfo.equipments.photo_alias}}" alt=""
+        <img *ngIf="hireInfo.equipments.photo===null" src="{{hireInfo.equipments.photo_alias}}" alt=""
              class="---lazyload ---img-contain ---product-img">
       </div>
 
       <div class="---field ---d-flex ---flex-wrap ---justify-content-between ---col-12">
-        <div *ngIf="globalPayList.data.pay_list.length != 0" (click)="open_pay_list()" class="---btn ---btn--fill-acent">Платежи</div>
+        <div (click)="open_pay_list()" class="---btn ---btn--fill-acent">Платежи</div>
+
+        <div (click)="open_extensions_list()" class="---btn ---btn--fill-acent">Продления</div>
 
         <div (click)="showInsertSum()" class="---btn ---btn--fill-acent">Добавить платеж</div>
 
