@@ -125,4 +125,20 @@ export class ApplicationsService {
         );
     });
   }
+
+  // продлить контракт
+  public extendRental(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/extend-rental', data)
+        .then(() => {
+            this.refreshInfo.emit(true);
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении статуса для проката', error);
+            reject();
+          }
+        );
+    });
+  }
 }

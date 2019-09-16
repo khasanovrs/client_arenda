@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GlobalParamsRental} from './global-params-rental';
 import {HireService} from '../hire/hire.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
+import {ApplicationsService} from '../applications/applications.service';
 
 @Component({
   selector: 'app-rental',
@@ -11,7 +12,7 @@ export class RentalComponent implements OnInit {
   data: any;
 
   constructor(private globalParamsRental: GlobalParamsRental,
-              private hireService: HireService,
+              private applicationsService: ApplicationsService,
               private globalParamsMessage: GlobalParamsMessage) {
     this.data = globalParamsRental;
   }
@@ -37,13 +38,12 @@ export class RentalComponent implements OnInit {
     }
     this.data.data.show = false;
     if (this.data.data.eq_id !== null) {
-      this.hireService.extendRental({
+      this.applicationsService.extendRental({
         count: this.data.data.count,
         app_eq_id: this.data.data.app_eq_id,
         app_id: this.data.data.app_id
-      }).then((data: any) => {
+      }).then(() => {
           this.globalParamsMessage.data = {title: 'Аренда успешно обновлена', type: 'success', body: ''};
-          window.location.reload();
         },
         (error) => {
           console.log('Ошибка при добавлении нового платежа: ', error);
