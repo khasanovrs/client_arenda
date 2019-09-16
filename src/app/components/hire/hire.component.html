@@ -3,7 +3,9 @@
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
       <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
-        <div class="---tabs__switcher ---d-flex ---align-items-center" data-tab="2" *ngFor="let status of statusList" (click)="changeFilterStatus(status.val)">{{status.name}}</div>
+        <div class="---tabs__switcher ---d-flex ---align-items-center" data-tab="2" *ngFor="let status of statusList"
+             (click)="changeFilterStatus(status.val)">{{status.name}}
+        </div>
       </div>
     </div>
 
@@ -25,7 +27,8 @@
         </div>
 
         <div class="---search ---field ---pos-rel">
-          <input class="---input" (keyup)="getHire()" [(ngModel)]="filters.like" placeholder="Наименование оборудования">
+          <input class="---input" (keyup)="getHire()" [(ngModel)]="filters.like"
+                 placeholder="Наименование оборудования">
           <button class="---y-pos-abs ifont ---icon-loop"></button>
         </div>
       </div>
@@ -106,12 +109,14 @@
             </ng-container>
           </tr>
 
-          <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" [style.background]="hire.color">
+          <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer"
+              [style.background]="hire.color">
             <td>
               <div (click)="hireDetails(hire.id)" class="ifont ---icon-edit ---radius-5"></div>
             </td>
             <td>
-              <div (click)="showInsertRental(hire.id, hire.app_id, hire.typeLease_id, hire.end_hire)" class="ifont ---icon-loop ---radius-5"></div>
+              <div (click)="showInsertRental(hire.id, hire.app_id, hire.typeLease_id, hire.end_hire)"
+                   class="ifont ---icon-loop ---radius-5"></div>
             </td>
 
             <td *ngIf="activeFieldsTables['client']===1">{{hire.client}}</td>
@@ -127,13 +132,14 @@
             <td *ngIf="activeFieldsTables['comment']===1">{{hire.comment}}</td>
             <td *ngIf="activeFieldsTables['date_end']===1">{{hire.date_end}}</td>
             <td *ngIf="activeFieldsTables['branch']===1">{{hire.branch}}</td>
-            <td *ngIf="activeFieldsTables['current_pay']===1">{{hire.current_pay}}</td>
+            <td *ngIf="activeFieldsTables['current_pay']===1">{{hire.current_pay |digitsNumbers}}</td>
           </tr>
 
         </table>
       </div>
 
-      <div class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
+      <div
+        class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
         <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
 
         <div>Всего записей — <span class="---font-600">{{hires.length | digitsNumbers}}</span></div>

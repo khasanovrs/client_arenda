@@ -59,6 +59,12 @@
               </select>
             </div>
           </div>
+          <div class="---field ---col-12 ---col-xs-6" *ngIf="application.delivery.val===1">
+            <label>Сумма доставки</label>
+            <div class="---input ---pos-rel">
+              <input type="text" mask="separator" [ngModelOptions]="{standalone: true}" [(ngModel)]="application.delivery_sum">
+            </div>
+          </div>
           <div class="---field ---col-12 ---col-xs-6">
             <label>Источник</label>
             <div class="---select">
@@ -74,7 +80,7 @@
             <label>Начало аренды</label>
             <div class="---input ---input--calendar ---pos-rel">
               <input type="datetime-local" (change)="changeDate()" [(ngModel)]="application.rent_start.val"
-                     [disabled]='application.status.val !== 2'
+                     [disabled]="application.status.val!==2"
                      [ngModelOptions]="{standalone: true}"
                      class="---datepicker-input">
               <i class="---y-pos-abs ifont ---icon-calendar"></i>

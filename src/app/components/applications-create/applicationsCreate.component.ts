@@ -88,6 +88,7 @@ export class ApplicationsCreateComponent implements OnInit {
 
     this.applicationsCreateService.getApplicationsDelivery().then((data: InterFaceDopParams[]) => {
         this.applicationsDelivery = data;
+        this.application.delivery.val = this.applicationsDelivery[1].val;
       },
       (error) => {
         console.log('Ошибка при получении статусов доставки: ', error);
@@ -109,6 +110,7 @@ export class ApplicationsCreateComponent implements OnInit {
 
     this.dopParamsService.getDiscount().then((data: InterFaceDopParams[]) => {
         this.discounts = data;
+        this.application.sale.val = this.discounts[0].val;
       },
       (error) => {
         console.log('Ошибка при получении списка скидок: ', error);
@@ -255,11 +257,13 @@ export class ApplicationsCreateComponent implements OnInit {
       if (value === 'client_id') {
         continue;
       }
-      if (this.application.hasOwnProperty(value) && typeof this.application[value].required === 'undefined') {
+      if (this.application.status.val === 2 || this.application.status.val === 1) {
+        if (this.application.hasOwnProperty(value) && typeof this.application[value].required === 'undefined') {
 
-        if (this.application[value].required && this.application[value].val === '') {
-          this.globalParamsMessage.data = {title: `Необходимо заполнить поле "${this.application[value].name}"`, type: 'error', body: ''};
-          return false;
+          if (this.application[value].required && this.application[value].val === '') {
+            this.globalParamsMessage.data = {title: `Необходимо заполнить поле "${this.application[value].name}"`, type: 'error', body: ''};
+            return false;
+          }
         }
       }
     }
