@@ -19,6 +19,10 @@
           <label>Сумма</label>
           <input class="---input ---fill--bg" [(ngModel)]="data.data.sum" mask="separator">
         </div>
+        <div class="---field">
+          <label>Возврат денег</label>
+          <input type="checkbox" class="---input ---fill--bg" [(ngModel)]="revertSum">
+        </div>
         <div class="---btn ---btn--fill-acent ---btn--sm" (click)="send()">Добавить</div>
       </div>
     </div>

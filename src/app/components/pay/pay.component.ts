@@ -13,6 +13,7 @@ export class PayComponent implements OnInit {
   data: any;
   financeCashBox: InterFaceFinanceCashBox[];
   currentFinanceCashBox = null;
+  revertSum = false;
 
   constructor(private globalParamsPay: GlobalParamsPay,
               private applicationsService: ApplicationsService,
@@ -52,9 +53,9 @@ export class PayComponent implements OnInit {
       this.applicationsService.addPay({
         sum: this.globalParamsPay.data.sum,
         cashBox: this.currentFinanceCashBox,
-        eq_app_id: this.globalParamsPay.data.eq_id
-      }).then((data: any) => {
-          this.globalPayList.data.pay_list = data;
+        eq_app_id: this.globalParamsPay.data.eq_id,
+        revertSum: this.revertSum
+      }).then(() => {
           this.globalParamsMessage.data = {title: 'Оплата успешно добавлена', type: 'success', body: ''};
         },
         (error) => {

@@ -7,6 +7,7 @@ import {GlobalParamsPay} from '../pay/global-params-pay';
 import {GlobalParamsRental} from '../rental/global-params-rental';
 import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
 import {DopParamsService} from '../../services/dopParams.service';
+import {ApplicationsService} from '../applications/applications.service';
 
 @Component({
   selector: 'app-hire-info',
@@ -62,6 +63,7 @@ export class HireInfoComponent {
               public globalPayList: GlobalPayList,
               private globalParamsPay: GlobalParamsPay,
               private globalParamsRental: GlobalParamsRental,
+              private applicationsService: ApplicationsService,
               private applicationsCreateService: ApplicationsCreateService,
               private dopParamsService: DopParamsService) {
 
@@ -70,6 +72,10 @@ export class HireInfoComponent {
         this.hireId = params.id;
       }
     );
+
+    this.applicationsService.refreshInfo.subscribe(() => {
+      this.getHireInfo();
+    });
 
     this.applicationsCreateService.getApplicationsDelivery().then((data: InterFaceDopParams[]) => {
         this.delivery = data;
@@ -85,6 +91,10 @@ export class HireInfoComponent {
         console.log('Ошибка при получении списка скидок: ', error);
       });
 
+    this.getHireInfo();
+  }
+
+  getHireInfo() {
     this.hireService.getHireInfo({id: this.hireId}).then((data: InterFaceHireInfo) => {
         this.hireInfo = data;
         this.hireInfo.rent_start = new Date(this.hireInfo.rent_start).toISOString().slice(0, 16);

@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpService} from '../../utils/http/http.service';
 
 @Injectable()
 export class ApplicationsService {
   applicationsFieldsList: InterFaceActiveFields[] = [];
   applicationsStatusList: InterFaceDopParams[] = [];
+  refreshInfo: EventEmitter<any> = new EventEmitter(false);
 
   constructor(private httpService: HttpService) {
   }
@@ -100,6 +101,7 @@ export class ApplicationsService {
       this.httpService.prepareQuery('api/add-pay', data)
         .then((result: InterFaceDopParams[]) => {
             resolve(result);
+            this.refreshInfo.emit(true);
           },
           (error) => {
             console.log('Ошибка при добавлении нового платежа', error);
