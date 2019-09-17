@@ -1,7 +1,7 @@
 <div class="---page-hire">
 
   <div class="---data-block">
-    <div class="h2 ---input ---input--disabled">Данные аренды</div>
+    <div class="h1">Данные аренды</div>
 
     <div class="---row ---form">
 
@@ -12,16 +12,12 @@
              class="---lazyload ---img-contain ---product-img">
       </div>
 
-      <div class="---field ---d-flex ---flex-wrap ---justify-content-between ---col-12">
-        <div (click)="open_pay_list()" class="---btn ---btn--fill-acent">Платежи</div>
-
-        <div (click)="open_extensions_list()" class="---btn ---btn--fill-acent">Продления</div>
-
-        <div (click)="showInsertSum()" class="---btn ---btn--fill-acent">Добавить платеж</div>
-
-        <div (click)="showInsertRental()" class="---btn ---btn--fill-acent">Продлить прокат</div>
-
-        <div (click)="showModalClose=true" class="---btn ---btn--fill-acent">Возврат оборудования на склад</div>
+      <div class="---col-12 ---field ---d-flex ---flex-wrap">
+        <div style="margin: 0 10px 10px 0;" (click)="open_pay_list()" class="---btn ---btn--sm ---btn--fill-acent">Платежи</div>
+        <div style="margin: 0 10px 10px 0;" (click)="open_extensions_list()" class="---btn ---btn--sm ---btn--fill-acent">Продления</div>
+        <div style="margin: 0 10px 10px 0;" (click)="showInsertSum()" class="---btn ---btn--sm ---btn--fill-acent">Добавить платеж</div>
+        <div style="margin: 0 10px 10px 0;" (click)="showInsertRental()" class="---btn ---btn--sm ---btn--fill-acent">Продлить прокат</div>
+        <div style="margin: 0 10px 10px 0;" (click)="showModalClose=true" class="---btn ---btn--sm ---btn--fill-acent">Возврат оборудования на склад</div>
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
@@ -153,11 +149,14 @@
     <div class="---js-close-modal ---js-close-modal-icon" (click)="showModalClose=false"></div>
     <div class="modal-body">
       <div class="---form">
-        <div class="---field">
-          <input type="checkbox" id="prim" [(ngModel)]="checkPrim">
-          <label for="prim">Остались замечания по прокату</label>
-        </div>
+
+        <label class="---field ---d-flex ---flex-wrap ---align-items-center">
+          <input type="checkbox" [(ngModel)]="checkPrim" style="width: 14px; height: 14px;">
+          <span style="margin: 0 0 0 10px;">Остались замечания по прокату</span>
+        </label>
+
         <div class="---btn ---btn--fill-acent ---btn--sm" (click)="closeHire()">Отправить</div>
+
       </div>
     </div>
   </div>

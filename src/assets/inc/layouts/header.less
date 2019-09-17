@@ -10,7 +10,7 @@
 		right: 0;
 		bottom: 0;
 		background: #fff;
-		transform: translate(0, -100px);
+		transform: translate(0, -84px);
 		transition: all .2s;
 
 		.ifont {
@@ -93,7 +93,7 @@
 		margin: 0;
 		font-size: 18/@px;
 		color: @textColor;
-		width: 30%;
+		max-width: 30%;
 		.text-overflow(1, 18/@px * 1.4);
 	}
 
@@ -212,10 +212,17 @@
 		padding-left: 60px;
 	}
 
-	@media @mediaSm {
+	@media @mediaMd {
 
 		.---h-block {
 			padding: 20px 10px;
+		}
+
+	}
+
+	@media @mediaSm {
+
+		.---h-block {
 
 			.---acent {
 				margin-left: 5px;

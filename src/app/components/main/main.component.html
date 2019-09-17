@@ -18,13 +18,13 @@
   <div class="---block__rside ---d-flex">
     <label>Дата периода</label>
     <div class="---input ---input--calendar">
-      <input type="date" [(ngModel)]="filter.date_start" (change)="getData()">
+      <input class="---datepicker-input" [(ngModel)]="filter.date_start" (change)="getData()">
     </div>
   </div>
   <div class="---block__rside ---d-flex">
     <label>Конец периода</label>
     <div class="---input ---input--calendar">
-      <input type="date" [(ngModel)]="filter.date_end">
+      <input class="---datepicker-input" [(ngModel)]="filter.date_end">
     </div>
   </div>
 
