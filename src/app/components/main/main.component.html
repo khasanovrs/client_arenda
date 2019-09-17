@@ -1,33 +1,55 @@
-<div class="---block ---block--bg-white ---block-data-by-city ---d-flex ---justify-content-between">
+<div class="---block ---block--bg-white ---block-data-by-city">
+  <div class="---form ---row ---justify-content-between ---align-items-center">
+    
+    <div class="---col-xl-4">
+      <div class="---row">
+        
+        <div class="---col-xs-5 ---col-sm-6">
+          <div class="---block__lside ---pos-rel ---font-600">
+            <i class="ifont ---icon-location ---y-pos-abs"></i>
+            Данные<br>
+            по городам
+          </div>
+        </div>
 
-  <div class="---block__lside ---pos-rel ---font-sbold">
-    <i class="ifont ---icon-location ---y-pos-abs"></i>
-    Данные<br>
-    по городам
-  </div>
+        <div class="---col-xs-7 ---col-sm-6">
+          <div class="---select" style="margin: 10px 0;">
+            <select [(ngModel)]="filter.branch" (change)="changeBranch()">
+              <option *ngFor="let branch of branches" [ngValue]="branch.val">
+                {{branch.name}}
+              </option>
+            </select>
+          </div>
+        </div>
 
-  <div class="---block__rside ---d-flex">
-    <div class="---select">
-      <select [(ngModel)]="filter.branch" (change)="changeBranch()">
-        <option *ngFor="let branch of branches" [ngValue]="branch.val">
-          {{branch.name}}
-        </option>
-      </select>
+      </div>
     </div>
-  </div>
-  <div class="---block__rside ---d-flex">
-    <label>Дата периода</label>
-    <div class="---input ---input--calendar">
-      <input class="---datepicker-input" [(ngModel)]="filter.date_start" (change)="getData()">
-    </div>
-  </div>
-  <div class="---block__rside ---d-flex">
-    <label>Конец периода</label>
-    <div class="---input ---input--calendar">
-      <input class="---datepicker-input" [(ngModel)]="filter.date_end">
-    </div>
-  </div>
+    
+    <div class="---col-xl-6">
+      <div class="---row">
+        
+        <div class="---col-xs-6">
+          <div class="---field" style="margin: 10px 0;">
+            <label>Дата периода</label>
+            <div class="---input ---input--calendar">
+              <input class="---datepicker-input" [(ngModel)]="filter.date_start" (change)="getData()">
+            </div>
+          </div>
+        </div>
+        
+        <div class="---col-xs-6">
+          <div class="---field" style="margin: 10px 0;">
+            <label>Конец периода</label>
+            <div class="---input ---input--calendar">
+              <input class="---datepicker-input" [(ngModel)]="filter.date_end">
+            </div>
+          </div>
+        </div>
 
+      </div>
+    </div>
+
+  </div>
 </div>
 
 
@@ -39,12 +61,12 @@
 
       </div>
       <div class="---content ---d-flex ---justify-content-between ---align-items-center">
-        <div class="---title ---pos-rel ---font-sbold">
+        <div class="---title ---pos-rel ---font-600">
           <i class="ifont ---icon-calendar ---y-pos-abs"></i>
           {{income.name}}
         </div>
 
-        <div  class="---num ---font-light">{{income.count | digitsNumbers}} <span *ngIf="income.currency">₽</span></div>
+        <div  class="---num ---font-300">{{income.count | digitsNumbers}} <span *ngIf="income.currency">₽</span></div>
       </div>
     </div>
   </div>
@@ -53,26 +75,25 @@
 <div class="---col-12 ---devider-line"></div>
 
 <div class="---block-catalog">
-  <div class="---block__title ---font-light ---d-flex ---align-items-center ---justify-content-between">
+  <div class="---block__title ---font-300 ---d-flex ---align-items-center ---justify-content-between">
     Популярные позиции
   </div>
 
   <div class="---cat-wrapper ---row ---_xs" *ngIf="equipments.length>0">
     <div class="---col col" *ngFor="let equipment of equipments">
       <a href="#" class="---cat-item ---d-flex ---flex-column">
-                    <span class="---cat-item__img">
-                        <img data-src="/static/imgs/catalog/{{equipment.photo}}" alt="" class="---lazyload ---img-contain">
-                    </span>
-        <span class="---cat-item__title">
-                        {{equipment.name}}
-                    </span>
+        <span class="---cat-item__img">
+          <img data-src="/static/imgs/catalog/{{equipment.photo}}" alt="" class="---lazyload ---img-contain">
+        </span>
+        <span class="---cat-item__title">{{equipment.name}}</span>
         <span class="---cat-item__orders">
-                        заказаов: <span class="---font-sbold">{{equipment.count}}</span>
-                    </span>
-        <span class="---cat-item__btn ---font-sbold ---btn ---btn--sm">
-                        <i class="ifont ---icon-basket-linear"></i>
-                        от {{equipment.price | digitsNumbers}} ₽
-                    </span>
+          <span class="---font-600">{{equipment.count}}</span>
+          заказов
+        </span>
+        <span class="---cat-item__btn ---font-600 ---btn ---btn--sm">
+          <i class="ifont ---icon-basket-linear"></i>
+          от {{equipment.price | digitsNumbers}} ₽
+        </span>
       </a>
     </div>
   </div>
