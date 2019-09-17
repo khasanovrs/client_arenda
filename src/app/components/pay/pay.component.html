@@ -4,25 +4,29 @@
     <div class="---js-close-modal ---js-close-modal-icon" (click)="clear()"></div>
     <div class="modal-body">
       <div class="---form">
+
         <div class="---field">
+          <label>Касса</label>
+
           <div class="---select">
-            <label>Касса</label>
-            <select
-              [(ngModel)]="data.data.cashBox">
+            <select [(ngModel)]="data.data.cashBox">
               <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
                 {{cashBox.name}}
               </option>
             </select>
           </div>
         </div>
+
         <div class="---field">
           <label>Сумма</label>
           <input class="---input ---fill--bg" [(ngModel)]="data.data.sum" mask="separator">
         </div>
-        <div class="---field">
-          <label>Возврат денег</label>
-          <input type="checkbox" class="---input ---fill--bg" [(ngModel)]="revertSum">
-        </div>
+
+        <label class="---field ---d-flex ---flex-wrap ---align-items-center">
+          <input type="checkbox" [(ngModel)]="revertSum" style="width: 14px; height: 14px;">
+          <span style="margin: 0 0 0 10px;">Возврат денег</span>
+        </label>
+
         <div class="---btn ---btn--fill-acent ---btn--sm" (click)="send()">Добавить</div>
       </div>
     </div>

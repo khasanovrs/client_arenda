@@ -112,11 +112,11 @@
           <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer"
               [style.background]="hire.color">
             <td>
-              <div (click)="hireDetails(hire.id)" class="ifont ---icon-edit ---radius-5"></div>
+              <div (click)="hireDetails(hire.id)" class="ifont ---icon-edit ---acent-icon ---radius-5"></div>
             </td>
             <td>
               <div (click)="showInsertRental(hire.id, hire.app_id, hire.typeLease_id, hire.end_hire)"
-                   class="ifont ---icon-loop ---radius-5"></div>
+                   class="ifont ---icon-add-circle ---acent-icon ---radius-5"></div>
             </td>
 
             <td *ngIf="activeFieldsTables['client']===1">{{hire.client}}</td>
