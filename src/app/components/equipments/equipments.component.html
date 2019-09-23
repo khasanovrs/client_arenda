@@ -131,15 +131,9 @@
           <input class="---input ---shadow--bg" mask="separator" [(ngModel)]="equipment.revenue">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
-          <label>Скидка</label>
-          <div class="---select">
-            <select [(ngModel)]="equipment.discount">
-              <option *ngFor="let discount of discounts"
-                      [ngValue]="discount.val">
-                {{discount.name}}
-              </option>
-            </select>
-          </div>
+          <label>Комментарий</label>
+          <textarea class="---input" [(ngModel)]="equipment.comment" rows="5"
+                    [ngModelOptions]="{standalone: true}"></textarea>
         </div>
       </div>
     </div>

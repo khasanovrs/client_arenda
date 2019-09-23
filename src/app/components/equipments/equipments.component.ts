@@ -44,6 +44,7 @@ export class EquipmentsComponent implements OnInit {
     network_cord: '',
     power: '',
     frequency_hits: '',
+    comment: ''
   };
 
   constructor(private dopParamsService: DopParamsService,
@@ -176,6 +177,7 @@ export class EquipmentsComponent implements OnInit {
       power: this.equipment.power,
       frequency_hits: this.equipment.frequency_hits,
       photo_alias: this.equipment.photo_alias,
+      comment: this.equipment.comment
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно изменено', type: 'success', body: ''};
 

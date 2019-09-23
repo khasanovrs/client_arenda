@@ -25,4 +25,5 @@ interface InterFaceInfoEquipments {
   photo_alias: string;
   power: string;
   frequency_hits: string;
+  comment: string;
 }
