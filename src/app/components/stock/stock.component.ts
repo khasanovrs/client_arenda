@@ -110,20 +110,6 @@ export class StockComponent implements OnInit {
     this.showFilters = !this.showFilters;
   }
 
-  // изменение статуса
-  changeStatus(equipment) {
-    this.equipmentsService.updateStatus({equipment_id: equipment.id, equipment_status: equipment.status}).then(() => {
-        for (const value of this.equipmentsStatusList) {
-          if (value.val === equipment.status) {
-            equipment.color = value.color;
-          }
-        }
-      },
-      (error) => {
-        console.log('Ошибка при изменении статуса у оборудования: ', error);
-      });
-  }
-
   // отображение фильтра
   changeActiveFields() {
     this.showActiveFields = !this.showActiveFields;

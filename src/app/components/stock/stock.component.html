@@ -195,17 +195,7 @@
           <td *ngIf="activeFieldsTables['category']===1">{{equipment.category}}</td>
           <td *ngIf="activeFieldsTables['stock']===1">{{equipment.stock}}</td>
           <td *ngIf="activeFieldsTables['type']===1">{{equipment.type}}</td>
-          <td *ngIf="activeFieldsTables['status']===1">
-            <div class="---select">
-              <select [(ngModel)]="equipment.status"
-                      (change)="changeStatus(equipment)">
-                <option *ngFor="let equipmentsStatus of equipmentsStatusList"
-                        [ngValue]="equipmentsStatus.val">
-                  {{equipmentsStatus.name}}
-                </option>
-              </select>
-            </div>
-          </td>
+          <td *ngIf="activeFieldsTables['status']===1">{{equipment.status}}</td>
           <td *ngIf="activeFieldsTables['selling_price']===1">{{equipment.selling_price | digitsNumbers}}</td>
           <td *ngIf="activeFieldsTables['price_per_day']===1">{{equipment.price_per_day | digitsNumbers}}</td>
           <td *ngIf="activeFieldsTables['rentals']===1">{{equipment.rentals}}</td>

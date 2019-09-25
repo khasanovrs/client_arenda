@@ -161,7 +161,7 @@
             </td>
             <td *ngIf="activeFieldsTables['org']===1">{{client.org}}</td>
             <td *ngIf="activeFieldsTables['fio']===1">{{client.fio}}</td>
-            <td *ngIf="activeFieldsTables['phone']===1">{{client.phone | telephoneNumber}}</td>
+            <td *ngIf="activeFieldsTables['phone']===1">{{client.phone | telephoneNumberNotPlus}}</td>
             <td *ngIf="activeFieldsTables['status']===1">
               <div class="---select ---bg-color select-png bg-white">
                 <select class="w-200"

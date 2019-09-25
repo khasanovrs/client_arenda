@@ -64,6 +64,7 @@ import {RentalComponent} from './components/rental/rental.component';
 import {GlobalParamsRental} from './components/rental/global-params-rental';
 import {GlobalExtensionsList} from './components/extensions_list/global-extensions-list';
 import {ExtensionsListComponent} from './components/extensions_list/extensions_list.component';
+import {TelephoneNumberNotPlusPipe} from './pipes/telephone_number_not_plus.pipe';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -71,6 +72,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
   declarations: [
     DigitsNumbersPipe,
     TelephoneNumberPipe,
+    TelephoneNumberNotPlusPipe,
     AppComponent,
     MainComponent,
     MessageAlertComponent,
