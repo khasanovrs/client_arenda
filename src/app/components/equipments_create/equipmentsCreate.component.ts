@@ -23,7 +23,7 @@ export class EquipmentsCreateComponent implements OnInit {
 
   newEquipments: InterFacenewEquipments = {
     model: '',
-    status: '',
+    status: null,
     stock: null,
     discount: null,
     type: null,
@@ -82,6 +82,7 @@ export class EquipmentsCreateComponent implements OnInit {
 
     this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParams[]) => {
         this.equipmentsStatusList = data;
+        this.newEquipments.status = this.equipmentsStatusList[2].val;
       },
       (error) => {
         console.log('Ошибка при получении списка статусов оборудования: ', error);

@@ -1,6 +1,6 @@
 interface InterFacenewEquipments {
   model: string;
-  status: string;
+  status: number;
   stock: number;
   mark: number;
   type: number;
