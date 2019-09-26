@@ -3,6 +3,7 @@ import {HireService} from './hire.service';
 import {Router} from '@angular/router';
 import {DopParamsService} from '../../services/dopParams.service';
 import {GlobalParamsRental} from '../rental/global-params-rental';
+import {Sort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-hire',
@@ -33,6 +34,8 @@ export class HireComponent {
 
   // список прокатов
   hires: InterFaceHire[] = [];
+
+  sortedData: InterFaceHire[];
 
   constructor(public hireService: HireService,
               private router: Router,
@@ -126,7 +129,7 @@ export class HireComponent {
       sum_end: this.filters.sum_end,
     }).then((data: InterFaceHire[]) => {
         this.hires = data;
-
+        this.sortedData = this.hires.slice();
         this.showFilters = false;
       },
       (error) => {
@@ -143,4 +146,25 @@ export class HireComponent {
       app_id: app_id
     };
   }
+
+  sortData(sort: Sort) {
+    const data = this.hires.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.hires = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'client': return compare(a.client, b.client, isAsc);
+        case 'equipment': return compare(a.equipment, b.equipment, isAsc);
+        default: return 0;
+      }
+    });
+  }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

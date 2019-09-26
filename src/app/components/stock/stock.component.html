@@ -178,11 +178,11 @@
     </div>
 
     <div class="---t-wrapper">
-      <table matSort (matSortChange)="sortData($event)">
+      <table>
         <tr>
           <th></th>
           <ng-container *ngFor="let activeField of activeFields">
-            <th mat-sort-header="{{activeField.code}}" *ngIf="activeField.flag===1">{{activeField.name}}</th>
+            <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
           </ng-container>
         </tr>
 

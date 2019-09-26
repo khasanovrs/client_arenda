@@ -3,7 +3,6 @@ import {DopParamsService} from '../../services/dopParams.service';
 import {StockService} from './stock.service';
 import {EquipmentsService} from '../equipments/equipments.service';
 import {Router} from '@angular/router';
-import {Sort} from '@angular/material/sort';
 
 
 @Component({
@@ -53,8 +52,6 @@ export class StockComponent implements OnInit {
     degree_wear_start: null,
     degree_wear_end: null,
   };
-
-  sortedData: any;
 
   constructor(private stockService: StockService,
               private dopParamsService: DopParamsService,
@@ -170,7 +167,6 @@ export class StockComponent implements OnInit {
       degree_wear_end: this.filters.degree_wear_end,
     }).then((data: IClientsUr[]) => {
         this.equipmentsList = data;
-        this.sortedData = this.equipmentsList.slice();
       },
       (error) => {
         console.log('Ошибка при получении списка оборудований: ', error);
@@ -211,29 +207,6 @@ export class StockComponent implements OnInit {
   equipmentDetails(index) {
     this.router.navigate(['/equipments/' + index]);
   }
-
-  sortData(sort: Sort) {
-
-    const data = this.equipmentsList.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
-
-    this.equipmentsList = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'selling_price': return compare(a.selling_price, b.selling_price, isAsc);
-        case 'price_per_day': return compare(a.price_per_day, b.price_per_day, isAsc);
-        case 'rentals': return compare(a.rentals, b.rentals, isAsc);
-        case 'repairs': return compare(a.repairs, b.repairs, isAsc);
-        default: return 0;
-      }
-    });
-  }
 }
 
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
+

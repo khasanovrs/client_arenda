@@ -100,12 +100,12 @@
     <div class="---tabs__tab ---is-visible" data-tab="1">
 
       <div class="---t-wrapper">
-        <table>
+        <table matSort (matSortChange)="sortData($event)">
           <tr>
             <th></th>
             <th></th>
             <ng-container *ngFor="let activeField of activeFields">
-              <th *ngIf="activeField.flag===1">{{activeField.name}}</th>
+              <th mat-sort-header="{{activeField.code}}"  *ngIf="activeField.flag===1">{{activeField.name}}</th>
             </ng-container>
           </tr>
 
