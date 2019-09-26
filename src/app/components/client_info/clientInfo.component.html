@@ -2,6 +2,11 @@
 
   <div class="---col-12 ---col-lg-6 ---form">
 
+    <div class="---col-12 ---field ---d-flex ---flex-wrap">
+      <div style="margin: 0 10px 10px 0;" (click)="open_pay_history()" class="---btn ---btn--sm ---btn--fill-acent">История платежей</div>
+      <div style="margin: 0 10px 10px 0;" (click)="open_aspplication_history()" class="---btn ---btn--sm ---btn--fill-acent">Историяй заявок</div>
+    </div>
+
     <div class="---data-block ---radius-5">
       <div class="h2 ---font-600">Данные о аренде</div>
 
@@ -45,6 +50,14 @@
               </option>
             </select>
           </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Количество аренд</label>
+          <input disabled class="---input ---fill--bg" [(ngModel)]="client.count_application">
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>Сумма оплаты</label>
+          <input disabled class="---input ---fill--bg"  mask="separator" [(ngModel)]="client.all_total_paid">
         </div>
       </div>
     </div>

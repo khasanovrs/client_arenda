@@ -1,0 +1,23 @@
+<div *ngIf="data.data.show===true" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--big">
+    <div (click)="clear()" class="---js-close-modal ---js-close-modal-icon"></div>
+    <div class="modal-body ---t-wrapper">
+      <table style="min-width: 360px;">
+        <tr>
+          <th>Начало аренды</th>
+          <th>Конец аренды</th>
+          <th>Сумма</th>
+          <th>Оплачено</th>
+          <th>Оборудование</th>
+        </tr>
+        <tr *ngFor="let pay of data.data.data">
+          <td>{{pay.rent_start}}</td>
+          <td>{{pay.rent_end}}</td>
+          <td>{{pay.sum | digitsNumbers}} ₽</td>
+          <td>{{pay.total_paid | digitsNumbers}} ₽</td>
+          <td>{{pay.equipments}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

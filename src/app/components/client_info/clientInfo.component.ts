@@ -4,6 +4,8 @@ import {DopParamsService} from '../../services/dopParams.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ClientCreateService} from '../client_create/clientCreate.service';
+import {GlobalPayListClient} from '../pay_list_client/global-pay-list-client';
+import {GlobalApplicationListClient} from '../application_list_client/global-application-list-client';
 
 @Component({
   selector: 'app-client-info',
@@ -18,7 +20,7 @@ export class ClientInfoComponent implements OnInit {
   discounts: InterFaceDopParams[] = [];
   // список исчтоников
   sources: InterFaceDopParams[] = [];
-  client: InterFaceNewClient = {
+  client: InterFaceClient = {
     sale: null,
     branch: null,
     status: null,
@@ -32,7 +34,22 @@ export class ClientInfoComponent implements OnInit {
     phone_2: '',
     phone_3: '',
     email: '',
-    number_passport: ''
+    number_passport: '',
+    count_application: null,
+    all_total_paid: null,
+    application_list: [{
+      rent_start: '',
+      rent_end: '',
+      sum: '',
+      total_paid: '',
+      equipments: '',
+    }],
+    pay_list: [{
+      sum: '',
+      date: '',
+      equipments: '',
+      cashBox: ''
+    }]
   };
 
   // идентификатор клиента
@@ -42,7 +59,9 @@ export class ClientInfoComponent implements OnInit {
               private dopParamsService: DopParamsService,
               private clientCreateService: ClientCreateService,
               private globalParamsMessage: GlobalParamsMessage,
-              private router: ActivatedRoute) {
+              private router: ActivatedRoute,
+              private globalPayListClient: GlobalPayListClient,
+              private globalApplicationListClient: GlobalApplicationListClient) {
 
     this.router.params.subscribe(
       (params: Params): void => {
@@ -80,7 +99,7 @@ export class ClientInfoComponent implements OnInit {
         console.log('Ошибка при получении источников: ', error);
       });
 
-    this.clientInfoService.getClientInfo({clientId: this.clientId}).then((data: InterFaceNewClient) => {
+    this.clientInfoService.getClientInfo({clientId: this.clientId}).then((data: InterFaceClient) => {
         this.client = data;
       },
       (error) => {
@@ -130,5 +149,19 @@ export class ClientInfoComponent implements OnInit {
       (error) => {
         console.log('Ошибка при изменении пользователей: ', error);
       });
+  }
+
+  open_pay_history() {
+    this.globalPayListClient.data = {
+      show: true,
+      data: this.client.pay_list
+    };
+  }
+
+  open_aspplication_history() {
+    this.globalApplicationListClient.data = {
+      show: true,
+      data: this.client.application_list
+    };
   }
 }

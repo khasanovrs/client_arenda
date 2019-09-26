@@ -66,6 +66,10 @@ import {GlobalExtensionsList} from './components/extensions_list/global-extensio
 import {ExtensionsListComponent} from './components/extensions_list/extensions_list.component';
 import {TelephoneNumberNotPlusPipe} from './pipes/telephone_number_not_plus.pipe';
 import {MatSortModule} from '@angular/material';
+import {GlobalPayListClient} from './components/pay_list_client/global-pay-list-client';
+import {PayListClientComponent} from './components/pay_list_client/pay_list_client.component';
+import {ApplicationListClientComponent} from './components/application_list_client/application_list_client.component';
+import {GlobalApplicationListClient} from './components/application_list_client/global-application-list-client';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -78,6 +82,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     MainComponent,
     MessageAlertComponent,
     PayListComponent,
+    PayListClientComponent,
     MenuComponent,
     HeaderComponent,
     ClientComponent,
@@ -103,7 +108,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HireInfoComponent,
     PayComponent,
     ExtensionsListComponent,
-    RentalComponent
+    RentalComponent,
+    ApplicationListClientComponent
   ],
   imports: [
     BrowserModule,
@@ -121,8 +127,10 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HttpService,
     GlobalParamsMessage,
     GlobalParamsPay,
+    GlobalPayListClient,
     GlobalParamsRental,
     GlobalPayList,
+    GlobalApplicationListClient,
     GlobalExtensionsList,
     GlobalParams,
     SessionStorageService,
