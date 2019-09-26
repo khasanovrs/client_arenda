@@ -3,7 +3,6 @@ import {HireService} from './hire.service';
 import {Router} from '@angular/router';
 import {DopParamsService} from '../../services/dopParams.service';
 import {GlobalParamsRental} from '../rental/global-params-rental';
-import {Sort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-hire',
