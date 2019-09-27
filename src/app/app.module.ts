@@ -70,6 +70,10 @@ import {GlobalPayListClient} from './components/pay_list_client/global-pay-list-
 import {PayListClientComponent} from './components/pay_list_client/pay_list_client.component';
 import {ApplicationListClientComponent} from './components/application_list_client/application_list_client.component';
 import {GlobalApplicationListClient} from './components/application_list_client/global-application-list-client';
+import {ClientChangeStatusComponent} from './components/client_change_status/client_change_status.component';
+import {GlobalParamsClientChangeStatus} from './components/client_change_status/global-params-client-change-status';
+import {GlobalClientChangeStatusList} from './components/client_change_status_list/global-client_change_status_list';
+import {ClientChangeStatusListComponent} from './components/client_change_status_list/client_change_status_list.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -109,7 +113,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     PayComponent,
     ExtensionsListComponent,
     RentalComponent,
-    ApplicationListClientComponent
+    ApplicationListClientComponent,
+    ClientChangeStatusComponent,
+    ClientChangeStatusListComponent
   ],
   imports: [
     BrowserModule,
@@ -149,7 +155,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     DopParamsChangeService,
     FinanceService,
     ReportService,
-    HireService
+    HireService,
+    GlobalParamsClientChangeStatus,
+    GlobalClientChangeStatusList
   ],
   bootstrap: [AppComponent]
 })

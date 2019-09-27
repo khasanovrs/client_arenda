@@ -6,6 +6,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ClientCreateService} from '../client_create/clientCreate.service';
 import {GlobalPayListClient} from '../pay_list_client/global-pay-list-client';
 import {GlobalApplicationListClient} from '../application_list_client/global-application-list-client';
+import {GlobalClientChangeStatusList} from '../client_change_status_list/global-client_change_status_list';
 
 @Component({
   selector: 'app-client-info',
@@ -49,6 +50,13 @@ export class ClientInfoComponent implements OnInit {
       date: '',
       equipments: '',
       cashBox: ''
+    }],
+    change_status_list: [{
+      date: '',
+      old_status: '',
+      new_status: '',
+      text: '',
+      user: '',
     }]
   };
 
@@ -61,7 +69,8 @@ export class ClientInfoComponent implements OnInit {
               private globalParamsMessage: GlobalParamsMessage,
               private router: ActivatedRoute,
               private globalPayListClient: GlobalPayListClient,
-              private globalApplicationListClient: GlobalApplicationListClient) {
+              private globalApplicationListClient: GlobalApplicationListClient,
+              private globalClientChangeStatusList: GlobalClientChangeStatusList) {
 
     this.router.params.subscribe(
       (params: Params): void => {
@@ -151,6 +160,7 @@ export class ClientInfoComponent implements OnInit {
       });
   }
 
+  // история оплат
   open_pay_history() {
     this.globalPayListClient.data = {
       show: true,
@@ -158,10 +168,19 @@ export class ClientInfoComponent implements OnInit {
     };
   }
 
-  open_aspplication_history() {
+  // история заявок
+  open_application_history() {
     this.globalApplicationListClient.data = {
       show: true,
       data: this.client.application_list
+    };
+  }
+
+  // история смены статусов
+  open_change_status_history() {
+    this.globalClientChangeStatusList.data = {
+      show: true,
+      data: this.client.change_status_list
     };
   }
 }

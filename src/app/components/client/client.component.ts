@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ClientService} from './client.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {Router} from '@angular/router';
+import {GlobalParamsClientChangeStatus} from '../client_change_status/global-params-client-change-status';
 
 @Component({
   selector: 'app-client',
@@ -22,7 +23,8 @@ export class ClientComponent implements OnInit {
     type: 'all',
     like: '',
     source: null,
-    status: null,
+    old_status: null,
+    new_status: null,
     branch: null,
     date_start: '',
     date_end: '',
@@ -38,7 +40,12 @@ export class ClientComponent implements OnInit {
 
   constructor(private clientService: ClientService,
               private dopParamsService: DopParamsService,
+              private globalParamsClientChangeStatus: GlobalParamsClientChangeStatus,
               private router: Router) {
+
+    this.clientService.refreshClientInfo.subscribe(() => {
+      this.getClients();
+    });
   }
 
   ngOnInit() {
@@ -81,7 +88,7 @@ export class ClientComponent implements OnInit {
       type: this.filters.type,
       like: this.filters.like,
       source: this.filters.source,
-      status: this.filters.status,
+      status: this.filters.new_status,
       branch: this.filters.branch,
       date_start: this.filters.date_start,
       date_end: this.filters.date_end,
@@ -101,16 +108,13 @@ export class ClientComponent implements OnInit {
 
   // изменение статуса
   changeStatus(client) {
-    this.clientService.updateStatusClientUr({client_id: client.id, client_status: client.status}).then(() => {
-        for (const value of this.statusList) {
-          if (value.val === client.status) {
-            client.color = value.color;
-          }
-        }
-      },
-      (error) => {
-        console.log('Ошибка при изменении статуса у юр. клиента: ', error);
-      });
+    this.globalParamsClientChangeStatus.data = {
+      show: true,
+      old_status: client.old_status,
+      new_status: client.new_status,
+      text: '',
+      client_id: client.id
+    };
   }
 
   // отображение фильтра
@@ -157,7 +161,8 @@ export class ClientComponent implements OnInit {
       type: 'all',
       like: '',
       source: null,
-      status: null,
+      old_status: null,
+      new_status: null,
       branch: null,
       date_start: '',
       date_end: '',

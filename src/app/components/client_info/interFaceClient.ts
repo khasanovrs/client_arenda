@@ -28,5 +28,12 @@ interface InterFaceClient {
     equipments: string;
     cashBox: string;
   }[];
+  change_status_list: {
+    date: string;
+    old_status: string;
+    new_status: string;
+    text: string;
+    user: string;
+  }[];
 
 }

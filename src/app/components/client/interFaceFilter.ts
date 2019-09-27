@@ -2,7 +2,8 @@ interface InterFaceFilter {
   type: string;
   like: string;
   source: null;
-  status: null;
+  new_status: null;
+  old_status: null;
   branch: null;
   date_start: string;
   date_end: string;

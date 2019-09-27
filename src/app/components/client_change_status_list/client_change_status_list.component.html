@@ -1,0 +1,23 @@
+<div *ngIf="data.data.show===true" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--big">
+    <div (click)="clear()" class="---js-close-modal ---js-close-modal-icon"></div>
+    <div class="modal-body ---t-wrapper">
+      <table style="min-width: 360px;">
+        <tr>
+          <th>Дата</th>
+          <th>Старый статус</th>
+          <th>Новый статус</th>
+          <th>Кто сменил</th>
+          <th>Причина</th>
+        </tr>
+        <tr *ngFor="let pay of data.data.data">
+          <td>{{pay.date}}</td>
+          <td>{{pay.old_status}}</td>
+          <td>{{pay.new_status}}</td>
+          <td>{{pay.user}}</td>
+          <td>{{pay.text}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

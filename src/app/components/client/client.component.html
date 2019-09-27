@@ -166,7 +166,7 @@
               <div class="---select ---bg-color select-png bg-white">
                 <select class="w-200"
                         (change)="changeStatus(client)"
-                        [(ngModel)]="client.status">
+                        [(ngModel)]="client.new_status">
                   <option *ngFor="let status of statusList" [ngValue]="status.val">
                     {{status.name}}
                   </option>
