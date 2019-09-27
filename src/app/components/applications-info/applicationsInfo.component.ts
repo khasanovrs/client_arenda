@@ -3,7 +3,7 @@ import {DopParamsService} from '../../services/dopParams.service';
 import {EquipmentsService} from '../equipments/equipments.service';
 import {ClientService} from '../client/client.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
 import {ApplicationsService} from '../applications/applications.service';
 import {GlobalPayList} from '../pay_list/global-pay-list';
@@ -38,6 +38,7 @@ export class ApplicationsInfoComponent implements OnInit {
     client_fio: '',
     client_phone: '',
     delivery_sum: '',
+    date_create: '',
     sum: '',
     equipments: {
       id: null,
@@ -148,6 +149,7 @@ export class ApplicationsInfoComponent implements OnInit {
         this.application.equipments = data.equipments;
         this.application.sum = data.sum;
         this.application.pay_list = data.pay_list;
+        this.application.date_create = data.date_create;
         this.globalPayList.data.pay_list = this.application.pay_list;
       },
       (error) => {

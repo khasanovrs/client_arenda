@@ -12,6 +12,7 @@ interface InterFaceApplicationInfo {
   client_fio: string;
   client_phone: string;
   delivery_sum: string;
+  date_create: string;
   sum: string;
   equipments: {
     id: number,

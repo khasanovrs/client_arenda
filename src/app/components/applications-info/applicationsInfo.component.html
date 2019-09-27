@@ -63,6 +63,12 @@
           </div>
         </div>
         <div class="---field ---col-12 ---col-xs-6">
+          <label>Дата создания заявки</label>
+          <div class="---input ---pos-rel">
+            <input disabled [(ngModel)]="application.date_create">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
           <label>Начало аренды</label>
           <div class="---input ---input--calendar ---pos-rel">
             <input class="---datepicker-input" [(ngModel)]="application.rent_start.val">
