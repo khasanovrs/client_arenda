@@ -35,13 +35,18 @@
         <div class="---field ---col-12 ---col-sm-6">
           <label>Статус</label>
           <div class="---select">
-            <select [(ngModel)]="client.status">
+            <select [(ngModel)]="client.new_status">
               <option *ngFor="let status of statusList" [ngValue]="status.val">
                 {{status.name}}
               </option>
             </select>
           </div>
         </div>
+        <div *ngIf="client.new_status!=client.old_status" class="---field ---col-12 ---col-sm-6">
+            <label>Причина смены статуса</label>
+            <input class="---input ---fill--bg" [(ngModel)]="client.reason_change_status">
+        </div>
+
         <div class="---field ---col-12 ---col-sm-6">
           <label>Источник</label>
           <div class="---select">

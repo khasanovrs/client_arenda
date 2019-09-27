@@ -1,12 +1,14 @@
 interface InterFaceClient {
   sale: number;
   branch: number;
-  status: number;
+  old_status: number;
+  new_status: number;
   source: number;
   name: string;
   inn: number;
   kpp: number;
   name_chief: string;
+  reason_change_status: string;
   fio: string;
   phone_1: string;
   phone_2: string;

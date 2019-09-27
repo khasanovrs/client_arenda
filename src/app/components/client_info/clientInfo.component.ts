@@ -3,10 +3,10 @@ import {ClientInfoService} from './clientInfo.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {ClientCreateService} from '../client_create/clientCreate.service';
 import {GlobalPayListClient} from '../pay_list_client/global-pay-list-client';
 import {GlobalApplicationListClient} from '../application_list_client/global-application-list-client';
 import {GlobalClientChangeStatusList} from '../client_change_status_list/global-client_change_status_list';
+import {ClientService} from '../client/client.service';
 
 @Component({
   selector: 'app-client-info',
@@ -24,7 +24,9 @@ export class ClientInfoComponent implements OnInit {
   client: InterFaceClient = {
     sale: null,
     branch: null,
-    status: null,
+    new_status: null,
+    old_status: null,
+    reason_change_status: '',
     source: null,
     name: '',
     inn: null,
@@ -65,18 +67,22 @@ export class ClientInfoComponent implements OnInit {
 
   constructor(private clientInfoService: ClientInfoService,
               private dopParamsService: DopParamsService,
-              private clientCreateService: ClientCreateService,
               private globalParamsMessage: GlobalParamsMessage,
               private router: ActivatedRoute,
               private globalPayListClient: GlobalPayListClient,
               private globalApplicationListClient: GlobalApplicationListClient,
-              private globalClientChangeStatusList: GlobalClientChangeStatusList) {
+              private globalClientChangeStatusList: GlobalClientChangeStatusList,
+              private clientService: ClientService) {
 
     this.router.params.subscribe(
       (params: Params): void => {
         this.clientId = params.id;
       }
     );
+
+    this.clientService.refreshClientInfo.subscribe(() => {
+      this.getClients();
+    });
   }
 
   ngOnInit() {
@@ -108,6 +114,10 @@ export class ClientInfoComponent implements OnInit {
         console.log('Ошибка при получении источников: ', error);
       });
 
+    this.getClients();
+  }
+
+  getClients() {
     this.clientInfoService.getClientInfo({clientId: this.clientId}).then((data: InterFaceClient) => {
         this.client = data;
       },
@@ -127,7 +137,7 @@ export class ClientInfoComponent implements OnInit {
       return false;
     }
 
-    if (this.client.status === null) {
+    if (this.client.new_status === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать статус', type: 'error', body: ''};
       return false;
     }
@@ -137,10 +147,17 @@ export class ClientInfoComponent implements OnInit {
       return false;
     }
 
-    this.clientCreateService.addClient({
+    if (this.client.new_status !== this.client.old_status && (this.client.reason_change_status === '' || typeof this.client.reason_change_status === 'undefined')) {
+      this.globalParamsMessage.data = {title: 'Необходимо указать причиниу смены статуса', type: 'error', body: ''};
+      return false;
+    }
+
+
+    this.clientService.addClient({
       sale: this.client.sale,
       branch: this.client.branch,
-      status: this.client.status,
+      new_status: this.client.new_status,
+      old_status: this.client.old_status,
       source: this.client.source,
       name: this.client.name,
       inn: this.client.inn,
@@ -149,6 +166,7 @@ export class ClientInfoComponent implements OnInit {
       fio: this.client.fio,
       email: this.client.email,
       clientId: this.clientId,
+      reason_change_status: this.client.reason_change_status,
       phone_1: this.client.phone_1.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_2: this.client.phone_2.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_3: this.client.phone_3.replace(/[\),\(,\-,+,\s]/g, '')

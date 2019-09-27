@@ -26,7 +26,6 @@ import {SaleComponent} from './components/sale/sale.component';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
 import {SettingsComponent} from './components/settings/settings.component';
 import {ClientCreateComponent} from './components/client_create/clientCreate.component';
-import {ClientCreateService} from './components/client_create/clientCreate.service';
 import {ClientInfoService} from './components/client_info/clientInfo.service';
 import {ClientInfoComponent} from './components/client_info/clientInfo.component';
 import {StockComponent} from './components/stock/stock.component';
@@ -143,7 +142,6 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     ClientService,
     DopParamsService,
     UsersService,
-    ClientCreateService,
     ClientInfoService,
     StockService,
     EquipmentsService,

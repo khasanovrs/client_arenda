@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ClientCreateService} from './clientCreate.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {Router} from '@angular/router';
 import {GlobalParams} from '../../storage/global-params';
+import {ClientService} from '../client/client.service';
 
 @Component({
   selector: 'app-client-create',
@@ -35,7 +35,7 @@ export class ClientCreateComponent implements OnInit {
     number_passport: ''
   };
 
-  constructor(private clientCreateService: ClientCreateService,
+  constructor(private clientService: ClientService,
               private dopParamsService: DopParamsService,
               private globalParamsMessage: GlobalParamsMessage,
               private globalParams: GlobalParams,
@@ -94,10 +94,10 @@ export class ClientCreateComponent implements OnInit {
       return false;
     }
 
-    this.clientCreateService.addClient({
+    this.clientService.addClient({
       sale: this.newClient.sale,
       branch: this.newClient.branch,
-      status: this.newClient.status,
+      new_status: this.newClient.status,
       source: this.newClient.source,
       name: this.newClient.name,
       inn: this.newClient.inn,

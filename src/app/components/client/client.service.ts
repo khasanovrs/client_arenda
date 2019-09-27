@@ -25,6 +25,21 @@ export class ClientService {
     });
   }
 
+  public addClient(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/add-client', data)
+        .then(() => {
+            this.refreshClientInfo.emit(true);
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при добавлении нового клиента', error);
+            reject();
+          }
+        );
+    });
+  }
+
   // обновление статуса клиента
   public updateStatusClientUr(data) {
     return new Promise((resolve, reject) => {
