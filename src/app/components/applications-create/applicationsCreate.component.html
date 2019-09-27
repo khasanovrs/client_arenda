@@ -51,7 +51,7 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Доставка</label>
             <div class="---select">
-              <select [(ngModel)]="application.delivery.val" [ngModelOptions]="{standalone: true}">
+              <select [(ngModel)]="application.delivery.val" (change)="changeSum()" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let delivery of applicationsDelivery"
                         [ngValue]="delivery.val">
                   {{delivery.name}}
@@ -62,7 +62,7 @@
           <div class="---field ---col-12 ---col-xs-6" *ngIf="application.delivery.val===1">
             <label>Сумма доставки</label>
             <div class="---input ---pos-rel">
-              <input type="text" mask="separator" [ngModelOptions]="{standalone: true}" [(ngModel)]="application.delivery_sum">
+              <input (keyup)="changeSum()" type="text" mask="separator" [ngModelOptions]="{standalone: true}" [(ngModel)]="application.delivery_sum">
             </div>
           </div>
           <div class="---field ---col-12 ---col-xs-6">
@@ -79,7 +79,7 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Начало аренды</label>
             <div class="---input ---input--calendar ---pos-rel">
-              <input type="datetime-local" (change)="changeDate()" [(ngModel)]="application.rent_start.val"
+              <input type="datetime-local" (change)="changeTypeLease()" [(ngModel)]="application.rent_start.val"
                      [disabled]="application.status.val!==2"
                      [ngModelOptions]="{standalone: true}"
                      class="---datepicker-input">
@@ -198,7 +198,7 @@
 
       <div class="---total-price ---font-600 h2">
         <div class="---delivery ---font-300">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>
-        Итого: {{application.sum | digitsNumbers}} ₽
+        Итого: {{allSum | digitsNumbers}} ₽
       </div>
 
       <div class="---devider"></div>

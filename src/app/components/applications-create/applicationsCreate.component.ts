@@ -36,6 +36,8 @@ export class ApplicationsCreateComponent implements OnInit {
     equipments: []
   };
 
+  allSum = 0;
+
   application: InterFaceNewApplication = {
     client_id: null,
     equipments: [],
@@ -142,6 +144,57 @@ export class ApplicationsCreateComponent implements OnInit {
       });
   }
 
+  // вычесляем сумму аренды
+  changeSum() {
+    this.application.delivery_sum = this.application.delivery.val === 1 ? this.application.delivery_sum : '0';
+    this.allSum = 0;
+    this.allSum += parseFloat(this.application.delivery_sum);
+    let sum = null;
+    if (this.application.equipments.length !== 0) {
+      for (const value of this.application.equipments) {
+        sum += value.count * parseFloat(value.price);
+      }
+    } else {
+      return true;
+    }
+
+    if (this.application.rent_start.val !== null && this.application.rent_end.val !== null) {
+      const date1 = new Date(this.application.rent_start.val);
+      const date2 = new Date(this.application.rent_end.val);
+
+      if (date2 < date1) {
+        this.globalParamsMessage.data = {title: `Период аренды указан некорректно`, type: 'error', body: ''};
+        return false;
+      }
+
+      const daysLag = Math.ceil(Math.abs(date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
+
+      if (isNaN(daysLag)) {
+        return true;
+      }
+
+      sum = daysLag * sum;
+    }
+
+    if (this.application.sale !== null) {
+      let tmpSale = 0;
+      for (const value of this.discounts) {
+        if (this.application.sale.val === value.val) {
+          tmpSale = parseFloat(value.name);
+        }
+      }
+
+      if (tmpSale !== 0) {
+        sum -= sum * tmpSale / 100;
+      }
+    }
+
+    this.application.sum = sum;
+
+    this.allSum += parseFloat(this.application.sum);
+  }
+
+
   changeStatusApplications(val) {
     this.application.status.val = val;
   }
@@ -156,6 +209,8 @@ export class ApplicationsCreateComponent implements OnInit {
       tomorrow.setDate(tomorrow.getDate() + 30);
       this.application.rent_end.val = tomorrow.toISOString().slice(0, 16);
     }
+
+    this.changeSum();
   }
 
   // поиск клиентов из бд
@@ -307,54 +362,6 @@ export class ApplicationsCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при добавлении новой заявки: ', error);
       });
-  }
-
-  changeDate() {
-    // this.application.typeLease.val = null;
-    // this.application.rent_end.val = '';
-    this.changeTypeLease();
-    this.changeSum();
-  }
-
-  // вычесляем сумму аренды
-  changeSum() {
-    let sum = null;
-    if (this.application.equipments.length !== 0) {
-      for (const value of this.application.equipments) {
-        sum += value.count * parseFloat(value.price);
-      }
-    } else {
-      return true;
-    }
-
-    if (this.application.rent_start.val !== null && this.application.rent_end.val !== null) {
-      const date1 = new Date(this.application.rent_start.val);
-      const date2 = new Date(this.application.rent_end.val);
-
-      if (date2 < date1) {
-        this.globalParamsMessage.data = {title: `Период аренды указан некорректно`, type: 'error', body: ''};
-        return false;
-      }
-
-      const daysLag = Math.ceil(Math.abs(date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
-
-      sum = daysLag * sum;
-    }
-
-    if (this.application.sale !== null) {
-      let tmpSale = 0;
-      for (const value of this.discounts) {
-        if (this.application.sale.val === value.val) {
-          tmpSale = parseFloat(value.name);
-        }
-      }
-
-      if (tmpSale !== 0) {
-        sum -= sum * tmpSale / 100;
-      }
-    }
-
-    this.application.sum = sum;
   }
 
   // удаление оборудования из списка
