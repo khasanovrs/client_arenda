@@ -160,6 +160,15 @@ export class HireComponent {
       switch (sort.active) {
         case 'client': return compare(a.client, b.client, isAsc);
         case 'equipment': return compare(a.equipment, b.equipment, isAsc);
+        case 'start_hire': return compare(a.start_hire, b.start_hire, isAsc);
+        case 'end_hire': return compare(a.end_hire, b.end_hire, isAsc);
+        case 'state': return compare(a.state, b.state, isAsc);
+        case 'sum': return compare(a.sum, b.sum, isAsc);
+        case 'sale_sum': return compare(a.sale_sum, b.sale_sum, isAsc);
+        case 'total_paid': return compare(a.total_paid, b.total_paid, isAsc);
+        case 'remainder': return compare(a.remainder, b.remainder, isAsc);
+        case 'date_create': return compare(a.date_create, b.date_create, isAsc);
+        case 'current_pay': return compare(a.current_pay, b.current_pay, isAsc);
         default: return 0;
       }
     });

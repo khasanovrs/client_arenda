@@ -100,8 +100,8 @@ export class ApplicationsService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-pay', data)
         .then((result: InterFaceDopParams[]) => {
-            resolve(result);
             this.refreshInfo.emit(true);
+            resolve(result);
           },
           (error) => {
             console.log('Ошибка при добавлении нового платежа', error);

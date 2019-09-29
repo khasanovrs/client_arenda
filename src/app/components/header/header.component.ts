@@ -4,6 +4,7 @@ import {SessionStorageService} from '../../storage/session-storage.service';
 import {AuthService} from '../auth/auth.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {MainService} from '../main/main.service';
+import {ApplicationsService} from '../applications/applications.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,8 @@ export class HeaderComponent {
               private sessionStorageService: SessionStorageService,
               private authService: AuthService,
               private dopParamsService: DopParamsService,
-              private mainService: MainService) {
+              private mainService: MainService,
+              private applicationsService: ApplicationsService) {
 
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
         this.branches = data;
@@ -28,6 +30,11 @@ export class HeaderComponent {
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
       });
+
+
+    this.applicationsService.refreshInfo.subscribe(() => {
+      this.getRevenue();
+    });
   }
 
   exit() {
@@ -41,6 +48,7 @@ export class HeaderComponent {
 
   // получение выручки по филиалам
   getRevenue() {
+    console.log(111)
     this.mainService.getRevenue({
       branch: this.branch
     }).then((data: any) => {

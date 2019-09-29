@@ -25,7 +25,6 @@ export class PayComponent implements OnInit {
 
   ngOnInit() {
     this.financeService.getFinanceCashBOx().then((data: InterFaceFinanceCashBox[]) => {
-        console.log(1, data);
         this.financeCashBox = data;
         this.currentFinanceCashBox = data[0].val;
       },
