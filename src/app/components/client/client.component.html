@@ -155,7 +155,7 @@
             </ng-container>
           </tr>
 
-          <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" [style.background]="client.color">
+          <tr (dblclick)="clientDetails(client.id)" *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" [style.background]="client.color">
             <td>
               <div class="ifont ---icon-edit ---radius-5" (click)="clientDetails(client.id)"></div>
             </td>
