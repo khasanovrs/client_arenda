@@ -11,17 +11,21 @@ import {EquipmentsService} from './equipments.service';
 export class EquipmentsComponent implements OnInit {
   stocks: InterFaceStocks[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
-  equipmentsCategoryList: InterFaceDopParams[] = [];
+  equipmentsCategoryList: InterEquipmentsCategory[] = [];
   equipmentsStatusList: InterFaceDopParams[] = [];
   discounts: InterFaceDopParams[] = [];
   equipmentsMarkList: InterFaceDopParams[] = [];
   equipmentId: null;
 
+  // причина изменения склада
+  reason_change_stock = '';
+
   equipment: InterFaceInfoEquipments = {
     id: null,
     model: '',
     status: '',
-    stock: null,
+    old_stock: null,
+    new_stock: null,
     discount: null,
     type: null,
     category: null,
@@ -44,7 +48,15 @@ export class EquipmentsComponent implements OnInit {
     network_cord: '',
     power: '',
     frequency_hits: '',
-    comment: ''
+    comment: '',
+    change_history: [{
+      date: '',
+      new_params: '',
+      old_params: '',
+      type: '',
+      reason: '',
+      user: '',
+    }]
   };
 
   constructor(private dopParamsService: DopParamsService,
@@ -67,14 +79,7 @@ export class EquipmentsComponent implements OnInit {
         console.log('Ошибка при получении складов: ', error);
       });
 
-    this.equipmentsService.getEquipmentsType().then((data: InterFaceDopParams[]) => {
-        this.equipmentsTypeList = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка типов оборудования: ', error);
-      });
-
-    this.equipmentsService.getEquipmentsCategory().then((data: InterFaceDopParams[]) => {
+    this.equipmentsService.getEquipmentsCategory().then((data: InterEquipmentsCategory[]) => {
         this.equipmentsCategoryList = data;
       },
       (error) => {
@@ -104,6 +109,7 @@ export class EquipmentsComponent implements OnInit {
 
     this.equipmentsService.getEquipmentInfo({equipmentId: this.equipmentId}).then((data: InterFaceInfoEquipments) => {
         this.equipment = data;
+        this.changeCategory(this.equipment.type);
       },
       (error) => {
         console.log('Ошибка при получении детальной информации по клиенту: ', error);
@@ -126,7 +132,7 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
-    if (this.equipment.stock === null) {
+    if (this.equipment.new_stock === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать склад', type: 'error', body: ''};
       return false;
     }
@@ -151,11 +157,17 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
+    if (this.reason_change_stock === '' && this.equipment.new_stock !== this.equipment.old_stock) {
+      this.globalParamsMessage.data = {title: 'Необходимо указать причину изменения склада', type: 'error', body: ''};
+      return false;
+    }
+
     this.equipmentsService.updateEquipment({
       id: this.equipment.id,
       model: this.equipment.model,
-      status: this.equipment.status,
-      stock: this.equipment.stock,
+      new_stock: this.equipment.new_stock,
+      old_stock: this.equipment.old_stock,
+      reason_change_stock: this.reason_change_stock,
       discount: this.equipment.discount,
       equipmentsType: this.equipment.type,
       equipmentsCategory: this.equipment.category,
@@ -186,5 +198,10 @@ export class EquipmentsComponent implements OnInit {
       (error) => {
         console.log('Ошибка при изменении оборудования: ', error);
       });
+  }
+
+  changeCategory(data) {
+    const arr = this.equipmentsCategoryList.filter(item => item.val === data);
+    this.equipmentsTypeList = arr[0].type;
   }
 }

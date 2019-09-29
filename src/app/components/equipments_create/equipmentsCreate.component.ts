@@ -12,8 +12,7 @@ import {Router} from '@angular/router';
 export class EquipmentsCreateComponent implements OnInit {
   stocks: InterFaceStocks[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
-  equipmentsCategoryList: InterFaceDopParams[] = [];
-  equipmentsStatusList: InterFaceDopParams[] = [];
+  equipmentsCategoryList: InterEquipmentsCategory[] = [];
   discounts: InterFaceDopParams[] = [];
   equipmentsMarkList: InterFaceDopParams[] = [];
 
@@ -66,26 +65,11 @@ export class EquipmentsCreateComponent implements OnInit {
         console.log('Ошибка при получении складов: ', error);
       });
 
-    this.equipmentsService.getEquipmentsType().then((data: InterFaceDopParams[]) => {
-        this.equipmentsTypeList = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка типов оборудования: ', error);
-      });
-
-    this.equipmentsService.getEquipmentsCategory().then((data: InterFaceDopParams[]) => {
+    this.equipmentsService.getEquipmentsCategory().then((data: InterEquipmentsCategory[]) => {
         this.equipmentsCategoryList = data;
       },
       (error) => {
         console.log('Ошибка при получении списка категорий оборудования: ', error);
-      });
-
-    this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParams[]) => {
-        this.equipmentsStatusList = data;
-        this.newEquipments.status = this.equipmentsStatusList[2].val;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка статусов оборудования: ', error);
       });
 
     this.equipmentsService.getEquipmentsMark().then((data: InterFaceDopParams[]) => {
@@ -207,5 +191,10 @@ export class EquipmentsCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при добавлении фотографии оборудования: ', error);
       });
+  }
+
+  changeCategory(data) {
+    const arr = this.equipmentsCategoryList.filter(item => item.val === data);
+    this.equipmentsTypeList = arr[0].type;
   }
 }

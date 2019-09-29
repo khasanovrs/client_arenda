@@ -2,7 +2,8 @@ interface InterFaceInfoEquipments {
   id: number;
   model: string;
   status: string;
-  stock: number;
+  old_stock: number;
+  new_stock: number;
   mark: number;
   type: number;
   category: number;
@@ -26,4 +27,12 @@ interface InterFaceInfoEquipments {
   power: string;
   frequency_hits: string;
   comment: string;
+  change_history: {
+    date: string;
+    new_params: string;
+    old_params: string;
+    type: string;
+    reason: string;
+    user: string;
+  }[];
 }

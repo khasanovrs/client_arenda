@@ -13,7 +13,6 @@ export class StockComponent implements OnInit {
   p = 1;
   stocks: InterFaceStocks[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
-  equipmentsCategoryList: InterFaceDopParams[] = [];
   equipmentsStatusList: InterFaceDopParamsColor[] = [];
 
   // отображение фильтра
@@ -53,6 +52,12 @@ export class StockComponent implements OnInit {
     degree_wear_end: null,
   };
 
+  // всплывающее окно
+  tooltip = {
+    show: false,
+    data: {}
+  };
+
   constructor(private stockService: StockService,
               private dopParamsService: DopParamsService,
               private equipmentsService: EquipmentsService,
@@ -72,13 +77,6 @@ export class StockComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении списка типов оборудования: ', error);
-      });
-
-    this.equipmentsService.getEquipmentsCategory().then((data: InterFaceDopParams[]) => {
-        this.equipmentsCategoryList = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка категорий оборудования: ', error);
       });
 
     this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParamsColor[]) => {
@@ -206,6 +204,22 @@ export class StockComponent implements OnInit {
 
   equipmentDetails(index) {
     this.router.navigate(['/equipments/' + index]);
+  }
+
+  mouseEnter(data) {
+    console.log(data);
+
+    this.tooltip = {
+      data: {status: data.status},
+      show: true
+    };
+  }
+
+  mouseLeave() {
+    this.tooltip = {
+      data: {},
+      show: false
+    };
   }
 }
 
