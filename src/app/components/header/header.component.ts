@@ -11,7 +11,7 @@ import {ApplicationsService} from '../applications/applications.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
-  branches: InterFaceDopParams[] = [];
+  branches: InterFaceDopParams[] = [{name: 'Все города', val: 0}];
   branch = null;
   revenue = '0';
 
@@ -23,7 +23,7 @@ export class HeaderComponent {
               private applicationsService: ApplicationsService) {
 
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
-        this.branches = data;
+        this.branches = this.branches.concat(data);
         this.branch = this.branches[0].val;
         this.getRevenue();
       },
@@ -48,7 +48,6 @@ export class HeaderComponent {
 
   // получение выручки по филиалам
   getRevenue() {
-    console.log(111)
     this.mainService.getRevenue({
       branch: this.branch
     }).then((data: any) => {
