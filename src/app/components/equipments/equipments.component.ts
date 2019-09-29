@@ -11,7 +11,7 @@ import {EquipmentsService} from './equipments.service';
 export class EquipmentsComponent implements OnInit {
   stocks: InterFaceStocks[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
-  equipmentsCategoryList: InterFaceDopParams[] = [];
+  equipmentsCategoryList: InterEquipmentsCategory[] = [];
   equipmentsStatusList: InterFaceDopParams[] = [];
   discounts: InterFaceDopParams[] = [];
   equipmentsMarkList: InterFaceDopParams[] = [];
@@ -79,14 +79,7 @@ export class EquipmentsComponent implements OnInit {
         console.log('Ошибка при получении складов: ', error);
       });
 
-    this.equipmentsService.getEquipmentsType().then((data: InterFaceDopParams[]) => {
-        this.equipmentsTypeList = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка типов оборудования: ', error);
-      });
-
-    this.equipmentsService.getEquipmentsCategory().then((data: InterFaceDopParams[]) => {
+    this.equipmentsService.getEquipmentsCategory().then((data: InterEquipmentsCategory[]) => {
         this.equipmentsCategoryList = data;
       },
       (error) => {
@@ -116,6 +109,7 @@ export class EquipmentsComponent implements OnInit {
 
     this.equipmentsService.getEquipmentInfo({equipmentId: this.equipmentId}).then((data: InterFaceInfoEquipments) => {
         this.equipment = data;
+        this.changeCategory(this.equipment.type);
       },
       (error) => {
         console.log('Ошибка при получении детальной информации по клиенту: ', error);
@@ -204,5 +198,10 @@ export class EquipmentsComponent implements OnInit {
       (error) => {
         console.log('Ошибка при изменении оборудования: ', error);
       });
+  }
+
+  changeCategory(data) {
+    const arr = this.equipmentsCategoryList.filter(item => item.val === data);
+    this.equipmentsTypeList = arr[0].type;
   }
 }

@@ -37,23 +37,23 @@
           <input class="---input ---shadow--bg" [(ngModel)]="reason_change_stock">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Категория</label>
+          <div class="---select">
+            <select [(ngModel)]="equipment.category" (change)="changeCategory(equipment.category)">
+              <option *ngFor="let equipmentsCategory of equipmentsCategoryList"
+                      [ngValue]="equipmentsCategory.val">
+                {{equipmentsCategory.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6" >
           <label>Тип оборудования</label>
           <div class="---select">
             <select [(ngModel)]="equipment.type">
               <option *ngFor="let equipmentsType of equipmentsTypeList"
                       [ngValue]="equipmentsType.val">
                 {{equipmentsType.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
-          <label>Категория</label>
-          <div class="---select">
-            <select [(ngModel)]="equipment.category">
-              <option *ngFor="let equipmentsCategory of equipmentsCategoryList"
-                      [ngValue]="equipmentsCategory.val">
-                {{equipmentsCategory.name}}
               </option>
             </select>
           </div>
