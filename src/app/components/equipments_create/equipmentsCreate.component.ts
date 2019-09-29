@@ -15,6 +15,7 @@ export class EquipmentsCreateComponent implements OnInit {
   equipmentsCategoryList: InterEquipmentsCategory[] = [];
   discounts: InterFaceDopParams[] = [];
   equipmentsMarkList: InterFaceDopParams[] = [];
+  equipmentsStatusList: InterFaceDopParams[] = [];
 
   // загрузка изображения
   load_file: any = [];
@@ -85,6 +86,14 @@ export class EquipmentsCreateComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении списка скидок: ', error);
+      });
+
+    this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParams[]) => {
+        this.equipmentsStatusList = data;
+        this.newEquipments.status = this.equipmentsStatusList[2].val;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка статусов оборудования: ', error);
       });
   }
 
