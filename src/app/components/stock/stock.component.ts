@@ -13,7 +13,6 @@ export class StockComponent implements OnInit {
   p = 1;
   stocks: InterFaceStocks[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
-  equipmentsCategoryList: InterFaceDopParams[] = [];
   equipmentsStatusList: InterFaceDopParamsColor[] = [];
 
   // отображение фильтра
@@ -78,13 +77,6 @@ export class StockComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении списка типов оборудования: ', error);
-      });
-
-    this.equipmentsService.getEquipmentsCategory().then((data: InterFaceDopParams[]) => {
-        this.equipmentsCategoryList = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка категорий оборудования: ', error);
       });
 
     this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParamsColor[]) => {
