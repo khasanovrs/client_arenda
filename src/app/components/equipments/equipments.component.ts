@@ -17,11 +17,15 @@ export class EquipmentsComponent implements OnInit {
   equipmentsMarkList: InterFaceDopParams[] = [];
   equipmentId: null;
 
+  // причина изменения склада
+  reason_change_stock = '';
+
   equipment: InterFaceInfoEquipments = {
     id: null,
     model: '',
     status: '',
-    stock: null,
+    old_stock: null,
+    new_stock: null,
     discount: null,
     type: null,
     category: null,
@@ -44,7 +48,15 @@ export class EquipmentsComponent implements OnInit {
     network_cord: '',
     power: '',
     frequency_hits: '',
-    comment: ''
+    comment: '',
+    change_history: [{
+      date: '',
+      new_params: '',
+      old_params: '',
+      type: '',
+      reason: '',
+      user: '',
+    }]
   };
 
   constructor(private dopParamsService: DopParamsService,
@@ -126,7 +138,7 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
-    if (this.equipment.stock === null) {
+    if (this.equipment.new_stock === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать склад', type: 'error', body: ''};
       return false;
     }
@@ -151,11 +163,17 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
+    if (this.reason_change_stock === '' && this.equipment.new_stock !== this.equipment.old_stock) {
+      this.globalParamsMessage.data = {title: 'Необходимо указать причину изменения склада', type: 'error', body: ''};
+      return false;
+    }
+
     this.equipmentsService.updateEquipment({
       id: this.equipment.id,
       model: this.equipment.model,
-      status: this.equipment.status,
-      stock: this.equipment.stock,
+      new_stock: this.equipment.new_stock,
+      old_stock: this.equipment.old_stock,
+      reason_change_stock: this.reason_change_stock,
       discount: this.equipment.discount,
       equipmentsType: this.equipment.type,
       equipmentsCategory: this.equipment.category,
