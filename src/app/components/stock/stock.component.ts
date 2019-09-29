@@ -53,6 +53,12 @@ export class StockComponent implements OnInit {
     degree_wear_end: null,
   };
 
+  // всплывающее окно
+  tooltip = {
+    show: false,
+    data: {}
+  };
+
   constructor(private stockService: StockService,
               private dopParamsService: DopParamsService,
               private equipmentsService: EquipmentsService,
@@ -206,6 +212,22 @@ export class StockComponent implements OnInit {
 
   equipmentDetails(index) {
     this.router.navigate(['/equipments/' + index]);
+  }
+
+  mouseEnter(data) {
+    console.log(data);
+
+    this.tooltip = {
+      data: {status: data.status},
+      show: true
+    };
+  }
+
+  mouseLeave() {
+    this.tooltip = {
+      data: {},
+      show: false
+    };
   }
 }
 
