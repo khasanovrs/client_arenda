@@ -28,7 +28,7 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Вид аренды</label>
             <div class="---select">
-              <select [(ngModel)]="application.typeLease.val" (change)="changeTypeLease()" autocomplete="none"
+              <select [(ngModel)]="application.typeLease.val" autocomplete="none"
                       [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
                         [ngValue]="applicationsTypeLease.val">
@@ -79,7 +79,7 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Начало аренды</label>
             <div class="---input ---input--calendar ---pos-rel">
-              <input type="datetime-local" (change)="changeTypeLease()" [(ngModel)]="application.rent_start.val"
+              <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_start.val"
                      [disabled]="application.status.val!==2"
                      [ngModelOptions]="{standalone: true}"
                      class="---datepicker-input">
@@ -90,9 +90,8 @@
             <label>Окончание аренды</label>
             <div class="---input ---input--calendar ---pos-rel">
               <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_end.val"
-                     disabled
                      [ngModelOptions]="{standalone: true}"
-                     class="---datepicker-input">
+                     >
               <i class="---y-pos-abs ifont ---icon-calendar"></i>
             </div>
           </div>

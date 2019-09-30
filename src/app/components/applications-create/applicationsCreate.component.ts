@@ -158,6 +158,9 @@ export class ApplicationsCreateComponent implements OnInit {
       return true;
     }
 
+    console.log(1, this.application.rent_start.val);
+    console.log(2, this.application.rent_end.val);
+
     if (this.application.rent_start.val !== null && this.application.rent_end.val !== null) {
       const date1 = new Date(this.application.rent_start.val);
       const date2 = new Date(this.application.rent_end.val);
@@ -197,20 +200,6 @@ export class ApplicationsCreateComponent implements OnInit {
 
   changeStatusApplications(val) {
     this.application.status.val = val;
-  }
-
-  changeTypeLease() {
-    const tomorrow = new Date(this.application.rent_start.val);
-
-    if (this.application.typeLease.val === 1) {
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      this.application.rent_end.val = tomorrow.toISOString().slice(0, 16);
-    } else {
-      tomorrow.setDate(tomorrow.getDate() + 30);
-      this.application.rent_end.val = tomorrow.toISOString().slice(0, 16);
-    }
-
-    this.changeSum();
   }
 
   // поиск клиентов из бд
