@@ -207,12 +207,7 @@ export class StockComponent implements OnInit {
   }
 
   mouseEnter(data) {
-    console.log(data);
-
-    this.tooltip = {
-      data: {status: data.status},
-      show: true
-    };
+    return `Статус : ${data.status}`;
   }
 
   mouseLeave() {
