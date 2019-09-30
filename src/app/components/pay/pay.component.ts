@@ -10,7 +10,14 @@ import {FinanceService} from '../finance/finance.service';
   templateUrl: './pay.component.html',
 })
 export class PayComponent implements OnInit {
-  data: any;
+  data = {
+    data: {
+      show: false,
+      sum: '',
+      cashBox: null,
+      eq_id: null
+    }
+  };
   financeCashBox: InterFaceFinanceCashBox[];
   currentFinanceCashBox = null;
   revertSum = false;
@@ -26,7 +33,6 @@ export class PayComponent implements OnInit {
   ngOnInit() {
     this.financeService.getFinanceCashBOx().then((data: InterFaceFinanceCashBox[]) => {
         this.financeCashBox = data;
-        this.currentFinanceCashBox = data[0].val;
       },
       (error) => {
         console.log('Ошибка при получении касс: ', error);
@@ -43,6 +49,7 @@ export class PayComponent implements OnInit {
       return false;
     }
 
+    console.log(1, this.currentFinanceCashBox);
     if (this.currentFinanceCashBox === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать кассу', type: 'error', body: ''};
       return false;

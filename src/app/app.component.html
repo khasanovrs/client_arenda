@@ -1,12 +1,14 @@
-<app-message-alert></app-message-alert>
-<app-pay></app-pay>
-<app-pay-list></app-pay-list>
-<app-pay-list-client></app-pay-list-client>
-<app-application-list-client></app-application-list-client>
-<app-extension-list></app-extension-list>
-<app-client-change-status></app-client-change-status>
-<app-client-change-status-list></app-client-change-status-list>
-<app-rental></app-rental>
+<div *ngIf="checkAuth===true" >
+  <app-message-alert></app-message-alert>
+  <app-pay></app-pay>
+  <app-pay-list></app-pay-list>
+  <app-pay-list-client></app-pay-list-client>
+  <app-application-list-client></app-application-list-client>
+  <app-extension-list></app-extension-list>
+  <app-client-change-status></app-client-change-status>
+  <app-client-change-status-list></app-client-change-status-list>
+  <app-rental></app-rental>
+</div>
 <app-menu *ngIf="checkAuth===true" class="---left-main-menu"></app-menu>
 
 <div [ngClass]="{'---main-content':checkAuth===true}" class="---d-flex ---flex-nowrap ---flex-column">
