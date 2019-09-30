@@ -201,4 +201,13 @@ export class ClientInfoComponent implements OnInit {
       data: this.client.change_status_list
     };
   }
+
+  getBailiffs() {
+    this.clientService.getBailiffs({clientId: this.clientId}).then((data) => {
+        console.log(1, data);
+      },
+      (error) => {
+        console.log('Ошибка при получении данных от приставов: ', error);
+      });
+  }
 }

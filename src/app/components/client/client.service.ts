@@ -25,6 +25,21 @@ export class ClientService {
     });
   }
 
+  // поиск данных от приставов
+  public getBailiffs(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-bailiffs', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении данных от приставов', error);
+            reject(error);
+          }
+        );
+    });
+  }
+
   public addClient(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-client', data)
