@@ -203,8 +203,11 @@ export class ClientInfoComponent implements OnInit {
   }
 
   getBailiffs() {
-    this.clientService.getBailiffs({clientId: this.clientId}).then((data) => {
-        console.log(1, data);
+    this.clientService.getBailiffs({clientId: this.clientId}).then((data:any) => {
+        if (data.length === 0) {
+          this.globalParamsMessage.data = {title: 'У клиента нет долгов', type: 'success', body: ''};
+        }
+
       },
       (error) => {
         console.log('Ошибка при получении данных от приставов: ', error);
