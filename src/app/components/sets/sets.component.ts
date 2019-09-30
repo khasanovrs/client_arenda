@@ -23,7 +23,7 @@ export class SetsComponent implements OnInit {
   // список статусов для оборудования
   equipmentsStatusList: InterFaceDopParamsColor[] = [];
   // список филиалов
-  branchList: InterFaceDopParams[] = [];
+  branchList: InterFaceBranch[] = [];
   // список складов
   stocksList: InterFaceDopParams[] = [];
   // список скидок
@@ -70,7 +70,8 @@ export class SetsComponent implements OnInit {
     name: '',
     sum: '0',
     color: '#000000',
-    val: ''
+    val: '',
+    region: ''
   };
 
   constructor(private setsService: SetsService,
@@ -114,7 +115,7 @@ export class SetsComponent implements OnInit {
       });
 
 
-    this.dopParamsService.getBranch().then((data: InterFaceDopParamsColor[]) => {
+    this.dopParamsService.getBranch().then((data: InterFaceBranch[]) => {
         this.branchList = data;
       },
       (error) => {
@@ -370,7 +371,8 @@ export class SetsComponent implements OnInit {
       name: '',
       sum: '0',
       color: '#000000',
-      val: ''
+      val: '',
+      region: ''
     };
   }
 

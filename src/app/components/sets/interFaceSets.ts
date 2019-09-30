@@ -5,4 +5,5 @@ interface InterFaceSets {
   color: string;
   sum: string;
   val: string;
+  region: string;
 }
