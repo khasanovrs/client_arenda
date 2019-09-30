@@ -69,7 +69,7 @@ export class ApplicationsCreateComponent implements OnInit {
               private globalParamsMessage: GlobalParamsMessage,
               public globalParams: GlobalParams,
               private router: Router,
-              private globalParamsPay: GlobalParamsPay) {
+              public globalParamsPay: GlobalParamsPay) {
   }
 
   ngOnInit() {
@@ -157,9 +157,6 @@ export class ApplicationsCreateComponent implements OnInit {
     } else {
       return true;
     }
-
-    console.log(1, this.application.rent_start.val);
-    console.log(2, this.application.rent_end.val);
 
     if (this.application.rent_start.val !== null && this.application.rent_end.val !== null) {
       const date1 = new Date(this.application.rent_start.val);

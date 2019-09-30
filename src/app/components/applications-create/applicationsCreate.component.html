@@ -200,6 +200,11 @@
         Итого: {{allSum | digitsNumbers}} ₽
       </div>
 
+
+      <div class="---total-price ---font-600 h2" *ngIf="globalParamsPay.data.sum!=''">
+        Платеж: {{globalParamsPay.data.sum | digitsNumbers}} ₽
+      </div>
+
       <div class="---devider"></div>
 
       <div (click)="showInsertSum()" *ngIf="application.equipments.length!=0" class="---btn ---btn--fill-acent">Добавить
