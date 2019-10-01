@@ -19,7 +19,6 @@ export class PayComponent implements OnInit {
     }
   };
   financeCashBox: InterFaceFinanceCashBox[];
-  currentFinanceCashBox = null;
   revertSum = false;
 
   constructor(private globalParamsPay: GlobalParamsPay,
@@ -28,10 +27,20 @@ export class PayComponent implements OnInit {
               private globalPayList: GlobalPayList,
               private financeService: FinanceService) {
     this.data = globalParamsPay;
+
+    this.financeService.refreshCashBox.subscribe(() => {
+      console.log(3);
+      this.getFinanceCashBOx();
+    });
   }
 
   ngOnInit() {
+    this.getFinanceCashBOx();
+  }
+
+  getFinanceCashBOx() {
     this.financeService.getFinanceCashBOx().then((data: InterFaceFinanceCashBox[]) => {
+        console.log(1, data);
         this.financeCashBox = data;
       },
       (error) => {

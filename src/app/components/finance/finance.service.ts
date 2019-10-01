@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpService} from '../../utils/http/http.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 
@@ -8,6 +8,7 @@ export class FinanceService {
   category: InterFaceDopParams[] = [];
   type: InterFaceDopParams[] = [];
   checkBox: InterFaceFinanceCashBox[] = [];
+  refreshCashBox: EventEmitter<any> = new EventEmitter(false);
 
   constructor(private httpService: HttpService,
               private globalParamsMessage: GlobalParamsMessage) {
@@ -158,6 +159,8 @@ export class FinanceService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-cashBox', data)
         .then((result: any) => {
+            this.checkBox = [];
+            this.refreshCashBox.emit(true);
             this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve(result);
           },
@@ -175,6 +178,8 @@ export class FinanceService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/delete-cashBox', data)
         .then((result: any) => {
+            this.checkBox = [];
+            this.refreshCashBox.emit(true);
             resolve(result);
           },
           (error) => {
