@@ -332,7 +332,6 @@ export class SetsComponent implements OnInit {
     }
 
     if (this.newParams.type === 'type_eq') {
-
       if (this.newParams.category_id === null) {
         this.globalParamsMessage.data = {title: 'Необходимо указать категорию', type: 'error', body: ''};
         return false;
