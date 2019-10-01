@@ -284,6 +284,11 @@
             <input type="text" mask="separator" name="sum" class="---input ---fill--bg" [(ngModel)]="newParams.region">
           </div>
 
+          <div class="---field" *ngIf="newParams.type==='type_eq'">
+            <label>Категория оборудования</label>
+            <input type="text" mask="separator" name="sum" class="---input ---fill--bg" [(ngModel)]="newParams.category_id">
+          </div>
+
           <div class="---field"
                *ngIf="newParams.type==='status_client' || newParams.type==='status_application' || newParams.type==='status_equipment' || newParams.type==='status_hire'">
             <label>Выберите цвет</label>
