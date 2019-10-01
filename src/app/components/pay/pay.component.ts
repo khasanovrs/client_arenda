@@ -49,8 +49,7 @@ export class PayComponent implements OnInit {
       return false;
     }
 
-    console.log(1, this.currentFinanceCashBox);
-    if (this.currentFinanceCashBox === null) {
+    if (this.globalParamsPay.data.cashBox === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать кассу', type: 'error', body: ''};
       return false;
     }
@@ -59,7 +58,7 @@ export class PayComponent implements OnInit {
     if (this.data.data.eq_id !== null) {
       this.applicationsService.addPay({
         sum: this.globalParamsPay.data.sum,
-        cashBox: this.currentFinanceCashBox,
+        cashBox: this.globalParamsPay.data.cashBox,
         eq_app_id: this.globalParamsPay.data.eq_id,
         revertSum: this.revertSum
       }).then(() => {
