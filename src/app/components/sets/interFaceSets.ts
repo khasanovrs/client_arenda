@@ -6,4 +6,5 @@ interface InterFaceSets {
   sum: string;
   val: string;
   region: string;
+  category_id: number;
 }

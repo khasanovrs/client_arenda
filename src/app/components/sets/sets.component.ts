@@ -71,7 +71,8 @@ export class SetsComponent implements OnInit {
     sum: '0',
     color: '#000000',
     val: '',
-    region: ''
+    region: '',
+    category_id: null
   };
 
   constructor(private setsService: SetsService,
@@ -331,6 +332,12 @@ export class SetsComponent implements OnInit {
     }
 
     if (this.newParams.type === 'type_eq') {
+
+      if (this.newParams.category_id === null) {
+        this.globalParamsMessage.data = {title: 'Необходимо указать категорию', type: 'error', body: ''};
+        return false;
+      }
+
       this.equipmentsService.addEquipmentsType(this.newParams).then(() => {
           this.equipmentsService.equipmentsTypeList = [];
           this.ngOnInit();
@@ -372,7 +379,8 @@ export class SetsComponent implements OnInit {
       sum: '0',
       color: '#000000',
       val: '',
-      region: ''
+      region: '',
+      category_id: null
     };
   }
 
