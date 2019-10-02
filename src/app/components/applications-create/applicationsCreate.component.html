@@ -28,7 +28,7 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Вид аренды</label>
             <div class="---select">
-              <select [(ngModel)]="application.typeLease.val" autocomplete="none"
+              <select [(ngModel)]="application.typeLease.val" autocomplete="none" (change)="changeTypeLease()"
                       [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
                         [ngValue]="applicationsTypeLease.val">
@@ -108,7 +108,7 @@
       <div class="h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between">
         Данные арендатора
 
-        <a href="#" class="---check-by-bailiff">Проверить через сервис приставов</a>
+        <div *ngIf="application.client_fio.val!==''" (click)="getBailiffs()" class="---check-by-bailiff">Проверить через сервис приставов</div>
       </div>
 
       <div class="---row">

@@ -1,4 +1,6 @@
 interface IClientsUr {
+  fio: string;
+  org: string;
   date_create: string;
   dohod: number;
   last_contact: string;

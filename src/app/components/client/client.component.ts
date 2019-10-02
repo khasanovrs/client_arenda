@@ -3,6 +3,7 @@ import {ClientService} from './client.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {Router} from '@angular/router';
 import {GlobalParamsClientChangeStatus} from '../client_change_status/global-params-client-change-status';
+import {Sort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-client',
@@ -37,6 +38,8 @@ export class ClientComponent implements OnInit {
   activeFields: InterFaceActiveFields[] = [];
   // список активных полей
   activeFieldsTables = {};
+
+  sortedData: IClientsUr[];
 
   constructor(private clientService: ClientService,
               private dopParamsService: DopParamsService,
@@ -98,7 +101,7 @@ export class ClientComponent implements OnInit {
       dohod_end: this.filters.dohod_end,
     }).then((data: IClientsUr[]) => {
         this.clients = data;
-
+        this.sortedData = this.clients.slice();
         this.showFilters = false;
       },
       (error) => {
@@ -178,4 +181,42 @@ export class ClientComponent implements OnInit {
   clientDetails(id) {
     this.router.navigate(['/clients/' + id]);
   }
+
+  sortData(sort: Sort) {
+    const data = this.clients.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.clients = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'org':
+          return compare(a.org, b.org, isAsc);
+        case 'fio':
+          return compare(a.fio, b.fio, isAsc);
+        case 'phone':
+          return compare(a.phone, b.phone, isAsc);
+        case 'date_create':
+          return compare(a.date_create, b.date_create, isAsc);
+        case 'last_contact':
+          return compare(a.last_contact, b.last_contact, isAsc);
+        case 'source':
+          return compare(a.source.name, b.source.name, isAsc);
+        case 'rentals':
+          return compare(a.rentals, b.rentals, isAsc);
+        case 'dohod':
+          return compare(a.dohod, b.dohod, isAsc);
+        case 'sale':
+          return compare(a.sale.name, b.sale.name, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

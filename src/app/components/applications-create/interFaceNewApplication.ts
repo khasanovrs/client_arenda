@@ -18,5 +18,6 @@ interface InterFaceNewApplication {
   client_date_passport: { val: string, required: true, name: string };
   client_address_passport: { val: string, required: true, name: string };
   sum: string;
+  client_type: number;
   delivery_sum: string;
 }

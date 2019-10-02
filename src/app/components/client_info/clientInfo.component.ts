@@ -202,8 +202,18 @@ export class ClientInfoComponent implements OnInit {
     };
   }
 
+  // проверка через приставов
   getBailiffs() {
-    this.clientService.getBailiffs({clientId: this.clientId}).then((data:any) => {
+    let name = '';
+    let type = '';
+    if (this.client.fio === '') {
+      name = this.client.name;
+      type = '2';
+    } else {
+      name = this.client.fio;
+      type = '1';
+    }
+    this.clientService.getBailiffs({fio: name, region: this.client.branch, type: type}).then((data: any) => {
         if (data.length === 0) {
           this.globalParamsMessage.data = {title: 'У клиента нет долгов', type: 'success', body: ''};
         }
