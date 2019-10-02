@@ -3,6 +3,7 @@ import {ApplicationsService} from './applications.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {Router} from '@angular/router';
 import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
+import {Sort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-applications',
@@ -31,6 +32,8 @@ export class ApplicationsComponent implements OnInit {
   };
 
   applications: InterFaceApplications[] = [];
+
+  sortedData: InterFaceApplications[];
 
   ngOnInit() {
     this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParamsColor[]) => {
@@ -136,6 +139,7 @@ export class ApplicationsComponent implements OnInit {
       date_start: this.filters.date_start,
       date_end: this.filters.date_end,
     }).then((data: InterFaceApplications[]) => {
+        this.sortedData = this.applications.slice();
         this.applications = data;
       },
       (error) => {
@@ -159,4 +163,29 @@ export class ApplicationsComponent implements OnInit {
   applicationDetails(equipments_id) {
     this.router.navigate(['/application/' + equipments_id]);
   }
+
+  sortData(sort: Sort) {
+    const data = this.applications.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.applications = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'client': return compare(a.client, b.client, isAsc);
+        case 'phone': return compare(a.phone, b.phone, isAsc);
+        case 'equipments_name': return compare(a.equipments_name, b.equipments_name, isAsc);
+        case 'source': return compare(a.source, b.source, isAsc);
+        case 'user': return compare(a.user, b.user, isAsc);
+        case 'equipments_count': return compare(a.equipments_count, b.equipments_count, isAsc);
+        default: return 0;
+      }
+    });
+  }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
