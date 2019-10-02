@@ -90,7 +90,7 @@ export class EquipmentsCreateComponent implements OnInit {
 
     this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParams[]) => {
         this.equipmentsStatusList = data;
-        this.newEquipments.status = this.equipmentsStatusList[2].val;
+        this.newEquipments.status = this.equipmentsStatusList[3].val;
       },
       (error) => {
         console.log('Ошибка при получении списка статусов оборудования: ', error);
