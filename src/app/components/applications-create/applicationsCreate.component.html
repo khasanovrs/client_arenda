@@ -28,7 +28,7 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Вид аренды</label>
             <div class="---select">
-              <select [(ngModel)]="application.typeLease.val" autocomplete="none"
+              <select [(ngModel)]="application.typeLease.val" autocomplete="none" (change)="changeTypeLease()"
                       [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
                         [ngValue]="applicationsTypeLease.val">
