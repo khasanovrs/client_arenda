@@ -183,11 +183,6 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
-    if (this.equipment.tool_number === null) {
-      this.globalParamsMessage.data = {title: 'Необходимо указать номер оборудования', type: 'error', body: ''};
-      return false;
-    }
-
     if (this.reason_change_stock === '' && this.equipment.new_stock !== this.equipment.old_stock) {
       this.globalParamsMessage.data = {title: 'Необходимо указать причину изменения склада', type: 'error', body: ''};
       return false;
@@ -195,6 +190,16 @@ export class EquipmentsComponent implements OnInit {
 
     if (this.reason_change_status === '' && this.equipment.new_status !== this.equipment.old_status) {
       this.globalParamsMessage.data = {title: 'Необходимо указать причину изменения статуса', type: 'error', body: ''};
+      return false;
+    }
+
+    if (this.equipment.new_status === 4 && this.equipment.old_status === 2 && this.amount_repair === '') {
+      this.globalParamsMessage.data = {title: 'Необходимо указать сумму ремонта', type: 'error', body: ''};
+      return false;
+    }
+
+    if (this.equipment.new_status === 4 && this.equipment.old_status === 2 && this.amount_repair_cash_box === null) {
+      this.globalParamsMessage.data = {title: 'Необходимо указать кассу', type: 'error', body: ''};
       return false;
     }
 
