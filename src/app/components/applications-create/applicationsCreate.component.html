@@ -108,7 +108,7 @@
       <div class="h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between">
         Данные арендатора
 
-        <a href="#" class="---check-by-bailiff">Проверить через сервис приставов</a>
+        <div *ngIf="application.client_fio.val!==''" (click)="getBailiffs()" class="---check-by-bailiff">Проверить через сервис приставов</div>
       </div>
 
       <div class="---row">

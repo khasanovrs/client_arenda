@@ -58,7 +58,8 @@ export class ApplicationsCreateComponent implements OnInit {
     client_number_passport: {val: '', required: true, name: 'серия и номер паспорта'},
     client_where_passport: {val: '', required: true, name: 'кем выдан паспорт'},
     client_date_passport: {val: '', required: true, name: 'дата выдачи паспорта'},
-    client_address_passport: {val: '', required: true, name: 'адрес регистрации'}
+    client_address_passport: {val: '', required: true, name: 'адрес регистрации'},
+    client_type: null
   };
 
   constructor(private applicationsCreateService: ApplicationsCreateService,
@@ -263,6 +264,7 @@ export class ApplicationsCreateComponent implements OnInit {
     this.application.client_where_passport.val = this.showSearchClient.clients[index].client_where_passport;
     this.application.client_date_passport.val = this.showSearchClient.clients[index].client_date_passport;
     this.application.client_address_passport.val = this.showSearchClient.clients[index].client_address_passport;
+    this.application.client_type = this.showSearchClient.clients[index].client_type;
 
     this.showSearchClient.show = false;
 
@@ -355,4 +357,20 @@ export class ApplicationsCreateComponent implements OnInit {
     this.application.equipments.splice(index, 1);
   }
 
+  // проверка через приставов
+  getBailiffs() {
+    this.clientService.getBailiffs({
+      fio: this.application.client_fio.val,
+      region: this.application.branch.val,
+      type: this.application.client_type
+    }).then((data: any) => {
+        if (data.length === 0) {
+          this.globalParamsMessage.data = {title: 'У клиента нет долгов', type: 'success', body: ''};
+        }
+
+      },
+      (error) => {
+        console.log('Ошибка при получении данных от приставов: ', error);
+      });
+  }
 }

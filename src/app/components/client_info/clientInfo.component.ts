@@ -202,6 +202,7 @@ export class ClientInfoComponent implements OnInit {
     };
   }
 
+  // проверка через приставов
   getBailiffs() {
     let name = '';
     let type = '';
