@@ -20,10 +20,17 @@ export class EquipmentsComponent implements OnInit {
   // причина изменения склада
   reason_change_stock = '';
 
+  // причина изменения статуса
+  reason_change_status = '';
+
+  // сумма ремонта
+  amount_repair = '';
+
   equipment: InterFaceInfoEquipments = {
     id: null,
     model: '',
-    status: '',
+    old_status: null,
+    new_status: null,
     old_stock: null,
     new_stock: null,
     discount: null,
@@ -54,6 +61,15 @@ export class EquipmentsComponent implements OnInit {
       new_params: '',
       old_params: '',
       type: '',
+      reason: '',
+      user: '',
+    }],
+    change_history_status: [{
+      date: '',
+      new_params: '',
+      old_params: '',
+      cashBox: '',
+      sum: '',
       reason: '',
       user: '',
     }]
@@ -122,7 +138,7 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
-    if (this.equipment.status === null) {
+    if (this.equipment.new_status === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать статус', type: 'error', body: ''};
       return false;
     }
@@ -162,6 +178,11 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
+    if (this.reason_change_status === '' && this.equipment.new_status !== this.equipment.old_status) {
+      this.globalParamsMessage.data = {title: 'Необходимо указать причину изменения статуса', type: 'error', body: ''};
+      return false;
+    }
+
     this.equipmentsService.updateEquipment({
       id: this.equipment.id,
       model: this.equipment.model,
@@ -189,7 +210,11 @@ export class EquipmentsComponent implements OnInit {
       power: this.equipment.power,
       frequency_hits: this.equipment.frequency_hits,
       photo_alias: this.equipment.photo_alias,
-      comment: this.equipment.comment
+      comment: this.equipment.comment,
+      new_status: this.equipment.new_status,
+      old_status: this.equipment.old_status,
+      reason_change_status: this.reason_change_status,
+      amount_repair: this.amount_repair,
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно изменено', type: 'success', body: ''};
 

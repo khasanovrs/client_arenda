@@ -66,8 +66,24 @@
       <div class="---row">
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Статус</label>
-          <input type="text" disabled class="---input ---shadow--bg" [(ngModel)]="equipment.status">
-
+          <div class="---select">
+            <select [(ngModel)]="equipment.new_status">
+              <option *ngFor="let equipmentsStatus of equipmentsStatusList"
+                      [ngValue]="equipmentsStatus.val">
+                {{equipmentsStatus.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6"
+             *ngIf="equipment.old_status!==equipment.new_status">
+          <label>Причина изменения статуса</label>
+          <input class="---input ---shadow--bg" [(ngModel)]="reason_change_status">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6"
+             *ngIf="equipment.old_status!==equipment.new_status && equipment.new_status===1 && equipment.old_status===2">
+          <label>Сумма ремонта</label>
+          <input class="---input ---shadow--bg"  mask="separator" [(ngModel)]="amount_repair">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Количество</label>
@@ -192,7 +208,6 @@
   </div>
   <div class="---col-12 ---col-lg-6 ---form">
     История изменений
-
     <table style="min-width: 360px;">
       <tr>
         <th>Дата</th>
@@ -209,6 +224,29 @@
         <td>{{list.new_params}}</td>
         <td>{{list.reason}}</td>
         <td>{{list.user}}</td>
+      </tr>
+    </table>
+
+
+    История изменений статуса
+    <table style="min-width: 360px;">
+      <tr>
+        <th>Дата</th>
+        <th>Старое значение</th>
+        <th>Новое значение</th>
+        <th>Причина</th>
+        <th>Сотрудник</th>
+        <th>Сумма</th>
+        <th>Касса</th>
+      </tr>
+      <tr *ngFor="let list of equipment.change_history_status">
+        <td>{{list.date}}</td>
+        <td>{{list.old_params}}</td>
+        <td>{{list.new_params}}</td>
+        <td>{{list.reason}}</td>
+        <td>{{list.user}}</td>
+        <td>{{list.sum}}</td>
+        <td>{{list.cashBox}}</td>
       </tr>
     </table>
   </div>
