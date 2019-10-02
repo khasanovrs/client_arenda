@@ -1,7 +1,8 @@
 interface InterFaceInfoEquipments {
   id: number;
   model: string;
-  status: string;
+  new_status: number;
+  old_status: number;
   old_stock: number;
   new_stock: number;
   mark: number;
@@ -32,6 +33,15 @@ interface InterFaceInfoEquipments {
     new_params: string;
     old_params: string;
     type: string;
+    reason: string;
+    user: string;
+  }[];
+  change_history_status: {
+    date: string;
+    new_params: string;
+    old_params: string;
+    cashBox: string;
+    sum: string;
     reason: string;
     user: string;
   }[];

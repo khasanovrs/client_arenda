@@ -3,6 +3,7 @@ import {DopParamsService} from '../../services/dopParams.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {EquipmentsService} from './equipments.service';
+import {FinanceService} from '../finance/finance.service';
 
 @Component({
   selector: 'app-equipment',
@@ -20,10 +21,23 @@ export class EquipmentsComponent implements OnInit {
   // причина изменения склада
   reason_change_stock = '';
 
+  // причина изменения статуса
+  reason_change_status = '';
+
+  // сумма ремонта
+  amount_repair = '';
+
+  // касса
+  amount_repair_cash_box = null;
+
+  // кассы
+  financeCashBox: InterFaceFinanceCashBox[];
+
   equipment: InterFaceInfoEquipments = {
     id: null,
     model: '',
-    status: '',
+    old_status: null,
+    new_status: null,
     old_stock: null,
     new_stock: null,
     discount: null,
@@ -56,6 +70,15 @@ export class EquipmentsComponent implements OnInit {
       type: '',
       reason: '',
       user: '',
+    }],
+    change_history_status: [{
+      date: '',
+      new_params: '',
+      old_params: '',
+      cashBox: '',
+      sum: '',
+      reason: '',
+      user: '',
     }]
   };
 
@@ -63,6 +86,7 @@ export class EquipmentsComponent implements OnInit {
               private equipmentsService: EquipmentsService,
               private globalParamsMessage: GlobalParamsMessage,
               private activatedRoute: ActivatedRoute,
+              private financeService: FinanceService,
               private router: Router) {
     this.activatedRoute.params.subscribe(
       (params: Params): void => {
@@ -114,6 +138,13 @@ export class EquipmentsComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении детальной информации по клиенту: ', error);
       });
+
+    this.financeService.getFinanceCashBOx().then((data: InterFaceFinanceCashBox[]) => {
+        this.financeCashBox = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении касс: ', error);
+      });
   }
 
   updateEquipment() {
@@ -122,7 +153,7 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
-    if (this.equipment.status === null) {
+    if (this.equipment.new_status === null) {
       this.globalParamsMessage.data = {title: 'Необходимо указать статус', type: 'error', body: ''};
       return false;
     }
@@ -162,6 +193,11 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
+    if (this.reason_change_status === '' && this.equipment.new_status !== this.equipment.old_status) {
+      this.globalParamsMessage.data = {title: 'Необходимо указать причину изменения статуса', type: 'error', body: ''};
+      return false;
+    }
+
     this.equipmentsService.updateEquipment({
       id: this.equipment.id,
       model: this.equipment.model,
@@ -189,7 +225,12 @@ export class EquipmentsComponent implements OnInit {
       power: this.equipment.power,
       frequency_hits: this.equipment.frequency_hits,
       photo_alias: this.equipment.photo_alias,
-      comment: this.equipment.comment
+      comment: this.equipment.comment,
+      new_status: this.equipment.new_status,
+      old_status: this.equipment.old_status,
+      reason_change_status: this.reason_change_status,
+      amount_repair: this.amount_repair,
+      amount_repair_cash_box: this.amount_repair_cash_box,
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно изменено', type: 'success', body: ''};
 
