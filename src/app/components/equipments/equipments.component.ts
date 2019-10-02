@@ -3,6 +3,7 @@ import {DopParamsService} from '../../services/dopParams.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {EquipmentsService} from './equipments.service';
+import {FinanceService} from '../finance/finance.service';
 
 @Component({
   selector: 'app-equipment',
@@ -25,6 +26,12 @@ export class EquipmentsComponent implements OnInit {
 
   // сумма ремонта
   amount_repair = '';
+
+  // касса
+  amount_repair_cash_box = null;
+
+  // кассы
+  financeCashBox: InterFaceFinanceCashBox[];
 
   equipment: InterFaceInfoEquipments = {
     id: null,
@@ -79,6 +86,7 @@ export class EquipmentsComponent implements OnInit {
               private equipmentsService: EquipmentsService,
               private globalParamsMessage: GlobalParamsMessage,
               private activatedRoute: ActivatedRoute,
+              private financeService: FinanceService,
               private router: Router) {
     this.activatedRoute.params.subscribe(
       (params: Params): void => {
@@ -129,6 +137,13 @@ export class EquipmentsComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении детальной информации по клиенту: ', error);
+      });
+
+    this.financeService.getFinanceCashBOx().then((data: InterFaceFinanceCashBox[]) => {
+        this.financeCashBox = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении касс: ', error);
       });
   }
 
@@ -215,6 +230,7 @@ export class EquipmentsComponent implements OnInit {
       old_status: this.equipment.old_status,
       reason_change_status: this.reason_change_status,
       amount_repair: this.amount_repair,
+      amount_repair_cash_box: this.amount_repair_cash_box,
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно изменено', type: 'success', body: ''};
 

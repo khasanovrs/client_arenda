@@ -85,6 +85,18 @@
           <label>Сумма ремонта</label>
           <input class="---input ---shadow--bg"  mask="separator" [(ngModel)]="amount_repair">
         </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6"
+             *ngIf="equipment.old_status!==equipment.new_status && equipment.new_status===1 && equipment.old_status===2">
+          <label>Касса</label>
+          <div class="---select">
+            <select [(ngModel)]="amount_repair_cash_box">
+              <option *ngFor="let сashBox of financeCashBox"
+                      [ngValue]="сashBox .val">
+                {{сashBox .name}}
+              </option>
+            </select>
+          </div>
+        </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Количество</label>
           <input type="number" class="---input ---shadow--bg" [(ngModel)]="equipment.count">

@@ -19,7 +19,6 @@ export class PayComponent implements OnInit {
     }
   };
   financeCashBox: InterFaceFinanceCashBox[];
-  currentFinanceCashBox = null;
   revertSum = false;
 
   constructor(private globalParamsPay: GlobalParamsPay,
