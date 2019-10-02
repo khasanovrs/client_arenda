@@ -114,10 +114,8 @@ export class HireComponent {
   }
 
   hireDetails(id) {
-    console.log(1,id)
     this.router.navigate(['/hire/' + id]);
   }
-
 
   getHire() {
     this.hireService.getHire({
