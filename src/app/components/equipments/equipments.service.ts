@@ -60,6 +60,7 @@ export class EquipmentsService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-equipments-category', data)
         .then((result: any) => {
+            this.equipmentsCategoryList = [];
             this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
@@ -76,6 +77,7 @@ export class EquipmentsService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/delete-equipments-category', data)
         .then((result: any) => {
+            this.equipmentsCategoryList = [];
             this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
@@ -92,6 +94,7 @@ export class EquipmentsService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-equipments-type', data)
         .then((result: any) => {
+            this.equipmentsTypeList = [];
             this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
@@ -108,6 +111,7 @@ export class EquipmentsService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/delete-equipments-type', data)
         .then((result: any) => {
+            this.equipmentsTypeList = [];
             this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
@@ -124,6 +128,7 @@ export class EquipmentsService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/add-equipments-mark', data)
         .then((result: any) => {
+            this.equipmentsMarkList = [];
             this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
@@ -140,6 +145,7 @@ export class EquipmentsService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/delete-equipments-mark', data)
         .then((result: any) => {
+            this.equipmentsMarkList = [];
             this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
@@ -226,6 +232,7 @@ export class EquipmentsService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/change-equipments-fields', data)
         .then(() => {
+            this.equipmentsFieldsList = [];
             resolve();
           },
           (error) => {
@@ -257,6 +264,7 @@ export class EquipmentsService {
       if (this.equipmentsMarkList.length === 0) {
         this.httpService.prepareQuery('api/get-equipment-mark', '')
           .then((result: any) => {
+              this.equipmentsMarkList = [];
               this.equipmentsMarkList = result;
               resolve(result);
             },
@@ -286,7 +294,7 @@ export class EquipmentsService {
     });
   }
 
-  // изменение списка активных полей для таблицы
+  // получение оборудования по поиску
   public searchEquipments(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/get-equipments-search', data)
@@ -301,7 +309,7 @@ export class EquipmentsService {
     });
   }
 
-  // изменение списка активных полей для таблицы
+  // получение оборудования по филиалам
   public allEquipmentsBranch(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/get-all-equipments-branch', data)
