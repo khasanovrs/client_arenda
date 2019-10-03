@@ -37,6 +37,7 @@ export class ClientInfoComponent implements OnInit {
     phone_2: '',
     phone_3: '',
     email: '',
+    date_birth: '',
     number_passport: '',
     count_application: null,
     all_total_paid: null,
@@ -152,7 +153,6 @@ export class ClientInfoComponent implements OnInit {
       return false;
     }
 
-
     this.clientService.addClient({
       sale: this.client.sale,
       branch: this.client.branch,
@@ -167,6 +167,7 @@ export class ClientInfoComponent implements OnInit {
       email: this.client.email,
       clientId: this.clientId,
       reason_change_status: this.client.reason_change_status,
+      date_birth: this.client.date_birth,
       phone_1: this.client.phone_1.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_2: this.client.phone_2.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_3: this.client.phone_3.replace(/[\),\(,\-,+,\s]/g, '')

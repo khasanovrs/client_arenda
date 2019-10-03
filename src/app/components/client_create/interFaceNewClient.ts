@@ -13,4 +13,5 @@ interface InterFaceNewClient {
   phone_3: string;
   email: string;
   number_passport: string;
+  date_birth: string;
 }

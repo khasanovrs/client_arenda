@@ -14,6 +14,7 @@ interface InterFaceClient {
   phone_2: string;
   phone_3: string;
   email: string;
+  date_birth: string;
   number_passport: string;
   count_application: number;
   all_total_paid: string;

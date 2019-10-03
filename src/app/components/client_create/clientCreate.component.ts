@@ -32,7 +32,8 @@ export class ClientCreateComponent implements OnInit {
     phone_2: '',
     phone_3: '',
     email: '',
-    number_passport: ''
+    number_passport: '',
+    date_birth: ''
   };
 
   constructor(private clientService: ClientService,
@@ -94,6 +95,11 @@ export class ClientCreateComponent implements OnInit {
       return false;
     }
 
+    if (this.newClient.date_birth === '') {
+      this.globalParamsMessage.data = {title: 'Необходимо указать дату рождения', type: 'error', body: ''};
+      return false;
+    }
+
     this.clientService.addClient({
       sale: this.newClient.sale,
       branch: this.newClient.branch,
@@ -108,7 +114,8 @@ export class ClientCreateComponent implements OnInit {
       clientId: '',
       phone_1: this.newClient.phone_1.replace(/[\),\(,\-,+,\s]/g, ''),
       phone_2: this.newClient.phone_2.replace(/[\),\(,\-,+,\s]/g, ''),
-      phone_3: this.newClient.phone_3.replace(/[\),\(,\-,+,\s]/g, '')
+      phone_3: this.newClient.phone_3.replace(/[\),\(,\-,+,\s]/g, ''),
+      date_birth: this.newClient.date_birth,
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Пользователь успешно добавлен', type: 'success', body: ''};
         this.globalParams.showModalCreateUser = false;
