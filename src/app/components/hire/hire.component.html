@@ -109,8 +109,7 @@
             </ng-container>
           </tr>
 
-          <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer"
-              [style.background]="hire.color" (dblclick)="hireDetails(hire.id)">
+          <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" (dblclick)="hireDetails(hire.id)">
             <td>
               <div (click)="hireDetails(hire.id)" class="ifont ---icon-edit ---acent-icon ---radius-5"></div>
             </td>
@@ -123,7 +122,7 @@
             <td *ngIf="activeFieldsTables['equipment']===1">{{hire.equipments}}</td>
             <td *ngIf="activeFieldsTables['start_hire']===1">{{hire.start_hire}}</td>
             <td *ngIf="activeFieldsTables['end_hire']===1">{{hire.end_hire}}</td>
-            <td *ngIf="activeFieldsTables['state']===1">{{hire.state}}</td>
+            <td [style.background]="hire.color" *ngIf="activeFieldsTables['state']===1">{{hire.state}}</td>
             <td *ngIf="activeFieldsTables['sum']===1">{{hire.sum}}</td>
             <td *ngIf="activeFieldsTables['sale_sum']===1">{{hire.sale_sum}}</td>
             <td *ngIf="activeFieldsTables['total_paid']===1">{{hire.total_paid}}</td>
