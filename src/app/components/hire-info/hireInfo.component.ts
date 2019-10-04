@@ -132,6 +132,7 @@ export class HireInfoComponent {
       comment: this.hireInfo.comment
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно обновлена', type: 'success', body: ''};
+        this.getHireInfo();
       },
       (error) => {
         console.log('Ошибка при обновлении заявки: ', error);
