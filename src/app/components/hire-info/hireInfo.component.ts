@@ -145,6 +145,7 @@ export class HireInfoComponent {
       checkPrim: this.checkPrim
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
+        this.getHireInfo();
       },
       (error) => {
         console.log('Ошибка при обновлении заявки: ', error);
