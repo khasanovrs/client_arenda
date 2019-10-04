@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {DopParamsService} from '../../services/dopParams.service';
 import {GlobalParamsRental} from '../rental/global-params-rental';
 import {Sort} from '@angular/material/sort';
+import {ApplicationsService} from '../applications/applications.service';
 
 @Component({
   selector: 'app-hire',
@@ -40,6 +41,7 @@ export class HireComponent {
   constructor(public hireService: HireService,
               private router: Router,
               private dopParamsService: DopParamsService,
+              private applicationsService: ApplicationsService,
               private globalParamsRental: GlobalParamsRental) {
     this.hireService.getHireFields().then((data: InterFaceActiveFields[]) => {
         this.activeFields = data;
@@ -56,6 +58,10 @@ export class HireComponent {
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
       });
+
+    this.applicationsService.refreshInfo.subscribe(() => {
+      this.getHire();
+    });
 
     this.getHire();
   }
