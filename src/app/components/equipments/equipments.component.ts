@@ -14,21 +14,26 @@ export class EquipmentsComponent implements OnInit {
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsCategoryList: InterEquipmentsCategory[] = [];
   equipmentsStatusList: InterFaceDopParams[] = [];
+  showEquipmentsStatusList: InterFaceDopParams[] = [];
   discounts: InterFaceDopParams[] = [];
   equipmentsMarkList: InterFaceDopParams[] = [];
   equipmentId: null;
 
   // причина изменения склада
   reason_change_stock = '';
-
   // причина изменения статуса
   reason_change_status = '';
-
   // сумма ремонта
   amount_repair = '';
-
+  // сумма продажи
+  sale_amount = '';
   // касса
-  amount_repair_cash_box = null;
+  cash_box = null;
+
+  show_cash_box = false;
+  show_sale_amount = false;
+  show_amount_repair = false;
+  show_reason_change_status = false;
 
   // кассы
   financeCashBox: InterFaceFinanceCashBox[];
@@ -112,6 +117,7 @@ export class EquipmentsComponent implements OnInit {
 
     this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParams[]) => {
         this.equipmentsStatusList = data;
+        this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val !== 1 && item.val !== 5);
       },
       (error) => {
         console.log('Ошибка при получении списка статусов оборудования: ', error);
@@ -133,6 +139,10 @@ export class EquipmentsComponent implements OnInit {
 
     this.equipmentsService.getEquipmentInfo({equipmentId: this.equipmentId}).then((data: InterFaceInfoEquipments) => {
         this.equipment = data;
+        console.log(1, this.equipment.new_status);
+        if (this.equipment.new_status === 2) {
+          this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val === 4 || item.val === 2);
+        }
         this.changeCategory(this.equipment.type);
       },
       (error) => {
@@ -188,19 +198,35 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
-    if (this.reason_change_status === '' && this.equipment.new_status !== this.equipment.old_status) {
-      this.globalParamsMessage.data = {title: 'Необходимо указать причину изменения статуса', type: 'error', body: ''};
-      return false;
-    }
+    if (this.equipment.new_status !== this.equipment.old_status) {
+      if (this.equipment.new_status === 4 && this.equipment.old_status === 2) {
+        if (this.amount_repair === '') {
+          this.globalParamsMessage.data = {title: 'Необходимо указать сумму ремонта', type: 'error', body: ''};
+          return false;
+        }
 
-    if (this.equipment.new_status === 4 && this.equipment.old_status === 2 && this.amount_repair === '') {
-      this.globalParamsMessage.data = {title: 'Необходимо указать сумму ремонта', type: 'error', body: ''};
-      return false;
-    }
+        if (this.cash_box === null) {
+          this.globalParamsMessage.data = {title: 'Необходимо указать кассу', type: 'error', body: ''};
+          return false;
+        }
+      }
 
-    if (this.equipment.new_status === 4 && this.equipment.old_status === 2 && this.amount_repair_cash_box === null) {
-      this.globalParamsMessage.data = {title: 'Необходимо указать кассу', type: 'error', body: ''};
-      return false;
+      if (this.equipment.new_status !== 6) {
+        if (this.reason_change_status === '') {
+          this.globalParamsMessage.data = {title: 'Необходимо указать причину изменения статуса', type: 'error', body: ''};
+          return false;
+        }
+      } else {
+        if (this.sale_amount === '') {
+          this.globalParamsMessage.data = {title: 'Необходимо указать сумму продажи', type: 'error', body: ''};
+          return false;
+        }
+
+        if (this.cash_box === null) {
+          this.globalParamsMessage.data = {title: 'Необходимо указать кассу', type: 'error', body: ''};
+          return false;
+        }
+      }
     }
 
     this.equipmentsService.updateEquipment({
@@ -235,10 +261,10 @@ export class EquipmentsComponent implements OnInit {
       old_status: this.equipment.old_status,
       reason_change_status: this.reason_change_status,
       amount_repair: this.amount_repair,
-      amount_repair_cash_box: this.amount_repair_cash_box,
+      cash_box: this.cash_box,
+      sale_amount: this.sale_amount
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно изменено', type: 'success', body: ''};
-
         this.router.navigate(['/stock']);
       },
       (error) => {
@@ -249,5 +275,21 @@ export class EquipmentsComponent implements OnInit {
   changeCategory(data) {
     const arr = this.equipmentsCategoryList.filter(item => item.val === data);
     this.equipmentsTypeList = arr[0].type;
+  }
+
+  checkShowField() {
+    if (this.equipment.old_status !== this.equipment.new_status) {
+      if (this.equipment.new_status !== 6) {
+        this.show_reason_change_status = true;
+
+        if (this.equipment.new_status === 4 && this.equipment.old_status === 2) {
+          this.show_amount_repair = true;
+          this.show_cash_box = true;
+        }
+      } else {
+        this.show_sale_amount = true;
+        this.show_cash_box = true;
+      }
+    }
   }
 }

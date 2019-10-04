@@ -89,7 +89,7 @@ export class EquipmentsCreateComponent implements OnInit {
       });
 
     this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParams[]) => {
-        this.equipmentsStatusList = data;
+        this.equipmentsStatusList = data.filter(item => item.val !== 1 && item.val !== 5);
         this.newEquipments.status = this.equipmentsStatusList[3].val;
       },
       (error) => {

@@ -67,8 +67,8 @@
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Статус</label>
           <div class="---select">
-            <select [(ngModel)]="equipment.new_status">
-              <option *ngFor="let equipmentsStatus of equipmentsStatusList"
+            <select [(ngModel)]="equipment.new_status" (change)="checkShowField()">
+              <option *ngFor="let equipmentsStatus of showEquipmentsStatusList"
                       [ngValue]="equipmentsStatus.val">
                 {{equipmentsStatus.name}}
               </option>
@@ -76,20 +76,25 @@
           </div>
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6"
-             *ngIf="equipment.old_status!==equipment.new_status">
+             *ngIf="show_reason_change_status">
           <label>Причина изменения статуса</label>
           <input class="---input ---shadow--bg" [(ngModel)]="reason_change_status">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6"
-             *ngIf="equipment.old_status!==equipment.new_status && equipment.new_status===4 && equipment.old_status===2">
+             *ngIf="show_amount_repair">
           <label>Сумма ремонта</label>
           <input class="---input ---shadow--bg"  mask="separator" [(ngModel)]="amount_repair">
         </div>
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6"
-             *ngIf="equipment.old_status!==equipment.new_status && equipment.new_status===4 && equipment.old_status===2">
+             *ngIf="show_sale_amount">
+          <label>Стоимость продажи</label>
+          <input class="---input ---shadow--bg"  mask="separator" [(ngModel)]="sale_amount">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6"
+             *ngIf="show_cash_box">
           <label>Касса</label>
           <div class="---select">
-            <select [(ngModel)]="amount_repair_cash_box">
+            <select [(ngModel)]="cash_box">
               <option *ngFor="let cashBox of financeCashBox"
                       [ngValue]="cashBox.val">
                 {{cashBox.name}}
