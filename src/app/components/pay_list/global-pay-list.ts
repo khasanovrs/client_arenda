@@ -7,7 +7,8 @@ export class GlobalPayList {
     pay_list: [{
       'date': '',
       'user_id': null,
-      'sum': ''
+      'sum': '',
+      'cash_box': ''
     }]
   };
 }

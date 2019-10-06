@@ -6,11 +6,13 @@
         <tr>
           <th>Дата</th>
           <th>Сумма</th>
+          <th>Касса</th>
           <th>Сотрудник</th>
         </tr>
         <tr *ngFor="let pay of data.data.pay_list">
           <td>{{pay.date}}</td>
           <td>{{pay.sum | digitsNumbers}} ₽</td>
+          <td>{{pay.cash_box}}</td>
           <td>{{pay.user_id}}</td>
         </tr>
       </table>

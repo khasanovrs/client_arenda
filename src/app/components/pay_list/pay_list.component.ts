@@ -13,7 +13,8 @@ export class PayListComponent implements OnInit {
       pay_list: {
         'date': '',
         'user_id': null,
-        'sum': ''
+        'sum': '',
+        'cash_box': ''
       }
     }
   };
