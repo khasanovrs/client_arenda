@@ -49,7 +49,6 @@ export class EquipmentsComponent implements OnInit {
     type: null,
     category: null,
     tool_number: null,
-    count: null,
     mark: null,
     selling_price: '',
     price_per_day: '',
@@ -188,11 +187,6 @@ export class EquipmentsComponent implements OnInit {
       return false;
     }
 
-    if (this.equipment.count === null) {
-      this.globalParamsMessage.data = {title: 'Необходимо указать количество оборудования', type: 'error', body: ''};
-      return false;
-    }
-
     if (this.reason_change_stock === '' && this.equipment.new_stock !== this.equipment.old_stock) {
       this.globalParamsMessage.data = {title: 'Необходимо указать причину изменения склада', type: 'error', body: ''};
       return false;
@@ -239,7 +233,6 @@ export class EquipmentsComponent implements OnInit {
       equipmentsType: this.equipment.type,
       equipmentsCategory: this.equipment.category,
       tool_number: this.equipment.tool_number,
-      count: this.equipment.count,
       mark: this.equipment.mark,
       selling_price: this.equipment.selling_price,
       price_per_day: this.equipment.price_per_day,

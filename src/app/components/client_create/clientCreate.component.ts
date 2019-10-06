@@ -95,11 +95,6 @@ export class ClientCreateComponent implements OnInit {
       return false;
     }
 
-    if (this.newClient.date_birth === '') {
-      this.globalParamsMessage.data = {title: 'Необходимо указать дату рождения', type: 'error', body: ''};
-      return false;
-    }
-
     this.clientService.addClient({
       sale: this.newClient.sale,
       branch: this.newClient.branch,

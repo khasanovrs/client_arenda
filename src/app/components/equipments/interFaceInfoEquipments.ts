@@ -8,7 +8,6 @@ interface InterFaceInfoEquipments {
   mark: number;
   type: number;
   category: number;
-  count: number;
   discount: number;
   tool_number: number;
   selling_price: string;
