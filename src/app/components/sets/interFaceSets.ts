@@ -6,5 +6,6 @@ interface InterFaceSets {
   sum: string;
   val: string;
   region: string;
+  pledge: string;
   category_id: number;
 }

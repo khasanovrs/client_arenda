@@ -72,7 +72,8 @@ export class SetsComponent implements OnInit {
     color: '#000000',
     val: '',
     region: '',
-    category_id: null
+    category_id: null,
+    pledge: '0'
   };
 
   constructor(private setsService: SetsService,
@@ -379,6 +380,7 @@ export class SetsComponent implements OnInit {
       color: '#000000',
       val: '',
       region: '',
+      pledge: '0',
       category_id: null
     };
   }
