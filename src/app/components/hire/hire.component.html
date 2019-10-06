@@ -109,7 +109,7 @@
             </ng-container>
           </tr>
 
-          <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 10, currentPage: p }" class="cursor-pointer" (dblclick)="hireDetails(hire.id)">
+          <tr *ngFor="let hire of hires | paginate: { itemsPerPage: 50, currentPage: p }" class="cursor-pointer" (dblclick)="hireDetails(hire.id)">
             <td>
               <div (click)="hireDetails(hire.id)" class="ifont ---icon-edit ---acent-icon ---radius-5"></div>
             </td>

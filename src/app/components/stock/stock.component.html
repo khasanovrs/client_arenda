@@ -186,7 +186,7 @@
           </ng-container>
         </tr>
 
-        <tr (dblclick)="equipmentDetails(equipment.id)" *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 10, currentPage: p }"
+        <tr (dblclick)="equipmentDetails(equipment.id)" *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 50, currentPage: p }"
             class="cursor-pointer">
           <td>
             <div class="ifont ---icon-edit ---radius-5" (click)="equipmentDetails(equipment.id)"></div>
