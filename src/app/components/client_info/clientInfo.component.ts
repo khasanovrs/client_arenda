@@ -70,6 +70,7 @@ export class ClientInfoComponent implements OnInit {
               private dopParamsService: DopParamsService,
               private globalParamsMessage: GlobalParamsMessage,
               private router: ActivatedRoute,
+              private routerCurrent: Router,
               private globalPayListClient: GlobalPayListClient,
               private globalApplicationListClient: GlobalApplicationListClient,
               private globalClientChangeStatusList: GlobalClientChangeStatusList,
@@ -222,6 +223,16 @@ export class ClientInfoComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении данных от приставов: ', error);
+      });
+  }
+
+  deleteClient() {
+    this.clientService.deleteClient({id: this.clientId}).then(() => {
+        this.globalParamsMessage.data = {title: 'Пользователь успешно удален', type: 'success', body: ''};
+        this.routerCurrent.navigate(['/clients/']);
+      },
+      (error) => {
+        console.log('Ошибка при удалении пользователя: ', error);
       });
   }
 }
