@@ -78,7 +78,6 @@ export class ApplicationsCreateComponent implements OnInit {
   ngOnInit() {
     this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
         this.applicationsStatus = data;
-        console.log(123);
         this.changeStatusApplications(this.applicationsStatus[0].val);
       },
       (error) => {
@@ -102,6 +101,8 @@ export class ApplicationsCreateComponent implements OnInit {
 
     this.applicationsCreateService.getApplicationsTypeLease().then((data: InterFaceDopParams[]) => {
         this.applicationsTypeLeases = data;
+        this.application.typeLease.val = data[0].val;
+        this.changeTypeLease();
       },
       (error) => {
         console.log('Ошибка при получении типов аренды: ', error);
