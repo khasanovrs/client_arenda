@@ -127,6 +127,21 @@ export class HireService {
     });
   }
 
+  // удаление проката
+  public deleteHire(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/delete-hire', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при удалении проекта', error);
+            reject();
+          }
+        );
+    });
+  }
+
   // возврат товара на склад
   public closeHire(data) {
     return new Promise((resolve, reject) => {

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HireService} from '../hire/hire.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {GlobalPayList} from '../pay_list/global-pay-list';
@@ -73,6 +73,7 @@ export class HireInfoComponent {
               private applicationsService: ApplicationsService,
               private applicationsCreateService: ApplicationsCreateService,
               private dopParamsService: DopParamsService,
+              private routerCurrent: Router,
               private globalExtensionsList: GlobalExtensionsList) {
 
     this.router.params.subscribe(
@@ -174,5 +175,16 @@ export class HireInfoComponent {
 
   open_extensions_list() {
     this.globalExtensionsList.data.show = true;
+  }
+
+  delete() {
+    this.hireService.deleteHire({
+      id: this.hireInfo.id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Прокат успешно удален', type: 'success', body: ''};
+        this.routerCurrent.navigate(['/hire']);
+      },
+      (error) => {
+        console.log('Ошибка при удалении проката: ', error);
+      });
   }
 }
