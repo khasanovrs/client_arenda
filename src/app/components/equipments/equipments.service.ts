@@ -294,6 +294,21 @@ export class EquipmentsService {
     });
   }
 
+  // удаление оборудования
+  public deleteEquipment(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/delete-equipment', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при удалении оборудования', error);
+            reject(error);
+          }
+        );
+    });
+  }
+
   // получение оборудования по поиску
   public searchEquipments(data) {
     return new Promise((resolve, reject) => {

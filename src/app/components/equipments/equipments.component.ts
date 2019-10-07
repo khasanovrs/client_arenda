@@ -285,4 +285,16 @@ export class EquipmentsComponent implements OnInit {
       }
     }
   }
+
+  delete_eq() {
+    this.equipmentsService.deleteEquipment({
+      id: this.equipment.id
+    }).then(() => {
+        this.globalParamsMessage.data = {title: 'Оборудование успешно удалено', type: 'success', body: ''};
+        this.router.navigate(['/stock']);
+      },
+      (error) => {
+        console.log('Ошибка при удалении оборудования: ', error);
+      });
+  }
 }
