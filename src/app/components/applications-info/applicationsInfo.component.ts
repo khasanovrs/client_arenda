@@ -173,7 +173,7 @@ export class ApplicationsInfoComponent implements OnInit {
     this.hireService.deleteHire({
       id: this.application.id}).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно удалена', type: 'success', body: ''};
-        this.routerCurrent.navigate(['/hire']);
+        this.routerCurrent.navigate(['/application']);
       },
       (error) => {
         console.log('Ошибка при удалении проката: ', error);
