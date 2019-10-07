@@ -28,7 +28,8 @@ interface InterFaceHireInfo {
   pay_list: {
     'date': string,
     'user_id': number,
-    'sum': string
+    'sum': string,
+    'cash_box': string
   }[];
   extensions: {
     'date': string,

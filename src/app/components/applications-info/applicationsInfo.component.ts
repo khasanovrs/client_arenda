@@ -53,7 +53,8 @@ export class ApplicationsInfoComponent implements OnInit {
     pay_list: [{
       'date': null,
       'user_id': null,
-      'sum': ''
+      'sum': '',
+      'cash_box': ''
     }]
   };
 

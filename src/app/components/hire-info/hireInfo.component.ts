@@ -54,7 +54,8 @@ export class HireInfoComponent {
     pay_list: [{
       'date': null,
       'user_id': null,
-      'sum': ''
+      'sum': '',
+      'cash_box': ''
     }],
     extensions: [{
       'date': null,

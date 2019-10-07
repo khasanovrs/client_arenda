@@ -285,9 +285,10 @@
           </div>
           <div class="---field" *ngIf="newParams.type==='cashBox'">
             <label>Залог</label>
-            <select [(ngModel)]="newParams.pledge" name="predge_id">
-                <option value="0">Нет</option>
-                <option value="1">Да</option>
+            <select [(ngModel)]="newParams.zalog" name="predge_id">
+              <option *ngFor="let pledge of pledgeList" [ngValue]="pledge.val">
+                {{pledge.name}}
+              </option>
             </select>
           </div>
 

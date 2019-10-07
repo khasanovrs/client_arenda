@@ -63,6 +63,11 @@ export class SetsComponent implements OnInit {
     {val: 'mark_eq', name: 'Марка оборудования'}
   ];
 
+  pledgeList = [
+    {val: '0', name: 'Нет'},
+    {val: '1', name: 'Да'}
+  ];
+
   // новое поле
   newParams: InterFaceSets = {
     type: '',
@@ -73,7 +78,7 @@ export class SetsComponent implements OnInit {
     val: '',
     region: '',
     category_id: null,
-    pledge: '0'
+    zalog: '0'
   };
 
   constructor(private setsService: SetsService,
@@ -380,7 +385,7 @@ export class SetsComponent implements OnInit {
       color: '#000000',
       val: '',
       region: '',
-      pledge: '0',
+      zalog: '0',
       category_id: null
     };
   }
