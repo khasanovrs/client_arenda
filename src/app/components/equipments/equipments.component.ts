@@ -138,7 +138,6 @@ export class EquipmentsComponent implements OnInit {
 
     this.equipmentsService.getEquipmentInfo({equipmentId: this.equipmentId}).then((data: InterFaceInfoEquipments) => {
         this.equipment = data;
-        console.log(1, this.equipment.new_status);
         if (this.equipment.new_status === 2) {
           this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val === 4 || item.val === 2);
         }

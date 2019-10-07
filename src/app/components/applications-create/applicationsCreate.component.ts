@@ -62,6 +62,8 @@ export class ApplicationsCreateComponent implements OnInit {
     client_type: null
   };
 
+  buttonText = '';
+
   constructor(private applicationsCreateService: ApplicationsCreateService,
               private applicationsService: ApplicationsService,
               private dopParamsService: DopParamsService,
@@ -76,7 +78,8 @@ export class ApplicationsCreateComponent implements OnInit {
   ngOnInit() {
     this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
         this.applicationsStatus = data;
-        this.application.status.val = this.applicationsStatus[0].val;
+        console.log(123);
+        this.changeStatusApplications(this.applicationsStatus[0].val);
       },
       (error) => {
         console.log('Ошибка при получении статусов: ', error);
@@ -212,6 +215,22 @@ export class ApplicationsCreateComponent implements OnInit {
 
   changeStatusApplications(val) {
     this.application.status.val = val;
+
+    if (val === 1) {
+      this.buttonText = 'Создание проката';
+    }
+    if (val === 2) {
+      this.buttonText = 'Создание брони';
+    }
+    if (val === 3) {
+      this.buttonText = 'Создание спроса';
+    }
+    if (val === 4) {
+      this.buttonText = 'Создание пролета';
+    }
+    if (val === 5) {
+      this.buttonText = 'Создание "узнали"';
+    }
   }
 
   // поиск клиентов из бд

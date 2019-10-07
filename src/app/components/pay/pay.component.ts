@@ -40,7 +40,6 @@ export class PayComponent implements OnInit {
 
   getFinanceCashBOx() {
     this.financeService.getFinanceCashBOx().then((data: InterFaceFinanceCashBox[]) => {
-        console.log(1, data);
         this.financeCashBox = data;
       },
       (error) => {
