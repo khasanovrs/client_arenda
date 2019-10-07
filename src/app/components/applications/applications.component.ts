@@ -181,6 +181,7 @@ export class ApplicationsComponent implements OnInit {
         case 'user': return compare(a.user, b.user, isAsc);
         case 'equipments_count': return compare(a.equipments_count, b.equipments_count, isAsc);
         case 'date_create': return compare(a.date_create, b.date_create, isAsc);
+        case 'branch': return compare(a.branch, b.branch, isAsc);
         default: return 0;
       }
     });

@@ -12,4 +12,5 @@ interface InterFaceApplications {
   user: string;
   color: string;
   date_create: string;
+  branch: string;
 }
