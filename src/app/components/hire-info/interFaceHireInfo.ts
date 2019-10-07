@@ -22,7 +22,7 @@ interface InterFaceHireInfo {
     equipments_id: string;
     name: string;
     state: string;
-    photo: number;
+    photo: string;
     photo_alias: string;
   };
   pay_list: {
