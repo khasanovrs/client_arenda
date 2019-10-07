@@ -183,6 +183,12 @@
             <td *ngIf="activeFieldsTables['sale']===1">
               <div class="---font-600">{{client.sale.name}}</div>
             </td>
+            <td *ngIf="activeFieldsTables['sum_pay']===1">
+              <div class="---font-600">{{client.sum_pay | digitsNumbers}} </div>
+            </td>
+            <td *ngIf="activeFieldsTables['count_app']===1">
+              <div class="---font-600">{{client.count_app}}</div>
+            </td>
           </tr>
         </table>
       </div>

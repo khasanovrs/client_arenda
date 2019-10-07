@@ -208,6 +208,10 @@ export class ClientComponent implements OnInit {
           return compare(a.dohod, b.dohod, isAsc);
         case 'sale':
           return compare(a.sale.name, b.sale.name, isAsc);
+        case 'sum_pay':
+          return compare(a.sum_pay, b.sum_pay, isAsc);
+        case 'count_app':
+          return compare(a.count_app, b.count_app, isAsc);
         default:
           return 0;
       }

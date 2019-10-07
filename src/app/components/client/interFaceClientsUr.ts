@@ -11,4 +11,6 @@ interface IClientsUr {
   source: { name: string, id: number };
   status: number;
   color: string;
+  sum_pay: string;
+  count_app: string;
 }
