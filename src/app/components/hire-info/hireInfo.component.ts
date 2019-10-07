@@ -177,7 +177,7 @@ export class HireInfoComponent {
     this.globalExtensionsList.data.show = true;
   }
 
-  delete() {
+  delete_hire() {
     this.hireService.deleteHire({
       id: this.hireInfo.id}).then(() => {
         this.globalParamsMessage.data = {title: 'Прокат успешно удален', type: 'success', body: ''};

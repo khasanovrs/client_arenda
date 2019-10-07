@@ -3,11 +3,12 @@ import {DopParamsService} from '../../services/dopParams.service';
 import {EquipmentsService} from '../equipments/equipments.service';
 import {ClientService} from '../client/client.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ApplicationsCreateService} from '../applications-create/applicationsCreate.service';
 import {ApplicationsService} from '../applications/applications.service';
 import {GlobalPayList} from '../pay_list/global-pay-list';
 import {GlobalParamsPay} from '../pay/global-params-pay';
+import {HireService} from '../hire/hire.service';
 
 @Component({
   selector: 'app-applications-info',
@@ -66,6 +67,8 @@ export class ApplicationsInfoComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private applicationsService: ApplicationsService,
               private globalPayList: GlobalPayList,
+              private hireService: HireService,
+              private routerCurrent: Router,
               private globalParamsPay: GlobalParamsPay) {
 
     this.activatedRoute.params.subscribe(
@@ -164,5 +167,16 @@ export class ApplicationsInfoComponent implements OnInit {
 
   open_pay_list() {
     this.globalPayList.data.show = true;
+  }
+
+  delete_hire() {
+    this.hireService.deleteHire({
+      id: this.application.id}).then(() => {
+        this.globalParamsMessage.data = {title: 'Заявка успешно удалена', type: 'success', body: ''};
+        this.routerCurrent.navigate(['/hire']);
+      },
+      (error) => {
+        console.log('Ошибка при удалении проката: ', error);
+      });
   }
 }
