@@ -11,4 +11,5 @@ interface InterFaceApplications {
   comment: string;
   user: string;
   color: string;
+  date_create: string;
 }
