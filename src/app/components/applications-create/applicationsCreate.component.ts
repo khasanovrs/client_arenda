@@ -335,7 +335,8 @@ export class ApplicationsCreateComponent implements OnInit {
         continue;
       }
       if (this.application.status.val === 2 || this.application.status.val === 1) {
-        if (this.application.hasOwnProperty(value) && typeof this.application[value].required === 'undefined') {
+        console.log(1, this.application[value]);
+        if (this.application.hasOwnProperty(value) && typeof this.application[value] !== 'undefined') {
 
           if (this.application[value].required && this.application[value].val === '') {
             this.globalParamsMessage.data = {title: `Необходимо заполнить поле "${this.application[value].name}"`, type: 'error', body: ''};
