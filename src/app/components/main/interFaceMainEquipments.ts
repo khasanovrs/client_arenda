@@ -4,4 +4,5 @@ interface InterFaceMainEquipments {
   name: string;
   price: string;
   photo: string;
+  photo_alias: string;
 }

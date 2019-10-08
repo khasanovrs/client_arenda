@@ -10,6 +10,7 @@ import {MainService} from './main.service';
 export class MainComponent implements OnInit {
   date = new Date().toISOString().split('T')[0];
 
+
   branches: InterFaceDopParams[] = [];
   filter: InterFaceMainFilter = {
     branch: null,

@@ -1,9 +1,9 @@
 <div class="---block ---block--bg-white ---block-data-by-city">
   <div class="---form ---row ---justify-content-between ---align-items-center">
-    
+
     <div class="---col-xl-4">
       <div class="---row">
-        
+
         <div class="---col-xs-5 ---col-sm-6">
           <div class="---block__lside ---pos-rel ---font-600">
             <i class="ifont ---icon-location ---y-pos-abs"></i>
@@ -24,24 +24,24 @@
 
       </div>
     </div>
-    
+
     <div class="---col-xl-6">
       <div class="---row">
-        
+
         <div class="---col-xs-6">
           <div class="---field" style="margin: 10px 0;">
             <label>Дата периода</label>
             <div class="---input ---input--calendar">
-              <input class="---datepicker-input" [(ngModel)]="filter.date_start" (change)="getData()">
+              <input type="date" [(ngModel)]="filter.date_start" (change)="getData()">
             </div>
           </div>
         </div>
-        
+
         <div class="---col-xs-6">
           <div class="---field" style="margin: 10px 0;">
             <label>Конец периода</label>
             <div class="---input ---input--calendar">
-              <input class="---datepicker-input" [(ngModel)]="filter.date_end">
+              <input type="date" [(ngModel)]="filter.date_end">
             </div>
           </div>
         </div>
@@ -81,14 +81,16 @@
 
   <div class="---cat-wrapper ---row ---_xs" *ngIf="equipments.length>0">
     <div class="---col col" *ngFor="let equipment of equipments">
-      <a href="#" class="---cat-item ---d-flex ---flex-column">
+      <a target="_blank" href="equipments/{{equipment.id}}" class="---cat-item ---d-flex ---flex-column">
         <span class="---cat-item__img">
-          <img data-src="/static/imgs/catalog/{{equipment.photo}}" alt="" class="---lazyload ---img-contain">
+          <img *ngIf="equipment.photo!==''" src="http://localhost:8004/uploads/{{equipment.photo}}" alt="" class="---lazyload ---img-contain">
+
+          <img *ngIf="equipment.photo===''" src="{{equipment.photo_alias}}" alt="" class="---lazyload ---img-contain">
         </span>
         <span class="---cat-item__title">{{equipment.name}}</span>
         <span class="---cat-item__orders">
+          заказов:
           <span class="---font-600">{{equipment.count}}</span>
-          заказов
         </span>
         <span class="---cat-item__btn ---font-600 ---btn ---btn--sm">
           <i class="ifont ---icon-basket-linear"></i>
