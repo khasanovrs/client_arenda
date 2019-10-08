@@ -134,7 +134,7 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   changeTypeLease() {
-    const tomorrow = new Date(this.application.rent_start.val);
+    const tomorrow = new Date();
 
     if (this.application.typeLease.val === 1) {
       tomorrow.setDate(tomorrow.getDate() + 1);
