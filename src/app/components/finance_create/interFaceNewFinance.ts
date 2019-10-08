@@ -3,7 +3,6 @@ interface InterFaceNewFinance {
   category: number;
   type: number;
   date: string;
-  payer: number;
   sum: string;
   cashBox: number;
   branch: number;

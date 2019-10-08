@@ -18,7 +18,6 @@ export class FinanceCreateComponent implements OnInit {
     category: null,
     type: null,
     date: '',
-    payer: null,
     sum: '',
     cashBox: null,
     branch: null
@@ -62,8 +61,6 @@ export class FinanceCreateComponent implements OnInit {
 
   // добавление финансов
   addFinance() {
-    this.finance.payer = 1;
-
     if (this.finance.name === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать назначение', type: 'error', body: ''};
       return false;
@@ -81,11 +78,6 @@ export class FinanceCreateComponent implements OnInit {
 
     if (this.finance.date === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать дату', type: 'error', body: ''};
-      return false;
-    }
-
-    if (this.finance.payer === null) {
-      this.globalParamsMessage.data = {title: 'Необходимо указать плательщика', type: 'error', body: ''};
       return false;
     }
 
@@ -111,7 +103,6 @@ export class FinanceCreateComponent implements OnInit {
       category: this.finance.category,
       type: this.finance.type,
       date: this.finance.date,
-      payer: this.finance.payer,
       sum: this.finance.sum,
       cashBox: this.finance.cashBox,
       branch: this.finance.branch

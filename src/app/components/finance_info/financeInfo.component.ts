@@ -22,7 +22,6 @@ export class FinanceInfoComponent implements OnInit {
     payer_id: null,
     type: null,
     date: '',
-    payer: null,
     sum: '',
     cashBox: null,
     branch: null
@@ -97,11 +96,6 @@ export class FinanceInfoComponent implements OnInit {
 
     if (this.finance.date === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать дату', type: 'error', body: ''};
-      return false;
-    }
-
-    if (this.finance.payer === null) {
-      this.globalParamsMessage.data = {title: 'Необходимо указать плательщика', type: 'error', body: ''};
       return false;
     }
 
