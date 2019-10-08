@@ -176,10 +176,6 @@
             <td *ngIf="activeFieldsTables['date_create']===1">{{client.date_create}}</td>
             <td *ngIf="activeFieldsTables['last_contact']===1">{{client.last_contact}}</td>
             <td *ngIf="activeFieldsTables['source']===1">{{client.source.name}}</td>
-            <td *ngIf="activeFieldsTables['rentals']===1">{{client.rentals}}</td>
-            <td *ngIf="activeFieldsTables['dohod']===1">
-              <div class="---font-600">{{client.dohod| digitsNumbers}} ₽</div>
-            </td>
             <td *ngIf="activeFieldsTables['sale']===1">
               <div class="---font-600">{{client.sale.name}}</div>
             </td>
