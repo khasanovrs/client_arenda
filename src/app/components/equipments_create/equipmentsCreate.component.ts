@@ -127,6 +127,11 @@ export class EquipmentsCreateComponent implements OnInit {
       return false;
     }
 
+    if (this.newEquipments.selling_price === '') {
+      this.globalParamsMessage.data = {title: 'Необходимо указать сумму продажи', type: 'error', body: ''};
+      return false;
+    }
+
     this.equipmentsCreateService.addEquipment({
       model: this.newEquipments.model,
       status: this.newEquipments.status,

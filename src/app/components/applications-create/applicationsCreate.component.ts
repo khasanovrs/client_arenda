@@ -131,6 +131,8 @@ export class ApplicationsCreateComponent implements OnInit {
       });
 
     this.application.rent_start.val = new Date().toISOString().slice(0, 16);
+
+    this.globalParamsPay.data = {show: false, sum: '', eq_id: null, cashBox: null};
   }
 
   changeTypeLease() {
