@@ -124,7 +124,7 @@
           <td *ngIf="activeFieldsTables['comment']===1">{{application.comment}}</td>
           <td *ngIf="activeFieldsTables['user']===1">{{application.user}}</td>
           <td *ngIf="activeFieldsTables['equipments_count']===1">{{application.equipments_count}}</td>
-          <td *ngIf="activeFieldsTables['date_create']===1">{{application.date_create}}</td>
+          <td *ngIf="activeFieldsTables['date_create']===1">{{application.date_create | date: 'dd.MM.yyyy HH:mm:ss'}}</td>
           <td *ngIf="activeFieldsTables['branch']===1">{{application.branch}}</td>
         </tr>
       </table>
