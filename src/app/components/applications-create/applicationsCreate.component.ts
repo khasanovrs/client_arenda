@@ -227,7 +227,7 @@ export class ApplicationsCreateComponent implements OnInit {
       this.buttonText = 'Создание спроса';
     }
     if (val === 4) {
-      this.buttonText = 'Создание пролета';
+      this.buttonText = 'Создание отказа';
     }
     if (val === 5) {
       this.buttonText = 'Создание "узнали"';
