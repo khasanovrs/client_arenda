@@ -174,20 +174,31 @@ export class ApplicationsComponent implements OnInit {
     this.applications = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'client': return compare(a.client, b.client, isAsc);
-        case 'phone': return compare(a.phone, b.phone, isAsc);
-        case 'equipments_name': return compare(a.equipments_name, b.equipments_name, isAsc);
-        case 'source': return compare(a.source, b.source, isAsc);
-        case 'user': return compare(a.user, b.user, isAsc);
-        case 'equipments_count': return compare(a.equipments_count, b.equipments_count, isAsc);
-        case 'date_create': return compare(a.date_create, b.date_create, isAsc);
-        case 'branch': return compare(a.branch, b.branch, isAsc);
-        default: return 0;
+        case 'client':
+          return compare(a.client, b.client, isAsc);
+        case 'phone':
+          return compare(a.phone, b.phone, isAsc);
+        case 'equipments_name':
+          return compare(a.equipments_name, b.equipments_name, isAsc);
+        case 'source':
+          return compare(a.source, b.source, isAsc);
+        case 'user':
+          return compare(a.user, b.user, isAsc);
+        case 'equipments_count':
+          return compare(a.equipments_count, b.equipments_count, isAsc);
+        case 'date_create':
+          const date_create_a = new Date(a.date_create).getTime();
+          const date_create_b = new Date(b.date_create).getTime();
+          return compare(date_create_a, date_create_b, isAsc);
+        case 'branch':
+          return compare(a.branch, b.branch, isAsc);
+        default:
+          return 0;
       }
     });
   }
 }
 
-function compare(a: number | string, b: number | string, isAsc: boolean) {
+function compare(a: Date | number | string, b: Date | number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
