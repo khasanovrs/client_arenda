@@ -51,7 +51,8 @@
           <div class="---field ---col-12 ---col-xs-6">
             <label>Доставка</label>
             <div class="---select">
-              <select [(ngModel)]="application.delivery.val" (change)="changeSum()" [ngModelOptions]="{standalone: true}">
+              <select [(ngModel)]="application.delivery.val" (change)="changeSum()"
+                      [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let delivery of applicationsDelivery"
                         [ngValue]="delivery.val">
                   {{delivery.name}}
@@ -62,7 +63,8 @@
           <div class="---field ---col-12 ---col-xs-6" *ngIf="application.delivery.val===1">
             <label>Сумма доставки</label>
             <div class="---input ---pos-rel">
-              <input (keyup)="changeSum()" type="text" mask="separator" [ngModelOptions]="{standalone: true}" [(ngModel)]="application.delivery_sum">
+              <input (keyup)="changeSum()" type="text" mask="separator" [ngModelOptions]="{standalone: true}"
+                     [(ngModel)]="application.delivery_sum">
             </div>
           </div>
           <div class="---field ---col-12 ---col-xs-6">
@@ -91,7 +93,7 @@
             <div class="---input ---input--calendar ---pos-rel">
               <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_end.val"
                      [ngModelOptions]="{standalone: true}"
-                     >
+              >
               <i class="---y-pos-abs ifont ---icon-calendar"></i>
             </div>
           </div>
@@ -108,7 +110,9 @@
       <div class="h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between">
         Данные арендатора
 
-        <div *ngIf="application.client_fio.val!==''" (click)="getBailiffs()" class="---check-by-bailiff">Проверить через сервис приставов</div>
+        <div *ngIf="application.client_fio.val!==''" (click)="getBailiffs()" class="---check-by-bailiff">Проверить через
+          сервис приставов
+        </div>
       </div>
 
       <div class="---row">
@@ -163,7 +167,8 @@
                         <span class="---prod-item__info ---d-inline-flex ---align-items-center">
                             <span
                               class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
-                              <img *ngIf="equipment.photo!==''" src="http://u68857.netangels.ru/uploads/{{equipment.photo}}" alt=""
+                              <img *ngIf="equipment.photo!==''"
+                                   src="http://u68857.netangels.ru/uploads/{{equipment.photo}}" alt=""
                                    class="---lazyload ---img-contain">
 
                               <img *ngIf="equipment.photo===''" src="{{equipment.photo_alias}}" alt=""
@@ -204,8 +209,28 @@
       </div>
 
 
-      <div class="---total-price ---font-600 h2" *ngIf="globalParamsPay.data.sum!=''">
-        Платеж: {{globalParamsPay.data.sum | digitsNumbers}} ₽
+      <div class="---total-price ---font-600 h2" *ngIf="payList.length!=0">
+        Платежи:
+        <table>
+          <tr>
+            <td></td>
+            <td>Сумма</td>
+            <td>Касса</td>
+          </tr>
+          <tr *ngFor="let pay of payList; let i=index">
+            <td (click)="deletePayList(i)">Удалить</td>
+            <td><span *ngIf="pay.revertSum">- </span>{{pay.sum | digitsNumbers}}</td>
+            <td>
+              <div class="---select">
+                <select disabled [(ngModel)]="pay.cashBox">
+                  <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
+                    {{cashBox.name}}
+                  </option>
+                </select>
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
 
       <div class="---devider"></div>
@@ -270,5 +295,41 @@
 
     <app-client-create></app-client-create>
 
+  </div>
+</div>
+
+
+<div *ngIf="addPay.show" id="---modal-text"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--small">
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="clear()"></div>
+    <div class="modal-body">
+      <div class="---form">
+
+        <div class="---field">
+          <label>Касса</label>
+
+          <div class="---select">
+            <select [(ngModel)]="addPay.cashBox">
+              <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
+                {{cashBox.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field">
+          <label>Сумма</label>
+          <input class="---input ---fill--bg" [(ngModel)]="addPay.sum" mask="separator">
+        </div>
+
+        <label class="---field ---d-flex ---flex-wrap ---align-items-center">
+          <input type="checkbox" [(ngModel)]="addPay.revertSum" style="width: 14px; height: 14px;">
+          <span style="margin: 0 0 0 10px;">Возврат денег</span>
+        </label>
+
+        <div class="---btn ---btn--fill-acent ---btn--sm" (click)="addPayList()">Добавить</div>
+      </div>
+    </div>
   </div>
 </div>

@@ -132,6 +132,11 @@ export class EquipmentsCreateComponent implements OnInit {
       return false;
     }
 
+    if (this.newEquipments.price_per_day === '') {
+      this.globalParamsMessage.data = {title: 'Необходимо указать сумму аренды за сутки', type: 'error', body: ''};
+      return false;
+    }
+
     this.equipmentsCreateService.addEquipment({
       model: this.newEquipments.model,
       status: this.newEquipments.status,

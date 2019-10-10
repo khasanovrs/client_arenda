@@ -7,7 +7,7 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {Router} from '@angular/router';
 import {GlobalParams} from '../../storage/global-params';
 import {ApplicationsService} from '../applications/applications.service';
-import {GlobalParamsPay} from '../pay/global-params-pay';
+import {FinanceService} from '../finance/finance.service';
 
 @Component({
   selector: 'app-applications-create',
@@ -35,6 +35,17 @@ export class ApplicationsCreateComponent implements OnInit {
     filter: '',
     equipments: []
   };
+
+  addPay = {
+    show: false,
+    sum: '',
+    cashBox: null,
+    revertSum: false
+  };
+
+  payList = [];
+
+  financeCashBox: InterFaceFinanceCashBox[];
 
   allSum = 0;
 
@@ -72,10 +83,17 @@ export class ApplicationsCreateComponent implements OnInit {
               private globalParamsMessage: GlobalParamsMessage,
               public globalParams: GlobalParams,
               private router: Router,
-              public globalParamsPay: GlobalParamsPay) {
+              public financeService: FinanceService) {
   }
 
   ngOnInit() {
+    this.financeService.getFinanceCashBOx().then((data: InterFaceFinanceCashBox[]) => {
+        this.financeCashBox = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении касс: ', error);
+      });
+
     this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
         this.applicationsStatus = data;
         this.changeStatusApplications(this.applicationsStatus[0].val);
@@ -131,8 +149,6 @@ export class ApplicationsCreateComponent implements OnInit {
       });
 
     this.application.rent_start.val = new Date().toISOString().slice(0, 16);
-
-    this.globalParamsPay.data = {show: false, sum: '', eq_id: null, cashBox: null};
   }
 
   changeTypeLease() {
@@ -287,7 +303,7 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   showInsertSum() {
-    this.globalParamsPay.data = {show: true, sum: '', eq_id: null, cashBox: null};
+    this.addPay = {show: true, sum: '', cashBox: null, revertSum: false};
   }
 
   // заполнение данными из справочника
@@ -371,14 +387,13 @@ export class ApplicationsCreateComponent implements OnInit {
       client_where_passport: this.application.client_where_passport.val,
       client_date_passport: this.application.client_date_passport.val,
       client_address_passport: this.application.client_address_passport.val,
-      sum_pay: this.globalParamsPay.data.sum,
-      cashBox: this.globalParamsPay.data.cashBox,
       sum: this.application.sum,
       delivery_sum: this.application.delivery_sum,
       comment: this.application.comment,
       source: this.application.source.val,
       branch: this.application.branch.val,
-      status: this.application.status.val
+      status: this.application.status.val,
+      payList: this.payList
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно добавлена', type: 'success', body: ''};
 
@@ -409,5 +424,26 @@ export class ApplicationsCreateComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении данных от приставов: ', error);
       });
+  }
+
+  // добавляем платеж
+  addPayList() {
+    if (this.addPay.sum === '') {
+      this.globalParamsMessage.data = {title: 'Необходимо указать сумму', type: 'error', body: ''};
+      return false;
+    }
+
+    if (this.addPay.cashBox === null) {
+      this.globalParamsMessage.data = {title: 'Необходимо указать кассу', type: 'error', body: ''};
+      return false;
+    }
+
+    this.payList.push({sum: this.addPay.sum, cashBox: this.addPay.cashBox, revertSum: this.addPay.revertSum});
+    this.addPay = {show: false, sum: '', cashBox: null, revertSum: false};
+  }
+
+  // удаление платежа
+  deletePayList(index) {
+    this.payList.splice(index, 1);
   }
 }
