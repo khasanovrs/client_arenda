@@ -39,6 +39,7 @@ export class ClientInfoComponent implements OnInit {
     email: '',
     date_birth: '',
     number_passport: '',
+    bonus_account: '',
     count_application: null,
     all_total_paid: null,
     application_list: [{

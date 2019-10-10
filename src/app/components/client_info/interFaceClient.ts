@@ -18,6 +18,7 @@ interface InterFaceClient {
   number_passport: string;
   count_application: number;
   all_total_paid: string;
+  bonus_account: string;
   application_list: {
     rent_start: string;
     rent_end: string;

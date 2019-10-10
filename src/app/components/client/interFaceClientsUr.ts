@@ -11,4 +11,5 @@ interface IClientsUr {
   color: string;
   sum_pay: string;
   count_app: string;
+  bonus_account: string;
 }
