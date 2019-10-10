@@ -191,22 +191,13 @@
             </td>
             <td *ngIf="activeFieldsTables['number']===1">{{finance.id}}</td>
             <td *ngIf="activeFieldsTables['nazn']===1">{{finance.name}}</td>
-            <td *ngIf="activeFieldsTables['category']===1">
-              <div class="---select ---bg-color select-png bg-white">
-                <select class="w-200"
-                        [(ngModel)]="finance.category_id"
-                        (change)="changeStatus(finance)">
-                  <option *ngFor="let category of financeCategory" [ngValue]="category.val">
-                    {{category.name}}
-                  </option>
-                </select>
-              </div>
-            </td>
+            <td *ngIf="activeFieldsTables['category']===1">{{finance.category}}</td>
             <td *ngIf="activeFieldsTables['type']===1">{{finance.type}}</td>
             <td *ngIf="activeFieldsTables['date']===1">{{finance.date_create}}</td>
             <td *ngIf="activeFieldsTables['payer']===1">{{finance.payer}}</td>
             <td *ngIf="activeFieldsTables['sum']===1">{{finance.sum | digitsNumbers}} ₽</td>
             <td *ngIf="activeFieldsTables['branch']===1">{{finance.branch}}</td>
+            <td *ngIf="activeFieldsTables['cashBox']===1">{{finance.cashBox}}</td>
           </tr>
 
         </table>

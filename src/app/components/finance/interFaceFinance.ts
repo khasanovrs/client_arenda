@@ -1,10 +1,11 @@
 interface InterFaceFinance {
   id: number;
   name: string;
-  category_id: number;
+  category: string;
   type: string;
   date_create: string;
   payer: string;
   sum: string;
   branch: string;
+  cashBox: string;
 }

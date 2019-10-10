@@ -208,6 +208,8 @@ export class ClientComponent implements OnInit {
           return compare(a.sum_pay, b.sum_pay, isAsc);
         case 'count_app':
           return compare(a.count_app, b.count_app, isAsc);
+        case 'bonus_account':
+          return compare(a.bonus_account, b.bonus_account, isAsc);
         default:
           return 0;
       }

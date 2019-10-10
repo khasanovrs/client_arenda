@@ -18,13 +18,12 @@ export class FinanceInfoComponent implements OnInit {
   finance: InterFaceFinanceInfo = {
     id: '',
     name: '',
-    category: null,
-    payer_id: null,
-    type: null,
+    category: '',
+    type: '',
     date: '',
     sum: '',
-    cashBox: null,
-    branch: null
+    cashBox: '',
+    branch: '',
   };
 
   constructor(private financeService: FinanceService,
@@ -113,24 +112,5 @@ export class FinanceInfoComponent implements OnInit {
       this.globalParamsMessage.data = {title: 'Необходимо указать филиал', type: 'error', body: ''};
       return false;
     }
-
-
-    this.financeService.addFinance({
-      id: this.finance.id,
-      name: this.finance.name,
-      category: this.finance.category,
-      type: this.finance.type,
-      date: this.finance.date,
-      payer: this.finance.payer_id,
-      sum: this.finance.sum,
-      cashBox: this.finance.cashBox,
-      branch: this.finance.branch
-    }).then(() => {
-        this.globalParamsMessage.data = {title: 'Заявка успешно обновлена', type: 'success', body: ''};
-        this.router.navigate(['/finance']);
-      },
-      (error) => {
-        console.log('Ошибка при обновлении записи: ', error);
-      });
   }
 }

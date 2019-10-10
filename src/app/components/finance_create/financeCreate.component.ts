@@ -17,7 +17,6 @@ export class FinanceCreateComponent implements OnInit {
     name: '',
     category: null,
     type: null,
-    date: '',
     sum: '',
     cashBox: null,
     branch: null
@@ -76,11 +75,6 @@ export class FinanceCreateComponent implements OnInit {
       return false;
     }
 
-    if (this.finance.date === '') {
-      this.globalParamsMessage.data = {title: 'Необходимо указать дату', type: 'error', body: ''};
-      return false;
-    }
-
     if (this.finance.sum === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать сумму', type: 'error', body: ''};
       return false;
@@ -102,7 +96,6 @@ export class FinanceCreateComponent implements OnInit {
       name: this.finance.name,
       category: this.finance.category,
       type: this.finance.type,
-      date: this.finance.date,
       sum: this.finance.sum,
       cashBox: this.finance.cashBox,
       branch: this.finance.branch
