@@ -396,8 +396,11 @@ export class ApplicationsCreateComponent implements OnInit {
       payList: this.payList
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно добавлена', type: 'success', body: ''};
-
-        this.router.navigate(['/application']);
+        if (this.application.status.val === 1 || this.application.status.val === 2) {
+          this.router.navigate(['/hire']);
+        } else {
+          this.router.navigate(['/application']);
+        }
       },
       (error) => {
         console.log('Ошибка при добавлении новой заявки: ', error);
