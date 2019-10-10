@@ -190,7 +190,10 @@
               <div (click)="financeDetails(finance.id)"  class="ifont ---icon-edit ---radius-5"></div>
             </td>
             <td *ngIf="activeFieldsTables['number']===1">{{finance.id}}</td>
-            <td *ngIf="activeFieldsTables['nazn']===1">{{finance.name}}</td>
+            <td *ngIf="activeFieldsTables['nazn']===1">
+              <div *ngIf="finance.eq_id===''">{{finance.name}}</div>
+              <a target="_blank" *ngIf="finance.eq_id!==''" href="/equipments/{{finance.eq_id}}">{{finance.name}}</a>
+            </td>
             <td *ngIf="activeFieldsTables['category']===1">{{finance.category}}</td>
             <td *ngIf="activeFieldsTables['type']===1">{{finance.type}}</td>
             <td *ngIf="activeFieldsTables['date']===1">{{finance.date_create}}</td>

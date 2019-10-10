@@ -8,4 +8,5 @@ interface InterFaceFinance {
   sum: string;
   branch: string;
   cashBox: string;
+  eq_id: string;
 }
