@@ -114,7 +114,6 @@ export class ClientCreateComponent implements OnInit {
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Пользователь успешно добавлен', type: 'success', body: ''};
         this.globalParams.showModalCreateUser = false;
-        this.router.navigate(['/clients']);
       },
       (error) => {
         console.log('Ошибка при добавлении нового пользователей: ', error);
