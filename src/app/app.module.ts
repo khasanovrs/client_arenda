@@ -73,6 +73,7 @@ import {ClientChangeStatusComponent} from './components/client_change_status/cli
 import {GlobalParamsClientChangeStatus} from './components/client_change_status/global-params-client-change-status';
 import {GlobalClientChangeStatusList} from './components/client_change_status_list/global-client_change_status_list';
 import {ClientChangeStatusListComponent} from './components/client_change_status_list/client_change_status_list.component';
+import {GlobalParamsUser} from './storage/global-params-user';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -138,6 +139,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     GlobalApplicationListClient,
     GlobalExtensionsList,
     GlobalParams,
+    GlobalParamsUser,
     SessionStorageService,
     ClientService,
     DopParamsService,

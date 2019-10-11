@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {GlobalParams} from '../../storage/global-params';
 import {ApplicationsService} from '../applications/applications.service';
 import {FinanceService} from '../finance/finance.service';
+import {GlobalParamsUser} from '../../storage/global-params-user';
 
 @Component({
   selector: 'app-applications-create',
@@ -83,6 +84,7 @@ export class ApplicationsCreateComponent implements OnInit {
               private globalParamsMessage: GlobalParamsMessage,
               public globalParams: GlobalParams,
               private router: Router,
+              private globalParamsUser: GlobalParamsUser,
               public financeService: FinanceService) {
   }
 
@@ -104,6 +106,7 @@ export class ApplicationsCreateComponent implements OnInit {
 
     this.applicationsCreateService.getApplicationsSource().then((data: InterFaceDopParams[]) => {
         this.applicationsSource = data;
+        this.application.source.val = 1;
       },
       (error) => {
         console.log('Ошибка при получении источников: ', error);
@@ -143,6 +146,7 @@ export class ApplicationsCreateComponent implements OnInit {
 
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
         this.branches = data;
+        this.application.branch.val = this.globalParamsUser.branch;
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
