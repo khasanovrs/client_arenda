@@ -1,0 +1,17 @@
+<div style="width: 100%">
+
+  <div class="---data-block">
+    <div class="---row ---form">
+      <div class="---field ---col-sm-6 ---col-lg-4" *ngFor="let setting of settings">
+        <label>{{setting.name}}</label>
+        <input class="---input" [(ngModel)]="setting.val">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="---btns-wrapper">
+    <div (click)="updateSettings()" class="---btn ---btn--fill-acent">Обновить</div>
+  </div>
+
+</div>

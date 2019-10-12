@@ -74,6 +74,8 @@ import {GlobalParamsClientChangeStatus} from './components/client_change_status/
 import {GlobalClientChangeStatusList} from './components/client_change_status_list/global-client_change_status_list';
 import {ClientChangeStatusListComponent} from './components/client_change_status_list/client_change_status_list.component';
 import {GlobalParamsUser} from './storage/global-params-user';
+import {SettingsParamsComponent} from './components/settingsParams/settingsParams.component';
+import {SettingsParamsService} from './components/settingsParams/settingsParams.service';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -115,7 +117,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     RentalComponent,
     ApplicationListClientComponent,
     ClientChangeStatusComponent,
-    ClientChangeStatusListComponent
+    ClientChangeStatusListComponent,
+    SettingsParamsComponent
   ],
   imports: [
     BrowserModule,
@@ -157,7 +160,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     ReportService,
     HireService,
     GlobalParamsClientChangeStatus,
-    GlobalClientChangeStatusList
+    GlobalClientChangeStatusList,
+    SettingsParamsService
   ],
   bootstrap: [AppComponent]
 })

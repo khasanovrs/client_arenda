@@ -5,6 +5,7 @@
       <a (click)="changeTab('print')" [ngClass]="{'---is-active':currentTab==='print'}">Печатные формы</a>
       <a (click)="changeTab('stock')" [ngClass]="{'---is-active':currentTab==='stock'}">Акции</a>
       <a (click)="changeTab('users')" [ngClass]="{'---is-active':currentTab==='users'}">Доступ</a>
+      <a (click)="changeTab('settings')" [ngClass]="{'---is-active':currentTab==='settings'}">Настройки</a>
     </div>
   </div>
 
@@ -18,5 +19,8 @@
 
   <div *ngIf="currentTab==='users'" class="---col-12">
     <app-users class="---page-settings ---row ---justify-content-between ng-star-inserted"></app-users>
+  </div>
+  <div *ngIf="currentTab==='settings'" class="---col-12">
+    <app-settings-params class="---page-settings ---row ---justify-content-between ng-star-inserted"></app-settings-params>
   </div>
 </div>
