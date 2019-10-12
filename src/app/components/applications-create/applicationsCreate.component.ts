@@ -338,7 +338,8 @@ export class ApplicationsCreateComponent implements OnInit {
       in_stock: this.showAddEquipments.equipments[index].count,
       count: 1,
       price: this.showAddEquipments.equipments[index].price_per_day,
-      photo: this.showAddEquipments.equipments[index].photo
+      photo: this.showAddEquipments.equipments[index].photo,
+      photo_alias: ''
     };
     this.application.equipments.push(tmp);
 
@@ -452,5 +453,9 @@ export class ApplicationsCreateComponent implements OnInit {
   // удаление платежа
   deletePayList(index) {
     this.payList.splice(index, 1);
+  }
+
+  clear() {
+    this.addPay = {show: false, sum: '', cashBox: null, revertSum: false};
   }
 }

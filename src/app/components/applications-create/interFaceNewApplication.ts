@@ -1,5 +1,5 @@
 interface InterFaceNewApplication {
-  equipments: { id: number, name: string, count: number, price: string, in_stock: number, photo: string }[];
+  equipments: { id: number, name: string, count: number, price: string, in_stock: number, photo: string , photo_alias: string }[];
   typeLease: { val: number, required: true, name: string };
   sale: { val: number, required: true, name: string };
   status: { val: number, required: true, name: string };
