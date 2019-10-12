@@ -185,16 +185,8 @@
                             </span>
                             <span class="---thumb-item">
                                 В наличии<br>
-                                <span class="---font-600">{{equipment.in_stock}} шт.</span>
+                                <span class="---font-600">{{equipment.count}} шт.</span>
                             </span>
-                        </span>
-
-          <span class="---prod-qnty-wrapper ---radius-5 ---d-inline-flex ---align-items-center">
-                            <span (click)="changeCount(equipment,'decrease')"
-                                  class="c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center">-</span>
-                            <span class="---qnty ---font-600">{{equipment.count}}</span>
-                            <span (click)="changeCount(equipment,'increase')"
-                                  class="c-pointer ---switcher ---d-inline-flex ---justify-content-center ---align-items-center ---plus">+</span>
                         </span>
         </div>
 
