@@ -16,7 +16,6 @@ export class AuthService {
       this.httpService.prepareQuery('api/auth', data)
         .then((result: InterFaceAuthClient) => {
             this.sessionStorageService.change(true);
-
             this.globalParamsUser.branch = result.branch;
             resolve();
           },

@@ -53,7 +53,9 @@ export class ClientCreateComponent implements OnInit {
 
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
         this.branches = data;
+        console.log(1,this.globalParamsUser);
         this.newClient.branch = this.globalParamsUser.branch;
+        console.log(2,this.newClient);
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
