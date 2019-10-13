@@ -17,6 +17,7 @@ export class AuthService {
         .then((result: InterFaceAuthClient) => {
             this.sessionStorageService.change(true);
             this.globalParamsUser.branch = result.branch;
+            this.globalParamsUser.type = result.type;
             resolve();
           },
           (error) => {
