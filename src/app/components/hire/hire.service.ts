@@ -142,6 +142,21 @@ export class HireService {
     });
   }
 
+  // закрытие проката
+  public closeHire(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/close-hire', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при закрытии проекта', error);
+            reject();
+          }
+        );
+    });
+  }
+
   // возврат товара на склад
   public equipmentReturn(data) {
     return new Promise((resolve, reject) => {

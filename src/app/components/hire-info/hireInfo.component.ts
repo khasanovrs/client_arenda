@@ -18,11 +18,9 @@ import {GlobalParamsUser} from '../../storage/global-params-user';
 export class HireInfoComponent {
   // идентификатор заявки
   hireId: null;
+  showCloseHireButton = false;
   discounts: InterFaceDopParams[] = [];
   delivery: InterFaceDopParams[] = [];
-
-  showModalClose = false;
-  checkPrim = false;
 
   // список прокатов
   hireInfo: InterFaceHireInfo = {
@@ -50,6 +48,7 @@ export class HireInfoComponent {
       name: '',
       state: '',
       photo: null,
+      state_id: null,
       photo_alias: '',
     },
     pay_list: [{
@@ -112,6 +111,9 @@ export class HireInfoComponent {
         this.hireInfo.rent_end = new Date(this.hireInfo.rent_end).toISOString().slice(0, 16);
         this.globalPayList.data.pay_list = this.hireInfo.pay_list;
         this.globalExtensionsList.data.extension_list = this.hireInfo.extensions;
+
+        // показ конпки закрыть прокат
+        this.showCloseHireButton = this.hireInfo.equipments.state_id === 4;
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
@@ -143,11 +145,9 @@ export class HireInfoComponent {
       });
   }
 
-  closeHire() {
-    this.showModalClose = false;
+  equipmentReturn() {
     this.hireService.equipmentReturn({
-      id: this.hireInfo.id,
-      checkPrim: this.checkPrim
+      id: this.hireInfo.id
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
         this.getHireInfo();
@@ -179,14 +179,28 @@ export class HireInfoComponent {
     this.globalExtensionsList.data.show = true;
   }
 
+  // удалить прока
   delete_hire() {
     this.hireService.deleteHire({
-      id: this.hireInfo.id}).then(() => {
+      id: this.hireInfo.id
+    }).then(() => {
         this.globalParamsMessage.data = {title: 'Прокат успешно удален', type: 'success', body: ''};
         this.routerCurrent.navigate(['/hire']);
       },
       (error) => {
         console.log('Ошибка при удалении проката: ', error);
+      });
+  }
+
+  // закрыть прокат
+  close_hire() {
+    this.hireService.closeHire({
+      id: this.hireInfo.id
+    }).then(() => {
+        this.globalParamsMessage.data = {title: 'Прокат успешно закрыт', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при закрытии проката: ', error);
       });
   }
 }

@@ -22,6 +22,7 @@ interface InterFaceHireInfo {
     equipments_id: string;
     name: string;
     state: string;
+    state_id: number;
     photo: string;
     photo_alias: string;
   };
