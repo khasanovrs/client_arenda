@@ -9,6 +9,7 @@ import {GlobalParams} from '../../storage/global-params';
 import {ApplicationsService} from '../applications/applications.service';
 import {FinanceService} from '../finance/finance.service';
 import {GlobalParamsUser} from '../../storage/global-params-user';
+import {DocumentService} from '../../services/document.service';
 
 @Component({
   selector: 'app-applications-create',
@@ -85,6 +86,7 @@ export class ApplicationsCreateComponent implements OnInit {
               public globalParams: GlobalParams,
               private router: Router,
               private globalParamsUser: GlobalParamsUser,
+              private documentService: DocumentService,
               public financeService: FinanceService) {
   }
 
@@ -167,6 +169,16 @@ export class ApplicationsCreateComponent implements OnInit {
     }
 
     this.changeSum();
+  }
+
+  // получение доков
+  save_word() {
+    this.documentService.getDoc().then((data) => {
+        console.log(1, data);
+      },
+      (error) => {
+        console.log('Ошибка при получении документов', error);
+      });
   }
 
   changeBranch() {
