@@ -4,6 +4,7 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {EquipmentsService} from './equipments.service';
 import {FinanceService} from '../finance/finance.service';
+import {GlobalParamsUser} from '../../storage/global-params-user';
 
 @Component({
   selector: 'app-equipment',
@@ -91,6 +92,7 @@ export class EquipmentsComponent implements OnInit {
               private globalParamsMessage: GlobalParamsMessage,
               private activatedRoute: ActivatedRoute,
               private financeService: FinanceService,
+              public globalParamsUser: GlobalParamsUser,
               private router: Router) {
     this.activatedRoute.params.subscribe(
       (params: Params): void => {

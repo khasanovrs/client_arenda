@@ -143,9 +143,9 @@ export class HireService {
   }
 
   // возврат товара на склад
-  public closeHire(data) {
+  public equipmentReturn(data) {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/close-hire', data)
+      this.httpService.prepareQuery('api/equipment-return', data)
         .then(() => {
             resolve();
           },

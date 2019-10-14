@@ -9,6 +9,7 @@ import {ApplicationsCreateService} from '../applications-create/applicationsCrea
 import {DopParamsService} from '../../services/dopParams.service';
 import {ApplicationsService} from '../applications/applications.service';
 import {GlobalExtensionsList} from '../extensions_list/global-extensions-list';
+import {GlobalParamsUser} from '../../storage/global-params-user';
 
 @Component({
   selector: 'app-hire-info',
@@ -74,6 +75,7 @@ export class HireInfoComponent {
               private applicationsCreateService: ApplicationsCreateService,
               private dopParamsService: DopParamsService,
               private routerCurrent: Router,
+              public globalParamsUser: GlobalParamsUser,
               private globalExtensionsList: GlobalExtensionsList) {
 
     this.router.params.subscribe(
@@ -143,7 +145,7 @@ export class HireInfoComponent {
 
   closeHire() {
     this.showModalClose = false;
-    this.hireService.closeHire({
+    this.hireService.equipmentReturn({
       id: this.hireInfo.id,
       checkPrim: this.checkPrim
     }).then(() => {

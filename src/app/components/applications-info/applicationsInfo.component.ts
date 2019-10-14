@@ -9,6 +9,7 @@ import {ApplicationsService} from '../applications/applications.service';
 import {GlobalPayList} from '../pay_list/global-pay-list';
 import {GlobalParamsPay} from '../pay/global-params-pay';
 import {HireService} from '../hire/hire.service';
+import {GlobalParamsUser} from '../../storage/global-params-user';
 
 @Component({
   selector: 'app-applications-info',
@@ -69,7 +70,8 @@ export class ApplicationsInfoComponent implements OnInit {
               private globalPayList: GlobalPayList,
               private hireService: HireService,
               private routerCurrent: Router,
-              private globalParamsPay: GlobalParamsPay) {
+              private globalParamsPay: GlobalParamsPay,
+              public globalParamsUser: GlobalParamsUser) {
 
     this.activatedRoute.params.subscribe(
       (params: Params): void => {

@@ -2,7 +2,7 @@
   <div class="---col-12 ---col-lg-6 ---form">
 
     <div class="---col-12 ---field ---d-flex ---flex-wrap">
-      <div style="margin: 0 10px 10px 0;" (click)="delete_eq()" class="---btn ---btn--sm ---btn--fill-acent">Удалить оборудование</div>
+      <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="delete_eq()" class="---btn ---btn--sm ---btn--fill-acent">Удалить оборудование</div>
     </div>
 
     <div class="---data-block">

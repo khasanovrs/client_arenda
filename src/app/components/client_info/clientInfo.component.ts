@@ -7,6 +7,7 @@ import {GlobalPayListClient} from '../pay_list_client/global-pay-list-client';
 import {GlobalApplicationListClient} from '../application_list_client/global-application-list-client';
 import {GlobalClientChangeStatusList} from '../client_change_status_list/global-client_change_status_list';
 import {ClientService} from '../client/client.service';
+import {GlobalParamsUser} from '../../storage/global-params-user';
 
 @Component({
   selector: 'app-client-info',
@@ -75,7 +76,8 @@ export class ClientInfoComponent implements OnInit {
               private globalPayListClient: GlobalPayListClient,
               private globalApplicationListClient: GlobalApplicationListClient,
               private globalClientChangeStatusList: GlobalClientChangeStatusList,
-              private clientService: ClientService) {
+              private clientService: ClientService,
+              public globalParamsUser: GlobalParamsUser) {
 
     this.router.params.subscribe(
       (params: Params): void => {
