@@ -109,6 +109,7 @@ export class EquipmentsComponent implements OnInit {
 
     this.equipmentsService.getEquipmentsCategory().then((data: InterEquipmentsCategory[]) => {
         this.equipmentsCategoryList = data;
+        this.changeTypeList();
       },
       (error) => {
         console.log('Ошибка при получении списка категорий оборудования: ', error);
@@ -141,7 +142,7 @@ export class EquipmentsComponent implements OnInit {
         if (this.equipment.new_status === 2) {
           this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val === 4 || item.val === 2);
         }
-        this.changeCategory(this.equipment.type);
+        this.changeTypeList();
         this.changeStatus();
       },
       (error) => {
@@ -156,17 +157,24 @@ export class EquipmentsComponent implements OnInit {
       });
   }
 
+  changeTypeList() {
+    const arr = this.equipmentsCategoryList.filter(item => item.val === this.equipment.category);
+    this.equipmentsTypeList = arr.length !== 0 ? arr[0].type : [];
+  }
+
   changeStatus() {
-    if (this.equipment.new_status !== 1 && this.equipment.new_status !== 5) {
-      if (this.equipment.new_status === 3) {
-        this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val === 3);
-      } else if (this.equipment.new_status === 6) {
-        this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val === 6);
-      } else {
-        this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val !== 1 && item.val !== 5);
-      }
-    } else if (this.equipment.new_status === 1 || this.equipment.new_status === 5) {
-      this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val !== 4);
+    if (this.equipment.new_status === 3) {
+      this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val === 3);
+    } else if (this.equipment.new_status === 2) {
+      this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val === 2 || item.val === 4);
+    } else if (this.equipment.new_status === 4) {
+      this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val !== 1 && item.val !== 5);
+    } else if (this.equipment.new_status === 6) {
+      this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val === 6);
+    } else if (this.equipment.new_status === 1) {
+      this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val === 1);
+    } else if (this.equipment.new_status === 5) {
+      this.showEquipmentsStatusList = this.equipmentsStatusList.filter(item => item.val === 5);
     } else {
       this.showEquipmentsStatusList = this.equipmentsStatusList;
     }
@@ -279,11 +287,6 @@ export class EquipmentsComponent implements OnInit {
       (error) => {
         console.log('Ошибка при изменении оборудования: ', error);
       });
-  }
-
-  changeCategory(data) {
-    const arr = this.equipmentsCategoryList.filter(item => item.val === data);
-    this.equipmentsTypeList = arr[0].type;
   }
 
   checkShowField() {
