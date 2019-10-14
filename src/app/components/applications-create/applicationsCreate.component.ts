@@ -358,7 +358,6 @@ export class ApplicationsCreateComponent implements OnInit {
         continue;
       }
       if (this.application.status.val === 2 || this.application.status.val === 1) {
-        console.log(1, this.application[value]);
         if (this.application.hasOwnProperty(value) && typeof this.application[value] !== 'undefined') {
 
           if (this.application[value].required && this.application[value].val === '') {
