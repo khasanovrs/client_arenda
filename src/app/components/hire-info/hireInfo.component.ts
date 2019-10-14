@@ -112,8 +112,12 @@ export class HireInfoComponent {
         this.globalPayList.data.pay_list = this.hireInfo.pay_list;
         this.globalExtensionsList.data.extension_list = this.hireInfo.extensions;
 
-        // показ конпки закрыть прокат
-        this.showCloseHireButton = this.hireInfo.equipments.state_id === 4;
+        // показ кнопки закрыть прокат
+        if (this.globalParamsUser.type === 1) {
+          this.showCloseHireButton = true;
+        } else {
+          this.showCloseHireButton = this.hireInfo.equipments.state_id === 4;
+        }
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
