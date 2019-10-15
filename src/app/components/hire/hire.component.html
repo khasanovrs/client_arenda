@@ -126,6 +126,7 @@
             <td [style.background]="hire.color" *ngIf="activeFieldsTables['state']===1">{{hire.state}}</td>
             <td *ngIf="activeFieldsTables['sum']===1">{{hire.sum | digitsNumbers}}</td>
             <td *ngIf="activeFieldsTables['sale_sum']===1">{{hire.sale_sum | digitsNumbers}}</td>
+            <td *ngIf="activeFieldsTables['sum_hire']===1">{{hire.sum_hire | digitsNumbers}}</td>
             <td *ngIf="activeFieldsTables['total_paid']===1">{{hire.total_paid | digitsNumbers}}</td>
             <td *ngIf="activeFieldsTables['remainder']===1">{{hire.remainder | digitsNumbers}}</td>
             <td *ngIf="activeFieldsTables['date_create']===1">{{hire.date_create}}</td>
