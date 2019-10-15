@@ -21,6 +21,7 @@ export class HireInfoComponent {
   showCloseHireButton = false;
   discounts: InterFaceDopParams[] = [];
   delivery: InterFaceDopParams[] = [];
+  showButtonCloseHire = false;
 
   // список прокатов
   hireInfo: InterFaceHireInfo = {
@@ -117,6 +118,11 @@ export class HireInfoComponent {
           this.showCloseHireButton = true;
         } else {
           this.showCloseHireButton = this.hireInfo.equipments.state_id === 4;
+        }
+
+
+        if (this.globalParamsUser.type === 1 || (this.globalParamsUser.type === 2 && this.hireInfo.equipments.state_id === 4)) {
+          this.showButtonCloseHire = true;
         }
       },
       (error) => {
