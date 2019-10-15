@@ -173,12 +173,13 @@ export class ApplicationsCreateComponent implements OnInit {
 
   // получение доков
   save_word() {
-    this.documentService.getDoc().then((data) => {
-        console.log(1, data);
-      },
-      (error) => {
-        console.log('Ошибка при получении документов', error);
-      });
+    this.documentService.getPdf().subscribe((data) => {
+      const downloadURL = window.URL.createObjectURL(data);
+      const link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = "file.docx";
+      link.click();
+    });
   }
 
   changeBranch() {
