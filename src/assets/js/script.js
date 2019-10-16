@@ -307,4 +307,14 @@ $(document).ready(function() {
 
     });
 
+
+
+    /* Show/hide left menu */
+    $('.---menu-toggle').on('click', function(event) {
+    	event.preventDefault();
+
+    	$('.---left-main-menu')
+    		.toggleClass('---is-closed');
+    });
+
 });
