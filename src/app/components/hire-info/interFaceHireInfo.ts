@@ -18,6 +18,8 @@ interface InterFaceHireInfo {
   count: number;
   total_paid: string;
   remainder: string;
+  hire_state_id: number;
+  hire_state: string;
   equipments: {
     equipments_id: string;
     name: string;

@@ -1,25 +1,40 @@
 <div class="---page-hire">
 
   <div class="---data-block">
-    <div class="h1">Данные аренды</div>
+    <div class="h1">Данные аренды ({{hireInfo.hire_state}})</div>
 
     <div class="---row ---form">
 
       <div class="---col-12">
-        <img *ngIf="hireInfo.equipments.photo!==''" src="http://u68857.netangels.ru/uploads/{{hireInfo.equipments.photo}}" alt=""
+        <img *ngIf="hireInfo.equipments.photo!==''"
+             src="http://u68857.netangels.ru/uploads/{{hireInfo.equipments.photo}}" alt=""
              class="---lazyload ---img-contain ---product-img">
         <img *ngIf="hireInfo.equipments.photo===''" src="{{hireInfo.equipments.photo_alias}}" alt=""
              class="---lazyload ---img-contain ---product-img">
       </div>
 
       <div class="---col-12 ---field ---d-flex ---flex-wrap">
-        <div style="margin: 0 10px 10px 0;" (click)="open_pay_list()" class="---btn ---btn--sm ---btn--fill-acent">Платежи</div>
-        <div style="margin: 0 10px 10px 0;" (click)="open_extensions_list()" class="---btn ---btn--sm ---btn--fill-acent">Продления</div>
-        <div style="margin: 0 10px 10px 0;" (click)="showInsertSum()" class="---btn ---btn--sm ---btn--fill-acent">Добавить платеж</div>
-        <div style="margin: 0 10px 10px 0;" (click)="showInsertRental()" class="---btn ---btn--sm ---btn--fill-acent">Продлить прокат</div>
-        <div style="margin: 0 10px 10px 0;" *ngIf="hireInfo.equipments.state_id!==4" (click)="equipmentReturn()" class="---btn ---btn--sm ---btn--fill-acent">Возврат оборудования на склад</div>
-        <div style="margin: 0 10px 10px 0;" *ngIf="showButtonCloseHire" (click)="close_hire()" class="---btn ---btn--sm ---btn--fill-acent">Закрыть прокат</div>
-        <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="delete_hire()" class="---btn ---btn--sm ---btn--fill-acent">Удалить прокат</div>
+        <div style="margin: 0 10px 10px 0;" (click)="open_pay_list()" class="---btn ---btn--sm ---btn--fill-acent">
+          Платежи
+        </div>
+        <div style="margin: 0 10px 10px 0;" (click)="open_extensions_list()"
+             class="---btn ---btn--sm ---btn--fill-acent">Продления
+        </div>
+        <div style="margin: 0 10px 10px 0;" (click)="showInsertSum()" class="---btn ---btn--sm ---btn--fill-acent">
+          Добавить платеж
+        </div>
+        <div style="margin: 0 10px 10px 0;" (click)="showInsertRental()" class="---btn ---btn--sm ---btn--fill-acent">
+          Продлить прокат
+        </div>
+        <div style="margin: 0 10px 10px 0;" *ngIf="showReturnEq" (click)="equipmentReturn()"
+             class="---btn ---btn--sm ---btn--fill-acent">Возврат оборудования на склад
+        </div>
+        <div style="margin: 0 10px 10px 0;" *ngIf="showButtonCloseHire" (click)="close_hire()"
+             class="---btn ---btn--sm ---btn--fill-acent">Закрыть прокат
+        </div>
+        <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="delete_hire()"
+             class="---btn ---btn--sm ---btn--fill-acent">Удалить прокат
+        </div>
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
@@ -65,7 +80,8 @@
         <label>Начало аренды</label>
         <div class="---input ---input--calendar ---pos-rel">
           <i class="---y-pos-abs ifont ---icon-calendar"></i>
-          <input class="---datepicker-input" type="datetime-local" [(ngModel)]="hireInfo.rent_start" [ngModelOptions]="{standalone: true}">
+          <input class="---datepicker-input" type="datetime-local" [(ngModel)]="hireInfo.rent_start"
+                 [ngModelOptions]="{standalone: true}">
         </div>
       </div>
 
@@ -73,7 +89,8 @@
         <label>Конец аренды</label>
         <div class="---input ---input--calendar ---pos-rel">
           <i class="---y-pos-abs ifont ---icon-calendar"></i>
-          <input class="---datepicker-input" type="datetime-local" [(ngModel)]="hireInfo.rent_end" [ngModelOptions]="{standalone: true}">
+          <input class="---datepicker-input" type="datetime-local" [(ngModel)]="hireInfo.rent_end"
+                 [ngModelOptions]="{standalone: true}">
         </div>
       </div>
 
@@ -88,7 +105,8 @@
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
-        <label>Состояние оборудования</label>
+        <label>Состояние оборудования <img *ngIf="img!=''" style="width: 25px;position: absolute;right: 15px;"
+                                           src="/assets/imgs/{{img}}.png"/></label>
         <div class="---input ---input--disabled">{{hireInfo.equipments.state}}</div>
       </div>
 

@@ -23,6 +23,9 @@ export class HireInfoComponent {
   delivery: InterFaceDopParams[] = [];
   showButtonCloseHire = false;
 
+  showReturnEq = false;
+  img = '';
+
   // список прокатов
   hireInfo: InterFaceHireInfo = {
     id: null,
@@ -44,6 +47,8 @@ export class HireInfoComponent {
     total_paid: '',
     remainder: '',
     count: null,
+    hire_state_id: null,
+    hire_state: '',
     equipments: {
       equipments_id: '',
       name: '',
@@ -120,9 +125,19 @@ export class HireInfoComponent {
           this.showCloseHireButton = this.hireInfo.equipments.state_id === 4;
         }
 
-
-        if (this.globalParamsUser.type === 1 || (this.globalParamsUser.type === 2 && this.hireInfo.equipments.state_id === 4)) {
+        // показ закрыть прокат только когда админ или менеджер, но оборудование на складе и нет долгов
+        if (this.globalParamsUser.type === 1 || (this.globalParamsUser.type === 2 && this.hireInfo.equipments.state_id === 4
+          && +this.hireInfo.remainder > 0)) {
           this.showButtonCloseHire = true;
+        }
+
+        // возврат оборудования только когда он еще в прокате и прокат находится в стадии "прокат" или "бронь"
+        if (this.hireInfo.equipments.state_id !== 4 && (this.hireInfo.hire_state_id === 1 || this.hireInfo.hire_state_id === 4)) {
+          this.showReturnEq = true;
+        }
+
+        if (this.hireInfo.equipments.state_id === 4) {
+          this.img = 'ok';
         }
       },
       (error) => {
