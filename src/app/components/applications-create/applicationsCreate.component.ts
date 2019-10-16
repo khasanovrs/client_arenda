@@ -182,7 +182,17 @@ export class ApplicationsCreateComponent implements OnInit {
       if (!print) {
         link.click();
       } else {
-        window.print();
+        /*const file = new File([data], 'word.docx', {
+          type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        });
+        const file = new File([data], 'word.docx',{});
+
+        const WindowPrt = window.open('', '', 'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0');
+        WindowPrt.document.write(JSON.stringify(file));
+        WindowPrt.document.close();
+        WindowPrt.focus();
+        WindowPrt.print();
+        WindowPrt.close();*/
       }
 
     });
@@ -476,4 +486,14 @@ export class ApplicationsCreateComponent implements OnInit {
   clear() {
     this.addPay = {show: false, sum: '', cashBox: null, revertSum: false};
   }
+}
+
+function blobToString(b) {
+  var u, x;
+  u = URL.createObjectURL(b);
+  x = new XMLHttpRequest();
+  x.open('GET', u, false); // although sync, you're not fetching over internet
+  x.send();
+  URL.revokeObjectURL(u);
+  return x.responseText;
 }

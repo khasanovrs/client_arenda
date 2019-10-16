@@ -17,4 +17,22 @@ export class DocumentService {
 
     return this.http.get('http://localhost:8004/api/get-doc', httpOptions);
   }
+
+  // получение источников
+  public getDoc() {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-doc')
+        .then((result) => {
+            console.log(1, result);
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении документов', error);
+            reject();
+          }
+        );
+    });
+  }
 }
+
+
