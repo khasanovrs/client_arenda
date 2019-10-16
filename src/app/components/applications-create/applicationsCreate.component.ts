@@ -9,6 +9,7 @@ import {GlobalParams} from '../../storage/global-params';
 import {ApplicationsService} from '../applications/applications.service';
 import {FinanceService} from '../finance/finance.service';
 import {GlobalParamsUser} from '../../storage/global-params-user';
+import {DocumentService} from '../../services/document.service';
 
 @Component({
   selector: 'app-applications-create',
@@ -85,6 +86,7 @@ export class ApplicationsCreateComponent implements OnInit {
               public globalParams: GlobalParams,
               private router: Router,
               private globalParamsUser: GlobalParamsUser,
+              private documentService: DocumentService,
               public financeService: FinanceService) {
   }
 
@@ -167,6 +169,33 @@ export class ApplicationsCreateComponent implements OnInit {
     }
 
     this.changeSum();
+  }
+
+  // получение доков
+  save_word(print) {
+    this.documentService.getPdf().subscribe((data) => {
+      const downloadURL = window.URL.createObjectURL(data);
+      const link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = 'file.docx';
+
+      if (!print) {
+        link.click();
+      } else {
+        /*const file = new File([data], 'word.docx', {
+          type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        });
+        const file = new File([data], 'word.docx',{});
+
+        const WindowPrt = window.open('', '', 'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0');
+        WindowPrt.document.write(JSON.stringify(file));
+        WindowPrt.document.close();
+        WindowPrt.focus();
+        WindowPrt.print();
+        WindowPrt.close();*/
+      }
+
+    });
   }
 
   changeBranch() {
@@ -358,7 +387,6 @@ export class ApplicationsCreateComponent implements OnInit {
         continue;
       }
       if (this.application.status.val === 2 || this.application.status.val === 1) {
-        console.log(1, this.application[value]);
         if (this.application.hasOwnProperty(value) && typeof this.application[value] !== 'undefined') {
 
           if (this.application[value].required && this.application[value].val === '') {
@@ -458,4 +486,14 @@ export class ApplicationsCreateComponent implements OnInit {
   clear() {
     this.addPay = {show: false, sum: '', cashBox: null, revertSum: false};
   }
+}
+
+function blobToString(b) {
+  var u, x;
+  u = URL.createObjectURL(b);
+  x = new XMLHttpRequest();
+  x.open('GET', u, false); // although sync, you're not fetching over internet
+  x.send();
+  URL.revokeObjectURL(u);
+  return x.responseText;
 }

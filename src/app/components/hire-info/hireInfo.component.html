@@ -17,8 +17,9 @@
         <div style="margin: 0 10px 10px 0;" (click)="open_extensions_list()" class="---btn ---btn--sm ---btn--fill-acent">Продления</div>
         <div style="margin: 0 10px 10px 0;" (click)="showInsertSum()" class="---btn ---btn--sm ---btn--fill-acent">Добавить платеж</div>
         <div style="margin: 0 10px 10px 0;" (click)="showInsertRental()" class="---btn ---btn--sm ---btn--fill-acent">Продлить прокат</div>
-        <div style="margin: 0 10px 10px 0;" (click)="showModalClose=true" class="---btn ---btn--sm ---btn--fill-acent">Возврат оборудования на склад</div>
-        <div style="margin: 0 10px 10px 0;" (click)="delete_hire()" class="---btn ---btn--sm ---btn--fill-acent">Удалить прокат</div>
+        <div style="margin: 0 10px 10px 0;" *ngIf="hireInfo.equipments.state_id!==4" (click)="equipmentReturn()" class="---btn ---btn--sm ---btn--fill-acent">Возврат оборудования на склад</div>
+        <div style="margin: 0 10px 10px 0;" *ngIf="showButtonCloseHire" (click)="close_hire()" class="---btn ---btn--sm ---btn--fill-acent">Закрыть прокат</div>
+        <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="delete_hire()" class="---btn ---btn--sm ---btn--fill-acent">Удалить прокат</div>
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
@@ -142,23 +143,4 @@
     <div (click)="updateHire()" class="---btn ---btn--fill-acent">Обновить</div>
   </div>
 
-</div>
-
-<div *ngIf="showModalClose" id="---modal-text"
-     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
-  <div class="---wrapper ---wrapper--small">
-    <div class="---js-close-modal ---js-close-modal-icon" (click)="showModalClose=false"></div>
-    <div class="modal-body">
-      <div class="---form">
-
-        <label class="---field ---d-flex ---flex-wrap ---align-items-center">
-          <input type="checkbox" [(ngModel)]="checkPrim" style="width: 14px; height: 14px;">
-          <span style="margin: 0 0 0 10px;">Остались замечания по прокату</span>
-        </label>
-
-        <div class="---btn ---btn--fill-acent ---btn--sm" (click)="closeHire()">Отправить</div>
-
-      </div>
-    </div>
-  </div>
 </div>

@@ -9,6 +9,7 @@ import {ApplicationsCreateService} from '../applications-create/applicationsCrea
 import {DopParamsService} from '../../services/dopParams.service';
 import {ApplicationsService} from '../applications/applications.service';
 import {GlobalExtensionsList} from '../extensions_list/global-extensions-list';
+import {GlobalParamsUser} from '../../storage/global-params-user';
 
 @Component({
   selector: 'app-hire-info',
@@ -17,11 +18,10 @@ import {GlobalExtensionsList} from '../extensions_list/global-extensions-list';
 export class HireInfoComponent {
   // идентификатор заявки
   hireId: null;
+  showCloseHireButton = false;
   discounts: InterFaceDopParams[] = [];
   delivery: InterFaceDopParams[] = [];
-
-  showModalClose = false;
-  checkPrim = false;
+  showButtonCloseHire = false;
 
   // список прокатов
   hireInfo: InterFaceHireInfo = {
@@ -49,6 +49,7 @@ export class HireInfoComponent {
       name: '',
       state: '',
       photo: null,
+      state_id: null,
       photo_alias: '',
     },
     pay_list: [{
@@ -74,6 +75,7 @@ export class HireInfoComponent {
               private applicationsCreateService: ApplicationsCreateService,
               private dopParamsService: DopParamsService,
               private routerCurrent: Router,
+              public globalParamsUser: GlobalParamsUser,
               private globalExtensionsList: GlobalExtensionsList) {
 
     this.router.params.subscribe(
@@ -110,6 +112,18 @@ export class HireInfoComponent {
         this.hireInfo.rent_end = new Date(this.hireInfo.rent_end).toISOString().slice(0, 16);
         this.globalPayList.data.pay_list = this.hireInfo.pay_list;
         this.globalExtensionsList.data.extension_list = this.hireInfo.extensions;
+
+        // показ кнопки закрыть прокат
+        if (this.globalParamsUser.type === 1) {
+          this.showCloseHireButton = true;
+        } else {
+          this.showCloseHireButton = this.hireInfo.equipments.state_id === 4;
+        }
+
+
+        if (this.globalParamsUser.type === 1 || (this.globalParamsUser.type === 2 && this.hireInfo.equipments.state_id === 4)) {
+          this.showButtonCloseHire = true;
+        }
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
@@ -141,11 +155,9 @@ export class HireInfoComponent {
       });
   }
 
-  closeHire() {
-    this.showModalClose = false;
-    this.hireService.closeHire({
-      id: this.hireInfo.id,
-      checkPrim: this.checkPrim
+  equipmentReturn() {
+    this.hireService.equipmentReturn({
+      id: this.hireInfo.id
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
         this.getHireInfo();
@@ -177,14 +189,28 @@ export class HireInfoComponent {
     this.globalExtensionsList.data.show = true;
   }
 
+  // удалить прока
   delete_hire() {
     this.hireService.deleteHire({
-      id: this.hireInfo.id}).then(() => {
+      id: this.hireInfo.id
+    }).then(() => {
         this.globalParamsMessage.data = {title: 'Прокат успешно удален', type: 'success', body: ''};
         this.routerCurrent.navigate(['/hire']);
       },
       (error) => {
         console.log('Ошибка при удалении проката: ', error);
+      });
+  }
+
+  // закрыть прокат
+  close_hire() {
+    this.hireService.closeHire({
+      id: this.hireInfo.id
+    }).then(() => {
+        this.globalParamsMessage.data = {title: 'Прокат успешно закрыт', type: 'success', body: ''};
+      },
+      (error) => {
+        console.log('Ошибка при закрытии проката: ', error);
       });
   }
 }

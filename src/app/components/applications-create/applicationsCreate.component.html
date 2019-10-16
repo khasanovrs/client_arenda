@@ -9,6 +9,10 @@
   </div>
 </div>
 <div class="---page-rent-in ---row">
+  <div class="---field ---d-flex ---flex-wrap ---justify-content-between ---col-12">
+    <div (click)="save_word(false)" class="---btn ---btn--fill-acent">Скачать док</div>
+    <div (click)="save_word(true)" class="---btn ---btn--fill-acent">Печать док</div>
+  </div>
   <div class="---col-12 ---col-lg-6 ---form">
     <div class="---data-block">
       <div class="h2 ---font-600">Данные аренды</div>
@@ -285,7 +289,7 @@
 
     <div class="---js-close-modal ---js-close-modal-icon" (click)="globalParams.showModalCreateUser=false"></div>
 
-    <app-client-create></app-client-create>
+    <app-client-create [app_branch]="application.branch.val" [app_source]="application.source.val"></app-client-create>
 
   </div>
 </div>

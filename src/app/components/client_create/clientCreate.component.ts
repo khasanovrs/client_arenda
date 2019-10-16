@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {DopParamsService} from '../../services/dopParams.service';
 import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {GlobalParams} from '../../storage/global-params';
@@ -9,7 +9,10 @@ import {GlobalParamsUser} from '../../storage/global-params-user';
   selector: 'app-client-create',
   templateUrl: './clientCreate.component.html',
 })
+
 export class ClientCreateComponent implements OnInit {
+  @Input() app_branch: number;
+  @Input() app_source: number;
   // список статусов
   statusList: InterFaceDopParams[] = [];
   // список филиалов
@@ -53,7 +56,7 @@ export class ClientCreateComponent implements OnInit {
 
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
         this.branches = data;
-        this.newClient.branch = this.globalParamsUser.branch;
+        this.newClient.branch = this.globalParamsUser.type === 1 ? this.globalParamsUser.branch : this.app_branch;
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
@@ -68,7 +71,7 @@ export class ClientCreateComponent implements OnInit {
       });
 
     this.dopParamsService.getSource().then((data: InterFaceDopParams[]) => {
-        this.newClient.source = 1;
+        this.newClient.source = this.app_source || 1;
         this.sources = data;
       },
       (error) => {
