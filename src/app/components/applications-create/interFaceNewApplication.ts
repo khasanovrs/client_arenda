@@ -14,9 +14,6 @@ interface InterFaceNewApplication {
   client_email: { val: string, required: false, name: string };
   client_phone: { val: string, required: true, name: string };
   client_number_passport: { val: string, required: true, name: string };
-  client_where_passport: { val: string, required: true, name: string };
-  client_date_passport: { val: string, required: true, name: string };
-  client_address_passport: { val: string, required: true, name: string };
   sum: string;
   client_type: number;
   delivery_sum: string;

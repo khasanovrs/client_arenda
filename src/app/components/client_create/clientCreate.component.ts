@@ -115,6 +115,7 @@ export class ClientCreateComponent implements OnInit {
       inn: this.newClient.inn,
       kpp: this.newClient.kpp,
       name_chief: this.newClient.name_chief,
+      number_passport: this.newClient.number_passport,
       fio: this.newClient.fio,
       email: this.newClient.email,
       clientId: '',

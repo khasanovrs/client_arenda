@@ -69,9 +69,6 @@ export class ApplicationsCreateComponent implements OnInit {
     comment: '',
     client_phone: {val: '', required: true, name: 'телефон клиента'},
     client_number_passport: {val: '', required: true, name: 'серия и номер паспорта'},
-    client_where_passport: {val: '', required: true, name: 'кем выдан паспорт'},
-    client_date_passport: {val: '', required: true, name: 'дата выдачи паспорта'},
-    client_address_passport: {val: '', required: true, name: 'адрес регистрации'},
     client_type: null
   };
 
@@ -88,6 +85,16 @@ export class ApplicationsCreateComponent implements OnInit {
               private globalParamsUser: GlobalParamsUser,
               private documentService: DocumentService,
               public financeService: FinanceService) {
+
+    // получаем информацию по новому созданному клиенту
+    this.clientService.refreshClientInfo.subscribe(() => {
+      this.application.client_id = this.clientService.miniClientInfo.client_id;
+      this.application.client_fio.val = this.clientService.miniClientInfo.client_fio;
+      this.application.client_email.val = this.clientService.miniClientInfo.client_email;
+      this.application.client_phone.val = this.clientService.miniClientInfo.client_phone;
+      this.application.client_number_passport.val = this.clientService.miniClientInfo.client_number_passport;
+      this.application.client_type = this.clientService.miniClientInfo.client_type;
+    });
   }
 
   ngOnInit() {
@@ -157,6 +164,7 @@ export class ApplicationsCreateComponent implements OnInit {
     this.application.rent_start.val = new Date().toISOString().slice(0, 16);
   }
 
+  // изменение типа доставки
   changeTypeLease() {
     const tomorrow = new Date();
 
@@ -198,6 +206,7 @@ export class ApplicationsCreateComponent implements OnInit {
     });
   }
 
+  // смена филиала
   changeBranch() {
     this.equipmentsService.allEquipmentsBranch({branch: this.application.branch.val}).then((data: InterFaceSearchClient[]) => {
         this.showAddEquipments.equipments = data;
@@ -264,7 +273,7 @@ export class ApplicationsCreateComponent implements OnInit {
     this.allSum += parseFloat(this.application.sum);
   }
 
-
+  // смена статуса заявки
   changeStatusApplications(val) {
     this.application.status.val = val;
 
@@ -313,6 +322,7 @@ export class ApplicationsCreateComponent implements OnInit {
       });
   }
 
+  // смена количества товара
   changeCount(equipment, type) {
 
     if (type === 'increase') {
@@ -335,6 +345,7 @@ export class ApplicationsCreateComponent implements OnInit {
     this.changeSum();
   }
 
+  // показ модального окна для добавления платежа
   showInsertSum() {
     this.addPay = {show: true, sum: '', cashBox: null, revertSum: false};
   }
@@ -346,9 +357,6 @@ export class ApplicationsCreateComponent implements OnInit {
     this.application.client_email.val = this.showSearchClient.clients[index].client_email;
     this.application.client_phone.val = this.showSearchClient.clients[index].client_phone;
     this.application.client_number_passport.val = this.showSearchClient.clients[index].client_number_passport;
-    this.application.client_where_passport.val = this.showSearchClient.clients[index].client_where_passport;
-    this.application.client_date_passport.val = this.showSearchClient.clients[index].client_date_passport;
-    this.application.client_address_passport.val = this.showSearchClient.clients[index].client_address_passport;
     this.application.client_type = this.showSearchClient.clients[index].client_type;
 
     this.showSearchClient.show = false;
@@ -360,6 +368,7 @@ export class ApplicationsCreateComponent implements OnInit {
     };
   }
 
+  // выбор оборудования
   insertEquipmentsData(index) {
     const tmp = {
       id: this.showAddEquipments.equipments[index].id,
@@ -381,6 +390,7 @@ export class ApplicationsCreateComponent implements OnInit {
     this.changeSum();
   }
 
+  // создание заявки
   addApplication() {
     for (const value in this.application) {
       if (value === 'client_id') {
@@ -406,20 +416,13 @@ export class ApplicationsCreateComponent implements OnInit {
     }
 
     this.applicationsCreateService.addApplication({
-      client_id: this.application.client_id,
       equipments: this.application.equipments,
       typeLease: this.application.typeLease.val,
       sale: this.application.sale.val,
       rent_start: this.application.rent_start.val,
       rent_end: this.application.rent_end.val,
       delivery: this.application.delivery.val,
-      client_fio: this.application.client_fio.val,
-      client_email: this.application.client_email.val,
-      client_phone: this.application.client_phone.val,
-      client_number_passport: this.application.client_number_passport.val,
-      client_where_passport: this.application.client_where_passport.val,
-      client_date_passport: this.application.client_date_passport.val,
-      client_address_passport: this.application.client_address_passport.val,
+      client_id: this.application.client_id,
       sum: this.application.sum,
       delivery_sum: this.application.delivery_sum,
       comment: this.application.comment,
@@ -486,14 +489,4 @@ export class ApplicationsCreateComponent implements OnInit {
   clear() {
     this.addPay = {show: false, sum: '', cashBox: null, revertSum: false};
   }
-}
-
-function blobToString(b) {
-  var u, x;
-  u = URL.createObjectURL(b);
-  x = new XMLHttpRequest();
-  x.open('GET', u, false); // although sync, you're not fetching over internet
-  x.send();
-  URL.revokeObjectURL(u);
-  return x.responseText;
 }
