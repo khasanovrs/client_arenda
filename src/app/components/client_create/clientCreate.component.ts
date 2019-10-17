@@ -12,8 +12,8 @@ import {Router} from '@angular/router';
 })
 
 export class ClientCreateComponent implements OnInit {
-  @Input() app_branch: number;
-  @Input() app_source: number;
+  @Input() app_branch = null;
+  @Input() app_source = null;
   // список статусов
   statusList: InterFaceDopParams[] = [];
   // список филиалов
@@ -58,7 +58,11 @@ export class ClientCreateComponent implements OnInit {
 
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
         this.branches = data;
-        this.newClient.branch = this.globalParamsUser.type === 1 ? this.globalParamsUser.branch : this.app_branch;
+        if (this.globalParamsUser.type === 1) {
+          this.newClient.branch = this.globalParamsUser.branch;
+        } else if (this.app_branch !== null) {
+          this.newClient.branch = this.app_branch;
+        }
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);
@@ -73,7 +77,7 @@ export class ClientCreateComponent implements OnInit {
       });
 
     this.dopParamsService.getSource().then((data: InterFaceDopParams[]) => {
-        this.newClient.source = this.app_source || 1;
+        this.newClient.source = this.app_source != null ? this.app_source : 1;
         this.sources = data;
       },
       (error) => {
@@ -119,9 +123,12 @@ export class ClientCreateComponent implements OnInit {
       phone_3: this.newClient.phone_3.replace(/[\),\(,\-,+,\s]/g, ''),
       date_birth: this.newClient.date_birth,
     }).then(() => {
-        console.log(this.router.url);
         this.globalParamsMessage.data = {title: 'Пользователь успешно добавлен', type: 'success', body: ''};
         this.globalParams.showModalCreateUser = false;
+
+        if (this.router.url === '/client-create') {
+          this.router.navigate(['/clients']);
+        }
       },
       (error) => {
         console.log('Ошибка при добавлении нового пользователей: ', error);
