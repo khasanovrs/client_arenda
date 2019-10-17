@@ -29,6 +29,23 @@ export class AuthService {
   }
 
   // получение детальной информации по клиенту
+  public getUser() {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-user', '')
+        .then((result: InterFaceAuthClient) => {
+            this.globalParamsUser.branch = result.branch;
+            this.globalParamsUser.type = result.type;
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при получении данных по пользователю', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // получение детальной информации по клиенту
   public exit() {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/exit', '')

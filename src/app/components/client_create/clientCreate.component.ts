@@ -4,6 +4,7 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
 import {GlobalParams} from '../../storage/global-params';
 import {ClientService} from '../client/client.service';
 import {GlobalParamsUser} from '../../storage/global-params-user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-client-create',
@@ -43,7 +44,8 @@ export class ClientCreateComponent implements OnInit {
               private dopParamsService: DopParamsService,
               private globalParamsMessage: GlobalParamsMessage,
               private globalParams: GlobalParams,
-              private globalParamsUser: GlobalParamsUser) {
+              private globalParamsUser: GlobalParamsUser,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -117,6 +119,7 @@ export class ClientCreateComponent implements OnInit {
       phone_3: this.newClient.phone_3.replace(/[\),\(,\-,+,\s]/g, ''),
       date_birth: this.newClient.date_birth,
     }).then(() => {
+        console.log(this.router.url);
         this.globalParamsMessage.data = {title: 'Пользователь успешно добавлен', type: 'success', body: ''};
         this.globalParams.showModalCreateUser = false;
       },
