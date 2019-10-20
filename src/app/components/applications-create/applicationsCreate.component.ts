@@ -68,7 +68,7 @@ export class ApplicationsCreateComponent implements OnInit {
     client_email: {val: '', required: false, name: ''},
     comment: '',
     client_phone: {val: '', required: true, name: 'телефон клиента'},
-    client_number_passport: {val: '', required: true, name: 'серия и номер паспорта'},
+    client_number_passport: {val: '', required: false, name: 'серия и номер паспорта'},
     client_type: null
   };
 

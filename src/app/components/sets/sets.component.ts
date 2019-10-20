@@ -78,7 +78,8 @@ export class SetsComponent implements OnInit {
     val: '',
     region: '',
     category_id: null,
-    zalog: '0'
+    zalog: '0',
+    delivery: '0'
   };
 
   constructor(private setsService: SetsService,
@@ -380,6 +381,7 @@ export class SetsComponent implements OnInit {
     this.newParams = {
       type: '',
       branch: null,
+      delivery: '0',
       name: '',
       sum: '0',
       color: '#000000',

@@ -7,5 +7,6 @@ interface InterFaceSets {
   val: string;
   region: string;
   zalog: string;
+  delivery: string;
   category_id: number;
 }

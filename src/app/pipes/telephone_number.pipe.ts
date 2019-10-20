@@ -11,6 +11,6 @@ export class TelephoneNumberPipe implements PipeTransform {
     const number2 = value.substr(7, 2);
     const number3 = value.substr(9, 2);
 
-    return `+ ${country}(${city})-${number}-${number2}-${number3}`;
+    return `${country}(${city})-${number}-${number2}-${number3}`;
   }
 }

@@ -289,6 +289,14 @@
               </option>
             </select>
           </div>
+          <div class="---field" *ngIf="newParams.type==='cashBox'">
+            <label>Доставка</label>
+            <select [(ngModel)]="newParams.delivery" name="delivery_id">
+              <option *ngFor="let pledge of pledgeList" [ngValue]="pledge.val">
+                {{pledge.name}}
+              </option>
+            </select>
+          </div>
 
           <div class="---field" *ngIf="newParams.type==='type_eq'">
             <label>Категория</label>

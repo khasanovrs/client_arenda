@@ -3,4 +3,5 @@ interface InterFaceFinanceCashBox {
   name: string;
   sum: string;
   pledge: string;
+  delivery: string;
 }
