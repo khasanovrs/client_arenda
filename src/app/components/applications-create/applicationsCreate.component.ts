@@ -156,6 +156,7 @@ export class ApplicationsCreateComponent implements OnInit {
     this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
         this.branches = data;
         this.application.branch.val = this.globalParamsUser.branch;
+        this.changeBranch();
       },
       (error) => {
         console.log('Ошибка при получении филиалов: ', error);

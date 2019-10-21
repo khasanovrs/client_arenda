@@ -326,6 +326,7 @@ export class EquipmentsService {
 
   // получение оборудования по филиалам
   public allEquipmentsBranch(data) {
+
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/get-all-equipments-branch', data)
         .then((result) => {
