@@ -37,6 +37,17 @@
     <div *ngIf="showFilters" class="---block--bg-white ---block-filter ---radius-5 ---form">
       <div class="---row">
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Закрытые прокаты</label>
+          <div class="---select">
+            <select
+              [(ngModel)]="filters.show_close_hire">
+              <option *ngFor="let hireOption of closeHireOption" [ngValue]="hireOption.val">
+                {{hireOption.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Филиал</label>
           <div class="---select">
             <select
@@ -134,6 +145,7 @@
             <td *ngIf="activeFieldsTables['date_end']===1">{{hire.date_end}}</td>
             <td *ngIf="activeFieldsTables['branch']===1">{{hire.branch}}</td>
             <td *ngIf="activeFieldsTables['current_pay']===1">{{hire.current_pay |digitsNumbers}}</td>
+            <td *ngIf="activeFieldsTables['id_dog']===1">{{hire.id}}</td>
           </tr>
 
         </table>
