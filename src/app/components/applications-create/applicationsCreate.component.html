@@ -275,8 +275,10 @@
       </div>
     </div>
 
-    <div *ngFor="let equipments of showAddEquipments.equipments; let i = index" (click)="insertEquipmentsData(i)">
-      <div>{{equipments.name}}</div>
+    <div *ngFor="let equipments of showAddEquipments.equipments; let i = index">
+      <div [ngClass]="{'opacity_eq': equipments.check_click==='0'}" (click)="insertEquipmentsData(i)">
+        {{equipments.name}} - <span>{{equipments.status}}</span>
+      </div>
     </div>
 
   </div>

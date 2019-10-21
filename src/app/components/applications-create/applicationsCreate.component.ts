@@ -359,6 +359,11 @@ export class ApplicationsCreateComponent implements OnInit {
 
   // выбор оборудования
   insertEquipmentsData(index) {
+
+    if (this.showAddEquipments.equipments[index].check_click === '0') {
+      return false;
+    }
+
     const tmp = {
       id: this.showAddEquipments.equipments[index].id,
       name: this.showAddEquipments.equipments[index].name,
