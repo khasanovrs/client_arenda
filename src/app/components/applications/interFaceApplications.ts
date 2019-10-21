@@ -13,4 +13,5 @@ interface InterFaceApplications {
   color: string;
   date_create: string;
   branch: string;
+  delivery_sum: string;
 }
