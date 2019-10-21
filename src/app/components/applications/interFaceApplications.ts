@@ -14,4 +14,5 @@ interface InterFaceApplications {
   date_create: string;
   branch: string;
   delivery_sum: string;
+  delivery_sum_paid: string;
 }
