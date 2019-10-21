@@ -150,6 +150,17 @@ export class HireComponent {
       });
   }
 
+  // вывод телефона при наведении
+  mouseEnter(value) {
+    const country = value.substr(0, 1);
+    const city = value.substr(1, 3);
+    const number = value.substr(4, 3);
+    const number2 = value.substr(7, 2);
+    const number3 = value.substr(9, 2);
+
+    return `Телефон : ${country}(${city})-${number}-${number2}-${number3}`;
+  }
+
   showInsertRental(app_eq_id, app_id, typeLease_id, rent_end) {
     this.globalParamsRental.data = {
       show: true,

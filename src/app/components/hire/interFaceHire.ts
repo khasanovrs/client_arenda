@@ -18,4 +18,5 @@ interface InterFaceHire {
   branch: string;
   current_pay: string;
   color: string;
+  client_phone: string;
 }

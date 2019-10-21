@@ -130,7 +130,7 @@
                    class="ifont ---icon-add-circle ---acent-icon ---radius-5"></div>
             </td>
 
-            <td *ngIf="activeFieldsTables['client']===1">{{hire.client}}</td>
+            <td data-toggle="tooltip" title="{{mouseEnter(hire.client_phone)}}"  *ngIf="activeFieldsTables['client']===1">{{hire.client}}</td>
             <td *ngIf="activeFieldsTables['equipment']===1">{{hire.equipments}}</td>
             <td *ngIf="activeFieldsTables['start_hire']===1">{{hire.start_hire}}</td>
             <td *ngIf="activeFieldsTables['end_hire']===1">{{hire.end_hire}}</td>
