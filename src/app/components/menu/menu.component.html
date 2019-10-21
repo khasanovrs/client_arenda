@@ -5,7 +5,7 @@
 </a>
 
 <nav>
-  <a *ngFor="let menu of menuList" [routerLinkActiveOptions]="{ exact: true }" routerLink={{menu.link}} routerLinkActive='---is-active'>
+  <a *ngFor="let menu of showMenuList" [routerLinkActiveOptions]="{ exact: true }" routerLink={{menu.link}} routerLinkActive='---is-active'>
     <i class="ifont ---y-pos-abs" ngClass={{menu.class}}></i>
     <span>{{menu.name}}</span>
   </a>
