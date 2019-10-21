@@ -7,7 +7,7 @@
         <div class="---field ---d-flex ---flex-wrap ---justify-content-between ---col-12">
           <div (click)="open_pay_list()" class="---btn ---btn--fill-acent">Платежи</div>
           <div (click)="showInsertSum()" class="---btn ---btn--fill-acent">Добавить платеж</div>
-          <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="delete_hire()" class="---btn ---btn--sm ---btn--fill-acent">Удалить заявку</div>
+          <div *ngIf="globalParamsUser.type===1" (click)="delete_hire()" class="---btn ---btn--sm ---btn--fill-acent">Удалить заявку</div>
         </div>
         <div class="---field ---col-12 ---col-xs-6">
           <label>Филиал</label>

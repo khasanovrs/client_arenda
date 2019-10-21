@@ -207,8 +207,11 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   // смена филиала
-  changeBranch() {
-    this.equipmentsService.allEquipmentsBranch({branch: this.application.branch.val}).then((data: InterFaceSearchClient[]) => {
+  changeBranch(filter = '') {
+    this.equipmentsService.allEquipmentsBranch({
+      filter: filter,
+      branch: this.application.branch.val
+    }).then((data: InterFaceSearchClient[]) => {
         this.showAddEquipments.equipments = data;
       },
       (error) => {
@@ -305,20 +308,6 @@ export class ApplicationsCreateComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении списка сотрудников: ', error);
-      });
-  }
-
-  // поиск товара из бд
-  searchEquipments(filter) {
-    if (filter === '') {
-      return false;
-    }
-
-    this.equipmentsService.searchEquipments({filter: filter}).then((data: InterFaceSearchClient[]) => {
-        this.showAddEquipments.equipments = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка оборудования: ', error);
       });
   }
 
