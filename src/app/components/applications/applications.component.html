@@ -126,8 +126,6 @@
           <td *ngIf="activeFieldsTables['equipments_count']===1">{{application.equipments_count}}</td>
           <td *ngIf="activeFieldsTables['date_create']===1">{{application.date_create | date: 'dd.MM.yyyy HH:mm:ss'}}</td>
           <td *ngIf="activeFieldsTables['branch']===1">{{application.branch}}</td>
-          <td *ngIf="activeFieldsTables['delivery_sum']===1">{{application.delivery_sum | digitsNumbers}} </td>
-          <td *ngIf="activeFieldsTables['delivery_sum_paid']===1">{{application.delivery_sum_paid | digitsNumbers}} </td>
         </tr>
       </table>
     </div>

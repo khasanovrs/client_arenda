@@ -146,6 +146,8 @@
             <td *ngIf="activeFieldsTables['branch']===1">{{hire.branch}}</td>
             <td *ngIf="activeFieldsTables['current_pay']===1">{{hire.current_pay |digitsNumbers}}</td>
             <td *ngIf="activeFieldsTables['id_dog']===1">{{hire.id}}</td>
+            <td *ngIf="activeFieldsTables['delivery_sum']===1">{{hire.delivery_sum | digitsNumbers}} </td>
+            <td *ngIf="activeFieldsTables['delivery_sum_paid']===1">{{hire.delivery_sum_paid | digitsNumbers}} </td>
           </tr>
 
         </table>
