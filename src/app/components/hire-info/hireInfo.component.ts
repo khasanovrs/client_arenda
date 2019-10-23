@@ -127,7 +127,7 @@ export class HireInfoComponent {
 
         // показ закрыть прокат только когда админ или менеджер, но оборудование на складе и нет долгов
         if (this.globalParamsUser.type === 1 || (this.globalParamsUser.type === 2 && this.hireInfo.equipments.state_id === 4
-          && +this.hireInfo.remainder > 0)) {
+            && +this.hireInfo.remainder > 0)) {
           this.showButtonCloseHire = true;
         }
 
@@ -223,6 +223,7 @@ export class HireInfoComponent {
       id: this.hireInfo.id
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Прокат успешно закрыт', type: 'success', body: ''};
+        this.getHireInfo();
       },
       (error) => {
         console.log('Ошибка при закрытии проката: ', error);
