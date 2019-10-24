@@ -8,5 +8,6 @@ interface InterFaceSets {
   region: string;
   zalog: string;
   delivery: string;
+  time_diff: string;
   category_id: number;
 }

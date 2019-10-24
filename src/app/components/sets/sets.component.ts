@@ -79,7 +79,8 @@ export class SetsComponent implements OnInit {
     region: '',
     category_id: null,
     zalog: '0',
-    delivery: '0'
+    delivery: '0',
+    time_diff: '0'
   };
 
   constructor(private setsService: SetsService,
@@ -388,6 +389,7 @@ export class SetsComponent implements OnInit {
       val: '',
       region: '',
       zalog: '0',
+      time_diff: '0',
       category_id: null
     };
   }
@@ -396,42 +398,6 @@ export class SetsComponent implements OnInit {
   changeParams(val, type) {
     this.newParams = val;
     this.newParams.type = type;
-  }
-
-  // удаление статуса для заявки
-  deleteStatusApplication(id) {
-    this.dopParamsChangeService.deleteApplicationsStatus({'id': id}).then(() => {
-        this.globalParamsMessage.data = {title: 'Статус успешно удален', type: 'success', body: ''};
-        this.applicationsService.applicationsStatusList = [];
-        this.ngOnInit();
-      },
-      (error) => {
-        console.log('Ошибка при удалении статуса для заявки: ', error);
-      });
-  }
-
-  // удаление статуса для клиента
-  deleteStatusClient(id) {
-    this.dopParamsChangeService.deleteClientStatus({'id': id}).then(() => {
-        this.globalParamsMessage.data = {title: 'Статус успешно удален', type: 'success', body: ''};
-        this.dopParamsService.status = [];
-        this.ngOnInit();
-      },
-      (error) => {
-        console.log('Ошибка при удалении статуса для клиента: ', error);
-      });
-  }
-
-  // удаление статуса для оборудования
-  deleteStatusEquipment(id) {
-    this.dopParamsChangeService.deleteEquipmentStatus({'id': id}).then(() => {
-        this.globalParamsMessage.data = {title: 'Статус успешно удален', type: 'success', body: ''};
-        this.equipmentsService.equipmentsAvailabilityList = [];
-        this.ngOnInit();
-      },
-      (error) => {
-        console.log('Ошибка при удалении статуса для оборудования: ', error);
-      });
   }
 
   // удаление источника

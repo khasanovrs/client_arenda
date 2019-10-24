@@ -281,6 +281,12 @@
             <label>Регион</label>
             <input type="text" mask="separator" name="sum" class="---input ---fill--bg" [(ngModel)]="newParams.region">
           </div>
+
+          <div class="---field" *ngIf="newParams.type==='branch'">
+            <label>Разница во времени</label>
+            <input type="text" name="time_diff" class="---input ---fill--bg" [(ngModel)]="newParams.time_diff">
+          </div>
+
           <div class="---field" *ngIf="newParams.type==='cashBox'">
             <label>Залог</label>
             <select [(ngModel)]="newParams.zalog" name="predge_id">
