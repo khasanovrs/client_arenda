@@ -5,7 +5,7 @@
       <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="delete_eq()"
            class="---btn ---btn--sm ---btn--fill-acent">Удалить оборудование
       </div>
-      <div *ngIf="equipment.confirmed === '0'" (click)="updateEquipmentConfirmed()" style="margin: 0 10px 10px 0;" class="---btn ---btn--sm ---btn--fill-acent">
+      <div *ngIf="equipment.confirmed === '0' && globalParamsUser.type===1" (click)="updateEquipmentConfirmed()" style="margin: 0 10px 10px 0;" class="---btn ---btn--sm ---btn--fill-acent">
         Подтвердить данные
       </div>
     </div>
