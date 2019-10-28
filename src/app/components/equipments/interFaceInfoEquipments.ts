@@ -27,6 +27,7 @@ interface InterFaceInfoEquipments {
   power: string;
   frequency_hits: string;
   comment: string;
+  confirmed: string;
   change_history: {
     date: string;
     new_params: string;

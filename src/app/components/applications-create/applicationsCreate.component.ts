@@ -38,6 +38,11 @@ export class ApplicationsCreateComponent implements OnInit {
     equipments: []
   };
 
+  // отображение окна добавления нового оборудования
+  addNewEquipments = {
+    show: false,
+  };
+
   addPay = {
     show: false,
     sum: '',

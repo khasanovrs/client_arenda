@@ -77,6 +77,8 @@ import {GlobalParamsUser} from './storage/global-params-user';
 import {SettingsParamsComponent} from './components/settingsParams/settingsParams.component';
 import {SettingsParamsService} from './components/settingsParams/settingsParams.service';
 import {DocumentService} from './services/document.service';
+import {EquipmentsCreateMiniService} from './components/equipments_create_mini/equipmentsCreateMini.service';
+import {EquipmentsCreateMiniComponent} from './components/equipments_create_mini/equipmentsCreateMini.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -119,7 +121,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     ApplicationListClientComponent,
     ClientChangeStatusComponent,
     ClientChangeStatusListComponent,
-    SettingsParamsComponent
+    SettingsParamsComponent,
+    EquipmentsCreateMiniComponent
   ],
   imports: [
     BrowserModule,
@@ -163,7 +166,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     GlobalParamsClientChangeStatus,
     GlobalClientChangeStatusList,
     SettingsParamsService,
-    DocumentService
+    DocumentService,
+    EquipmentsCreateMiniService
   ],
   bootstrap: [AppComponent]
 })

@@ -195,6 +195,9 @@
         </div>
 
         <div (click)="showAddEquipments.show=true" class="---btn ---btn--fill-dark">Добавить</div>
+        <div *ngIf="application.status.val===3" (click)="addNewEquipments.show=true" class="---btn ---btn--fill-acent">
+          Создать оборудование
+        </div>
       </div>
 
       <div class="---devider"></div>
@@ -281,6 +284,16 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<div *ngIf="addNewEquipments.show"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="addNewEquipments.show=false"></div>
+
+    <app-equipment-create-mini></app-equipment-create-mini>
   </div>
 </div>
 

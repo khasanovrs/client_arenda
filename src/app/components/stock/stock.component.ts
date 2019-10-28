@@ -50,6 +50,7 @@ export class StockComponent implements OnInit {
     profit_end: '',
     degree_wear_start: null,
     degree_wear_end: null,
+    confirmed: '',
   };
 
   // всплывающее окно
@@ -57,6 +58,11 @@ export class StockComponent implements OnInit {
     show: false,
     data: {}
   };
+
+  confirmedList = [
+    {id: '0', name: 'Нет'},
+    {id: '1', name: 'Да'},
+  ];
 
   sortedData: InterFaceStocks[];
 
@@ -165,9 +171,11 @@ export class StockComponent implements OnInit {
       profit_end: this.filters.profit_end,
       degree_wear_start: this.filters.degree_wear_start,
       degree_wear_end: this.filters.degree_wear_end,
+      confirmed: this.filters.confirmed,
     }).then((data: IClientsUr[]) => {
         this.equipmentsList = data;
         this.sortedData = this.equipmentsList.slice();
+        this.showFilters = false;
       },
       (error) => {
         console.log('Ошибка при получении списка оборудований: ', error);
@@ -200,6 +208,7 @@ export class StockComponent implements OnInit {
       profit_end: '',
       degree_wear_start: null,
       degree_wear_end: null,
+      confirmed: ''
     };
 
     this.getEquipments();
@@ -223,22 +232,38 @@ export class StockComponent implements OnInit {
     this.equipmentsList = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'category': return compare(a.category, b.category, isAsc);
-        case 'stock': return compare(a.stock, b.stock, isAsc);
-        case 'type': return compare(a.type, b.type, isAsc);
-        case 'status': return compare(a.status, b.status, isAsc);
-        case 'selling_price': return compare(a.selling_price, b.selling_price, isAsc);
-        case 'price_per_day': return compare(a.price_per_day, b.price_per_day, isAsc);
-        case 'rentals': return compare(a.rentals, b.rentals, isAsc);
-        case 'repairs': return compare(a.repairs, b.repairs, isAsc);
-        case 'repairs_sum': return compare(a.repairs_sum, b.repairs_sum, isAsc);
-        case 'tool_number': return compare(a.tool_number, b.tool_number, isAsc);
-        case 'revenue': return compare(a.revenue, b.revenue, isAsc);
-        case 'profit': return compare(a.profit, b.profit, isAsc);
-        case 'degree_wear': return compare(a.degree_wear, b.degree_wear, isAsc);
-        case 'payback_ratio': return compare(a.payback_ratio, b.payback_ratio, isAsc);
-        default: return 0;
+        case 'name':
+          return compare(a.name, b.name, isAsc);
+        case 'category':
+          return compare(a.category, b.category, isAsc);
+        case 'stock':
+          return compare(a.stock, b.stock, isAsc);
+        case 'type':
+          return compare(a.type, b.type, isAsc);
+        case 'status':
+          return compare(a.status, b.status, isAsc);
+        case 'selling_price':
+          return compare(a.selling_price, b.selling_price, isAsc);
+        case 'price_per_day':
+          return compare(a.price_per_day, b.price_per_day, isAsc);
+        case 'rentals':
+          return compare(a.rentals, b.rentals, isAsc);
+        case 'repairs':
+          return compare(a.repairs, b.repairs, isAsc);
+        case 'repairs_sum':
+          return compare(a.repairs_sum, b.repairs_sum, isAsc);
+        case 'tool_number':
+          return compare(a.tool_number, b.tool_number, isAsc);
+        case 'revenue':
+          return compare(a.revenue, b.revenue, isAsc);
+        case 'profit':
+          return compare(a.profit, b.profit, isAsc);
+        case 'degree_wear':
+          return compare(a.degree_wear, b.degree_wear, isAsc);
+        case 'payback_ratio':
+          return compare(a.payback_ratio, b.payback_ratio, isAsc);
+        default:
+          return 0;
       }
     });
   }

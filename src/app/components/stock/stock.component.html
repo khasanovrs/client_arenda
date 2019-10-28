@@ -146,6 +146,17 @@
           <label>Степень износа до</label>
           <input class="---input ---shadow--bg" type="number" [(ngModel)]="filters.degree_wear_end">
         </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Подтвержденные</label>
+          <div class="---select">
+            <select [(ngModel)]="filters.confirmed">
+              <option *ngFor="let confirmed of confirmedList"
+                      [ngValue]="confirmed.id">
+                {{confirmed.name}}
+              </option>
+            </select>
+          </div>
+        </div>
 
       </div>
 

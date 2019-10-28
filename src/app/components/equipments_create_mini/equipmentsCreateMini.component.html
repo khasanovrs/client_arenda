@@ -1,0 +1,64 @@
+<div class="---page-client-in ---row">
+  <div class="---col-12 ---col-lg-6 ---form">
+    <div class="---data-block">
+      <div class="h2 ---font-600">О товаре</div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Марка</label>
+          <div class="---select">
+            <select [(ngModel)]="newEquipments.mark">
+              <option *ngFor="let equipmentsMark of equipmentsMarkList"
+                      [ngValue]="equipmentsMark.val">
+                {{equipmentsMark.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Модель</label>
+          <input type="text" class="---input ---shadow--bg" [(ngModel)]="newEquipments.model">
+        </div>
+      </div>
+      <div class="---row">
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Склад</label>
+          <div class="---select">
+            <select [(ngModel)]="newEquipments.stock">
+              <option *ngFor="let stock of stocks" [ngValue]="stock.val">
+                {{stock.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Категория</label>
+          <div class="---select">
+            <select [(ngModel)]="newEquipments.category" (change)="changeCategory(newEquipments.category)">
+              <option *ngFor="let equipmentsCategory of equipmentsCategoryList"
+                      [ngValue]="equipmentsCategory.val">
+                {{equipmentsCategory.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Тип оборудования</label>
+          <div class="---select">
+            <select [(ngModel)]="newEquipments.type">
+              <option *ngFor="let equipmentsType of equipmentsTypeList"
+                      [ngValue]="equipmentsType.val">
+                {{equipmentsType.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="---btns-wrapper">
+      <div (click)="addEquipment()" class="---btn ---btn--fill-acent">Добавить</div>
+    </div>
+
+  </div>
+</div>

@@ -25,7 +25,7 @@ export class EquipmentsComponent implements OnInit {
   // причина изменения статуса
   reason_change_status = '';
   // сумма ремонта
-  amount_repair = '';
+  amount_repair = 0;
   // сумма продажи
   sale_amount = '';
   // касса
@@ -68,6 +68,7 @@ export class EquipmentsComponent implements OnInit {
     power: '',
     frequency_hits: '',
     comment: '',
+    confirmed: '',
     change_history: [{
       date: '',
       new_params: '',
@@ -182,6 +183,12 @@ export class EquipmentsComponent implements OnInit {
     }
   }
 
+  updateEquipmentConfirmed() {
+    this.equipment.confirmed = '1';
+    this.updateEquipment();
+  }
+
+
   updateEquipment() {
     if (this.equipment.model === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать наименование', type: 'error', body: ''};
@@ -220,7 +227,7 @@ export class EquipmentsComponent implements OnInit {
 
     if (this.equipment.new_status !== this.equipment.old_status) {
       if (this.equipment.new_status === 4 && this.equipment.old_status === 2) {
-        if (this.amount_repair === '') {
+        if (this.amount_repair === null) {
           this.globalParamsMessage.data = {title: 'Необходимо указать сумму ремонта', type: 'error', body: ''};
           return false;
         }
@@ -281,7 +288,8 @@ export class EquipmentsComponent implements OnInit {
       reason_change_status: this.reason_change_status,
       amount_repair: this.amount_repair,
       cash_box: this.cash_box,
-      sale_amount: this.sale_amount
+      sale_amount: this.sale_amount,
+      confirmed: this.equipment.confirmed
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно изменено', type: 'success', body: ''};
         this.router.navigate(['/stock']);
