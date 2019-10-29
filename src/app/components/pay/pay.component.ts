@@ -29,7 +29,6 @@ export class PayComponent implements OnInit {
     this.data = globalParamsPay;
 
     this.financeService.refreshCashBox.subscribe(() => {
-      console.log(3);
       this.getFinanceCashBOx();
     });
   }

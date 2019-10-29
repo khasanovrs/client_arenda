@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {EquipmentsCreateMiniService} from './equipmentsCreateMini.service';
 import {DopParamsService} from '../../services/dopParams.service';
 import {EquipmentsService} from '../equipments/equipments.service';
@@ -13,6 +13,7 @@ export class EquipmentsCreateMiniComponent implements OnInit {
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsCategoryList: InterEquipmentsCategory[] = [];
   equipmentsMarkList: InterFaceDopParams[] = [];
+  @Input() branch = null;
 
   newEquipments: InterFaceNewEquipmentsMini = {
     model: '',
@@ -22,7 +23,7 @@ export class EquipmentsCreateMiniComponent implements OnInit {
     mark: null
   };
 
-  constructor(private equipmentsCreateService: EquipmentsCreateMiniService,
+  constructor(private equipmentsCreateMiniService: EquipmentsCreateMiniService,
               private dopParamsService: DopParamsService,
               private equipmentsService: EquipmentsService,
               private globalParamsMessage: GlobalParamsMessage) {
@@ -31,6 +32,8 @@ export class EquipmentsCreateMiniComponent implements OnInit {
   ngOnInit() {
     this.dopParamsService.getStock().then((data: InterFaceStocks[]) => {
         this.stocks = data;
+        const tmpStock = this.stocks.filter(item => item.branch_id = this.branch);
+        this.newEquipments.stock = tmpStock[0].val;
       },
       (error) => {
         console.log('Ошибка при получении складов: ', error);
@@ -77,7 +80,7 @@ export class EquipmentsCreateMiniComponent implements OnInit {
       return false;
     }
 
-    this.equipmentsCreateService.addEquipment({
+    this.equipmentsCreateMiniService.addEquipment({
       model: this.newEquipments.model,
       stock: this.newEquipments.stock,
       equipmentsType: this.newEquipments.type,

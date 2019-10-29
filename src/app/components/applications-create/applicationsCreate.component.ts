@@ -10,11 +10,14 @@ import {ApplicationsService} from '../applications/applications.service';
 import {FinanceService} from '../finance/finance.service';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import {DocumentService} from '../../services/document.service';
+import {EquipmentsCreateMiniService} from '../equipments_create_mini/equipmentsCreateMini.service';
 
 @Component({
   selector: 'app-applications-create',
   templateUrl: './applicationsCreate.component.html',
 })
+
+
 export class ApplicationsCreateComponent implements OnInit {
   applicationsStatus: InterFaceDopParams[] = [];
   applicationsSource: InterFaceDopParams[] = [];
@@ -89,6 +92,7 @@ export class ApplicationsCreateComponent implements OnInit {
               private router: Router,
               private globalParamsUser: GlobalParamsUser,
               private documentService: DocumentService,
+              private equipmentsCreateMiniService: EquipmentsCreateMiniService,
               public financeService: FinanceService) {
 
     // получаем информацию по новому созданному клиенту
@@ -99,6 +103,11 @@ export class ApplicationsCreateComponent implements OnInit {
       this.application.client_phone.val = this.clientService.miniClientInfo.client_phone;
       this.application.client_number_passport.val = this.clientService.miniClientInfo.client_number_passport;
       this.application.client_type = this.clientService.miniClientInfo.client_type;
+    });
+
+    this.equipmentsCreateMiniService.closeModalAddEq.subscribe(() => {
+      this.addNewEquipments.show = false;
+      this.changeBranch();
     });
   }
 
@@ -186,29 +195,13 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   // получение доков
-  save_word(print) {
+  save_word() {
     this.documentService.getPdf().subscribe((data) => {
       const downloadURL = window.URL.createObjectURL(data);
       const link = document.createElement('a');
       link.href = downloadURL;
       link.download = 'file.docx';
-
-      if (!print) {
-        link.click();
-      } else {
-        /*const file = new File([data], 'word.docx', {
-          type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        });
-        const file = new File([data], 'word.docx',{});
-
-        const WindowPrt = window.open('', '', 'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0');
-        WindowPrt.document.write(JSON.stringify(file));
-        WindowPrt.document.close();
-        WindowPrt.focus();
-        WindowPrt.print();
-        WindowPrt.close();*/
-      }
-
+      link.click();
     });
   }
 
