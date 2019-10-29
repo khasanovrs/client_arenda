@@ -5,6 +5,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {EquipmentsService} from './equipments.service';
 import {FinanceService} from '../finance/finance.service';
 import {GlobalParamsUser} from '../../storage/global-params-user';
+import {EquipmentsCreateService} from '../equipments_create/equipmentsCreate.service';
 
 @Component({
   selector: 'app-equipment',
@@ -90,6 +91,7 @@ export class EquipmentsComponent implements OnInit {
 
   constructor(private dopParamsService: DopParamsService,
               private equipmentsService: EquipmentsService,
+              private equipmentsCreateService: EquipmentsCreateService,
               private globalParamsMessage: GlobalParamsMessage,
               private activatedRoute: ActivatedRoute,
               private financeService: FinanceService,
@@ -325,5 +327,38 @@ export class EquipmentsComponent implements OnInit {
       (error) => {
         console.log('Ошибка при удалении оборудования: ', error);
       });
+  }
+
+  // копирование оборудования
+  copy_eq() {
+    this.equipmentsCreateService.copyEq = {
+      model: this.equipment.model,
+      status: this.equipment.new_status,
+      stock: this.equipment.new_stock,
+      discount: this.equipment.discount,
+      type: this.equipment.type,
+      category: this.equipment.category,
+      tool_number: this.equipment.tool_number,
+      mark: this.equipment.mark,
+      selling_price: this.equipment.selling_price,
+      price_per_day: this.equipment.price_per_day,
+      rentals: this.equipment.rentals,
+      repairs: this.equipment.repairs,
+      repairs_sum: this.equipment.repairs_sum,
+      revenue: this.equipment.revenue,
+      profit: this.equipment.profit,
+      degree_wear: this.equipment.degree_wear,
+      payback_ratio: this.equipment.payback_ratio,
+      power_energy: this.equipment.power_energy,
+      length: this.equipment.length,
+      network_cord: this.equipment.network_cord,
+      power: this.equipment.power,
+      frequency_hits: this.equipment.frequency_hits,
+      photo_name: this.equipment.photo,
+      photo_content: this.equipment.photo,
+      photo_alias: this.equipment.photo_alias,
+      comment: this.equipment.comment
+    };
+    this.router.navigate(['/equipments-create']);
   }
 }

@@ -21,34 +21,7 @@ export class EquipmentsCreateComponent implements OnInit {
   load_file: any = [];
   fileString = '';
 
-  newEquipments: InterFacenewEquipments = {
-    model: '',
-    status: null,
-    stock: null,
-    discount: null,
-    type: null,
-    category: null,
-    tool_number: null,
-    mark: null,
-    selling_price: '',
-    price_per_day: '',
-    rentals: 0,
-    repairs: 0,
-    repairs_sum: '0',
-    revenue: '0',
-    profit: '0',
-    degree_wear: 0,
-    payback_ratio: 0,
-    power_energy: '',
-    length: '',
-    network_cord: '',
-    power: '',
-    frequency_hits: '',
-    photo_name: '',
-    photo_content: '',
-    photo_alias: '',
-    comment: ''
-  };
+  newEquipments: InterFacenewEquipments = this.equipmentsCreateService.copyEq;
 
   constructor(private equipmentsCreateService: EquipmentsCreateService,
               private dopParamsService: DopParamsService,
@@ -67,6 +40,10 @@ export class EquipmentsCreateComponent implements OnInit {
 
     this.equipmentsService.getEquipmentsCategory().then((data: InterEquipmentsCategory[]) => {
         this.equipmentsCategoryList = data;
+
+        if (this.newEquipments.category !== null) {
+          this.changeCategory(this.newEquipments.category);
+        }
       },
       (error) => {
         console.log('Ошибка при получении списка категорий оборудования: ', error);
@@ -81,7 +58,7 @@ export class EquipmentsCreateComponent implements OnInit {
 
     this.dopParamsService.getDiscount().then((data: InterFaceDopParams[]) => {
         this.discounts = data;
-        this.newEquipments.discount = this.discounts[0].val;
+        this.newEquipments.discount = this.newEquipments.discount === null ? this.discounts[0].val : this.newEquipments.discount;
       },
       (error) => {
         console.log('Ошибка при получении списка скидок: ', error);
@@ -163,6 +140,7 @@ export class EquipmentsCreateComponent implements OnInit {
       photo: this.newEquipments.photo_name,
       photo_alias: this.newEquipments.photo_alias,
       comment: this.newEquipments.comment,
+      count: this.newEquipments.count,
     }).then(() => {
 
         if (this.newEquipments.photo_name !== '') {

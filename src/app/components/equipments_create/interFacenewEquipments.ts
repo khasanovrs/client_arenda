@@ -25,4 +25,5 @@ interface InterFacenewEquipments {
   photo_content: string;
   photo_alias: string;
   comment: string;
+  count: number;
 }

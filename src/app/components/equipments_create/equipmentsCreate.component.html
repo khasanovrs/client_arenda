@@ -58,8 +58,7 @@
           <label>номер инструмента</label>
           <input type="number" class="---input ---shadow--bg" [(ngModel)]="newEquipments.tool_number">
         </div>
-      </div>
-      <div class="---row">
+
         <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
           <label>Статус</label>
           <div class="---select">
@@ -70,6 +69,11 @@
               </option>
             </select>
           </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+          <label>Количество карточек</label>
+          <input type="number" class="---input ---shadow--bg" [(ngModel)]="newEquipments.count">
         </div>
       </div>
     </div>
@@ -82,7 +86,8 @@
           <label>Износ оборудования</label>
           <div class="---input ---input--wear ---font-600 ---d-flex ---align-items-center ---justify-content-between">
             <div>
-              <input type="text" class="mini-input" [(ngModel)]="newEquipments.degree_wear" style="width: 30px; color: #fff;">%
+              <input type="text" class="mini-input" [(ngModel)]="newEquipments.degree_wear"
+                     style="width: 30px; color: #fff;">%
             </div>
 
             <div class="---d-flex">
