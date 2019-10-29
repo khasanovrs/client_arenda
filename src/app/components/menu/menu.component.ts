@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {GlobalParamsUser} from '../../storage/global-params-user';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -19,11 +20,14 @@ export class MenuComponent {
   ];
   showMenuList: InterFaceMenu[];
 
-  constructor(public globalParamsUser: GlobalParamsUser) {
-    if (this.globalParamsUser.type === 1) {
-      this.showMenuList = this.menuList;
-    } else {
-      this.showMenuList = this.menuList.filter(item => item.type === 'all');
-    }
+  constructor(public globalParamsUser: GlobalParamsUser,
+              public authService: AuthService) {
+    this.authService.refreshAuthClientInfo.subscribe(() => {
+      if (this.globalParamsUser.type === 1) {
+        this.showMenuList = this.menuList;
+      } else {
+        this.showMenuList = this.menuList.filter(item => item.type === 'all');
+      }
+    });
   }
 }
