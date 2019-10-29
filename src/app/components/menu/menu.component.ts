@@ -22,12 +22,15 @@ export class MenuComponent {
 
   constructor(public globalParamsUser: GlobalParamsUser,
               public authService: AuthService) {
+
     this.authService.refreshAuthClientInfo.subscribe(() => {
+      console.log(11)
       if (this.globalParamsUser.type === 1) {
         this.showMenuList = this.menuList;
       } else {
         this.showMenuList = this.menuList.filter(item => item.type === 'all');
       }
+      console.log(22,this.showMenuList)
     });
   }
 }

@@ -20,6 +20,8 @@ export class AuthService {
             this.sessionStorageService.change(true);
             this.globalParamsUser.branch = result.branch;
             this.globalParamsUser.type = result.type;
+            console.log(4)
+            this.refreshAuthClientInfo.emit(true);
             resolve();
           },
           (error) => {
@@ -54,6 +56,7 @@ export class AuthService {
       this.httpService.prepareQuery('api/exit', '')
         .then(() => {
             this.sessionStorageService.exit();
+            this.refreshAuthClientInfo.emit(true);
             resolve();
           },
           (error) => {

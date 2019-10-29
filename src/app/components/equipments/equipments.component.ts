@@ -357,7 +357,8 @@ export class EquipmentsComponent implements OnInit {
       photo_name: this.equipment.photo,
       photo_content: this.equipment.photo,
       photo_alias: this.equipment.photo_alias,
-      comment: this.equipment.comment
+      comment: this.equipment.comment,
+      count: 1
     };
     this.router.navigate(['/equipments-create']);
   }

@@ -5,18 +5,11 @@
 </a>
 
 <nav>
-  <a *ngFor="let menu of showMenuList" [routerLinkActiveOptions]="{ exact: true }" routerLink={{menu.link}} routerLinkActive='---is-active'>
-    <i class="ifont ---y-pos-abs" ngClass={{menu.class}}></i>
+  <a *ngFor="let menu of showMenuList" [routerLinkActiveOptions]="{ exact: true }" routerLink={{menu.link}}
+     routerLinkActive='---is-active'>
+    <i class="ifont ---y-pos-abs" [ngClass]='menu.class'></i>
     <span>{{menu.name}}</span>
   </a>
 </nav>
-
-<div class="---btns ---d-block ---sm-d-none">
-  <div class="---in-rent">
-    В аренде: <b class="---font-600">284</b>
-  </div>
-
-  <a href="#" class="---btn ---btn--fill-acent ---btn--sm">Создать заявку</a>
-</div>
 
 <i class="ifont ---icon-arrow-left ---menu-toggle ---d-none ---lg-d-flex"></i>
