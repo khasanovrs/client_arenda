@@ -112,6 +112,7 @@ export class HireInfoComponent {
 
   getHireInfo() {
     this.hireService.getHireInfo({id: this.hireId}).then((data: InterFaceHireInfo) => {
+        this.showReturnEq = false;
         this.hireInfo = data;
         this.hireInfo.rent_start = new Date(this.hireInfo.rent_start).toISOString().slice(0, 16);
         this.hireInfo.rent_end = new Date(this.hireInfo.rent_end).toISOString().slice(0, 16);

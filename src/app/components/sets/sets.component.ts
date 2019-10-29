@@ -46,10 +46,6 @@ export class SetsComponent implements OnInit {
   financeCategory: InterFaceDopParams[] = [];
 
   typeList: InterFaceTypeList[] = [
-    {val: 'status_client', name: 'Статус для клиентов'},
-    {val: 'status_application', name: 'Статус для заявок'},
-    {val: 'status_hire', name: 'Статус для проката'},
-    {val: 'status_equipment', name: 'Статус для оборудования'},
     {val: 'finance_category', name: 'Категория финансов'},
     {val: 'source', name: 'Источник'},
     {val: 'branch', name: 'Филиал'},
@@ -212,46 +208,6 @@ export class SetsComponent implements OnInit {
     if (this.newParams.name === '') {
       this.globalParamsMessage.data = {title: 'Необходимо указать название', type: 'error', body: ''};
       return false;
-    }
-
-    if (this.newParams.type === 'status_application') {
-      this.dopParamsChangeService.addApplicationsStatus(this.newParams).then(() => {
-          this.applicationsService.applicationsStatusList = [];
-          this.ngOnInit();
-        },
-        (error) => {
-          console.log('Ошибка при добавлении нового статуса для заявки: ', error);
-        });
-    }
-
-    if (this.newParams.type === 'status_hire') {
-      this.hireService.addHireStatus(this.newParams).then(() => {
-          this.applicationsService.applicationsStatusList = [];
-          this.ngOnInit();
-        },
-        (error) => {
-          console.log('Ошибка при добавлении нового статуса для проката: ', error);
-        });
-    }
-
-    if (this.newParams.type === 'status_client') {
-      this.dopParamsChangeService.addClientStatus(this.newParams).then(() => {
-          this.dopParamsService.status = [];
-          this.ngOnInit();
-        },
-        (error) => {
-          console.log('Ошибка при добавлении нового статуса для клиента: ', error);
-        });
-    }
-
-    if (this.newParams.type === 'status_equipment') {
-      this.dopParamsChangeService.addEquipmentStatus(this.newParams).then(() => {
-          this.equipmentsService.equipmentsAvailabilityList = [];
-          this.ngOnInit();
-        },
-        (error) => {
-          console.log('Ошибка при добавлении нового статуса для оборудования: ', error);
-        });
     }
 
     if (this.newParams.type === 'source') {
