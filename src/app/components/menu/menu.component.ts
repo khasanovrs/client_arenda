@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import {AuthService} from '../auth/auth.service';
 
@@ -7,6 +7,9 @@ import {AuthService} from '../auth/auth.service';
   templateUrl: './menu.component.html',
 })
 export class MenuComponent {
+  @Output() onCloseMenu: EventEmitter<any> = new EventEmitter<any>();
+  hiddenMenu = false;
+
   menuList: InterFaceMenu[] = [
     {link: 'main', name: 'Рабочий стол', class: '---icon-menu-dashboard', type: 'all'},
     {link: 'hire', name: 'Прокат', class: '---icon-menu-rent', type: 'all'},
@@ -31,5 +34,10 @@ export class MenuComponent {
         this.showMenuList = this.menuList.filter(item => item.type === 'all');
       }
     });
+  }
+
+
+  public closeMenu(): void {
+    this.onCloseMenu.emit(this.hiddenMenu = !this.hiddenMenu);
   }
 }

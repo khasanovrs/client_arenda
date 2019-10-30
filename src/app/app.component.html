@@ -9,7 +9,7 @@
   <app-client-change-status-list></app-client-change-status-list>
   <app-rental></app-rental>
 </div>
-<app-menu *ngIf="checkAuth===true" class="---left-main-menu"></app-menu>
+<app-menu (onCloseMenu)="doSomething($event)" [ngClass]="{'---is-closed':HiddenMenu}" *ngIf="checkAuth===true" class="---left-main-menu"></app-menu>
 
 <div [ngClass]="{'---main-content':checkAuth===true}" class="---d-flex ---flex-nowrap ---flex-column">
   <app-header *ngIf="checkAuth===true"></app-header>

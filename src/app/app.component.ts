@@ -8,8 +8,8 @@ import {AuthService} from './components/auth/auth.service';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-
   checkAuth: Boolean = this.sessionStorageService.pubId !== null;
+  HiddenMenu: boolean = false;
 
   constructor(private sessionStorageService: SessionStorageService,
               private authService: AuthService,
@@ -39,6 +39,10 @@ export class AppComponent implements OnInit {
           console.log('Ошибка при получении данных по клиенту: ', error);
         });
     }
+  }
+
+  public doSomething(date: any): void {
+    this.HiddenMenu = date;
   }
 }
 

@@ -306,15 +306,4 @@ $(document).ready(function() {
     		.removeClass('---is-visible');
 
     });
-
-
-
-    /* Show/hide left menu */
-    $('.---menu-toggle').on('click', function(event) {
-    	event.preventDefault();
-
-    	$('.---left-main-menu')
-    		.toggleClass('---is-closed');
-    });
-
 });
