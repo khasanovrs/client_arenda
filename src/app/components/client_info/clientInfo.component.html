@@ -1,152 +1,155 @@
 <div class="---page-client-in ---row">
-
-  <div class="---col-12 ---col-lg-6 ---form">
-
-    <div class="---col-12 ---field ---d-flex ---flex-wrap">
-      <div style="margin: 0 10px 10px 0;" (click)="open_pay_history()" class="---btn ---btn--sm ---btn--fill-acent">
-        История платежей
+  <div class="---col-12 ---form">
+    <div class="---row">
+      
+      <div class="---col-12 ---field ---d-flex ---flex-wrap">
+        <div style="margin: 0 10px 10px 0;" (click)="open_pay_history()" class="---btn ---btn--sm ---btn--fill-acent">
+          История платежей
+        </div>
+        <div style="margin: 0 10px 10px 0;" (click)="open_application_history()"
+             class="---btn ---btn--sm ---btn--fill-acent">История заявок
+        </div>
+        <div style="margin: 0 10px 10px 0;" (click)="open_change_status_history()"
+             class="---btn ---btn--sm ---btn--fill-acent">История смены статусов
+        </div>
+        <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="deleteClient()"
+             class="---btn ---btn--sm ---btn--fill-acent">Удалить клиента
+        </div>
       </div>
-      <div style="margin: 0 10px 10px 0;" (click)="open_application_history()"
-           class="---btn ---btn--sm ---btn--fill-acent">История заявок
-      </div>
-      <div style="margin: 0 10px 10px 0;" (click)="open_change_status_history()"
-           class="---btn ---btn--sm ---btn--fill-acent">История смены статусов
-      </div>
-      <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="deleteClient()"
-           class="---btn ---btn--sm ---btn--fill-acent">Удалить клиента
-      </div>
-    </div>
 
-    <div class="---data-block ---radius-5">
-      <div class="h2 ---font-600">Данные о аренде</div>
+      <div class="---col-12 ---col-lg-6">
+        <div class="---data-block ---radius-5">
+          <div class="h2 ---font-600">Данные о аренде</div>
 
-      <div class="---row">
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Скидка</label>
-          <div class="---select">
-            <select [(ngModel)]="client.sale">
-              <option *ngFor="let discount of discounts" [ngValue]="discount.val">
-                {{discount.name}}
-              </option>
-            </select>
+          <div class="---row">
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Скидка</label>
+              <div class="---select">
+                <select [(ngModel)]="client.sale">
+                  <option *ngFor="let discount of discounts" [ngValue]="discount.val">
+                    {{discount.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Город аренды</label>
+              <div class="---select">
+                <select [(ngModel)]="client.branch">
+                  <option *ngFor="let branch of branches" [ngValue]="branch.val">
+                    {{branch.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Статус</label>
+              <div class="---select">
+                <select [(ngModel)]="client.new_status">
+                  <option *ngFor="let status of statusList" [ngValue]="status.val">
+                    {{status.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div *ngIf="client.new_status!=client.old_status" class="---field ---col-12 ---col-sm-6">
+              <label>Причина смены статуса</label>
+              <input class="---input ---fill--bg" [(ngModel)]="client.reason_change_status">
+            </div>
+
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Источник</label>
+              <div class="---select">
+                <select [(ngModel)]="client.source">
+                  <option *ngFor="let source of sources" [ngValue]="source.val">
+                    {{source.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Количество аренд</label>
+              <input disabled class="---input ---fill--bg" [(ngModel)]="client.count_application">
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Сумма оплаты</label>
+              <input disabled class="---input ---fill--bg" mask="separator" [(ngModel)]="client.all_total_paid">
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Бонусный счет</label>
+              <input disabled class="---input ---fill--bg" mask="separator" [(ngModel)]="client.bonus_account">
+            </div>
           </div>
         </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Город аренды</label>
-          <div class="---select">
-            <select [(ngModel)]="client.branch">
-              <option *ngFor="let branch of branches" [ngValue]="branch.val">
-                {{branch.name}}
-              </option>
-            </select>
+
+        <div class="---data-block ---radius-5">
+          <div class="h2 ---font-600">Данные клиента</div>
+
+          <div class="---row">
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Название компании (юр.лицо)</label>
+              <input class="---input ---fill--bg" [(ngModel)]="client.name" [disabled]="client.fio!=''">
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Представитель (юр.лицо)</label>
+              <input class="---input ---fill--bg" [(ngModel)]="client.name_chief" [disabled]="client.fio!=''">
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>ФИО (физ.лицо)</label>
+              <input class="---input ---fill--bg" [disabled]="client.name!='' || client.name_chief !=''"
+                     [(ngModel)]="client.fio">
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Инн</label>
+              <input class="---input ---fill--bg" [(ngModel)]="client.inn">
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>КПП</label>
+              <input class="---input ---fill--bg" [(ngModel)]="client.kpp">
+            </div>
+            <div class="---field col ---col-12 ---col-sm-6">
+              <label>Серия номер паспорта</label>
+              <input class="---input ---fill--bg" [(ngModel)]="client.number_passport">
+            </div>
+            <div class="---field col ---col-12 ---col-sm-6">
+              <label>Дата рождения</label>
+              <input type="date" class="---input ---fill--bg" [(ngModel)]="client.date_birth">
+            </div>
           </div>
         </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Статус</label>
-          <div class="---select">
-            <select [(ngModel)]="client.new_status">
-              <option *ngFor="let status of statusList" [ngValue]="status.val">
-                {{status.name}}
-              </option>
-            </select>
+
+        <div class="---data-block ---radius-5">
+          <div class="h2 ---font-600">Контакты</div>
+
+          <div class="---row">
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Номер телефона 1</label>
+              <input type="text" mask="0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="client.phone_1">
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Номер телефона 2</label>
+              <input type="text" mask="0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="client.phone_2">
+            </div>
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>Номер телефона 3</label>
+              <input type="text" mask="0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="client.phone_3">
+            </div>
+
+            <div class="---field ---col-12 ---col-sm-6">
+              <label>E-mail</label>
+              <input [(ngModel)]="client.email" class="---input ---fill--bg">
+            </div>
           </div>
         </div>
-        <div *ngIf="client.new_status!=client.old_status" class="---field ---col-12 ---col-sm-6">
-          <label>Причина смены статуса</label>
-          <input class="---input ---fill--bg" [(ngModel)]="client.reason_change_status">
-        </div>
 
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Источник</label>
-          <div class="---select">
-            <select [(ngModel)]="client.source">
-              <option *ngFor="let source of sources" [ngValue]="source.val">
-                {{source.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Количество аренд</label>
-          <input disabled class="---input ---fill--bg" [(ngModel)]="client.count_application">
-        </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Сумма оплаты</label>
-          <input disabled class="---input ---fill--bg" mask="separator" [(ngModel)]="client.all_total_paid">
-        </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Бонусный счет</label>
-          <input disabled class="---input ---fill--bg" mask="separator" [(ngModel)]="client.bonus_account">
+        <div class="---btns-wrapper">
+          <div (click)="getBailiffs()" class="---btn ---btn--fill-acent">Проверить у приставов</div>
+
+          <div (click)="changeClient()" class="---btn ---btn--fill-acent">Обновить</div>
         </div>
       </div>
+
     </div>
-
-    <div class="---data-block ---radius-5">
-      <div class="h2 ---font-600">Данные клиента</div>
-
-      <div class="---row">
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Название компании (юр.лицо)</label>
-          <input class="---input ---fill--bg" [(ngModel)]="client.name" [disabled]="client.fio!=''">
-        </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Представитель (юр.лицо)</label>
-          <input class="---input ---fill--bg" [(ngModel)]="client.name_chief" [disabled]="client.fio!=''">
-        </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>ФИО (физ.лицо)</label>
-          <input class="---input ---fill--bg" [disabled]="client.name!='' || client.name_chief !=''"
-                 [(ngModel)]="client.fio">
-        </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Инн</label>
-          <input class="---input ---fill--bg" [(ngModel)]="client.inn">
-        </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>КПП</label>
-          <input class="---input ---fill--bg" [(ngModel)]="client.kpp">
-        </div>
-        <div class="---field col ---col-12 ---col-sm-6">
-          <label>Серия номер паспорта</label>
-          <input class="---input ---fill--bg" [(ngModel)]="client.number_passport">
-        </div>
-        <div class="---field col ---col-12 ---col-sm-6">
-          <label>Дата рождения</label>
-          <input type="date" class="---input ---fill--bg" [(ngModel)]="client.date_birth">
-        </div>
-      </div>
-    </div>
-
-    <div class="---data-block ---radius-5">
-      <div class="h2 ---font-600">Контакты</div>
-
-      <div class="---row">
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Номер телефона 1</label>
-          <input type="text" mask="0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="client.phone_1">
-        </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Номер телефона 2</label>
-          <input type="text" mask="0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="client.phone_2">
-        </div>
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>Номер телефона 3</label>
-          <input type="text" mask="0 (000) 000 00 00" class="---input ---fill--bg" [(ngModel)]="client.phone_3">
-        </div>
-
-        <div class="---field ---col-12 ---col-sm-6">
-          <label>E-mail</label>
-          <input [(ngModel)]="client.email" class="---input ---fill--bg">
-        </div>
-      </div>
-    </div>
-
-    <div class="---btns-wrapper">
-      <div (click)="getBailiffs()" class="---btn ---btn--fill-acent">Проверить у приставов</div>
-
-      <div (click)="changeClient()" class="---btn ---btn--fill-acent">Обновить</div>
-    </div>
-
   </div>
 </div>
 
@@ -157,13 +160,13 @@
     <div class="---js-close-modal ---js-close-modal-icon" (click)="debts.show=false"></div>
     <div class="modal-body ---form">
 
-      <div *ngFor="let data of debts.data">
-        <div>{{data.subject}}</div>
-        <div>{{data.name}}</div>
-        <div>{{data.department}}</div>
-        <div>{{data.bailiff}}</div>
-        <div>{{data.exe_production}}</div>
-        <div>{{data.ip_end}}</div>
+      <div *ngFor="let data of debts.data" class="---modal-user-info">
+        <h2 class="---font-600">{{data.subject}}</h2>
+        <p>{{data.name}}</p>
+        <p>{{data.department}}</p>
+        <p>{{data.bailiff}}</p>
+        <p>{{data.exe_production}}</p>
+        <p>{{data.ip_end}}</p>
       </div>
 
     </div>
