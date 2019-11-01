@@ -15,6 +15,8 @@
         <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="deleteClient()"
              class="---btn ---btn--sm ---btn--fill-acent">Удалить клиента
         </div>
+
+        <div style="margin: 0 10px 10px 0;" (click)="getBailiffs()" class="---btn ---btn--sm ---btn--fill-acent">Проверить у приставов</div>
       </div>
 
       <div class="---col-12 ---col-lg-6">
@@ -143,8 +145,6 @@
         </div>
 
         <div class="---btns-wrapper">
-          <div (click)="getBailiffs()" class="---btn ---btn--fill-acent">Проверить у приставов</div>
-
           <div (click)="changeClient()" class="---btn ---btn--fill-acent">Обновить</div>
         </div>
       </div>
