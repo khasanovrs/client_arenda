@@ -221,6 +221,8 @@ export class ClientInfoComponent implements OnInit {
     this.clientService.getBailiffs({fio: name, region: this.client.branch, type: type}).then((data: any) => {
         if (data.length === 0) {
           this.globalParamsMessage.data = {title: 'У клиента нет долгов', type: 'success', body: ''};
+        } else {
+          this.globalParamsMessage.data = {title: 'У клиента есть долги', type: 'success', body: ''};
         }
 
       },
