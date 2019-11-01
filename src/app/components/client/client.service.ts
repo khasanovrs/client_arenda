@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HttpService} from '../../utils/http/http.service';
+import {GlobalParamsMessage} from '../message_alert/global-params-message';
 
 @Injectable()
 export class ClientService {
@@ -16,7 +17,8 @@ export class ClientService {
   activeFields: InterFaceActiveFields[] = [];
   refreshClientInfo: EventEmitter<any> = new EventEmitter(false);
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService,
+              private globalParamsMessage: GlobalParamsMessage) {
   }
 
   // поиск и получение клиентов
@@ -37,15 +39,52 @@ export class ClientService {
   // поиск данных от приставов
   public getBailiffs(data) {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/get-bailiffs', data)
+
+      const data = [
+        {
+          bailiff: 'КУРБАТОВА Е. В. +7(3412)27-12-05<br>+7(3412)27-12-05<br>',
+          department: 'Увинский МРОСП 427260, п.Ува, ул.Калинина, д.23',
+          details: 'Исполнительный лист от 09.09.2015 № ФС 004498434 ПЕРВОМАЙСКИЙ РАЙОННЫЙ СУД Г. ИЖЕВСКА',
+          exe_production: '13687/15/18042-ИП от 13.10.2015',
+          ip_end: '2016-12-19, 46, 1, 3',
+          name: 'ЧАШНИКОВ АЛЕКСАНДР ВЛАДИМИРОВИЧ 22.07.1985 ПОС. СЮРЕК СЮМСИНСКОГО Р-НА УДМУРТСКОЙ РЕСПУБЛИКИ',
+          subject: 'Наложение ареста'
+        },
+        {
+          bailiff: 'КУРБАТОВА Е. В. +7(3412)27-12-05<br>+7(3412)27-12-05<br>',
+          department: 'Увинский МРОСП 427260, п.Ува, ул.Калинина, д.23',
+          details: 'Исполнительный лист от 09.09.2015 № ФС 004498434 ПЕРВОМАЙСКИЙ РАЙОННЫЙ СУД Г. ИЖЕВСКА',
+          exe_production: '13687/15/18042-ИП от 13.10.2015',
+          ip_end: '2016-12-19, 46, 1, 3',
+          name: 'ЧАШНИКОВ АЛЕКСАНДР ВЛАДИМИРОВИЧ 22.07.1985 ПОС. СЮРЕК СЮМСИНСКОГО Р-НА УДМУРТСКОЙ РЕСПУБЛИКИ',
+          subject: 'Наложение ареста'
+        },
+        {
+          bailiff: 'КУРБАТОВА Е. В. +7(3412)27-12-05<br>+7(3412)27-12-05<br>',
+          department: 'Увинский МРОСП 427260, п.Ува, ул.Калинина, д.23',
+          details: 'Исполнительный лист от 09.09.2015 № ФС 004498434 ПЕРВОМАЙСКИЙ РАЙОННЫЙ СУД Г. ИЖЕВСКА',
+          exe_production: '13687/15/18042-ИП от 13.10.2015',
+          ip_end: '2016-12-19, 46, 1, 3',
+          name: 'ЧАШНИКОВ АЛЕКСАНДР ВЛАДИМИРОВИЧ 22.07.1985 ПОС. СЮРЕК СЮМСИНСКОГО Р-НА УДМУРТСКОЙ РЕСПУБЛИКИ',
+          subject: 'Наложение ареста'
+        }
+      ];
+
+      resolve(data);
+      /*this.httpService.prepareQuery('api/get-bailiffs', data)
         .then((result: any) => {
-            resolve(result);
+            if (typeof result.msg != 'undefined') {
+              this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
+              resolve(result.data);
+            } else {
+              resolve(result);
+            }
           },
           (error) => {
             console.log('Ошибка при получении данных от приставов', error);
             reject(error);
           }
-        );
+        );*/
     });
   }
 

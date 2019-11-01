@@ -65,6 +65,19 @@ export class ClientInfoComponent implements OnInit {
     }]
   };
 
+  debts: InterFaceDebts = {
+    show: false,
+    data: [{
+      bailiff: '',
+      department: '',
+      details: '',
+      exe_production: '',
+      ip_end: '',
+      name: '',
+      subject: ''
+    }]
+  };
+
   // идентификатор клиента
   clientId: null;
 
@@ -219,12 +232,9 @@ export class ClientInfoComponent implements OnInit {
       type = '1';
     }
     this.clientService.getBailiffs({fio: name, region: this.client.branch, type: type}).then((data: any) => {
-        if (data.length === 0) {
-          this.globalParamsMessage.data = {title: 'У клиента нет долгов', type: 'success', body: ''};
-        } else {
-          this.globalParamsMessage.data = {title: 'У клиента есть долги', type: 'success', body: ''};
+        if (data.length !== 0) {
+          this.debts = {show: true, data: data};
         }
-
       },
       (error) => {
         console.log('Ошибка при получении данных от приставов: ', error);

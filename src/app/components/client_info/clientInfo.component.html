@@ -3,10 +3,18 @@
   <div class="---col-12 ---col-lg-6 ---form">
 
     <div class="---col-12 ---field ---d-flex ---flex-wrap">
-      <div style="margin: 0 10px 10px 0;" (click)="open_pay_history()" class="---btn ---btn--sm ---btn--fill-acent">История платежей</div>
-      <div style="margin: 0 10px 10px 0;" (click)="open_application_history()" class="---btn ---btn--sm ---btn--fill-acent">История заявок</div>
-      <div style="margin: 0 10px 10px 0;" (click)="open_change_status_history()" class="---btn ---btn--sm ---btn--fill-acent">История смены статусов</div>
-      <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="deleteClient()" class="---btn ---btn--sm ---btn--fill-acent">Удалить клиента</div>
+      <div style="margin: 0 10px 10px 0;" (click)="open_pay_history()" class="---btn ---btn--sm ---btn--fill-acent">
+        История платежей
+      </div>
+      <div style="margin: 0 10px 10px 0;" (click)="open_application_history()"
+           class="---btn ---btn--sm ---btn--fill-acent">История заявок
+      </div>
+      <div style="margin: 0 10px 10px 0;" (click)="open_change_status_history()"
+           class="---btn ---btn--sm ---btn--fill-acent">История смены статусов
+      </div>
+      <div *ngIf="globalParamsUser.type===1" style="margin: 0 10px 10px 0;" (click)="deleteClient()"
+           class="---btn ---btn--sm ---btn--fill-acent">Удалить клиента
+      </div>
     </div>
 
     <div class="---data-block ---radius-5">
@@ -44,8 +52,8 @@
           </div>
         </div>
         <div *ngIf="client.new_status!=client.old_status" class="---field ---col-12 ---col-sm-6">
-            <label>Причина смены статуса</label>
-            <input class="---input ---fill--bg" [(ngModel)]="client.reason_change_status">
+          <label>Причина смены статуса</label>
+          <input class="---input ---fill--bg" [(ngModel)]="client.reason_change_status">
         </div>
 
         <div class="---field ---col-12 ---col-sm-6">
@@ -64,11 +72,11 @@
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Сумма оплаты</label>
-          <input disabled class="---input ---fill--bg"  mask="separator" [(ngModel)]="client.all_total_paid">
+          <input disabled class="---input ---fill--bg" mask="separator" [(ngModel)]="client.all_total_paid">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Бонусный счет</label>
-          <input disabled class="---input ---fill--bg"  mask="separator" [(ngModel)]="client.bonus_account">
+          <input disabled class="---input ---fill--bg" mask="separator" [(ngModel)]="client.bonus_account">
         </div>
       </div>
     </div>
@@ -87,7 +95,8 @@
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>ФИО (физ.лицо)</label>
-          <input class="---input ---fill--bg" [disabled]="client.name!='' || client.name_chief !=''" [(ngModel)]="client.fio">
+          <input class="---input ---fill--bg" [disabled]="client.name!='' || client.name_chief !=''"
+                 [(ngModel)]="client.fio">
         </div>
         <div class="---field ---col-12 ---col-sm-6">
           <label>Инн</label>
@@ -138,5 +147,25 @@
       <div (click)="changeClient()" class="---btn ---btn--fill-acent">Обновить</div>
     </div>
 
+  </div>
+</div>
+
+
+<div *ngIf="debts.show" id="---modal-text"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--small">
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="debts.show=false"></div>
+    <div class="modal-body ---form">
+
+      <div *ngFor="let data of debts.data">
+        <div>{{data.subject}}</div>
+        <div>{{data.name}}</div>
+        <div>{{data.department}}</div>
+        <div>{{data.bailiff}}</div>
+        <div>{{data.exe_production}}</div>
+        <div>{{data.ip_end}}</div>
+      </div>
+
+    </div>
   </div>
 </div>
