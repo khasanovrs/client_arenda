@@ -11,6 +11,7 @@ import {FinanceService} from '../finance/finance.service';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import {DocumentService} from '../../services/document.service';
 import {EquipmentsCreateMiniService} from '../equipments_create_mini/equipmentsCreateMini.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-applications-create',
@@ -24,7 +25,7 @@ export class ApplicationsCreateComponent implements OnInit {
   applicationsDelivery: InterFaceDopParams[] = [];
   applicationsTypeLeases: InterFaceDopParams[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
-  branches: InterFaceDopParams[] = [];
+  branches: InterFaceBranch[] = [];
   // список скидок
   discounts: InterFaceDopParams[] = [];
   // отображение окна поиска клиента из бд
@@ -167,7 +168,7 @@ export class ApplicationsCreateComponent implements OnInit {
         console.log('Ошибка при получении списка скидок: ', error);
       });
 
-    this.dopParamsService.getBranch().then((data: InterFaceDopParams[]) => {
+    this.dopParamsService.getBranch().then((data: InterFaceBranch[]) => {
         this.branches = data;
         this.application.branch.val = this.globalParamsUser.branch;
         this.changeBranch();
@@ -176,19 +177,27 @@ export class ApplicationsCreateComponent implements OnInit {
         console.log('Ошибка при получении филиалов: ', error);
       });
 
-    this.application.rent_start.val = new Date().toISOString().slice(0, 16);
+    this.application.rent_start.val = moment().format().slice(0, 16);
   }
 
   // изменение типа доставки
-  changeTypeLease() {
-    const tomorrow = new Date();
-
-    if (this.application.typeLease.val === 1) {
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      this.application.rent_end.val = tomorrow.toISOString().slice(0, 16);
+  changeTypeLease(time_diff = 0) {
+    if (time_diff === 0) {
+      this.application.rent_start.val = moment().format().slice(0, 16);
+      if (this.application.typeLease.val === 1) {
+        this.application.rent_end.val = moment().add(24, 'hours').format().slice(0, 16);
+      } else {
+        this.application.rent_end.val = moment().add(30, 'day').format().slice(0, 16);
+      }
     } else {
-      tomorrow.setDate(tomorrow.getDate() + 30);
-      this.application.rent_end.val = tomorrow.toISOString().slice(0, 16);
+      const currentDate = moment().add(time_diff, 'hours').format();
+      this.application.rent_start.val = currentDate.slice(0, 16);
+
+      if (this.application.typeLease.val === 1) {
+        this.application.rent_end.val = moment().add(24 + time_diff, 'hours').format().slice(0, 16);
+      } else {
+        this.application.rent_end.val = moment().add(30 + time_diff, 'day').format().slice(0, 16);
+      }
     }
 
     this.changeSum();
@@ -212,6 +221,10 @@ export class ApplicationsCreateComponent implements OnInit {
       branch: this.application.branch.val
     }).then((data: InterFaceSearchClient[]) => {
         this.showAddEquipments.equipments = data;
+
+        const currentBranch = this.branches.filter(item => item.val === this.application.branch.val);
+
+        this.changeTypeLease(+currentBranch[0].time_diff);
       },
       (error) => {
         console.log('Ошибка при получении списка оборудования: ', error);
