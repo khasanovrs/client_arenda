@@ -92,8 +92,8 @@ export class HttpService {
     const headers = new HttpHeaders();
 
     // return this.http.post('http://localhost:8004/' + api, request, {headers: headers})
-    // return this.http.post('http://u68857.netangels.ru/' + api, request, {headers: headers})
-    return this.http.post('https://backend-stroika-arenda.ru/' + api, request, {headers: headers})
+    return this.http.post('http://u68857.netangels.ru/' + api, request, {headers: headers})
+    // return this.http.post('https://backend-stroika-arenda.ru/' + api, request, {headers: headers})
       .pipe(
         catchError(HttpService.handlerError)
       );

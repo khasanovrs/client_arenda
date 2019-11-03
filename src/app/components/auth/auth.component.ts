@@ -11,9 +11,6 @@ import {Router} from '@angular/router';
 export class AuthComponent {
   phone = '';
   pass = '';
-  date = new Date().toISOString();
-  date1 = new Date().toLocaleString();
-
 
   constructor(private authService: AuthService,
               private globalParamsMessage: GlobalParamsMessage,
