@@ -242,6 +242,7 @@ export class ApplicationsCreateComponent implements OnInit {
   changeSum() {
     this.application.delivery_sum = this.application.delivery.val === 1 ? this.application.delivery_sum : '0';
     this.allSum = 0;
+
     this.allSum += parseFloat(this.application.delivery_sum);
     let sum = null;
     if (this.application.equipments.length !== 0) {

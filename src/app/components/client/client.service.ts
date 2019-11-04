@@ -41,7 +41,7 @@ export class ClientService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/get-bailiffs', data)
         .then((result: any) => {
-            if (typeof result.msg != 'undefined') {
+            if (typeof result.msg !== 'undefined') {
               this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
               resolve(result.data);
             } else {
