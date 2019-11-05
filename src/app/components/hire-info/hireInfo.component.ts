@@ -10,6 +10,7 @@ import {DopParamsService} from '../../services/dopParams.service';
 import {ApplicationsService} from '../applications/applications.service';
 import {GlobalExtensionsList} from '../extensions_list/global-extensions-list';
 import {GlobalParamsUser} from '../../storage/global-params-user';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-hire-info',
@@ -114,8 +115,8 @@ export class HireInfoComponent {
     this.hireService.getHireInfo({id: this.hireId}).then((data: InterFaceHireInfo) => {
         this.showReturnEq = false;
         this.hireInfo = data;
-        this.hireInfo.rent_start = new Date(this.hireInfo.rent_start).toISOString().slice(0, 16);
-        this.hireInfo.rent_end = new Date(this.hireInfo.rent_end).toISOString().slice(0, 16);
+        this.hireInfo.rent_start = moment(this.hireInfo.rent_start).format().slice(0, 16);
+        this.hireInfo.rent_end = moment(this.hireInfo.rent_end).format().slice(0, 16);
         this.globalPayList.data.pay_list = this.hireInfo.pay_list;
         this.globalExtensionsList.data.extension_list = this.hireInfo.extensions;
 
