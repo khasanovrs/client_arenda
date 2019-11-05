@@ -134,7 +134,7 @@ export class HireInfoComponent {
         }
 
         // возврат оборудования только когда он еще в прокате и прокат находится в стадии "прокат" или "бронь"
-        if (this.hireInfo.equipments.state_id !== 4 && (this.hireInfo.hire_state_id === 1 || this.hireInfo.hire_state_id === 4)) {
+        if (this.hireInfo.equipments.state_id !== 4 && (this.hireInfo.hire_state_id === 1 || this.hireInfo.hire_state_id === 4 || this.hireInfo.hire_state_id === 2)) {
           this.showReturnEq = true;
         }
 
