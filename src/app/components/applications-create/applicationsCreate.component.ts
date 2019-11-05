@@ -218,7 +218,8 @@ export class ApplicationsCreateComponent implements OnInit {
   changeBranch(filter = '') {
     this.equipmentsService.allEquipmentsBranch({
       filter: filter,
-      branch: this.application.branch.val
+      branch: this.application.branch.val,
+      applicationStatus: this.application.status.val
     }).then((data: InterFaceSearchClient[]) => {
         this.showAddEquipments.equipments = data;
 
@@ -308,6 +309,8 @@ export class ApplicationsCreateComponent implements OnInit {
     if (val === 5) {
       this.buttonText = 'Создание "узнали"';
     }
+
+    this.changeBranch();
   }
 
   // поиск клиентов из бд
