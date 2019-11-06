@@ -1,5 +1,5 @@
 <app-message-alert style="z-index: 9999"></app-message-alert>
-<div *ngIf="checkAuth===true" >
+<div *ngIf="checkAuth===true">
   <app-pay></app-pay>
   <app-pay-list></app-pay-list>
   <app-pay-list-client></app-pay-list-client>
@@ -9,7 +9,8 @@
   <app-client-change-status-list></app-client-change-status-list>
   <app-rental></app-rental>
 </div>
-<app-menu (onCloseMenu)="doSomething($event)" [ngClass]="{'---is-closed':HiddenMenu}" *ngIf="checkAuth===true" class="---left-main-menu"></app-menu>
+<app-menu [userType]="userType" (onCloseMenu)="doSomething($event)" [ngClass]="{'---is-closed':HiddenMenu}"
+          *ngIf="checkAuth===true" class="---left-main-menu"></app-menu>
 
 <div [ngClass]="{'---main-content':checkAuth===true}" class="---d-flex ---flex-nowrap ---flex-column">
   <app-header *ngIf="checkAuth===true"></app-header>

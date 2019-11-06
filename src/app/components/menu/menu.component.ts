@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import {AuthService} from '../auth/auth.service';
 
@@ -6,8 +6,9 @@ import {AuthService} from '../auth/auth.service';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   @Output() onCloseMenu: EventEmitter<any> = new EventEmitter<any>();
+  @Input() userType = null;
   hiddenMenu = false;
 
   menuList: InterFaceMenu[] = [
@@ -23,19 +24,17 @@ export class MenuComponent {
   ];
   showMenuList: InterFaceMenu[];
 
-  constructor(public globalParamsUser: GlobalParamsUser,
-              public authService: AuthService) {
-    this.showMenuList = this.menuList;
-
-    this.authService.refreshAuthClientInfo.subscribe(() => {
-      if (this.globalParamsUser.type === 1) {
-        this.showMenuList = this.menuList;
-      } else {
-        this.showMenuList = this.menuList.filter(item => item.type === 'all');
-      }
-    });
+  constructor(public globalParamsUser: GlobalParamsUser) {
   }
 
+  ngOnInit() {
+    console.log(1, this.userType);
+    if (this.userType === 1) {
+      this.showMenuList = this.menuList;
+    } else {
+      this.showMenuList = this.menuList.filter(item => item.type === 'all');
+    }
+  }
 
   public closeMenu(): void {
     this.onCloseMenu.emit(this.hiddenMenu = !this.hiddenMenu);

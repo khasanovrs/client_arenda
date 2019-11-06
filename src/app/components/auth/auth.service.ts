@@ -17,11 +17,8 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/auth', data)
         .then((result: InterFaceAuthClient) => {
+            this.changeType(result);
             this.sessionStorageService.change(true);
-            this.globalParamsUser.branch = result.branch;
-            this.globalParamsUser.type = result.type;
-            console.log(4)
-            this.refreshAuthClientInfo.emit(true);
             resolve();
           },
           (error) => {
@@ -37,9 +34,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/get-user', '')
         .then((result: InterFaceAuthClient) => {
-            this.globalParamsUser.branch = result.branch;
-            this.globalParamsUser.type = result.type;
-            this.refreshAuthClientInfo.emit(true);
+            this.changeType(result);
             resolve();
           },
           (error) => {
@@ -48,6 +43,12 @@ export class AuthService {
           }
         );
     });
+  }
+
+  changeType(result) {
+    this.globalParamsUser.branch = result.branch;
+    this.globalParamsUser.type = result.type;
+    this.refreshAuthClientInfo.emit(true);
   }
 
   // получение детальной информации по клиенту
