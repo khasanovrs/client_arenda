@@ -151,7 +151,7 @@ export class StockComponent implements OnInit {
   getEquipments() {
     this.equipmentsService.getEquipments({
       like: this.filters.like,
-      stock: this.globalParamsUser.type === 1 ? this.filters.stock : this.globalParamsUser.branch,
+      stock: this.filters.stock,
       equipmentsType: this.filters.equipmentsType,
       equipmentsCategory: this.filters.equipmentsCategory,
       status: this.filters.status,
