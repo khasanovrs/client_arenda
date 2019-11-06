@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
     });
 
     this.authService.refreshAuthClientInfo.subscribe(() => {
-      console.log(22, this.globalParamsUser);
       this.userType = this.globalParamsUser.type;
     });
   }

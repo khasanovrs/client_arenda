@@ -4,6 +4,7 @@ import {StockService} from './stock.service';
 import {EquipmentsService} from '../equipments/equipments.service';
 import {Router} from '@angular/router';
 import {Sort} from '@angular/material/sort';
+import {GlobalParamsUser} from '../../storage/global-params-user';
 
 @Component({
   selector: 'app-stock',
@@ -69,6 +70,7 @@ export class StockComponent implements OnInit {
   constructor(private stockService: StockService,
               private dopParamsService: DopParamsService,
               private equipmentsService: EquipmentsService,
+              public globalParamsUser: GlobalParamsUser,
               private router: Router) {
   }
 
@@ -149,7 +151,7 @@ export class StockComponent implements OnInit {
   getEquipments() {
     this.equipmentsService.getEquipments({
       like: this.filters.like,
-      stock: this.filters.stock,
+      stock: this.globalParamsUser.type === 1 ? this.filters.stock : this.globalParamsUser.branch,
       equipmentsType: this.filters.equipmentsType,
       equipmentsCategory: this.filters.equipmentsCategory,
       status: this.filters.status,
