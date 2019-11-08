@@ -82,6 +82,21 @@ export class HireService {
     });
   }
 
+  // запуск крона
+  public startCron() {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/start-cron', '')
+        .then((result) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при запуске крона', error);
+            reject();
+          }
+        );
+    });
+  }
+
   // получение информации по заявке
   public getHireInfo(data) {
     return new Promise((resolve, reject) => {

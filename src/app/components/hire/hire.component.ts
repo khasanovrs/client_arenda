@@ -130,6 +130,16 @@ export class HireComponent {
     this.router.navigate(['/hire/' + id]);
   }
 
+  cronStart() {
+    this.hireService.startCron({
+    }).then(() => {
+        this.getHire();
+      },
+      (error) => {
+        console.log('Ошибка при запуске крона: ', error);
+      });
+  }
+
   getHire() {
     this.hireService.getHire({
       status: this.filters.status,
