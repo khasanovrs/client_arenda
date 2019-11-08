@@ -131,7 +131,8 @@ export class HireService {
   public closeHire(data) {
     return new Promise((resolve, reject) => {
       this.httpService.prepareQuery('api/close-hire', data)
-        .then(() => {
+        .then((result: any) => {
+            this.globalParamsMessage.data = {title: result.msg, type: 'success', body: ''};
             resolve();
           },
           (error) => {

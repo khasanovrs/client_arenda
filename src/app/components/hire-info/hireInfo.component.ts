@@ -224,7 +224,7 @@ export class HireInfoComponent {
     this.hireService.closeHire({
       id: this.hireInfo.id
     }).then(() => {
-        this.globalParamsMessage.data = {title: 'Прокат успешно закрыт', type: 'success', body: ''};
+
         this.getHireInfo();
       },
       (error) => {
