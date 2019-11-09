@@ -131,8 +131,7 @@ export class HireComponent {
   }
 
   cronStart() {
-    this.hireService.startCron({
-    }).then(() => {
+    this.hireService.startCron().then(() => {
         this.getHire();
       },
       (error) => {
