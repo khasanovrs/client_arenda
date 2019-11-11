@@ -9,7 +9,6 @@ import {GlobalParams} from '../../storage/global-params';
 import {ApplicationsService} from '../applications/applications.service';
 import {FinanceService} from '../finance/finance.service';
 import {GlobalParamsUser} from '../../storage/global-params-user';
-import {DocumentService} from '../../services/document.service';
 import {EquipmentsCreateMiniService} from '../equipments_create_mini/equipmentsCreateMini.service';
 import * as moment from 'moment';
 
@@ -92,7 +91,6 @@ export class ApplicationsCreateComponent implements OnInit {
               public globalParams: GlobalParams,
               private router: Router,
               private globalParamsUser: GlobalParamsUser,
-              private documentService: DocumentService,
               private equipmentsCreateMiniService: EquipmentsCreateMiniService,
               public financeService: FinanceService) {
 
@@ -201,17 +199,6 @@ export class ApplicationsCreateComponent implements OnInit {
     }
 
     this.changeSum();
-  }
-
-  // получение доков
-  save_word() {
-    this.documentService.getPdf().subscribe((data) => {
-      const downloadURL = window.URL.createObjectURL(data);
-      const link = document.createElement('a');
-      link.href = downloadURL;
-      link.download = 'file.docx';
-      link.click();
-    });
   }
 
   // смена филиала
