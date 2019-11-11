@@ -115,6 +115,10 @@
         <div class="---input ---input--disabled">{{hireInfo.count}}</div>
       </div>
 
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Телефон клиента</label>
+        <div class="---input ---input--disabled">{{hireInfo.client_phone | telephoneNumber}}</div>
+      </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
         <label>Оплоченно (РУБ.)</label>
@@ -122,21 +126,11 @@
         <input mask="separator" class="---input ---input--disabled" [(ngModel)]="hireInfo.total_paid">
       </div>
 
+
       <div class="---field ---col-sm-6 ---col-lg-4">
         <label>Осталось</label>
         <div class="---input ---input--disabled">{{hireInfo.remainder | digitsNumbers}} ₽</div>
       </div>
-
-      <div class="---field ---col-sm-6 ---col-lg-4">
-        <label>Телефон клиента</label>
-        <div class="---input ---input--disabled">{{hireInfo.client_phone | telephoneNumber}}</div>
-      </div>
-
-      <div class="---field ---col-sm-6 ---col-lg-4">
-        <label>Доставка</label>
-        <div class="---input ---input--disabled">{{hireInfo.delivery_sum}} ₽</div>
-      </div>
-
 
       <div class="---field ---col-sm-6 ---col-lg-4">
         <label>Сумма</label>
@@ -144,8 +138,8 @@
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
-        <label>Сумма со скидкой</label>
-        <div class="---input ---input--disabled">{{hireInfo.sum_sale | digitsNumbers}} ₽</div>
+        <label>Доставка</label>
+        <div class="---input ---input--disabled">{{hireInfo.delivery_sum}} ₽</div>
       </div>
 
       <div class="---field ---col-12">

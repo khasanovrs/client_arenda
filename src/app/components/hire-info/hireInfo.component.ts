@@ -44,7 +44,6 @@ export class HireInfoComponent {
     client_phone: '',
     delivery_sum: '',
     sum: '',
-    sum_sale: '',
     total_paid: '',
     remainder: '',
     count: null,
