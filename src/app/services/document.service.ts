@@ -12,7 +12,8 @@ export class DocumentService {
   getPdf() {
     const httpOptions = {
       responseType: 'blob' as 'json',
-      headers: new HttpHeaders()
+      headers: new HttpHeaders(),
+      test: 'test'
     };
 
     return this.http.get('http://localhost:8004/api/get-doc', httpOptions);

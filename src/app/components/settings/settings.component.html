@@ -10,7 +10,9 @@
   </div>
 
   <div *ngIf="currentTab==='print'" class="---col-12">
-    Печатные формы
+    <div class="---field ---d-flex ---flex-wrap ---justify-content-between ---col-12">
+      <div (click)="save_word()" class="---btn ---btn--fill-acent">Скачать док</div>
+    </div>
   </div>
 
   <div *ngIf="currentTab==='stock'" class="---col-12">
