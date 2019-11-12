@@ -1,0 +1,20 @@
+<div *ngIf="data.data.show" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--small">
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="clear()"></div>
+    <div class="modal-body ---form">
+
+      <div class="---field">
+        <div class="h3">Дата окончания аренды: <b>{{data.data.date_end | date: 'dd.MM.yyyy HH:mm:ss'}}</b></div>
+      </div>
+
+      <div class="---field">
+        <label>Укажите количество <span *ngIf="data.data.type_lease==2">месяцев</span><span *ngIf="data.data.type_lease==1">дней</span></label>
+
+        <input [(ngModel)]="data.data.count" mask="separator" class="---input ---fill--bg">
+      </div>
+
+      <div class="---btn ---btn--fill-acent ---btn--sm" (click)="send()">Сократить</div>
+
+    </div>
+  </div>
+</div>

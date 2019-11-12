@@ -135,7 +135,23 @@ export class ApplicationsService {
             resolve();
           },
           (error) => {
-            console.log('Ошибка при добавлении статуса для проката', error);
+            console.log('Ошибка при продлении проката', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // сократить контракт
+  public tameRental(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/tame-rental', data)
+        .then(() => {
+            this.refreshInfo.emit(true);
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при сокращении проката', error);
             reject();
           }
         );

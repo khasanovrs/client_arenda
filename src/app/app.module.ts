@@ -79,6 +79,8 @@ import {SettingsParamsService} from './components/settingsParams/settingsParams.
 import {DocumentService} from './services/document.service';
 import {EquipmentsCreateMiniService} from './components/equipments_create_mini/equipmentsCreateMini.service';
 import {EquipmentsCreateMiniComponent} from './components/equipments_create_mini/equipmentsCreateMini.component';
+import {TameComponent} from './components/tame/tame.component';
+import {GlobalParamsTame} from './components/tame/global-params-tame';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -122,7 +124,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     ClientChangeStatusComponent,
     ClientChangeStatusListComponent,
     SettingsParamsComponent,
-    EquipmentsCreateMiniComponent
+    EquipmentsCreateMiniComponent,
+    TameComponent
   ],
   imports: [
     BrowserModule,
@@ -142,6 +145,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     GlobalParamsPay,
     GlobalPayListClient,
     GlobalParamsRental,
+    GlobalParamsTame,
     GlobalPayList,
     GlobalApplicationListClient,
     GlobalExtensionsList,

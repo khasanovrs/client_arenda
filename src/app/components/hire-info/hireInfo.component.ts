@@ -11,6 +11,7 @@ import {ApplicationsService} from '../applications/applications.service';
 import {GlobalExtensionsList} from '../extensions_list/global-extensions-list';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import * as moment from 'moment';
+import {GlobalParamsTame} from '../tame/global-params-tame';
 
 @Component({
   selector: 'app-hire-info',
@@ -76,6 +77,7 @@ export class HireInfoComponent {
               public globalPayList: GlobalPayList,
               private globalParamsPay: GlobalParamsPay,
               private globalParamsRental: GlobalParamsRental,
+              private globalParamsTame: GlobalParamsTame,
               private applicationsService: ApplicationsService,
               private applicationsCreateService: ApplicationsCreateService,
               private dopParamsService: DopParamsService,
@@ -187,8 +189,20 @@ export class HireInfoComponent {
     this.globalParamsPay.data = {show: true, sum: '', eq_id: this.hireInfo.id, cashBox: null};
   }
 
+  // продление проката
   showInsertRental() {
     this.globalParamsRental.data = {
+      show: true,
+      date_end: this.hireInfo.rent_end,
+      type_lease: this.hireInfo.typeLease_id,
+      app_eq_id: this.hireInfo.id,
+      app_id: this.hireInfo.app_id
+    };
+  }
+
+  // сокращение проката
+  showTameRental() {
+    this.globalParamsTame.data = {
       show: true,
       date_end: this.hireInfo.rent_end,
       type_lease: this.hireInfo.typeLease_id,
