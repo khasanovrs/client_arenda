@@ -123,6 +123,7 @@ export class EquipmentsCreateComponent implements OnInit {
       equipmentsCategory: this.newEquipments.category,
       tool_number: this.newEquipments.tool_number,
       mark: this.newEquipments.mark,
+      selling: this.newEquipments.selling,
       selling_price: this.newEquipments.selling_price,
       price_per_day: this.newEquipments.price_per_day,
       rentals: this.newEquipments.rentals,

@@ -7,6 +7,7 @@ interface InterFacenewEquipments {
   category: number;
   discount: number;
   tool_number: number;
+  selling: string;
   selling_price: string;
   price_per_day: string;
   rentals: number;
