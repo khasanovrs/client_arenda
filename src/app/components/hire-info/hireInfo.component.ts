@@ -12,6 +12,7 @@ import {GlobalExtensionsList} from '../extensions_list/global-extensions-list';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import * as moment from 'moment';
 import {GlobalParamsTame} from '../tame/global-params-tame';
+import {DocumentService} from '../../services/document.service';
 
 @Component({
   selector: 'app-hire-info',
@@ -82,6 +83,7 @@ export class HireInfoComponent {
               private applicationsCreateService: ApplicationsCreateService,
               private dopParamsService: DopParamsService,
               private routerCurrent: Router,
+              private documentService: DocumentService,
               public globalParamsUser: GlobalParamsUser,
               private globalExtensionsList: GlobalExtensionsList) {
 
@@ -243,5 +245,16 @@ export class HireInfoComponent {
       (error) => {
         console.log('Ошибка при закрытии проката: ', error);
       });
+  }
+
+  // получение доков
+  save_word() {
+    this.documentService.getPdf().subscribe((data) => {
+      const downloadURL = window.URL.createObjectURL(data);
+      const link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = 'file.docx';
+      link.click();
+    });
   }
 }

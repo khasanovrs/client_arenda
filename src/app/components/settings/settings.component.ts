@@ -16,16 +16,4 @@ export class SettingsComponent {
   changeTab(data) {
     this.currentTab = data;
   }
-
-  // получение доков
-  save_word() {
-    this.documentService.getPdf().subscribe((data) => {
-      const downloadURL = window.URL.createObjectURL(data);
-      const link = document.createElement('a');
-      link.href = downloadURL;
-      link.download = 'file.docx';
-      link.click();
-    });
-  }
-
 }
