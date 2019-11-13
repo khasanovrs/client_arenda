@@ -19,6 +19,20 @@ export class DocumentService {
     return this.http.get('http://localhost:8004/api/get-doc', httpOptions);
   }
 
+  public getWord(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-doc', data)
+        .then((result) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при удалении проекта', error);
+            reject();
+          }
+        );
+    });
+  }
+
   // получение источников
   public getDoc() {
     return new Promise((resolve, reject) => {
