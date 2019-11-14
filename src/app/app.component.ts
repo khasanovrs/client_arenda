@@ -11,7 +11,7 @@ import {GlobalParamsUser} from './storage/global-params-user';
 export class AppComponent implements OnInit {
   checkAuth: Boolean = this.sessionStorageService.pubId !== null;
   HiddenMenu = false;
-  userType = null;
+  userType = this.globalParamsUser.type;
 
   constructor(private sessionStorageService: SessionStorageService,
               private authService: AuthService,

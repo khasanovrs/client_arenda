@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {GlobalParamsUser} from '../../storage/global-params-user';
-import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -28,6 +27,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(1,this.userType);
     if (this.userType === 1) {
       this.showMenuList = this.menuList;
     } else {
