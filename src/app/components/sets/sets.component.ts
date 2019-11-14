@@ -14,6 +14,22 @@ import {HireService} from '../hire/hire.service';
   templateUrl: './sets.component.html',
 })
 export class SetsComponent implements OnInit {
+  showClientStatus = false;
+  showAppStatus = false;
+  showHireStatus = false;
+  showEqStatus = false;
+  showFinanceCategory = false;
+  showSource = false;
+  showBranch = false;
+  showDiscount = false;
+  showStock = false;
+  showRight = false;
+  showRole = false;
+  showCashBox = false;
+  showCategoryList = false;
+  showTypeList = false;
+  showMarkList = false;
+
   // список статусов для клиентов
   clientStatusList: InterFaceDopParamsColor[] = [];
   // список статусов для заявок

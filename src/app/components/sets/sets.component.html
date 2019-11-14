@@ -6,8 +6,8 @@
 
     <div class="---col-xl-8">
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Статусы для клиентов</div>
-        <div class="---row">
+        <div (click)="showClientStatus=!showClientStatus" class="h2 ---font-600">Статусы для клиентов</div>
+        <div class="---row" *ngIf="showClientStatus">
           <div class="---col-lg-6" *ngFor="let status of clientStatusList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{status.name}}</div>
@@ -21,8 +21,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Статусы для заявок</div>
-        <div class="---row">
+        <div (click)="showAppStatus=!showAppStatus" class="h2 ---font-600">Статусы для заявок</div>
+        <div class="---row" *ngIf="showAppStatus">
           <div class="---col-lg-6" *ngFor="let status of applicationStatusList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{status.name}}</div>
@@ -36,8 +36,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Статусы для проката</div>
-        <div class="---row">
+        <div (click)="showHireStatus=!showHireStatus" class="h2 ---font-600">Статусы для проката</div>
+        <div class="---row" *ngIf="showHireStatus">
           <div class="---col-lg-6" *ngFor="let status of hireStatusList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{status.name}}</div>
@@ -51,8 +51,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Статусы для оборудований</div>
-        <div class="---row">
+        <div (click)="showEqStatus=!showEqStatus" class="h2 ---font-600">Статусы для оборудований</div>
+        <div class="---row" *ngIf="showEqStatus">
           <div class="---col-lg-6" *ngFor="let status of equipmentsStatusList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{status.name}}</div>
@@ -66,8 +66,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Категории финансов</div>
-        <div class="---row">
+        <div (click)="showFinanceCategory=!showFinanceCategory" class="h2 ---font-600">Категории финансов</div>
+        <div class="---row" *ngIf="showFinanceCategory">
           <div class="---col-lg-6" *ngFor="let status of financeCategory">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{status.name}}</div>
@@ -81,8 +81,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Источники</div>
-        <div class="---row">
+        <div (click)="showSource=!showSource" class="h2 ---font-600">Источники</div>
+        <div class="---row" *ngIf="showSource">
           <div class="---col-lg-6" *ngFor="let source of sourceList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{source.name}}</div>
@@ -97,8 +97,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Филиалы</div>
-        <div class="---row">
+        <div (click)="showBranch=!showBranch" class="h2 ---font-600">Филиалы</div>
+        <div class="---row" *ngIf="showBranch">
           <div class="---col-lg-6" *ngFor="let branch of branchList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{branch.name}}</div>
@@ -113,8 +113,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Склады</div>
-        <div class="---row">
+        <div (click)="showStock=!showStock" class="h2 ---font-600">Склады</div>
+        <div class="---row" *ngIf="showStock">
           <div class="---col-lg-6" *ngFor="let stock of stocksList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{stock.name}}</div>
@@ -128,8 +128,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Скидки</div>
-        <div class="---row">
+        <div (click)="showDiscount=!showDiscount" class="h2 ---font-600">Скидки</div>
+        <div class="---row" *ngIf="showDiscount">
           <div class="---col-lg-6" *ngFor="let discount of discountList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{discount.name}}</div>
@@ -143,8 +143,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Права</div>
-        <div class="---row">
+        <div (click)="showRight=!showRight" class="h2 ---font-600">Права</div>
+        <div class="---row" *ngIf="showRight">
           <div class="---col-lg-6" *ngFor="let right of rightsList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{right.name}}</div>
@@ -158,8 +158,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Роли</div>
-        <div class="---row">
+        <div (click)="showRole=!showRole" class="h2 ---font-600">Роли</div>
+        <div class="---row" *ngIf="showRole">
           <div class="---col-lg-6" *ngFor="let role of rolesList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{role.name}}</div>
@@ -173,8 +173,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Кассы</div>
-        <div class="---row">
+        <div (click)="showCashBox=!showCashBox" class="h2 ---font-600">Кассы</div>
+        <div class="---row" *ngIf="showCashBox">
           <div class="---col-lg-6" *ngFor="let cashBox of financeCashBox">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{cashBox.name}}</div>
@@ -188,8 +188,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Категории оборудования</div>
-        <div class="---row">
+        <div (click)="showCategoryList=!showCategoryList" class="h2 ---font-600">Категории оборудования</div>
+        <div class="---row" *ngIf="showCategoryList">
           <div class="---col-lg-6" *ngFor="let category of equipmentsCategoryList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{category.name}}</div>
@@ -203,8 +203,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Тип оборудования</div>
-        <div class="---row">
+        <div (click)="showTypeList=!showTypeList" class="h2 ---font-600">Тип оборудования</div>
+        <div class="---row" *ngIf="showTypeList">
           <div class="---col-lg-6" *ngFor="let category of equipmentsTypeList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{category.name}}</div>
@@ -218,8 +218,8 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div class="h2 ---font-600">Марки оборудования</div>
-        <div class="---row">
+        <div (click)="showMarkList=!showMarkList" class="h2 ---font-600">Марки оборудования</div>
+        <div class="---row" *ngIf="showMarkList">
           <div class="---col-lg-6" *ngFor="let category of equipmentsMarkList">
             <div class="---doc-item ---pos-rel ---radius-5">
               <div class="---title ---font-600">{{category.name}}</div>
