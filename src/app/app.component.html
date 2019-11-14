@@ -11,7 +11,7 @@
   <app-tame></app-tame>
 </div>
 <app-menu [userType]="userType" (onCloseMenu)="doSomething($event)" [ngClass]="{'---is-closed':HiddenMenu}"
-          *ngIf="userType!==null" class="---left-main-menu"></app-menu>
+          *ngIf="checkAuth===true && userType!==null" class="---left-main-menu"></app-menu>
 
 <div [ngClass]="{'---main-content':checkAuth===true}" class="---d-flex ---flex-nowrap ---flex-column">
   <app-header *ngIf="checkAuth===true"></app-header>
