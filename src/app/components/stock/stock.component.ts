@@ -15,6 +15,7 @@ export class StockComponent implements OnInit {
   stocks: InterFaceStocks[] = [];
   equipmentsTypeList: InterFaceDopParams[] = [];
   equipmentsStatusList: InterFaceDopParamsColor[] = [];
+  equipmentsCategoryList: InterEquipmentsCategory[] = [];
 
   // отображение фильтра
   showFilters = false;
@@ -75,6 +76,14 @@ export class StockComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.equipmentsService.getEquipmentsCategory().then((data: InterEquipmentsCategory[]) => {
+        this.equipmentsCategoryList = data;
+
+        this.equipmentsTypeList = this.equipmentsCategoryList[0].type;
+      },
+      (error) => {
+        console.log('Ошибка при получении списка категорий оборудования: ', error);
+      });
     this.dopParamsService.getStock().then((data: InterFaceStocks[]) => {
         this.stocks = data;
       },
@@ -82,12 +91,12 @@ export class StockComponent implements OnInit {
         console.log('Ошибка при получении складов: ', error);
       });
 
-    this.equipmentsService.getEquipmentsType().then((data: InterFaceDopParams[]) => {
+    /*this.equipmentsService.getEquipmentsType().then((data: InterFaceDopParams[]) => {
         this.equipmentsTypeList = data;
       },
       (error) => {
         console.log('Ошибка при получении списка типов оборудования: ', error);
-      });
+      });*/
 
     this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParamsColor[]) => {
         this.equipmentsStatusList = data;
@@ -106,6 +115,11 @@ export class StockComponent implements OnInit {
       });
 
     this.getEquipments();
+  }
+
+  changeCategory(data) {
+    const arr = this.equipmentsCategoryList.filter(item => item.val === data);
+    this.equipmentsTypeList = arr[0].type;
   }
 
   // список оборудования

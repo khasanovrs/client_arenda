@@ -49,23 +49,23 @@
           </div>
         </div>
         <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
+          <label>Категория</label>
+          <div class="---select">
+            <select [(ngModel)]="filters.equipmentsCategory" (change)="changeCategory(filters.equipmentsCategory)">
+              <option *ngFor="let equipmentsCategory of equipmentsCategoryList"
+                      [ngValue]="equipmentsCategory.val">
+                {{equipmentsCategory.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
           <label>Тип оборудования</label>
           <div class="---select">
             <select [(ngModel)]="filters.equipmentsType">
               <option *ngFor="let equipmentsType of equipmentsTypeList"
                       [ngValue]="equipmentsType.val">
                 {{equipmentsType.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="---field ---col-12 ---col-sm-6 ---col-lg-3">
-          <label>Категория</label>
-          <div class="---select">
-            <select [(ngModel)]="filters.equipmentsCategory">
-              <option *ngFor="let equipmentsCategory of equipmentsCategoryList"
-                      [ngValue]="equipmentsCategory.val">
-                {{equipmentsCategory.name}}
               </option>
             </select>
           </div>
