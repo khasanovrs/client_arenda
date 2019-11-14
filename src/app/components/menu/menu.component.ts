@@ -27,7 +27,6 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(1,this.userType);
     if (this.userType === 1) {
       this.showMenuList = this.menuList;
     } else {
