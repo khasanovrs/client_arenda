@@ -6,6 +6,9 @@
         <div class="---tabs__switcher ---is-active" (click)="changeTypeEquipments('')">Все позиции</div>
         <div class="---tabs__switcher" (click)="changeTypeEquipments('1')">В аренде</div>
         <div class="---tabs__switcher" (click)="changeTypeEquipments('2')">В ремонте</div>
+
+        <div class="---tabs__switcher" (click)="changeEquipments(true)">Леса</div>
+        <div class="---tabs__switcher" (click)="changeEquipments(false)">Все оборудования</div>
       </div>
     </div>
 
@@ -219,6 +222,10 @@
           <td *ngIf="activeFieldsTables['payback_ratio']===1">{{equipment.payback_ratio}}</td>
           <td *ngIf="activeFieldsTables['comment']===1">{{equipment.comment}}</td>
           <td *ngIf="activeFieldsTables['dop_status']===1">{{equipment.dop_status}}</td>
+          <td *ngIf="activeFieldsTables['count']===1">{{equipment.count}} шт</td>
+          <td *ngIf="activeFieldsTables['count_hire']===1">{{equipment.count_hire}} шт</td>
+          <td *ngIf="activeFieldsTables['count_repairs']===1">{{equipment.count_repairs}} шт</td>
+          <td *ngIf="activeFieldsTables['count_left']===1">{{equipment.count_left}} шт</td>
         </tr>
       </table>
     </div>

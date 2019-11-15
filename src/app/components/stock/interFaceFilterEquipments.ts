@@ -23,4 +23,5 @@ interface InterFaceFilterEquipments {
   degree_wear_start: number;
   degree_wear_end: number;
   confirmed: string;
+  lesa: boolean;
 }
