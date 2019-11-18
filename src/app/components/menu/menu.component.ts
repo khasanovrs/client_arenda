@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
   menuList: InterFaceMenu[] = [
     {link: 'main', name: 'Рабочий стол', class: '---icon-menu-dashboard', type: 'all'},
     {link: 'hire', name: 'Прокат', class: '---icon-menu-rent', type: 'all'},
+    {link: 'hire-lesa', name: 'Прокат лесов', class: '---icon-menu-rent', type: 'all'},
     {link: 'stock', name: 'Склад', class: '---icon-menu-base', type: 'all'},
     {link: 'clients', name: 'Клиенты', class: '---icon-menu-clients', type: 'admin'},
     {link: 'report', name: 'Отчеты', class: '---icon-menu-report', type: 'all'},
