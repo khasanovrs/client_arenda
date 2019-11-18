@@ -115,6 +115,30 @@
             </select>
           </div>
         </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6" *ngIf="equipment.category===33">
+          <label>Общ. количество</label>
+          <div class="---select">
+            <input class="---input ---shadow--bg" [(ngModel)]="equipment.count">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6" *ngIf="equipment.category===33">
+          <label>В прокате</label>
+          <div class="---select">
+            <input class="---input ---shadow--bg" [(ngModel)]="equipment.count_hire">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6" *ngIf="equipment.category===33">
+          <label>На ремонте</label>
+          <div class="---select">
+            <input class="---input ---shadow--bg" [(ngModel)]="equipment.count_repairs">
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6" *ngIf="equipment.category===33">
+          <label>Осталось</label>
+          <div class="---select">
+            <input class="---input ---shadow--bg" [(ngModel)]="equipment.count_left">
+          </div>
+        </div>
       </div>
     </div>
 

@@ -71,6 +71,10 @@ export class EquipmentsComponent implements OnInit {
     frequency_hits: '',
     comment: '',
     confirmed: '',
+    count: '',
+    count_hire: '',
+    count_repairs: '',
+    count_left: '',
     change_history: [{
       date: '',
       new_params: '',

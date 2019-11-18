@@ -29,6 +29,10 @@ interface InterFaceInfoEquipments {
   frequency_hits: string;
   comment: string;
   confirmed: string;
+  count: string;
+  count_hire: string;
+  count_repairs: string;
+  count_left: string;
   change_history: {
     date: string;
     new_params: string;
