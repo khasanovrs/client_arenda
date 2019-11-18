@@ -37,9 +37,24 @@
 
 
     <div (click)="exit()" class="---exit ---h-block ifont ---icon-exit"></div>
-    <div routerLink="/application-create" class="---btn ---btn--fill-acent ---d-none ---sm-d-block">
+    <div (click)="showModal=true" class="---btn ---btn--fill-acent ---d-none ---sm-d-block">
       Создать заявку
     </div>
   </div>
 
 </header>
+
+<div *ngIf="showModal==true" id="---modal-text" class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--big">
+    <div (click)="showModal=false" class="---js-close-modal ---js-close-modal-icon"></div>
+    <div class="modal-body ---t-wrapper">
+      <div (click)="transitionUrl('application-create')" class="---btn ---btn--fill-acent ---d-none ---sm-d-block">
+        Создать заявку на оборудование
+      </div>
+      <div (click)="transitionUrl('application-create-lesa')" class="---btn ---btn--fill-acent ---d-none ---sm-d-block">
+        Создать заявку на леса
+      </div>
+    </div>
+  </div>
+</div>
+

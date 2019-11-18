@@ -19,6 +19,7 @@ import {FinanceCreateComponent} from './components/finance_create/financeCreate.
 import {FinanceInfoComponent} from './components/finance_info/financeInfo.component';
 import {HireComponent} from './components/hire/hire.component';
 import {HireInfoComponent} from './components/hire-info/hireInfo.component';
+import {ApplicationsCreateLesaComponent} from './components/applications-create-lesa/applicationsCreateLesa.component';
 
 
 const routes: Routes = [
@@ -60,6 +61,10 @@ const routes: Routes = [
   {
     path: 'application-create',
     component: ApplicationsCreateComponent
+  },
+  {
+    path: 'application-create-lesa',
+    component: ApplicationsCreateLesaComponent
   },
   {
     path: 'application/:id',

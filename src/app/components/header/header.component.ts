@@ -14,6 +14,8 @@ export class HeaderComponent {
   branches: InterFaceDopParams[] = [{name: 'Все города', val: 0}];
   branch = null;
   revenue = '0';
+  // окошко выбора создания проката
+  showModal = false;
 
   constructor(private router: Router,
               private sessionStorageService: SessionStorageService,
@@ -56,5 +58,12 @@ export class HeaderComponent {
       (error) => {
         console.log('Ошибка при получении выручки: ', error);
       });
+  }
+
+  // переход на создание заявкм
+  transitionUrl(data) {
+    this.showModal = false;
+
+    this.router.navigate(['/' + data]);
   }
 }

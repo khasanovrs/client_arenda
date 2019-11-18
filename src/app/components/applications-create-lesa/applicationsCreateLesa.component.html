@@ -1,0 +1,342 @@
+<div class="---tabs ---tabs--finance">
+  <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
+    <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
+      <div class="---tabs__switcher" [ngClass]="{'---is-active':status.val==application.status.val}"
+           *ngFor="let status of applicationsStatus"
+           (click)="changeStatusApplications(status.val)">{{status.name}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="---page-rent-in ---row">
+  <div class="---col-12 ---col-lg-6 ---form">
+    <div class="---data-block">
+      <div class="h2 ---font-600">Данные аренды</div>
+      <form action='' autocomplete='off'>
+        <div class="---row">
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Филиал</label>
+            <div class="---select">
+              <select name='sd' [(ngModel)]="application.branch.val" (change)="changeBranch()" autocomplete="off">
+                <option *ngFor="let branch of branches"
+                        [ngValue]="branch.val">
+                  {{branch.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Вид аренды</label>
+            <div class="---select">
+              <select [(ngModel)]="application.typeLease.val" autocomplete="none" (change)="changeTypeLease()"
+                      [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
+                        [ngValue]="applicationsTypeLease.val">
+                  {{applicationsTypeLease.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Скидка на аренду</label>
+            <div class="---select">
+              <select [(ngModel)]="application.sale.val" (change)="changeSum()" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let discount of discounts"
+                        [ngValue]="discount.val">
+                  {{discount.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Доставка</label>
+            <div class="---select">
+              <select [(ngModel)]="application.delivery.val" (change)="changeSum()"
+                      [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let delivery of applicationsDelivery"
+                        [ngValue]="delivery.val">
+                  {{delivery.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6" *ngIf="application.delivery.val===1">
+            <label>Сумма доставки</label>
+            <div class="---input ---pos-rel">
+              <input (keyup)="changeSum()" type="text" mask="separator" [ngModelOptions]="{standalone: true}"
+                     [(ngModel)]="application.delivery_sum">
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Источник</label>
+            <div class="---select">
+              <select [(ngModel)]="application.source.val" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let source of applicationsSource"
+                        [ngValue]="source.val">
+                  {{source.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Начало аренды</label>
+            <div class="---input ---input--calendar ---pos-rel">
+              <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_start.val"
+
+                     [ngModelOptions]="{standalone: true}"
+                     class="---datepicker-input">
+              <i class="---y-pos-abs ifont ---icon-calendar"></i>
+            </div>
+          </div>
+          <div class="---field ---col-12 ---col-xs-6">
+            <label>Окончание аренды</label>
+            <div class="---input ---input--calendar ---pos-rel">
+              <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_end.val"
+                     [ngModelOptions]="{standalone: true}"
+              >
+              <i class="---y-pos-abs ifont ---icon-calendar"></i>
+            </div>
+          </div>
+          <div class="---field ---col-12">
+            <label>Комментарий</label>
+            <textarea class="---input" [(ngModel)]="application.comment" rows="5"
+                      [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="---data-block">
+      <div class="h2 ---font-600 ---d-flex ---flex-wrap ---align-items-center ---justify-content-between">
+        Данные арендатора
+
+        <div *ngIf="application.client_fio.val!==''" (click)="getBailiffs()" class="---check-by-bailiff">Проверить через
+          сервис приставов
+        </div>
+      </div>
+
+      <div class="---row">
+        <div class="---field ---col-12 ---col-sm-6">
+          <label></label>
+          <div class="---add-client-from-base ---pos-rel ---radius-5" (click)="showSearchClient.show=true;">
+            Добавить клиента из базы
+            <i class="ifont ---icon-loop ---y-pos-abs"></i>
+          </div>
+        </div>
+        <div class="---field ---col-12 ---col-sm-6">
+          <label></label>
+          <div class="---add-client-from-base ---pos-rel ---radius-5" (click)="globalParams.showModalCreateUser=true;">
+            Добавить нового клиента
+          </div>
+        </div>
+
+        <div class="---field ---col-12 ---col-sm-6">
+          <label>ФИО клиента</label>
+          <input class="---input" [(ngModel)]="application.client_fio.val">
+        </div>
+
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Электронная почта</label>
+          <input type="email" class="---input" [(ngModel)]="application.client_email.val">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Номер телефона</label>
+          <input type="tel" class="---input" [(ngModel)]="application.client_phone.val">
+        </div>
+        <div class="---field ---col-12 ---col-xs-6">
+          <label>Номер и серия паспорта</label>
+          <input class="---input" [(ngModel)]="application.client_number_passport.val">
+        </div>
+      </div>
+    </div>
+
+    <div class="---btns-wrapper">
+      <div (click)="addApplication()" class="---btn ---btn--fill-acent">{{buttonText}}</div>
+    </div>
+
+  </div>
+  <div class="---col-12 ---col-lg-6">
+
+    <div class="---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form">
+      <div class="h2 ---font-600">Запрашиваемое оборудование</div>
+      <div class="---devider ---devider-mt0"></div>
+
+      <div class="---prod-list">
+        <div *ngFor="let equipment of application.equipments; let i = index"
+             class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
+                        <span class="---prod-item__info ---d-inline-flex ---align-items-center">
+                            <span
+                              class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
+                              <img *ngIf="equipment.photo!==''"
+                                   src="http://u68857.netangels.ru/uploads/{{equipment.photo}}" alt=""
+                                   class="---lazyload ---img-contain">
+
+                              <img *ngIf="equipment.photo===''" src="{{equipment.photo_alias}}" alt=""
+                                   class="---lazyload ---img-contain">
+                            </span>
+                            <span class="---prod-item__title ---font-600">{{equipment.name}}</span>
+                            <span style="color: red" (click)="deleteEquipment(i)">Удалить</span>
+                        </span>
+
+          <span class="---prod-item__thumb ---d-inline-flex">
+                            <span class="---thumb-item">
+                                За единицу<br>
+                                <span class="---font-600">{{equipment.price | digitsNumbers}} ₽</span>
+                            </span>
+                            <span class="---thumb-item">
+                                В наличии<br>
+                                <span class="---font-600">{{equipment.count}} шт.</span>
+                            </span>
+                        </span>
+        </div>
+
+        <div (click)="showAddEquipments.show=true" class="---btn ---btn--fill-dark">Добавить</div>
+        <div *ngIf="application.status.val===3" (click)="addNewEquipments.show=true" class="---btn ---btn--fill-acent">
+          Создать оборудование
+        </div>
+      </div>
+
+      <div class="---devider"></div>
+
+      <div class="---total-price ---font-600 h2">
+        <div class="---delivery ---font-300">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>
+        Итого: {{allSum | digitsNumbers}} ₽
+      </div>
+
+
+      <div class="---total-price ---font-600 h2" *ngIf="payList.length!=0">
+        Платежи:
+        <table>
+          <tr>
+            <td></td>
+            <td>Сумма</td>
+            <td>Касса</td>
+          </tr>
+          <tr *ngFor="let pay of payList; let i=index">
+            <td (click)="deletePayList(i)">Удалить</td>
+            <td><span *ngIf="pay.revertSum">- </span>{{pay.sum | digitsNumbers}}</td>
+            <td>
+              <div class="---select">
+                <select disabled [(ngModel)]="pay.cashBox">
+                  <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
+                    {{cashBox.name}}
+                  </option>
+                </select>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="---devider"></div>
+
+      <div (click)="showInsertSum()" *ngIf="application.equipments.length!=0" class="---btn ---btn--fill-acent">Добавить
+        платеж
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div *ngIf="showSearchClient.show"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="showSearchClient.show=false"></div>
+
+    <div class="---form">
+      <div class="---field">
+        <input class="---input ---fill--bg" [(ngModel)]="showSearchClient.filter"
+               (keyup)="searchClient(showSearchClient.filter)">
+      </div>
+    </div>
+
+    <div *ngFor="let client of showSearchClient.clients; let i = index" (click)="insertClientData(i)">
+      <div>{{client.client_fio}}</div>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="showAddEquipments.show"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="showAddEquipments.show=false"></div>
+
+    <div class="---form">
+      <div class="---field">
+        <input class="---input ---fill--bg" [(ngModel)]="showAddEquipments.filter"
+               (keyup)="changeBranch(showAddEquipments.filter)">
+      </div>
+    </div>
+
+    <div *ngFor="let equipments of showAddEquipments.equipments; let i = index">
+      <div [ngClass]="{'opacity_eq': equipments.check_click==='0'}" (click)="insertEquipmentsData(i)">
+        {{equipments.name}} - <span>{{equipments.status}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="addNewEquipments.show"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="addNewEquipments.show=false"></div>
+
+    <app-equipment-create-mini [branch]="application.branch.val"></app-equipment-create-mini>
+  </div>
+</div>
+
+
+<div *ngIf="globalParams.showModalCreateUser"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="globalParams.showModalCreateUser=false"></div>
+
+    <app-client-create [app_branch]="application.branch.val" [app_source]="application.source.val"></app-client-create>
+
+  </div>
+</div>
+
+
+<div *ngIf="addPay.show" id="---modal-text"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--small">
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="clear()"></div>
+    <div class="modal-body">
+      <div class="---form">
+
+        <div class="---field">
+          <label>Касса</label>
+
+          <div class="---select">
+            <select [(ngModel)]="addPay.cashBox">
+              <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
+                {{cashBox.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="---field">
+          <label>Сумма</label>
+          <input class="---input ---fill--bg" [(ngModel)]="addPay.sum" mask="separator">
+        </div>
+
+        <label class="---field ---d-flex ---flex-wrap ---align-items-center">
+          <input type="checkbox" [(ngModel)]="addPay.revertSum" style="width: 14px; height: 14px;">
+          <span style="margin: 0 0 0 10px;">Возврат денег</span>
+        </label>
+
+        <div class="---btn ---btn--fill-acent ---btn--sm" (click)="addPayList()">Добавить</div>
+      </div>
+    </div>
+  </div>
+</div>

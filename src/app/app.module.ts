@@ -81,6 +81,7 @@ import {EquipmentsCreateMiniService} from './components/equipments_create_mini/e
 import {EquipmentsCreateMiniComponent} from './components/equipments_create_mini/equipmentsCreateMini.component';
 import {TameComponent} from './components/tame/tame.component';
 import {GlobalParamsTame} from './components/tame/global-params-tame';
+import {ApplicationsCreateLesaComponent} from './components/applications-create-lesa/applicationsCreateLesa.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -125,7 +126,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     ClientChangeStatusListComponent,
     SettingsParamsComponent,
     EquipmentsCreateMiniComponent,
-    TameComponent
+    TameComponent,
+    ApplicationsCreateLesaComponent
   ],
   imports: [
     BrowserModule,
