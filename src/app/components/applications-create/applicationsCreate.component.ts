@@ -20,6 +20,7 @@ import * as moment from 'moment';
 
 export class ApplicationsCreateComponent implements OnInit {
   applicationsStatus: InterFaceDopParams[] = [];
+  showApplicationsStatus: InterFaceDopParams[] = [];
   applicationsSource: InterFaceDopParams[] = [];
   applicationsDelivery: InterFaceDopParams[] = [];
   applicationsTypeLeases: InterFaceDopParams[] = [];
@@ -46,6 +47,7 @@ export class ApplicationsCreateComponent implements OnInit {
     show: false,
   };
 
+  // добавление платежа
   addPay = {
     show: false,
     sum: '',
@@ -53,10 +55,11 @@ export class ApplicationsCreateComponent implements OnInit {
     revertSum: false
   };
 
+  // спасиок платежей
   payList = [];
-
+  // список касс
   financeCashBox: InterFaceFinanceCashBox[];
-
+  // общая сумма
   allSum = 0;
 
   application: InterFaceNewApplication = {
@@ -80,7 +83,11 @@ export class ApplicationsCreateComponent implements OnInit {
     client_type: null
   };
 
+  // вывод кнопки в зависимости от статуса
   buttonText = '';
+
+  // флаг создания оборудования
+  lesa = false;
 
   constructor(private applicationsCreateService: ApplicationsCreateService,
               private applicationsService: ApplicationsService,
@@ -119,7 +126,7 @@ export class ApplicationsCreateComponent implements OnInit {
       });
 
     this.applicationsService.getApplicationsStatus().then((data: InterFaceDopParams[]) => {
-        this.applicationsStatus = data;
+        this.showApplicationsStatus = this.applicationsStatus = data;
         this.changeStatusApplications(this.applicationsStatus[0].val);
       },
       (error) => {
@@ -206,6 +213,7 @@ export class ApplicationsCreateComponent implements OnInit {
     this.equipmentsService.allEquipmentsBranch({
       filter: filter,
       branch: this.application.branch.val,
+      lesa: this.lesa,
       applicationStatus: this.application.status.val
     }).then((data: InterFaceSearchClient[]) => {
         this.showAddEquipments.equipments = data;
@@ -378,11 +386,17 @@ export class ApplicationsCreateComponent implements OnInit {
     };
     this.application.equipments.push(tmp);
 
-    this.showAddEquipments = {
-      show: false,
-      filter: '',
-      equipments: []
-    };
+    // зачищать или нет список оборудования
+    if (this.lesa) {
+      this.showAddEquipments.filter = '';
+      this.showAddEquipments.show = false;
+    } else {
+      this.showAddEquipments = {
+        show: false,
+        filter: '',
+        equipments: []
+      };
+    }
 
     this.changeSum();
   }
@@ -485,5 +499,19 @@ export class ApplicationsCreateComponent implements OnInit {
 
   clear() {
     this.addPay = {show: false, sum: '', cashBox: null, revertSum: false};
+  }
+
+  // изменение флага для лесов
+  changeLesa() {
+    this.lesa = !this.lesa;
+
+    if (this.lesa) {
+      this.showApplicationsStatus = this.applicationsStatus.filter(item => item.val === 1 || item.val === 2);
+    } else {
+      this.showApplicationsStatus = this.applicationsStatus;
+    }
+
+
+    this.changeBranch();
   }
 }

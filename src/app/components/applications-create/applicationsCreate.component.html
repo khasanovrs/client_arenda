@@ -2,8 +2,14 @@
   <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
     <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
       <div class="---tabs__switcher" [ngClass]="{'---is-active':status.val==application.status.val}"
-           *ngFor="let status of applicationsStatus"
+           *ngFor="let status of showApplicationsStatus"
            (click)="changeStatusApplications(status.val)">{{status.name}}
+      </div>
+
+      <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
+        <div  (click)="changeLesa()" class="---tabs__switcher">
+          {{lesa?'Все оборудования':'Все леса'}}
+        </div>
       </div>
     </div>
   </div>
