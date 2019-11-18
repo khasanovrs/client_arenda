@@ -440,13 +440,19 @@ export class ApplicationsCreateComponent implements OnInit {
       source: this.application.source.val,
       branch: this.application.branch.val,
       status: this.application.status.val,
-      payList: this.payList
+      payList: this.payList,
+      lesa: this.lesa
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно добавлена', type: 'success', body: ''};
-        if (this.application.status.val === 1 || this.application.status.val === 2) {
-          this.router.navigate(['/hire']);
+
+        if (this.lesa) {
+          this.router.navigate(['/hire-lesa']);
         } else {
-          this.router.navigate(['/application']);
+          if (this.application.status.val === 1 || this.application.status.val === 2) {
+            this.router.navigate(['/hire']);
+          } else {
+            this.router.navigate(['/application']);
+          }
         }
       },
       (error) => {

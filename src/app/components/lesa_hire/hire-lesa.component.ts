@@ -149,6 +149,7 @@ export class HireLesaComponent {
       sum_start: this.filters.sum_start,
       sum_end: this.filters.sum_end,
       show_close_hire: this.filters.show_close_hire,
+      lesa: true
     }).then((data: InterFaceHire[]) => {
         this.hires = data;
         this.sortedData = this.hires.slice();
