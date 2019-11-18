@@ -151,7 +151,10 @@ export class StockComponent implements OnInit {
       this.activeFieldsTables[value.code] = value.flag;
 
       if (!this.filters.lesa && (value.code === 'count' || value.code === 'count_hire' || value.code === 'count_repairs' || value.code === 'count_left')) {
-        this.activeFieldsTables[value.code] = 0;
+        this.activeFieldsTables[value.code] = value.flag = 0;
+      }
+      if (this.filters.lesa && (value.code === 'count' || value.code === 'count_hire' || value.code === 'count_repairs' || value.code === 'count_left')) {
+        this.activeFieldsTables[value.code] = value.flag = 1;
       }
     }
   }
