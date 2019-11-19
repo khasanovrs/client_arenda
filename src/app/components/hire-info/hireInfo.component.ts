@@ -243,10 +243,16 @@ export class HireInfoComponent {
   // удалить прока
   delete_hire() {
     this.hireService.deleteHire({
-      id: this.hireInfo.id
+      id: this.hireInfo.app_id
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Прокат успешно удален', type: 'success', body: ''};
-        this.routerCurrent.navigate(['/hire']);
+
+        if (this.hireInfo.lesa === '1') {
+          this.routerCurrent.navigate(['/hire-lesa']);
+        } else {
+          this.routerCurrent.navigate(['/hire']);
+        }
+
       },
       (error) => {
         console.log('Ошибка при удалении проката: ', error);
