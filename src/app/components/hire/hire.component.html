@@ -154,6 +154,13 @@
             <td *ngIf="activeFieldsTables['id_dog']===1">{{hire.id}}</td>
             <td *ngIf="activeFieldsTables['delivery_sum']===1">{{hire.delivery_sum | digitsNumbers}} </td>
             <td *ngIf="activeFieldsTables['delivery_sum_paid']===1">{{hire.delivery_sum_paid | digitsNumbers}} </td>
+
+            <td *ngIf="activeFieldsTables['rama_prokhodnaya']===1">{{hire.rama_prokhodnaya}} шт</td>
+            <td *ngIf="activeFieldsTables['rama_letsnitsey']===1">{{hire.rama_letsnitsey}} шт</td>
+            <td *ngIf="activeFieldsTables['diagonalnaya_svyaz']===1">{{hire.diagonalnaya_svyaz}} шт</td>
+            <td *ngIf="activeFieldsTables['gorizontalnaya_svyaz']===1">{{hire.gorizontalnaya_svyaz}} шт</td>
+            <td *ngIf="activeFieldsTables['rigel']===1">{{hire.rigel}} шт</td>
+            <td *ngIf="activeFieldsTables['nastil']===1">{{hire.nastil}} шт</td>
           </tr>
 
         </table>
