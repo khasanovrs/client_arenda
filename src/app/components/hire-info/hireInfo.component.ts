@@ -69,7 +69,14 @@ export class HireInfoComponent {
       'date': null,
       'user_id': '',
       'count': null
-    }]
+    }],
+    lesa: '',
+    rama_prokhodnaya: null,
+    rama_letsnitsey: null,
+    diagonalnaya_svyaz: null,
+    gorizontalnaya_svyaz: null,
+    rigel: null,
+    nastil: null
   };
 
   constructor(public hireService: HireService,

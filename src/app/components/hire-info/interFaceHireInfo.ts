@@ -36,6 +36,13 @@ interface InterFaceHireInfo {
   extensions: {
     'date': string,
     'user_id': string,
-    'count': number
+    'count': number;
   }[];
+  lesa: string;
+  rama_prokhodnaya: number;
+  rama_letsnitsey: number;
+  diagonalnaya_svyaz: number;
+  gorizontalnaya_svyaz: number;
+  rigel: number;
+  nastil: number;
 }

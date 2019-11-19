@@ -116,7 +116,7 @@
         <div class="---input ---input--disabled">{{hireInfo.equipments.state}}</div>
       </div>
 
-      <div class="---field ---col-sm-6 ---col-lg-4">
+      <div *ngIf="hireInfo.lesa!=='1'" class="---field ---col-sm-6 ---col-lg-4">
         <label>Количество</label>
         <div class="---input ---input--disabled">{{hireInfo.count}}</div>
       </div>
@@ -151,6 +151,34 @@
       <div class="---field ---col-12">
         <label>Комментарий</label>
         <textarea class="---input" [(ngModel)]="hireInfo.comment" rows="5"></textarea>
+      </div>
+
+    </div>
+
+    <div class="---row ---form" *ngIf="hireInfo.lesa==='1'">
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Рама проходная</label>
+        <div class="---input ---input--disabled">{{hireInfo.rama_prokhodnaya}} шт</div>
+      </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Рама с летсницей</label>
+        <div class="---input ---input--disabled">{{hireInfo.rama_letsnitsey}} шт</div>
+      </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Диагональная связь</label>
+        <div class="---input ---input--disabled">{{hireInfo.diagonalnaya_svyaz}} шт</div>
+      </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Горизонтальная связь</label>
+        <div class="---input ---input--disabled">{{hireInfo.gorizontalnaya_svyaz}} шт</div>
+      </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Ригель</label>
+        <div class="---input ---input--disabled">{{hireInfo.rigel}} шт</div>
+      </div>
+      <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Настил</label>
+        <div class="---input ---input--disabled">{{hireInfo.nastil}} шт</div>
       </div>
 
     </div>
