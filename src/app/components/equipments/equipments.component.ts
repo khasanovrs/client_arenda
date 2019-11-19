@@ -295,6 +295,7 @@ export class EquipmentsComponent implements OnInit {
       amount_repair: this.amount_repair,
       cash_box: this.cash_box,
       sale_amount: this.sale_amount,
+      count: this.equipment.count,
       confirmed: this.equipment.confirmed
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно изменено', type: 'success', body: ''};
