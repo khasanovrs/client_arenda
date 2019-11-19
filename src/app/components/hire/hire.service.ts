@@ -5,6 +5,7 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
 @Injectable()
 export class HireService {
   hireFieldsList: InterFaceActiveFields[] = [];
+  hireFieldsLesaList: InterFaceActiveFields[] = [];
   hireStatusList: InterFaceDopParams[] = [];
   hireStateList: InterFaceDopParams[] = [];
 
@@ -28,6 +29,27 @@ export class HireService {
           );
       } else {
         resolve(this.hireFieldsList);
+      }
+    });
+  }
+
+
+  // получение списка активных полей лесов
+  public getHireLesaFields() {
+    return new Promise((resolve, reject) => {
+      if (this.hireFieldsLesaList.length === 0) {
+        this.httpService.prepareQuery('api/get-hire-lesa-field', '')
+          .then((result: InterFaceActiveFields[]) => {
+              this.hireFieldsLesaList = result;
+              resolve(result);
+            },
+            (error) => {
+              console.log('Ошибка при получении списка полей лесов для проката', error);
+              reject();
+            }
+          );
+      } else {
+        resolve(this.hireFieldsLesaList);
       }
     });
   }

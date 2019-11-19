@@ -49,7 +49,7 @@ export class HireLesaComponent {
               private dopParamsService: DopParamsService,
               private applicationsService: ApplicationsService,
               private globalParamsRental: GlobalParamsRental) {
-    this.hireService.getHireFields().then((data: InterFaceActiveFields[]) => {
+    this.hireService.getHireLesaFields().then((data: InterFaceActiveFields[]) => {
         this.activeFields = data;
 
         this.changeShowFields();
