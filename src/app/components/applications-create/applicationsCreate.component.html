@@ -189,8 +189,12 @@
                                 За единицу<br>
                                 <span class="---font-600">{{equipment.price | digitsNumbers}} ₽</span>
                             </span>
-                            <span class="---thumb-item">
+                            <span class="---thumb-item" *ngIf="lesa===true">
                                 В наличии<br>
+                                <span class="---font-600">{{equipment.allCount}} шт.</span>
+                            </span>
+                            <span class="---thumb-item">
+                                В <br>прокат<br>
                                 <span *ngIf="lesa===false" class="---font-600">{{equipment.count}} шт.</span>
                               <input type="text" (change)="changeSum()" [(ngModel)]="equipment.count" class="---font-600">
                             </span>

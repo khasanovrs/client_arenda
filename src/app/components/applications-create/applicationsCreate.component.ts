@@ -243,6 +243,7 @@ export class ApplicationsCreateComponent implements OnInit {
     let sum = null;
     if (this.application.equipments.length !== 0) {
       for (const value of this.application.equipments) {
+        value.count = value.count <= parseInt(value.allCount, 10) ? value.count : parseInt(value.allCount, 10);
         sum += value.count * parseFloat(value.price);
       }
     } else {
@@ -382,7 +383,8 @@ export class ApplicationsCreateComponent implements OnInit {
       count: 1,
       price: this.showAddEquipments.equipments[index].price_per_day,
       photo: this.showAddEquipments.equipments[index].photo,
-      photo_alias: ''
+      photo_alias: '',
+      allCount: this.showAddEquipments.equipments[index].count
     };
     this.application.equipments.push(tmp);
 

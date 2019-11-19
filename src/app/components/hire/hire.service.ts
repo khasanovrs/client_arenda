@@ -195,6 +195,21 @@ export class HireService {
     });
   }
 
+  // возврат лесов на склад
+  public equipmentReturnLesa(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/equipment-lesa-return', data)
+        .then(() => {
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при возврате товара на склад', error);
+            reject();
+          }
+        );
+    });
+  }
+
   // добавление статуса для проката
   public addHireStatus(data) {
     return new Promise((resolve, reject) => {

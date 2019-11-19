@@ -183,15 +183,27 @@ export class HireInfoComponent {
   }
 
   equipmentReturn() {
-    this.hireService.equipmentReturn({
-      id: this.hireInfo.id
-    }).then(() => {
-        this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
-        this.getHireInfo();
-      },
-      (error) => {
-        console.log('Ошибка при обновлении заявки: ', error);
-      });
+    if (this.hireInfo.lesa === '1') {
+      this.hireService.equipmentReturnLesa({
+        id: this.hireInfo.app_id
+      }).then(() => {
+          this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
+          this.getHireInfo();
+        },
+        (error) => {
+          console.log('Ошибка при обновлении заявки: ', error);
+        });
+    } else {
+      this.hireService.equipmentReturn({
+        id: this.hireInfo.id
+      }).then(() => {
+          this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
+          this.getHireInfo();
+        },
+        (error) => {
+          console.log('Ошибка при обновлении заявки: ', error);
+        });
+    }
   }
 
   showInsertSum() {
