@@ -80,7 +80,10 @@ export class ApplicationsCreateComponent implements OnInit {
     comment: '',
     client_phone: {val: '', required: true, name: 'телефон клиента'},
     client_number_passport: {val: '', required: false, name: 'серия и номер паспорта'},
-    client_type: null
+    client_type: null,
+    month_sum: '',
+    square: null,
+    address: ''
   };
 
   // вывод кнопки в зависимости от статуса
@@ -443,7 +446,10 @@ export class ApplicationsCreateComponent implements OnInit {
       branch: this.application.branch.val,
       status: this.application.status.val,
       payList: this.payList,
-      lesa: this.lesa
+      lesa: this.lesa,
+      month_sum: this.application.month_sum,
+      square: this.application.square,
+      address: this.application.address
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно добавлена', type: 'success', body: ''};
 

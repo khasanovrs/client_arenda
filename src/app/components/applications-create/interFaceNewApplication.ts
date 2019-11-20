@@ -1,5 +1,5 @@
 interface InterFaceNewApplication {
-  equipments: { id: number, name: string, count: number, price: string, in_stock: number, photo: string , photo_alias: string, allCount: string }[];
+  equipments: { id: number, name: string, count: number, price: string, in_stock: number, photo: string, photo_alias: string, allCount: string }[];
   typeLease: { val: number, required: boolean, name: string };
   sale: { val: number, required: boolean, name: string };
   status: { val: number, required: boolean, name: string };
@@ -17,4 +17,7 @@ interface InterFaceNewApplication {
   sum: string;
   client_type: number;
   delivery_sum: string;
+  month_sum: string;
+  square: number;
+  address: string;
 }
