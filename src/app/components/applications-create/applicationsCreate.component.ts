@@ -432,7 +432,7 @@ export class ApplicationsCreateComponent implements OnInit {
             this.application[value].required = true;
           }
 
-          if (this.application[value].required && this.application[value].val === '') {
+          if (this.application[value].required && (this.application[value].val === '' || this.application[value].val === null)) {
             this.globalParamsMessage.data = {title: `Необходимо заполнить поле "${this.application[value].name}"`, type: 'error', body: ''};
             return false;
           }
