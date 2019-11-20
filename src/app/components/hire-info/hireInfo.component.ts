@@ -76,7 +76,10 @@ export class HireInfoComponent {
     diagonalnaya_svyaz: null,
     gorizontalnaya_svyaz: null,
     rigel: null,
-    nastil: null
+    nastil: null,
+    month_sum: '',
+    square: '',
+    address: ''
   };
 
   constructor(public hireService: HireService,

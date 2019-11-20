@@ -45,4 +45,7 @@ interface InterFaceHireInfo {
   gorizontalnaya_svyaz: number;
   rigel: number;
   nastil: number;
+  month_sum: string;
+  square: string;
+  address: string;
 }
