@@ -257,7 +257,7 @@ export class ApplicationsCreateComponent implements OnInit {
       }
     } else {
       if (this.application.month_sum.val !== '') {
-        sum = Math.round(parseInt(this.application.month_sum.val, 10) / 30);
+        sum = parseInt(this.application.month_sum.val, 10) / 30;
       } else {
         return true;
       }
@@ -280,7 +280,7 @@ export class ApplicationsCreateComponent implements OnInit {
         return true;
       }
 
-      sum = daysLag * sum;
+      sum = Math.round(daysLag * sum);
     }
 
     if (this.application.sale !== null) {
@@ -428,7 +428,7 @@ export class ApplicationsCreateComponent implements OnInit {
         if (this.application.hasOwnProperty(value) && typeof this.application[value] !== 'undefined') {
 
           // проверка при создании заявки лесов
-          if (this.lesa &&  (value === 'month_sum' || value === 'square' || value === 'address')) {
+          if (this.lesa && (value === 'month_sum' || value === 'square' || value === 'address')) {
             this.application[value].required = true;
           }
 
