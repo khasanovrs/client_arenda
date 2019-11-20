@@ -17,7 +17,7 @@ interface InterFaceNewApplication {
   sum: string;
   client_type: number;
   delivery_sum: string;
-  month_sum: string;
-  square: number;
-  address: string;
+  month_sum: { val: string, required: boolean, name: string };
+  square: { val: number, required: boolean, name: string };
+  address: { val: string, required: boolean, name: string };
 }

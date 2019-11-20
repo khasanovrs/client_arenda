@@ -81,9 +81,9 @@ export class ApplicationsCreateComponent implements OnInit {
     client_phone: {val: '', required: true, name: 'телефон клиента'},
     client_number_passport: {val: '', required: false, name: 'серия и номер паспорта'},
     client_type: null,
-    month_sum: '',
-    square: null,
-    address: ''
+    month_sum: {val: '', required: false, name: 'Цена за месяц'},
+    square: {val: null, required: false, name: 'Площадь лесов'},
+    address: {val: '', required: false, name: 'Адрес размещения'},
   };
 
   // вывод кнопки в зависимости от статуса
@@ -244,14 +244,26 @@ export class ApplicationsCreateComponent implements OnInit {
 
     this.allSum += parseFloat(this.application.delivery_sum);
     let sum = null;
-    if (this.application.equipments.length !== 0) {
-      for (const value of this.application.equipments) {
-        value.count = value.count <= parseInt(value.allCount, 10) ? value.count : parseInt(value.allCount, 10);
-        sum += value.count * parseFloat(value.price);
+
+
+    if (!this.lesa) {
+      if (this.application.equipments.length !== 0) {
+        for (const value of this.application.equipments) {
+          value.count = value.count <= parseInt(value.allCount, 10) ? value.count : parseInt(value.allCount, 10);
+          sum += value.count * parseFloat(value.price);
+        }
+      } else {
+        return true;
       }
     } else {
-      return true;
+      if (this.application.month_sum.val !== '') {
+        sum = Math.round(parseInt(this.application.month_sum.val, 10) / 30);
+      } else {
+        return true;
+      }
+
     }
+
 
     if (this.application.rent_start.val !== null && this.application.rent_end.val !== null) {
       const date1 = new Date(this.application.rent_start.val);
@@ -415,6 +427,11 @@ export class ApplicationsCreateComponent implements OnInit {
       if (this.application.status.val === 2 || this.application.status.val === 1) {
         if (this.application.hasOwnProperty(value) && typeof this.application[value] !== 'undefined') {
 
+          // проверка при создании заявки лесов
+          if (this.lesa &&  (value === 'month_sum' || value === 'square' || value === 'address')) {
+            this.application[value].required = true;
+          }
+
           if (this.application[value].required && this.application[value].val === '') {
             this.globalParamsMessage.data = {title: `Необходимо заполнить поле "${this.application[value].name}"`, type: 'error', body: ''};
             return false;
@@ -447,9 +464,9 @@ export class ApplicationsCreateComponent implements OnInit {
       status: this.application.status.val,
       payList: this.payList,
       lesa: this.lesa,
-      month_sum: this.application.month_sum,
-      square: this.application.square,
-      address: this.application.address
+      month_sum: this.application.month_sum.val,
+      square: this.application.square.val,
+      address: this.application.address.val
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно добавлена', type: 'success', body: ''};
 
