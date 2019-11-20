@@ -465,7 +465,7 @@ export class ApplicationsCreateComponent implements OnInit {
       payList: this.payList,
       lesa: this.lesa,
       month_sum: this.application.month_sum.val,
-      square: this.application.square.val,
+      square: this.application.square.val || 0,
       address: this.application.address.val
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Заявка успешно добавлена', type: 'success', body: ''};
