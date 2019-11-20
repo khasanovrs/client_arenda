@@ -534,6 +534,7 @@ export class ApplicationsCreateComponent implements OnInit {
 
   // изменение флага для лесов
   changeLesa() {
+    this.application.status.val = 1;
     this.lesa = !this.lesa;
     this.application.equipments = [];
     if (this.lesa) {
