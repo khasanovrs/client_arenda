@@ -1,7 +1,7 @@
 #!/bin/bash
 echo 'Запуск обновления';
 rm -rf dist;
-ng build --prod;
+ng build --configuration=production;
 scp -r dist/client-arenda rdwork_linaz_front@rdwork.beget.tech:/home/r/rdwork/frontend-stroika-arenda
 ssh rdwork_linaz_front@rdwork.beget.tech '
 rm -rf public_html/*;
