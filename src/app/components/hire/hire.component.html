@@ -160,6 +160,8 @@
             <td *ngIf="activeFieldsTables['gorizontalnaya_svyaz']===1">{{hire.gorizontalnaya_svyaz}} шт</td>
             <td *ngIf="activeFieldsTables['rigel']===1">{{hire.rigel}} шт</td>
             <td *ngIf="activeFieldsTables['nastil']===1">{{hire.nastil}} шт</td>
+            <td *ngIf="activeFieldsTables['month_sum']===1">{{hire.month_sum | digitsNumbers}}</td>
+            <td *ngIf="activeFieldsTables['square']===1">{{hire.square}}</td>
           </tr>
 
         </table>

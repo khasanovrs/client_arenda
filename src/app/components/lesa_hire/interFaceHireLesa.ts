@@ -1,4 +1,4 @@
-interface InterFaceHire {
+interface InterFaceHireLesa {
   id: number;
   app_id: number;
   typeLease_id: number;

@@ -105,7 +105,7 @@
           </div>
           <div class="---field ---col-12  ---col-xs-6" *ngIf="lesa===true">
             <label>Цена аренды за месяц</label>
-            <input class="---input" [(ngModel)]="application.month_sum" [ngModelOptions]="{standalone: true}">
+            <input class="---input" mask="separator" [(ngModel)]="application.month_sum" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="---field ---col-12  ---col-xs-6" *ngIf="lesa===true">
             <label>Площадь лесов</label>

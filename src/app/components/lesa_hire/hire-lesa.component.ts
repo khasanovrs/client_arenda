@@ -40,9 +40,9 @@ export class HireLesaComponent {
   ];
 
   // список прокатов
-  hires: InterFaceHire[] = [];
+  hires: InterFaceHireLesa[] = [];
 
-  sortedData: InterFaceHire[];
+  sortedData: InterFaceHireLesa[];
 
   constructor(public hireService: HireService,
               private router: Router,
@@ -150,7 +150,7 @@ export class HireLesaComponent {
       sum_end: this.filters.sum_end,
       show_close_hire: this.filters.show_close_hire,
       lesa: true
-    }).then((data: InterFaceHire[]) => {
+    }).then((data: InterFaceHireLesa[]) => {
         this.hires = data;
         this.sortedData = this.hires.slice();
         this.showFilters = false;
