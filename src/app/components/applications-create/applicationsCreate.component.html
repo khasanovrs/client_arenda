@@ -208,7 +208,7 @@
                             <span class="---thumb-item">
                                 В <br>прокат<br>
                                 <span *ngIf="lesa===false" class="---font-600">{{equipment.count}} шт.</span>
-                              <input type="text" (change)="changeSum()" [(ngModel)]="equipment.count" class="---font-600">
+                                <input *ngIf="lesa===true" type="text" (change)="changeSum()" [(ngModel)]="equipment.count" class="---font-600">
                             </span>
                         </span>
         </div>
