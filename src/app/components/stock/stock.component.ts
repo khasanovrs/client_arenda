@@ -27,7 +27,29 @@ export class StockComponent implements OnInit {
   // список активных полей
   activeFieldsTables = {};
 
-  equipmentsList: any = [];
+  equipmentsList: InterFaceEquipmentsStock[] = [{
+    name: '',
+    category: '',
+    stock: '',
+    type: '',
+    status: '',
+    selling_price: '',
+    price_per_day: '',
+    rentals: '',
+    repairs: '',
+    repairs_sum: '',
+    tool_number: '',
+    revenue: '',
+    profit: '',
+    degree_wear: '',
+    payback_ratio: '',
+    comment: '',
+    dop_status: '',
+    count: '',
+    count_hire: '',
+    count_left: ''
+  }];
+
   filters: InterFaceFilterEquipments = {
     status: '',
     like: '',
@@ -67,7 +89,7 @@ export class StockComponent implements OnInit {
     {id: '1', name: 'Да'},
   ];
 
-  sortedData: InterFaceStocks[];
+  sortedData: InterFaceEquipmentsStock[];
 
   constructor(private stockService: StockService,
               private dopParamsService: DopParamsService,
@@ -150,11 +172,8 @@ export class StockComponent implements OnInit {
     for (const value of this.activeFields) {
       this.activeFieldsTables[value.code] = value.flag;
 
-      if (!this.filters.lesa && (value.code === 'count' || value.code === 'count_hire' || value.code === 'count_repairs' || value.code === 'count_left')) {
-        this.activeFieldsTables[value.code] = value.flag = 0;
-      }
-      if (this.filters.lesa && (value.code === 'count' || value.code === 'count_hire' || value.code === 'count_repairs' || value.code === 'count_left')) {
-        this.activeFieldsTables[value.code] = value.flag = 1;
+      if (['count', 'count_hire', 'count_repairs', 'count_left'].indexOf(value.code) !== -1) {
+        this.activeFieldsTables[value.code] = value.flag = !this.filters.lesa ? 0 : 1;
       }
     }
   }
@@ -197,7 +216,7 @@ export class StockComponent implements OnInit {
       degree_wear_end: this.filters.degree_wear_end,
       confirmed: this.filters.confirmed,
       lesa: this.filters.lesa
-    }).then((data: IClientsUr[]) => {
+    }).then((data: InterFaceEquipmentsStock[]) => {
         this.equipmentsList = data;
         this.sortedData = this.equipmentsList.slice();
         this.showFilters = false;
