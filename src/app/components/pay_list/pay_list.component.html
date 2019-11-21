@@ -9,11 +9,11 @@
           <th>Касса</th>
           <th>Сотрудник</th>
         </tr>
-        <tr *ngFor="let pay of data.data.pay_list">
-          <td>{{pay.date}}</td>
-          <td>{{pay.sum | digitsNumbers}} ₽</td>
-          <td>{{pay.cash_box}}</td>
-          <td>{{pay.user_id}}</td>
+        <tr *ngFor="let pay of data.data.pay_list  | keyvalue">
+          <td>{{pay.value.date}}</td>
+          <td>{{pay.value.sum | digitsNumbers}} ₽</td>
+          <td>{{pay.value.cash_box}}</td>
+          <td>{{pay.value.user_id}}</td>
         </tr>
       </table>
     </div>
