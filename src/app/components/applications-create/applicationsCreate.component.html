@@ -105,7 +105,8 @@
           </div>
           <div class="---field ---col-12  ---col-xs-6" *ngIf="lesa===true">
             <label>Цена аренды за месяц</label>
-            <input class="---input" mask="separator" (change)="changeSum()" [(ngModel)]="application.month_sum.val" [ngModelOptions]="{standalone: true}">
+            <input class="---input" mask="separator" (change)="changeSum()" [(ngModel)]="application.month_sum.val"
+                   [ngModelOptions]="{standalone: true}">
           </div>
           <div class="---field ---col-12  ---col-xs-6" *ngIf="lesa===true">
             <label>Площадь лесов</label>
@@ -175,7 +176,7 @@
   </div>
   <div class="---col-12 ---col-lg-6">
 
-    <div class="---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form">
+    <div class="---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form" *ngIf="lesa===false">
       <div class="h2 ---font-600">Запрашиваемое оборудование</div>
       <div class="---devider ---devider-mt0"></div>
 
@@ -195,7 +196,8 @@
                             <span class="---prod-item__title ---font-600">{{equipment.name}}</span>
                             <span style="color: red" (click)="deleteEquipment(i)">Удалить</span>
                         </span>
-          <div (click)="showInsertSum(equipment.id)" *ngIf="application.equipments.length!=0" class="---btn ---btn--fill-acent">Добавить
+          <div (click)="showInsertSum(equipment.id)" *ngIf="application.equipments.length!=0"
+               class="---btn ---btn--fill-acent">Добавить
             платеж
           </div>
 
@@ -211,7 +213,8 @@
                             <span class="---thumb-item">
                                 В <br>прокат<br>
                                 <span *ngIf="lesa===false" class="---font-600">{{equipment.count}} шт.</span>
-                                <input *ngIf="lesa===true" type="text" (change)="changeSum()" [(ngModel)]="equipment.count" class="---font-600">
+                                <input *ngIf="lesa===true" type="text" (change)="changeSum()"
+                                       [(ngModel)]="equipment.count" class="---font-600">
                             </span>
                         </span>
 
@@ -246,6 +249,87 @@
         </div>
       </div>
 
+      <div class="---devider"></div>
+
+      <div class="---total-price ---font-600 h2">
+        <div class="---delivery ---font-300">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>
+        Итого: {{allSum | digitsNumbers}} ₽
+      </div>
+    </div>
+
+    <div class="---r-side-add-block ---equipment-wrapper ---block--bg-white ---radius-5 ---form" *ngIf="lesa===true">
+      <div class="h2 ---font-600">Запрашиваемое оборудование</div>
+      <div class="---devider ---devider-mt0"></div>
+
+      <div class="---prod-list">
+        <div *ngFor="let equipment of application.equipments; let i = index"
+             class="---prod-item ---pos-rel ---d-flex ---align-items-center ---justify-content-between">
+                        <span class="---prod-item__info ---d-inline-flex ---align-items-center">
+                            <span
+                              class="---prod-item__img ---radius-5 ---d-flex ---align-items-center ---justify-content-center">
+                              <img *ngIf="equipment.photo!==''"
+                                   src="http://u68857.netangels.ru/uploads/{{equipment.photo}}" alt=""
+                                   class="---lazyload ---img-contain">
+
+                              <img *ngIf="equipment.photo===''" src="{{equipment.photo_alias}}" alt=""
+                                   class="---lazyload ---img-contain">
+                            </span>
+                            <span class="---prod-item__title ---font-600">{{equipment.name}}</span>
+                            <span style="color: red" (click)="deleteEquipment(i)">Удалить</span>
+                        </span>
+
+          <span class="---prod-item__thumb ---d-inline-flex">
+                            <span class="---thumb-item" *ngIf="lesa===false">
+                                За единицу<br>
+                                <span class="---font-600">{{equipment.price | digitsNumbers}} ₽</span>
+                            </span>
+                            <span class="---thumb-item" *ngIf="lesa===true">
+                                В наличии<br>
+                                <span class="---font-600">{{equipment.allCount}} шт.</span>
+                            </span>
+                            <span class="---thumb-item">
+                                В <br>прокат<br>
+                                <span *ngIf="lesa===false" class="---font-600">{{equipment.count}} шт.</span>
+                                <input *ngIf="lesa===true" type="text" (change)="changeSum()"
+                                       [(ngModel)]="equipment.count" class="---font-600">
+                            </span>
+                        </span>
+        </div>
+
+        <div (click)="showAddEquipments.show=true" class="---btn ---btn--fill-dark">Добавить</div>
+        <div *ngIf="application.status.val===3" (click)="addNewEquipments.show=true" class="---btn ---btn--fill-acent">
+          Создать оборудование
+        </div>
+      </div>
+
+      <div class="---devider"></div>
+      <div (click)="showInsertSum(application.equipments[0].id)" *ngIf="application.equipments.length!=0"
+           class="---btn ---btn--fill-acent">Добавить
+        платеж
+      </div>
+      <div class="---total-price ---font-600 h2" *ngIf="application.equipments.length!=0 && application.equipments[0].payList.length!=0">
+        Платежи:
+        <table>
+          <tr>
+            <td></td>
+            <td>Сумма</td>
+            <td>Касса</td>
+          </tr>
+          <tr *ngFor="let pay of application.equipments[0].payList; let i=index">
+            <td (click)="deletePayList(application.equipments[0],i)">Удалить</td>
+            <td><span *ngIf="pay.revertSum">- </span>{{pay.sum | digitsNumbers}}</td>
+            <td>
+              <div class="---select">
+                <select disabled [(ngModel)]="pay.cashBox">
+                  <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
+                    {{cashBox.name}}
+                  </option>
+                </select>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
       <div class="---devider"></div>
 
       <div class="---total-price ---font-600 h2">

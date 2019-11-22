@@ -510,8 +510,6 @@ export class ApplicationsCreateComponent implements OnInit {
       return false;
     }
 
-    console.log(1, this.addPay);
-
     const eq = this.application.equipments.filter(item => item.id === this.addPay.equipment_id);
 
     eq[0].payList.push({sum: this.addPay.sum, cashBox: this.addPay.cashBox, revertSum: this.addPay.revertSum});
