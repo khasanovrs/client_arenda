@@ -32,7 +32,6 @@ export class HireInfoComponent {
   // список прокатов
   hireInfo: InterFaceHireInfo = {
     id: null,
-    app_id: null,
     branch: '',
     delivery: null,
     typeLease: '',
@@ -186,27 +185,15 @@ export class HireInfoComponent {
   }
 
   equipmentReturn() {
-    if (this.hireInfo.lesa === '1') {
-      this.hireService.equipmentReturnLesa({
-        id: this.hireInfo.app_id
-      }).then(() => {
-          this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
-          this.getHireInfo();
-        },
-        (error) => {
-          console.log('Ошибка при обновлении заявки: ', error);
-        });
-    } else {
-      this.hireService.equipmentReturn({
-        id: this.hireInfo.id
-      }).then(() => {
-          this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
-          this.getHireInfo();
-        },
-        (error) => {
-          console.log('Ошибка при обновлении заявки: ', error);
-        });
-    }
+    this.hireService.equipmentReturn({
+      id: this.hireInfo.id
+    }).then(() => {
+        this.globalParamsMessage.data = {title: 'Товар успешно отправлен на склад', type: 'success', body: ''};
+        this.getHireInfo();
+      },
+      (error) => {
+        console.log('Ошибка при обновлении заявки: ', error);
+      });
   }
 
   showInsertSum() {
@@ -219,7 +206,7 @@ export class HireInfoComponent {
       show: true,
       date_end: this.hireInfo.rent_end,
       type_lease: this.hireInfo.typeLease_id,
-      app_id: this.hireInfo.app_id
+      app_id: this.hireInfo.id
     };
   }
 
@@ -229,7 +216,7 @@ export class HireInfoComponent {
       show: true,
       date_end: this.hireInfo.rent_end,
       type_lease: this.hireInfo.typeLease_id,
-      app_id: this.hireInfo.app_id
+      app_id: this.hireInfo.id
     };
   }
 
@@ -244,7 +231,7 @@ export class HireInfoComponent {
   // удалить прока
   delete_hire() {
     this.hireService.deleteHire({
-      id: this.hireInfo.app_id
+      id: this.hireInfo.id
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Прокат успешно удален', type: 'success', body: ''};
 

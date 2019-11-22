@@ -1,6 +1,5 @@
 interface InterFaceHireInfo {
   id: number;
-  app_id: number;
   branch: string;
   delivery: number;
   typeLease: string;
