@@ -195,6 +195,9 @@
                             <span class="---prod-item__title ---font-600">{{equipment.name}}</span>
                             <span style="color: red" (click)="deleteEquipment(i)">Удалить</span>
                         </span>
+          <div (click)="showInsertSum(equipment.id)" *ngIf="application.equipments.length!=0" class="---btn ---btn--fill-acent">Добавить
+            платеж
+          </div>
 
           <span class="---prod-item__thumb ---d-inline-flex">
                             <span class="---thumb-item" *ngIf="lesa===false">
@@ -211,6 +214,30 @@
                                 <input *ngIf="lesa===true" type="text" (change)="changeSum()" [(ngModel)]="equipment.count" class="---font-600">
                             </span>
                         </span>
+
+          <div class="---total-price ---font-600 h2" *ngIf="equipment.payList.length!=0">
+            Платежи:
+            <table>
+              <tr>
+                <td></td>
+                <td>Сумма</td>
+                <td>Касса</td>
+              </tr>
+              <tr *ngFor="let pay of equipment.payList; let i=index">
+                <td (click)="deletePayList(equipment,i)">Удалить</td>
+                <td><span *ngIf="pay.revertSum">- </span>{{pay.sum | digitsNumbers}}</td>
+                <td>
+                  <div class="---select">
+                    <select disabled [(ngModel)]="pay.cashBox">
+                      <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
+                        {{cashBox.name}}
+                      </option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
 
         <div (click)="showAddEquipments.show=true" class="---btn ---btn--fill-dark">Добавить</div>
@@ -225,38 +252,6 @@
         <div class="---delivery ---font-300">Доставка: {{application.delivery_sum | digitsNumbers}} ₽</div>
         Итого: {{allSum | digitsNumbers}} ₽
       </div>
-
-
-      <div class="---total-price ---font-600 h2" *ngIf="payList.length!=0">
-        Платежи:
-        <table>
-          <tr>
-            <td></td>
-            <td>Сумма</td>
-            <td>Касса</td>
-          </tr>
-          <tr *ngFor="let pay of payList; let i=index">
-            <td (click)="deletePayList(i)">Удалить</td>
-            <td><span *ngIf="pay.revertSum">- </span>{{pay.sum | digitsNumbers}}</td>
-            <td>
-              <div class="---select">
-                <select disabled [(ngModel)]="pay.cashBox">
-                  <option *ngFor="let cashBox of financeCashBox" [ngValue]="cashBox.val">
-                    {{cashBox.name}}
-                  </option>
-                </select>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-
-      <div class="---devider"></div>
-
-      <div (click)="showInsertSum()" *ngIf="application.equipments.length!=0" class="---btn ---btn--fill-acent">Добавить
-        платеж
-      </div>
-
     </div>
 
   </div>

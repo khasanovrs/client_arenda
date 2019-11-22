@@ -49,14 +49,13 @@ export class ApplicationsCreateComponent implements OnInit {
 
   // добавление платежа
   addPay = {
+    equipment_id: null,
     show: false,
     sum: '',
     cashBox: null,
     revertSum: false
   };
 
-  // спасиок платежей
-  payList = [];
   // список касс
   financeCashBox: InterFaceFinanceCashBox[];
   // общая сумма
@@ -362,8 +361,8 @@ export class ApplicationsCreateComponent implements OnInit {
   }
 
   // показ модального окна для добавления платежа
-  showInsertSum() {
-    this.addPay = {show: true, sum: '', cashBox: null, revertSum: false};
+  showInsertSum(equipment_id) {
+    this.addPay = {equipment_id, show: true, sum: '', cashBox: null, revertSum: false};
   }
 
   // заполнение данными из справочника
@@ -399,21 +398,14 @@ export class ApplicationsCreateComponent implements OnInit {
       price: this.showAddEquipments.equipments[index].price_per_day,
       photo: this.showAddEquipments.equipments[index].photo,
       photo_alias: '',
-      allCount: this.showAddEquipments.equipments[index].count
+      allCount: this.showAddEquipments.equipments[index].count,
+      payList: []
     };
     this.application.equipments.push(tmp);
 
     // зачищать или нет список оборудования
-    if (this.lesa) {
-      this.showAddEquipments.filter = '';
-      this.showAddEquipments.show = false;
-    } else {
-      this.showAddEquipments = {
-        show: false,
-        filter: '',
-        equipments: []
-      };
-    }
+    this.showAddEquipments.filter = '';
+    this.showAddEquipments.show = false;
 
     this.changeSum();
   }
@@ -462,7 +454,6 @@ export class ApplicationsCreateComponent implements OnInit {
       source: this.application.source.val,
       branch: this.application.branch.val,
       status: this.application.status.val,
-      payList: this.payList,
       lesa: this.lesa,
       month_sum: this.application.month_sum.val,
       square: this.application.square.val || 0,
@@ -519,17 +510,21 @@ export class ApplicationsCreateComponent implements OnInit {
       return false;
     }
 
-    this.payList.push({sum: this.addPay.sum, cashBox: this.addPay.cashBox, revertSum: this.addPay.revertSum});
-    this.addPay = {show: false, sum: '', cashBox: null, revertSum: false};
+    console.log(1, this.addPay);
+
+    const eq = this.application.equipments.filter(item => item.id === this.addPay.equipment_id);
+
+    eq[0].payList.push({sum: this.addPay.sum, cashBox: this.addPay.cashBox, revertSum: this.addPay.revertSum});
+    this.clear();
   }
 
   // удаление платежа
-  deletePayList(index) {
-    this.payList.splice(index, 1);
+  deletePayList(equipment, index) {
+    equipment.payList.splice(index, 1);
   }
 
   clear() {
-    this.addPay = {show: false, sum: '', cashBox: null, revertSum: false};
+    this.addPay = {equipment_id: null, show: false, sum: '', cashBox: null, revertSum: false};
   }
 
   // изменение флага для лесов
