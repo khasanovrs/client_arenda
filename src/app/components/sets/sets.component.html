@@ -36,21 +36,6 @@
       </div>
 
       <div class="---docs-wrapper">
-        <div (click)="showHireStatus=!showHireStatus" class="h2 ---font-600">Статусы для проката</div>
-        <div class="---row" *ngIf="showHireStatus">
-          <div class="---col-lg-6" *ngFor="let status of hireStatusList">
-            <div class="---doc-item ---pos-rel ---radius-5">
-              <div class="---title ---font-600">{{status.name}}</div>
-              <div class="---icons ---y-pos-abs ---d-flex">
-                <div class="---color" [style.background]='status.color'></div>
-                <div (click)="changeParams(status,'status_hire')" class="ifont ---icon-edit ---acent"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="---docs-wrapper">
         <div (click)="showEqStatus=!showEqStatus" class="h2 ---font-600">Статусы для оборудований</div>
         <div class="---row" *ngIf="showEqStatus">
           <div class="---col-lg-6" *ngFor="let status of equipmentsStatusList">

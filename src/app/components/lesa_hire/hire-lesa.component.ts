@@ -176,7 +176,6 @@ export class HireLesaComponent {
       show: true,
       date_end: rent_end,
       type_lease: typeLease_id,
-      app_eq_id: app_eq_id,
       app_id: app_id
     };
   }

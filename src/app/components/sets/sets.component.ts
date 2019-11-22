@@ -34,9 +34,7 @@ export class SetsComponent implements OnInit {
   clientStatusList: InterFaceDopParamsColor[] = [];
   // список статусов для заявок
   applicationStatusList: InterFaceDopParamsColor[] = [];
-  // список статусов для проката
-  hireStatusList: InterFaceDopParamsColor[] = [];
-  // список статусов для оборудования
+    // список статусов для оборудования
   equipmentsStatusList: InterFaceDopParamsColor[] = [];
   // список филиалов
   branchList: InterFaceBranch[] = [];
@@ -197,13 +195,6 @@ export class SetsComponent implements OnInit {
       },
       (error) => {
         console.log('Ошибка при получении списка марков оборудования: ', error);
-      });
-
-    this.hireService.getHireStatus().then((data: InterFaceDopParamsColor[]) => {
-        this.hireStatusList = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении статусов проката: ', error);
       });
 
     this.financeService.getFinanceCategory().then((data: InterFaceDopParams[]) => {
