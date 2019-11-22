@@ -210,7 +210,7 @@ export class HireInfoComponent {
   }
 
   showInsertSum() {
-    this.globalParamsPay.data = {show: true, sum: '', eq_id: this.hireInfo.id, cashBox: null};
+    this.globalParamsPay.data = {show: true, sum: '', app_id: this.hireInfo.id, cashBox: null};
   }
 
   // продление проката

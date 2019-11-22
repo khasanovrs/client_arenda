@@ -15,7 +15,7 @@ export class PayComponent implements OnInit {
       show: false,
       sum: '',
       cashBox: null,
-      eq_id: null
+      app_id: null
     }
   };
   financeCashBox: InterFaceFinanceCashBox[];
@@ -47,7 +47,7 @@ export class PayComponent implements OnInit {
   }
 
   clear() {
-    this.data.data = {show: false, sum: '', eq_id: null, cashBox: null};
+    this.data.data = {show: false, sum: '', app_id: null, cashBox: null};
   }
 
   send() {
@@ -62,11 +62,11 @@ export class PayComponent implements OnInit {
     }
 
     this.data.data.show = false;
-    if (this.data.data.eq_id !== null) {
+    if (this.data.data.app_id !== null) {
       this.applicationsService.addPay({
         sum: this.globalParamsPay.data.sum,
         cashBox: this.globalParamsPay.data.cashBox,
-        eq_app_id: this.globalParamsPay.data.eq_id,
+        app_id: this.globalParamsPay.data.app_id,
         revertSum: this.revertSum
       }).then(() => {
           this.globalParamsMessage.data = {title: 'Оплата успешно добавлена', type: 'success', body: ''};

@@ -6,6 +6,6 @@ export class GlobalParamsPay {
     show: false,
     sum: '',
     cashBox: null,
-    eq_id: null
+    app_id: null
   };
 }
