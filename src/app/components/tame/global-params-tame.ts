@@ -6,7 +6,6 @@ export class GlobalParamsTame {
     show: false,
     date_end: '',
     type_lease: null,
-    app_eq_id: null,
     app_id: null
   };
 }

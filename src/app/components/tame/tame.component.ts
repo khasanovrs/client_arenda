@@ -24,7 +24,6 @@ export class TameComponent implements OnInit {
       show: false,
       date_end: '',
       type_lease: null,
-      app_eq_id: null,
       app_id: null,
       count: ''
     };
@@ -39,7 +38,6 @@ export class TameComponent implements OnInit {
     if (this.data.data.eq_id !== null) {
       this.applicationsService.tameRental({
         count: this.data.data.count,
-        app_eq_id: this.data.data.app_eq_id,
         app_id: this.data.data.app_id
       }).then(() => {
           this.globalParamsMessage.data = {title: 'Аренда успешно обновлена', type: 'success', body: ''};

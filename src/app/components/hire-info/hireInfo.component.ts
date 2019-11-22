@@ -219,7 +219,6 @@ export class HireInfoComponent {
       show: true,
       date_end: this.hireInfo.rent_end,
       type_lease: this.hireInfo.typeLease_id,
-      app_eq_id: this.hireInfo.id,
       app_id: this.hireInfo.app_id
     };
   }
@@ -230,7 +229,6 @@ export class HireInfoComponent {
       show: true,
       date_end: this.hireInfo.rent_end,
       type_lease: this.hireInfo.typeLease_id,
-      app_eq_id: this.hireInfo.id,
       app_id: this.hireInfo.app_id
     };
   }
