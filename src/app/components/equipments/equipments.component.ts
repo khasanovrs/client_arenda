@@ -28,7 +28,7 @@ export class EquipmentsComponent implements OnInit {
   // сумма ремонта
   amount_repair = 0;
   // сумма продажи
-  sale_amount = '';
+  sale_amount = 0;
   // касса
   cash_box = null;
 
@@ -250,7 +250,7 @@ export class EquipmentsComponent implements OnInit {
           return false;
         }
       } else {
-        if (this.sale_amount === '') {
+        if (this.sale_amount === 0) {
           this.globalParamsMessage.data = {title: 'Необходимо указать сумму продажи', type: 'error', body: ''};
           return false;
         }
