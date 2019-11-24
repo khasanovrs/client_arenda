@@ -248,13 +248,15 @@ export class ApplicationsCreateComponent implements OnInit {
     if (!this.lesa) {
       if (this.application.equipments.length !== 0) {
         for (const value of this.application.equipments) {
-          value.count = !this.lesa || value.count <= parseInt(value.allCount, 10) ? value.count : parseInt(value.allCount, 10);
           sum += value.count * parseFloat(value.price);
         }
       } else {
         return true;
       }
     } else {
+      for (const value of this.application.equipments) {
+        value.count = value.count <= parseInt(value.allCount, 10) ? value.count : parseInt(value.allCount, 10);
+      }
       if (this.application.month_sum.val !== '') {
         sum = parseInt(this.application.month_sum.val, 10) / 30;
       } else {
