@@ -171,7 +171,7 @@ export class HireComponent {
     return `Телефон : ${country}(${city})-${number}-${number2}-${number3}`;
   }
 
-  showInsertRental(app_eq_id, app_id, typeLease_id, rent_end) {
+  showInsertRental(app_id, typeLease_id, rent_end) {
     this.globalParamsRental.data = {
       show: true,
       date_end: rent_end,
