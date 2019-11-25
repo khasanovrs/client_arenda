@@ -51,7 +51,7 @@ export class StockComponent implements OnInit {
   }];
 
   filters: InterFaceFilterEquipments = {
-    status: '',
+    status: '4',
     like: '',
     stock: null,
     equipmentsType: null,
@@ -113,13 +113,6 @@ export class StockComponent implements OnInit {
       (error) => {
         console.log('Ошибка при получении складов: ', error);
       });
-
-    /*this.equipmentsService.getEquipmentsType().then((data: InterFaceDopParams[]) => {
-        this.equipmentsTypeList = data;
-      },
-      (error) => {
-        console.log('Ошибка при получении списка типов оборудования: ', error);
-      });*/
 
     this.equipmentsService.getEquipmentsStatus().then((data: InterFaceDopParamsColor[]) => {
         this.equipmentsStatusList = data;

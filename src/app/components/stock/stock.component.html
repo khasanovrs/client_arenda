@@ -3,9 +3,11 @@
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
       <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
-        <div class="---tabs__switcher ---is-active" (click)="changeTypeEquipments('')">Все позиции</div>
-        <div class="---tabs__switcher" (click)="changeTypeEquipments('1')">В аренде</div>
+        <div class="---tabs__switcher ---is-active" (click)="changeTypeEquipments('4')">Доступное</div>
         <div class="---tabs__switcher" (click)="changeTypeEquipments('2')">В ремонте</div>
+        <div class="---tabs__switcher" (click)="changeTypeEquipments('3')">Списанное</div>
+        <div class="---tabs__switcher" (click)="changeTypeEquipments('1')">В аренде</div>
+        <div class="---tabs__switcher" (click)="changeTypeEquipments('5')">Все</div>
       </div>
       <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
         <div class="---tabs__switcher" (click)="changeEquipments(true)">Леса</div>
