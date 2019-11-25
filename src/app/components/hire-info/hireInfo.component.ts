@@ -27,6 +27,8 @@ export class HireInfoComponent {
   showButtonCloseHire = false;
 
   showReturnEq = false;
+  // окно доставки
+  showDelivery = false;
   img = '';
 
   // список прокатов
@@ -43,7 +45,6 @@ export class HireInfoComponent {
     rent_end: '',
     client_fio: '',
     client_phone: '',
-    delivery_sum: '',
     sum: '',
     total_paid: '',
     remainder: '',
@@ -78,7 +79,8 @@ export class HireInfoComponent {
     nastil: null,
     month_sum: '',
     square: '',
-    address: ''
+    address: '',
+    delivery_data: {delivery_sum: '', delivery_sum_paid: '', delivery_app: [{name: '', id: null}]}
   };
 
   constructor(public hireService: HireService,

@@ -11,7 +11,6 @@ interface InterFaceHireInfo {
   rent_end: string;
   client_fio: string;
   client_phone: string;
-  delivery_sum: string;
   sum: string;
   count: number;
   total_paid: string;
@@ -47,4 +46,5 @@ interface InterFaceHireInfo {
   month_sum: string;
   square: string;
   address: string;
+  delivery_data: {delivery_sum: string, delivery_sum_paid: string, delivery_app: [{name: string, id: number}]};
 }

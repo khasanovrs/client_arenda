@@ -41,6 +41,9 @@
         <div style="margin: 0 10px 10px 0;" (click)="save_word()"
              class="---btn ---btn--sm ---btn--fill-acent">Скачать док
         </div>
+        <div style="margin: 0 10px 10px 0;" (click)="showDelivery=!showDelivery"
+             class="---btn ---btn--sm ---btn--fill-acent">Доставка
+        </div>
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
@@ -143,11 +146,6 @@
         <div class="---input ---input--disabled">{{hireInfo.sum | digitsNumbers}} ₽</div>
       </div>
 
-      <div class="---field ---col-sm-6 ---col-lg-4">
-        <label>Доставка</label>
-        <div class="---input ---input--disabled">{{hireInfo.delivery_sum}} ₽</div>
-      </div>
-
       <div class="---field ---col-12">
         <label>Комментарий</label>
         <textarea class="---input" [(ngModel)]="hireInfo.comment" rows="5"></textarea>
@@ -202,4 +200,35 @@
     <div (click)="updateHire()" class="---btn ---btn--fill-acent">Обновить</div>
   </div>
 
+</div>
+
+
+<div *ngIf="showDelivery" id="---modal-text"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper ---wrapper--small">
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="showDelivery=false"></div>
+    <div class="modal-body ---form">
+
+      <table style="min-width: 360px;">
+        <tr>
+          <th>Сумма доставки</th>
+          <th>Оплочено</th>
+        </tr>
+        <tr>
+          <td>{{hireInfo.delivery_data.delivery_sum | digitsNumbers}} ₽</td>
+          <td>{{hireInfo.delivery_data.delivery_sum_paid | digitsNumbers}} ₽</td>
+        </tr>
+      </table>
+
+      <table style="min-width: 360px;" *ngIf="hireInfo.delivery_data.delivery_app.length>0">
+        <tr>
+          <th>Инструмент</th>
+        </tr>
+        <tr *ngFor="let item of hireInfo.delivery_data.delivery_app">
+          <td><a target="_blank" href="/hire/{{item.id}}">{{item.name}}</a></td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
 </div>
