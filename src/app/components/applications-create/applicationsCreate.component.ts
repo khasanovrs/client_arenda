@@ -11,6 +11,8 @@ import {FinanceService} from '../finance/finance.service';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import {EquipmentsCreateMiniService} from '../equipments_create_mini/equipmentsCreateMini.service';
 import * as moment from 'moment';
+import {DocumentService} from '../../services/document.service';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-applications-create',
@@ -100,6 +102,7 @@ export class ApplicationsCreateComponent implements OnInit {
               public globalParams: GlobalParams,
               private router: Router,
               private globalParamsUser: GlobalParamsUser,
+              private documentService: DocumentService,
               private equipmentsCreateMiniService: EquipmentsCreateMiniService,
               public financeService: FinanceService) {
 
@@ -545,5 +548,34 @@ export class ApplicationsCreateComponent implements OnInit {
 
 
     this.changeBranch();
+  }
+
+  // печать договоров
+  save_word() {
+    const _equipments = this.application;
+    const _documentService = this.documentService;
+    this.application.equipments.forEach(function (value) {
+      {
+        _documentService.printDoc({
+          branch: _equipments.branch.val,
+          client: _equipments.client_id,
+          eq: value.id,
+          rent_start: _equipments.rent_start.val,
+          rent_end: _equipments.rent_end.val,
+          sum: _equipments.sum,
+          payList: value.payList
+        }).then((result: any) => {
+
+            try {
+              window.open('http://u68857.netangels.ru/uploads/doc/' + result, '_blank');
+            } catch (e) {
+              console.log(1, e);
+            }
+          },
+          (error) => {
+            console.log('Ошибка при скачивании документа: ', error);
+          });
+      }
+    });
   }
 }

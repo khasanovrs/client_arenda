@@ -1,5 +1,9 @@
 <div class="---tabs ---tabs--finance">
   <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
+    <div class="---col-12 ---field ---d-flex ---flex-wrap">
+      <div style="margin: 0 10px 10px 0;" (click)="save_word()" class="---btn ---btn--sm ---btn--fill-acent">Печать договоров
+      </div>
+    </div>
     <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
       <div class="---tabs__switcher" [ngClass]="{'---is-active':status.val==application.status.val}"
            *ngFor="let status of showApplicationsStatus"
@@ -307,7 +311,8 @@
            class="---btn ---btn--fill-acent">Добавить
         платеж
       </div>
-      <div class="---total-price ---font-600 h2" *ngIf="application.equipments.length!=0 && application.equipments[0].payList.length!=0">
+      <div class="---total-price ---font-600 h2"
+           *ngIf="application.equipments.length!=0 && application.equipments[0].payList.length!=0">
         Платежи:
         <table>
           <tr>

@@ -270,22 +270,4 @@ export class HireInfoComponent {
         console.log('Ошибка при закрытии проката: ', error);
       });
   }
-
-  // получение доков
-  save_word() {
-    /*this.documentService.getPdf().subscribe((data) => {
-      const downloadURL = window.URL.createObjectURL(data);
-      const link = document.createElement('a');
-      link.href = downloadURL;
-      link.download = 'file.docx';
-      link.click();
-    });*/
-
-    this.documentService.getWord({hireInfoId: this.hireInfo.id}).then((result: any) => {
-        window.open('http://u68857.netangels.ru/uploads/doc/' + result, '_blank');
-      },
-      (error) => {
-        console.log('Ошибка при скачивании документа: ', error);
-      });
-  }
 }

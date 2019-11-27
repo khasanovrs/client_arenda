@@ -19,9 +19,10 @@ export class DocumentService {
     return this.http.get('http://localhost:8004/api/get-doc', httpOptions);
   }
 
-  public getWord(data) {
+  // печать договоров при создании проката
+  public printDoc(data) {
     return new Promise((resolve, reject) => {
-      this.httpService.prepareQuery('api/get-doc', data)
+      this.httpService.prepareQuery('api/print-doc', data)
         .then((result) => {
             resolve(result);
           },
