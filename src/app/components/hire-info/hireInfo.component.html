@@ -86,6 +86,18 @@
       </div>
 
       <div class="---field ---col-sm-6 ---col-lg-4">
+        <label>Тип доставки</label>
+        <div class="---select">
+          <select [(ngModel)]="hireInfo.typeLease_id" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let typeLease of applicationsTypeLeases"
+                    [ngValue]="typeLease.val">
+              {{typeLease.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="---field ---col-sm-6 ---col-lg-4">
         <label>Начало аренды</label>
         <div class="---input ---input--calendar ---pos-rel">
           <i class="---y-pos-abs ifont ---icon-calendar"></i>

@@ -13,6 +13,7 @@ import {GlobalParamsUser} from '../../storage/global-params-user';
 import * as moment from 'moment';
 import {GlobalParamsTame} from '../tame/global-params-tame';
 import {DocumentService} from '../../services/document.service';
+import {EquipmentsService} from '../equipments/equipments.service';
 
 @Component({
   selector: 'app-hire-info',
@@ -25,6 +26,7 @@ export class HireInfoComponent {
   discounts: InterFaceDopParams[] = [];
   delivery: InterFaceDopParams[] = [];
   showButtonCloseHire = false;
+  applicationsTypeLeases: InterFaceDopParams[] = [];
 
   showReturnEq = false;
   // окно доставки
@@ -96,6 +98,7 @@ export class HireInfoComponent {
               private routerCurrent: Router,
               private documentService: DocumentService,
               public globalParamsUser: GlobalParamsUser,
+              public equipmentsService: EquipmentsService,
               private globalExtensionsList: GlobalExtensionsList) {
 
     this.router.params.subscribe(
@@ -122,6 +125,12 @@ export class HireInfoComponent {
         console.log('Ошибка при получении списка скидок: ', error);
       });
 
+    this.applicationsCreateService.getApplicationsTypeLease().then((data: InterFaceDopParams[]) => {
+        this.applicationsTypeLeases = data;
+      },
+      (error) => {
+        console.log('Ошибка при получении типов аренды: ', error);
+      });
     this.getHireInfo();
   }
 
@@ -174,6 +183,7 @@ export class HireInfoComponent {
       id: this.hireInfo.id,
       delivery: this.hireInfo.delivery,
       sale: this.hireInfo.sale,
+      typeLease_id: this.hireInfo.typeLease_id,
       rent_start: this.hireInfo.rent_start,
       rent_end: this.hireInfo.rent_end,
       comment: this.hireInfo.comment
