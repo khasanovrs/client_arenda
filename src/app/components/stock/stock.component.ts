@@ -167,6 +167,8 @@ export class StockComponent implements OnInit {
 
       if (['count', 'count_hire', 'count_repairs', 'count_left'].indexOf(value.code) !== -1) {
         this.activeFieldsTables[value.code] = value.flag = !this.filters.lesa ? 0 : 1;
+      } else if (['dop_status'].indexOf(value.code) !== -1) {
+        this.activeFieldsTables[value.code] = value.flag = this.filters.lesa ? 0 : 1;
       }
     }
   }
