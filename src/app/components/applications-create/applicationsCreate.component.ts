@@ -275,7 +275,15 @@ export class ApplicationsCreateComponent implements OnInit {
         return false;
       }
 
-      const daysLag = Math.ceil(Math.abs(date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
+      let daysLag = null;
+      if (this.application.typeLease.val === 1) {
+        daysLag = Math.ceil(Math.abs(date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
+      } else {
+        daysLag = Math.floor((Math.ceil(Math.abs(date2.getTime() - date1.getTime()) / (1000 * 3600 * 24))) / 30);
+        daysLag = daysLag * 30;
+      }
+
+      console.log(1, daysLag);
 
       if (isNaN(daysLag)) {
         return true;
