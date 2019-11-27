@@ -265,7 +265,6 @@ export class ApplicationsCreateComponent implements OnInit {
 
     }
 
-
     if (this.application.rent_start.val !== null && this.application.rent_end.val !== null) {
       const date1 = new Date(this.application.rent_start.val);
       const date2 = new Date(this.application.rent_end.val);
@@ -282,8 +281,6 @@ export class ApplicationsCreateComponent implements OnInit {
         daysLag = Math.floor((Math.ceil(Math.abs(date2.getTime() - date1.getTime()) / (1000 * 3600 * 24))) / 30);
         daysLag = daysLag * 30;
       }
-
-      console.log(1, daysLag);
 
       if (isNaN(daysLag)) {
         return true;
