@@ -2,7 +2,6 @@ interface InterFaceHireInfo {
   id: number;
   branch: string;
   delivery: number;
-  typeLease: string;
   typeLease_id: number;
   sale: number;
   source: number;

@@ -38,7 +38,6 @@ export class HireInfoComponent {
     id: null,
     branch: '',
     delivery: null,
-    typeLease: '',
     typeLease_id: null,
     sale: null,
     source: null,
