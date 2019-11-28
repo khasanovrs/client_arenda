@@ -94,6 +94,7 @@ export class StockComponent implements OnInit {
     {name: 'В ремонте', val: '2'},
     {name: 'Списанное', val: '3'},
     {name: 'В аренде', val: '1'},
+    {name: 'Спрос', val: '7'},
     {name: 'Все', val: '5'}
   ];
 

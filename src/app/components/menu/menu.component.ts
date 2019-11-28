@@ -15,6 +15,7 @@ export class MenuComponent implements OnInit {
     {link: 'hire', name: 'Прокат', class: '---icon-menu-rent', type: 'all'},
     {link: 'hire-lesa', name: 'Прокат лесов', class: '---icon-menu-rent', type: 'all'},
     {link: 'stock', name: 'Склад', class: '---icon-menu-base', type: 'all'},
+    {link: 'demand', name: 'Спрос', class: '---icon-menu-base', type: 'all'},
     {link: 'clients', name: 'Клиенты', class: '---icon-menu-clients', type: 'admin'},
     {link: 'report', name: 'Отчеты', class: '---icon-menu-report', type: 'all'},
     {link: 'settings', name: 'Настройки', class: '---icon-menu-settings', type: 'all'},

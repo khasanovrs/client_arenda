@@ -20,6 +20,7 @@ import {FinanceInfoComponent} from './components/finance_info/financeInfo.compon
 import {HireComponent} from './components/hire/hire.component';
 import {HireInfoComponent} from './components/hire-info/hireInfo.component';
 import {HireLesaComponent} from './components/lesa_hire/hire-lesa.component';
+import {DemandComponent} from './components/demand/demand.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,9 @@ const routes: Routes = [
   }, {
     path: 'stock',
     component: StockComponent
+  }, {
+    path: 'demand',
+    component: DemandComponent
   }, {
     path: 'sets',
     component: SetsComponent

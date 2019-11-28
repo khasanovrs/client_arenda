@@ -1,0 +1,47 @@
+<div class="---page-clients">
+
+  <div class="---tabs ---tabs--finance">
+    <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
+      <div class="---d-flex ---form ---align-items-start">
+        <div class="---search ---field ---pos-rel">
+          <div class="---field ---col-12 ---col-sm-6">
+            <label>Склад</label>
+            <div class="---select">
+              <select [(ngModel)]="filters.stock" (change)="getEquipments()">
+                <option *ngFor="let stock of stocks" [ngValue]="stock.val">
+                  {{stock.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <input class="---input" placeholder="Поиск по складу" [(ngModel)]="filters.like"
+                 (keyup)="getEquipments()">
+          <button class="---y-pos-abs ifont ---icon-loop"></button>
+        </div>
+      </div>
+
+      <a routerLink='/equipments-create' class="---btn ---btn--fill-acent">Добавить товар</a>
+    </div>
+
+    <div class="---t-wrapper">
+      <table matSort (matSortChange)="sortData($event)">
+        <tr>
+          <ng-container *ngFor="let activeField of activeFields">
+            <th mat-sort-header="{{activeField.code}}">{{activeField.name}}</th>
+          </ng-container>
+        </tr>
+
+        <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 50, currentPage: p }" class="cursor-pointer">
+          <td *ngIf="activeFieldsTables['name']===1">{{equipment.name}}</td>
+          <td *ngIf="activeFieldsTables['stock']===1">{{equipment.stock}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div
+      class="---block--bg-white ---block-pagination ---d-flex ---align-items-center ---justify-content-between ---radius-5">
+      <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
+      <div>Всего записей — <span class="---font-600">{{equipmentsList.length | digitsNumbers}}</span></div>
+    </div>
+  </div>
+</div>

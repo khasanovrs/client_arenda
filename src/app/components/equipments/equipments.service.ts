@@ -9,6 +9,7 @@ export class EquipmentsService {
   equipmentsAvailabilityList: InterFaceDopParams[] = [];
   equipmentsMarkList: InterFaceDopParams[] = [];
   equipmentsFieldsList: InterFaceActiveFields[] = [];
+  equipmentsDemandFieldsList: InterFaceActiveFields[] = [];
 
   constructor(private httpService: HttpService,
               private globalParamsMessage: GlobalParamsMessage) {
@@ -192,6 +193,21 @@ export class EquipmentsService {
     });
   }
 
+  // получение списка товаров
+  public getEquipmentsDemand(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-equipments-demand', data)
+        .then((result: any) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении списка оборудований', error);
+            reject();
+          }
+        );
+    });
+  }
+
   // получение конкретной информации о товаре
   public getEquipmentInfo(data) {
     return new Promise((resolve, reject) => {
@@ -223,6 +239,26 @@ export class EquipmentsService {
           );
       } else {
         resolve(this.equipmentsFieldsList);
+      }
+    });
+  }
+
+  // получение списка активных полей для спроса
+  public getEquipmentsDemandFields() {
+    return new Promise((resolve, reject) => {
+      if (this.equipmentsDemandFieldsList.length === 0) {
+        this.httpService.prepareQuery('api/get-equipments--demand-fields', '')
+          .then((result: InterFaceActiveFields[]) => {
+              this.equipmentsDemandFieldsList = result;
+              resolve(result);
+            },
+            (error) => {
+              console.log('Ошибка при получении списка полей для оборудования', error);
+              reject();
+            }
+          );
+      } else {
+        resolve(this.equipmentsDemandFieldsList);
       }
     });
   }
