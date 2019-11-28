@@ -151,7 +151,24 @@
           <tr>
             <th></th>
             <ng-container *ngFor="let activeField of activeFields">
-              <th mat-sort-header="{{activeField.code}}" *ngIf="activeField.flag===1">{{activeField.name}}</th>
+              <th *ngIf="activeField.flag===1">
+                {{activeField.name}}
+                <div mat-sort-header="{{activeField.code}}">Сортировка</div>
+                <div *ngIf="activeField.code==='source'" class="---select">
+                  <select [(ngModel)]="filters.source" (change)="getClients()">
+                    <option *ngFor="let source of sourceList" [ngValue]="source.val">
+                      {{source.name}}
+                    </option>
+                  </select>
+                </div>
+                <div *ngIf="activeField.code==='status'" class="---select">
+                  <select [(ngModel)]="filters.status" (change)="getClients()">
+                    <option *ngFor="let status of statusList" [ngValue]="status.val">
+                      {{status.name}}
+                    </option>
+                  </select>
+                </div>
+              </th>
             </ng-container>
           </tr>
 
