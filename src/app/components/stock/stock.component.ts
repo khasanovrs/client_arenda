@@ -89,6 +89,15 @@ export class StockComponent implements OnInit {
     {id: '1', name: 'Да'},
   ];
 
+  statusList = [
+    {name: 'Доступное', val: '4'},
+    {name: 'В ремонте', val: '2'},
+    {name: 'Списанное', val: '3'},
+    {name: 'В аренде', val: '1'},
+    {name: 'Спрос', val: '7'},
+    {name: 'Все', val: '5'}
+  ];
+
   sortedData: InterFaceEquipmentsStock[];
 
   constructor(private stockService: StockService,
@@ -133,9 +142,13 @@ export class StockComponent implements OnInit {
     this.getEquipments();
   }
 
-  changeCategory(data) {
+  changeCategory(data, check = false) {
     const arr = this.equipmentsCategoryList.filter(item => item.val === data);
     this.equipmentsTypeList = arr[0].type;
+
+    if (check) {
+      this.getEquipments();
+    }
   }
 
   // список оборудования

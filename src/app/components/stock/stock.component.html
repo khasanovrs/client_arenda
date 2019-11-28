@@ -3,12 +3,9 @@
   <div class="---tabs ---tabs--finance">
     <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
       <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
-        <div class="---tabs__switcher ---is-active" (click)="changeTypeEquipments('4')">Доступное</div>
-        <div class="---tabs__switcher" (click)="changeTypeEquipments('2')">В ремонте</div>
-        <div class="---tabs__switcher" (click)="changeTypeEquipments('3')">Списанное</div>
-        <div class="---tabs__switcher" (click)="changeTypeEquipments('1')">В аренде</div>
-        <div class="---tabs__switcher" (click)="changeTypeEquipments('7')">Спрос</div>
-        <div class="---tabs__switcher" (click)="changeTypeEquipments('5')">Все</div>
+        <div class="---tabs__switcher" [ngClass]="{'---is-active':status.val===filters.status}"
+             *ngFor="let status of statusList" (click)="changeTypeEquipments(status.val)">{{status.name}}
+        </div>
       </div>
       <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
         <div class="---tabs__switcher" (click)="changeEquipments(true)">Леса</div>
@@ -205,10 +202,35 @@
               {{activeField.name}}
               <div mat-sort-header="{{activeField.code}}">Сортировка</div>
 
-              <div  *ngIf="activeField.code==='stock'" class="---select">
+              <div *ngIf="activeField.code==='stock'" class="---select">
                 <select [(ngModel)]="filters.stock" (change)="getEquipments()">
                   <option *ngFor="let stock of stocks" [ngValue]="stock.val">
                     {{stock.name}}
+                  </option>
+                </select>
+              </div>
+              <div *ngIf="activeField.code==='category'" class="---select">
+                <select [(ngModel)]="filters.equipmentsCategory"
+                        (change)="changeCategory(filters.equipmentsCategory,true)">
+                  <option *ngFor="let equipmentsCategory of equipmentsCategoryList"
+                          [ngValue]="equipmentsCategory.val">
+                    {{equipmentsCategory.name}}
+                  </option>
+                </select>
+              </div>
+              <div *ngIf="activeField.code==='type'" class="---select">
+                <select [(ngModel)]="filters.equipmentsType" (change)="getEquipments()">
+                  <option *ngFor="let equipmentsType of equipmentsTypeList"
+                          [ngValue]="equipmentsType.val">
+                    {{equipmentsType.name}}
+                  </option>
+                </select>
+              </div>
+              <div *ngIf="activeField.code==='status'" class="---select">
+                <select [(ngModel)]="filters.status" (change)="getEquipments()">
+                  <option *ngFor="let status of statusList"
+                          [ngValue]="status.val">
+                    {{status.name}}
                   </option>
                 </select>
               </div>
