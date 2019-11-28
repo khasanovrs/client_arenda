@@ -200,11 +200,24 @@
         <tr>
           <th></th>
           <ng-container *ngFor="let activeField of activeFields">
-            <th mat-sort-header="{{activeField.code}}" *ngIf="activeField.flag===1">{{activeField.name}}</th>
+
+            <th *ngIf="activeField.flag===1">
+              {{activeField.name}}
+              <div mat-sort-header="{{activeField.code}}">Сортировка</div>
+
+              <div  *ngIf="activeField.code==='stock'" class="---select">
+                <select [(ngModel)]="filters.stock" (change)="getEquipments()">
+                  <option *ngFor="let stock of stocks" [ngValue]="stock.val">
+                    {{stock.name}}
+                  </option>
+                </select>
+              </div>
+            </th>
           </ng-container>
         </tr>
 
-        <tr (dblclick)="equipmentDetails(equipment.id)" *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 50, currentPage: p }"
+        <tr (dblclick)="equipmentDetails(equipment.id)"
+            *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 50, currentPage: p }"
             class="cursor-pointer">
           <td>
             <div class="ifont ---icon-edit ---radius-5" (click)="equipmentDetails(equipment.id)"></div>
@@ -213,7 +226,9 @@
           <td *ngIf="activeFieldsTables['category']===1">{{equipment.category}}</td>
           <td *ngIf="activeFieldsTables['stock']===1">{{equipment.stock}}</td>
           <td *ngIf="activeFieldsTables['type']===1">{{equipment.type}}</td>
-          <td [style.background]="equipment.color" data-toggle="tooltip" title="{{mouseEnter(equipment)}}" *ngIf="activeFieldsTables['status']===1">{{equipment.status}}</td>
+          <td [style.background]="equipment.color" data-toggle="tooltip" title="{{mouseEnter(equipment)}}"
+              *ngIf="activeFieldsTables['status']===1">{{equipment.status}}
+          </td>
           <td *ngIf="activeFieldsTables['selling_price']===1">{{equipment.selling_price | digitsNumbers}}</td>
           <td *ngIf="activeFieldsTables['price_per_day']===1">{{equipment.price_per_day | digitsNumbers}}</td>
           <td *ngIf="activeFieldsTables['rentals']===1">{{equipment.rentals}}</td>
