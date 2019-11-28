@@ -12,7 +12,6 @@ import {GlobalParamsUser} from '../../storage/global-params-user';
 import {EquipmentsCreateMiniService} from '../equipments_create_mini/equipmentsCreateMini.service';
 import * as moment from 'moment';
 import {DocumentService} from '../../services/document.service';
-import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-applications-create',

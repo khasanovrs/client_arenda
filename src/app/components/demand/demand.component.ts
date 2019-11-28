@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {DopParamsService} from '../../services/dopParams.service';
 import {EquipmentsService} from '../equipments/equipments.service';
-import {Router} from '@angular/router';
 import {Sort} from '@angular/material/sort';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import {StockService} from '../stock/stock.service';
+import {EquipmentsCreateMiniService} from '../equipments_create_mini/equipmentsCreateMini.service';
 
 @Component({
   selector: 'app-stock',
@@ -19,6 +19,11 @@ export class DemandComponent implements OnInit {
     stock: '',
     count_demand: null
   }];
+
+  // отображение окна добавления нового оборудования
+  addNewEquipments = {
+    show: false,
+  };
 
   filters: InterFaceFilterEquipmentsDemand = {
     like: '',
@@ -35,7 +40,13 @@ export class DemandComponent implements OnInit {
   constructor(private stockService: StockService,
               private dopParamsService: DopParamsService,
               private equipmentsService: EquipmentsService,
+              private equipmentsCreateMiniService: EquipmentsCreateMiniService,
               public globalParamsUser: GlobalParamsUser) {
+
+    this.equipmentsCreateMiniService.closeModalAddEq.subscribe(() => {
+      this.addNewEquipments.show = false;
+      this.getEquipments();
+    });
   }
 
   ngOnInit() {

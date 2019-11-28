@@ -20,7 +20,9 @@
         </div>
       </div>
 
-      <a routerLink='/equipments-create' class="---btn ---btn--fill-acent">Добавить товар</a>
+      <div (click)="addNewEquipments.show=true" class="---btn ---btn--fill-acent">
+        Создать оборудование
+      </div>
     </div>
 
     <div class="---t-wrapper">
@@ -44,5 +46,15 @@
       <pagination-controls previousLabel='' nextLabel="" (pageChange)="p = $event"></pagination-controls>
       <div>Всего записей — <span class="---font-600">{{equipmentsList.length | digitsNumbers}}</span></div>
     </div>
+  </div>
+</div>
+
+<div *ngIf="addNewEquipments.show"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="addNewEquipments.show=false"></div>
+
+    <app-equipment-create-mini [branch]="1"></app-equipment-create-mini>
   </div>
 </div>
