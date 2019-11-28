@@ -34,6 +34,7 @@
         <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 50, currentPage: p }" class="cursor-pointer">
           <td *ngIf="activeFieldsTables['name']===1">{{equipment.name}}</td>
           <td *ngIf="activeFieldsTables['stock']===1">{{equipment.stock}}</td>
+          <td *ngIf="activeFieldsTables['count_demand']===1">{{equipment.count_demand}}</td>
         </tr>
       </table>
     </div>

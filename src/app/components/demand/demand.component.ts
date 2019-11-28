@@ -17,9 +17,10 @@ export class DemandComponent implements OnInit {
   equipmentsList: InterFaceEquipmentsDemandStock[] = [{
     name: '',
     stock: '',
+    count_demand: null
   }];
 
-  filters: InterFaceFilterEquipmentsDemand  = {
+  filters: InterFaceFilterEquipmentsDemand = {
     like: '',
     stock: null
   };
