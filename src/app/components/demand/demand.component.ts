@@ -5,6 +5,7 @@ import {Sort} from '@angular/material/sort';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import {StockService} from '../stock/stock.service';
 import {EquipmentsCreateMiniService} from '../equipments_create_mini/equipmentsCreateMini.service';
+import {type} from 'os';
 
 @Component({
   selector: 'app-stock',
@@ -17,8 +18,16 @@ export class DemandComponent implements OnInit {
   equipmentsList: InterFaceEquipmentsDemandStock[] = [{
     name: '',
     stock: '',
-    count_demand: null
+    count_demand: null,
+    user: '',
+    client: '',
+    coment: '',
+    branch: '',
+    date_create: '',
   }];
+
+  // тип отображения,зявки или оборудования
+  type = 'eq';
 
   // отображение окна добавления нового оборудования
   addNewEquipments = {
@@ -71,7 +80,15 @@ export class DemandComponent implements OnInit {
   // изменение отображений записекй у полей
   changeShowFields() {
     for (const value of this.activeFields) {
-      this.activeFieldsTables[value.code] = 1;
+      this.activeFieldsTables[value.code] = value.flag = 1;
+
+      if (['user', 'client', 'coment', 'date_create'].indexOf(value.code) !== -1 && this.type === 'eq') {
+        this.activeFieldsTables[value.code] = value.flag = 0;
+      }
+
+      if (value.code === 'count_demand' && this.type === 'hire') {
+        this.activeFieldsTables[value.code] = value.flag = 0;
+      }
     }
   }
 
@@ -79,6 +96,7 @@ export class DemandComponent implements OnInit {
   getEquipments() {
     this.equipmentsService.getEquipmentsDemand({
       like: this.filters.like,
+      type: this.type,
       stock: this.filters.stock,
     }).then((data: InterFaceEquipmentsDemandStock[]) => {
         this.equipmentsList = data;
@@ -117,6 +135,13 @@ export class DemandComponent implements OnInit {
           return 0;
       }
     });
+  }
+
+  // изменение типа
+  changeType(data) {
+    this.type = data;
+    this.getEquipments();
+    this.changeShowFields();
   }
 }
 
