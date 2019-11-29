@@ -5,7 +5,6 @@ import {Sort} from '@angular/material/sort';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import {StockService} from '../stock/stock.service';
 import {EquipmentsCreateMiniService} from '../equipments_create_mini/equipmentsCreateMini.service';
-import {type} from 'os';
 
 @Component({
   selector: 'app-stock',
