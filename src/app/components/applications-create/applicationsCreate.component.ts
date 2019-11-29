@@ -311,6 +311,10 @@ export class ApplicationsCreateComponent implements OnInit {
 
   // смена статуса заявки
   changeStatusApplications(val) {
+    if (this.application.status.val === 3 || val === 3) {
+      this.application.equipments = [];
+    }
+
     this.application.status.val = val;
 
     if (val === 1) {
