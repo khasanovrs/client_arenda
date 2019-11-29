@@ -1,7 +1,8 @@
 <div class="---tabs ---tabs--finance">
   <div class="---tabs__switchers-wrapper ---d-flex ---align-items-center ---justify-content-between">
     <div class="---col-12 ---field ---d-flex ---flex-wrap">
-      <div style="margin: 0 10px 10px 0;" (click)="save_word()" class="---btn ---btn--sm ---btn--fill-acent">Печать договоров
+      <div style="margin: 0 10px 10px 0;" (click)="save_word()" class="---btn ---btn--sm ---btn--fill-acent">Печать
+        договоров
       </div>
     </div>
     <div class="---tabs__switchers ---h1 ---font-300 ---d-flex">
@@ -35,90 +36,92 @@
               </select>
             </div>
           </div>
-          <div class="---field ---col-12 ---col-xs-6">
-            <label>Вид аренды</label>
-            <div class="---select">
-              <select [(ngModel)]="application.typeLease.val" autocomplete="none" (change)="changeTypeLease()"
-                      [ngModelOptions]="{standalone: true}">
-                <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
-                        [ngValue]="applicationsTypeLease.val">
-                  {{applicationsTypeLease.name}}
-                </option>
-              </select>
+          <div *ngIf="application.status.val!==3" class="---row">
+            <div class="---field ---col-12 ---col-xs-6">
+              <label>Вид аренды</label>
+              <div class="---select">
+                <select [(ngModel)]="application.typeLease.val" autocomplete="none" (change)="changeTypeLease()"
+                        [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let applicationsTypeLease of applicationsTypeLeases"
+                          [ngValue]="applicationsTypeLease.val">
+                    {{applicationsTypeLease.name}}
+                  </option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="---field ---col-12 ---col-xs-6">
-            <label>Скидка на аренду</label>
-            <div class="---select">
-              <select [(ngModel)]="application.sale.val" (change)="changeSum()" [ngModelOptions]="{standalone: true}">
-                <option *ngFor="let discount of discounts"
-                        [ngValue]="discount.val">
-                  {{discount.name}}
-                </option>
-              </select>
+            <div class="---field ---col-12 ---col-xs-6">
+              <label>Скидка на аренду</label>
+              <div class="---select">
+                <select [(ngModel)]="application.sale.val" (change)="changeSum()" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let discount of discounts"
+                          [ngValue]="discount.val">
+                    {{discount.name}}
+                  </option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="---field ---col-12 ---col-xs-6">
-            <label>Доставка</label>
-            <div class="---select">
-              <select [(ngModel)]="application.delivery.val" (change)="changeSum()"
-                      [ngModelOptions]="{standalone: true}">
-                <option *ngFor="let delivery of applicationsDelivery"
-                        [ngValue]="delivery.val">
-                  {{delivery.name}}
-                </option>
-              </select>
+            <div class="---field ---col-12 ---col-xs-6">
+              <label>Доставка</label>
+              <div class="---select">
+                <select [(ngModel)]="application.delivery.val" (change)="changeSum()"
+                        [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let delivery of applicationsDelivery"
+                          [ngValue]="delivery.val">
+                    {{delivery.name}}
+                  </option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="---field ---col-12 ---col-xs-6" *ngIf="application.delivery.val===1">
-            <label>Сумма доставки</label>
-            <div class="---input ---pos-rel">
-              <input (keyup)="changeSum()" type="text" mask="separator" [ngModelOptions]="{standalone: true}"
-                     [(ngModel)]="application.delivery_sum">
+            <div class="---field ---col-12 ---col-xs-6" *ngIf="application.delivery.val===1">
+              <label>Сумма доставки</label>
+              <div class="---input ---pos-rel">
+                <input (keyup)="changeSum()" type="text" mask="separator" [ngModelOptions]="{standalone: true}"
+                       [(ngModel)]="application.delivery_sum">
+              </div>
             </div>
-          </div>
-          <div class="---field ---col-12 ---col-xs-6">
-            <label>Источник</label>
-            <div class="---select">
-              <select [(ngModel)]="application.source.val" [ngModelOptions]="{standalone: true}">
-                <option *ngFor="let source of applicationsSource"
-                        [ngValue]="source.val">
-                  {{source.name}}
-                </option>
-              </select>
+            <div class="---field ---col-12 ---col-xs-6">
+              <label>Источник</label>
+              <div class="---select">
+                <select [(ngModel)]="application.source.val" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let source of applicationsSource"
+                          [ngValue]="source.val">
+                    {{source.name}}
+                  </option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="---field ---col-12 ---col-xs-6">
-            <label>Начало аренды</label>
-            <div class="---input ---input--calendar ---pos-rel">
-              <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_start.val"
+            <div class="---field ---col-12 ---col-xs-6">
+              <label>Начало аренды</label>
+              <div class="---input ---input--calendar ---pos-rel">
+                <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_start.val"
 
-                     [ngModelOptions]="{standalone: true}"
-                     class="---datepicker-input">
-              <i class="---y-pos-abs ifont ---icon-calendar"></i>
+                       [ngModelOptions]="{standalone: true}"
+                       class="---datepicker-input">
+                <i class="---y-pos-abs ifont ---icon-calendar"></i>
+              </div>
             </div>
-          </div>
-          <div class="---field ---col-12 ---col-xs-6">
-            <label>Окончание аренды</label>
-            <div class="---input ---input--calendar ---pos-rel">
-              <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_end.val"
-                     [ngModelOptions]="{standalone: true}"
-              >
-              <i class="---y-pos-abs ifont ---icon-calendar"></i>
+            <div class="---field ---col-12 ---col-xs-6">
+              <label>Окончание аренды</label>
+              <div class="---input ---input--calendar ---pos-rel">
+                <input type="datetime-local" (change)="changeSum()" [(ngModel)]="application.rent_end.val"
+                       [ngModelOptions]="{standalone: true}"
+                >
+                <i class="---y-pos-abs ifont ---icon-calendar"></i>
+              </div>
             </div>
-          </div>
-          <div class="---field ---col-12  ---col-xs-6" *ngIf="lesa===true">
-            <label>Цена аренды за месяц</label>
-            <input class="---input" mask="separator" (change)="changeSum()" [(ngModel)]="application.month_sum.val"
-                   [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="---field ---col-12  ---col-xs-6" *ngIf="lesa===true">
-            <label>Площадь лесов</label>
-            <input class="---input" [(ngModel)]="application.square.val" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="---field ---col-12  ---col-xs-6" *ngIf="lesa===true">
-            <label>Адрес расположения</label>
-            <input class="---input" [(ngModel)]="application.address.val" [ngModelOptions]="{standalone: true}">
+            <div class="---field ---col-12  ---col-xs-6" *ngIf="lesa===true">
+              <label>Цена аренды за месяц</label>
+              <input class="---input" mask="separator" (change)="changeSum()" [(ngModel)]="application.month_sum.val"
+                     [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="---field ---col-12  ---col-xs-6" *ngIf="lesa===true">
+              <label>Площадь лесов</label>
+              <input class="---input" [(ngModel)]="application.square.val" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="---field ---col-12  ---col-xs-6" *ngIf="lesa===true">
+              <label>Адрес расположения</label>
+              <input class="---input" [(ngModel)]="application.address.val" [ngModelOptions]="{standalone: true}">
+            </div>
           </div>
           <div class="---field ---col-12">
             <label>Комментарий</label>

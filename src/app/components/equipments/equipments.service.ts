@@ -247,7 +247,7 @@ export class EquipmentsService {
   public getEquipmentsDemandFields() {
     return new Promise((resolve, reject) => {
       if (this.equipmentsDemandFieldsList.length === 0) {
-        this.httpService.prepareQuery('api/get-equipments--demand-fields', '')
+        this.httpService.prepareQuery('api/get-equipments-demand-fields', '')
           .then((result: InterFaceActiveFields[]) => {
               this.equipmentsDemandFieldsList = result;
               resolve(result);

@@ -421,32 +421,38 @@ export class ApplicationsCreateComponent implements OnInit {
 
   // создание заявки
   addApplication() {
-    for (const value in this.application) {
-      if (value === 'client_id') {
-        continue;
-      }
-      if (this.application.status.val === 2 || this.application.status.val === 1) {
-        if (this.application.hasOwnProperty(value) && typeof this.application[value] !== 'undefined') {
+    if (this.application.status.val !== 3) {
+      for (const value in this.application) {
+        if (value === 'client_id') {
+          continue;
+        }
+        if (this.application.status.val === 2 || this.application.status.val === 1) {
+          if (this.application.hasOwnProperty(value) && typeof this.application[value] !== 'undefined') {
 
-          // проверка при создании заявки лесов
-          if (this.lesa && (value === 'month_sum' || value === 'square' || value === 'address')) {
-            this.application[value].required = true;
-          }
+            // проверка при создании заявки лесов
+            if (this.lesa && (value === 'month_sum' || value === 'square' || value === 'address')) {
+              this.application[value].required = true;
+            }
 
-          if (this.application[value].required && (this.application[value].val === '' || this.application[value].val === null)) {
-            this.globalParamsMessage.data = {title: `Необходимо заполнить поле "${this.application[value].name}"`, type: 'error', body: ''};
-            return false;
+            if (this.application[value].required && (this.application[value].val === '' || this.application[value].val === null)) {
+              this.globalParamsMessage.data = {
+                title: `Необходимо заполнить поле "${this.application[value].name}"`,
+                type: 'error',
+                body: ''
+              };
+              return false;
+            }
           }
         }
       }
-    }
 
-    const date1 = new Date(this.application.rent_start.val);
-    const date2 = new Date(this.application.rent_end.val);
+      const date1 = new Date(this.application.rent_start.val);
+      const date2 = new Date(this.application.rent_end.val);
 
-    if (date2 < date1) {
-      this.globalParamsMessage.data = {title: `Период аренды указан некорректно`, type: 'error', body: ''};
-      return false;
+      if (date2 < date1) {
+        this.globalParamsMessage.data = {title: `Период аренды указан некорректно`, type: 'error', body: ''};
+        return false;
+      }
     }
 
     this.applicationsCreateService.addApplication({
