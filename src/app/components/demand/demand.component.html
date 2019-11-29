@@ -2,10 +2,22 @@
 
   <div class="---tabs ---tabs--finance">
     <div class="---h-filters-wrapper ---d-flex ---justify-content-between ---align-items-start">
+
       <div class="---d-flex ---form ---align-items-start">
-        <div class="---search ---field ---pos-rel">
-          <input class="---input" placeholder="Поиск по складу" [(ngModel)]="filters.like"
-                 (keyup)="getEquipments()">
+        <div class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
+             [ngClass]="{'---is-active':type==='hire'}"
+             (click)="changeType('hire')">Заявки
+          <i class="ifont ---icon-menu-finance ---d-none ---sm-d-flex"></i>
+        </div>
+
+        <div [ngClass]="{'---is-active':type==='eq'}"
+             class="---filters ---radius-5 ---d-inline-flex ---align-items-center"
+             (click)="changeType('eq')">Оборудования
+          <i class="ifont ---icon-menu-finance ---d-none ---sm-d-flex"></i>
+        </div>
+
+        <div [ngClass]="{'---is-active':showActiveFields===true}"
+             class="---filters ---radius-5 ---d-inline-flex ---align-items-center">
           <div class="---field ---col-12 ---col-sm-6">
             <label>Склад</label>
             <div class="---select">
@@ -15,15 +27,18 @@
                 </option>
               </select>
             </div>
-
-            <div (click)="changeType('hire')">Заявки</div>
-            <div (click)="changeType('eq')">Оборудования</div>
           </div>
-        </div>
-      </div>
 
-      <div (click)="addNewEquipments.show=true" class="---btn ---btn--fill-acent">
-        Создать оборудование
+        </div>
+
+        <div class="---search ---field ---pos-rel">
+          <input class="---input" placeholder="Поиск по складу" [(ngModel)]="filters.like"
+                 (keyup)="getEquipments()">
+          <button class="---y-pos-abs ifont ---icon-loop"></button>
+        </div>
+        <div (click)="addNewEquipments.show=true" class="---btn ---btn--fill-acent">
+          Создать оборудование
+        </div>
       </div>
     </div>
 
