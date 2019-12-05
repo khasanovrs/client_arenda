@@ -375,4 +375,35 @@ export class EquipmentsService {
         );
     });
   }
+
+  // получение детальной информации
+  public getDemandInfo(id) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/get-equipments-demand-info', id)
+        .then((result) => {
+            resolve(result);
+          },
+          (error) => {
+            console.log('Ошибка при получении спроса', error);
+            reject();
+          }
+        );
+    });
+  }
+
+  // сохранение информации по спросу
+  public saveEqDemand(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/save-equipments-demand-info', data)
+        .then(() => {
+            this.globalParamsMessage.data = {title: 'Информация успешно сохранена', type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при получении спроса', error);
+            reject();
+          }
+        );
+    });
+  }
 }

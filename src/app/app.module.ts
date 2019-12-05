@@ -83,6 +83,7 @@ import {TameComponent} from './components/tame/tame.component';
 import {GlobalParamsTame} from './components/tame/global-params-tame';
 import {HireLesaComponent} from './components/lesa_hire/hire-lesa.component';
 import {DemandComponent} from './components/demand/demand.component';
+import {DemandInfoComponent} from './components/demand_info/demand_info.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -129,7 +130,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     EquipmentsCreateMiniComponent,
     TameComponent,
     HireLesaComponent,
-    DemandComponent
+    DemandComponent,
+    DemandInfoComponent
   ],
   imports: [
     BrowserModule,

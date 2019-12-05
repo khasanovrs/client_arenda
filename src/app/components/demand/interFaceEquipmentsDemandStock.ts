@@ -1,4 +1,5 @@
 interface InterFaceEquipmentsDemandStock {
+  id: number;
   name: string;
   stock: string;
   count_demand: number;

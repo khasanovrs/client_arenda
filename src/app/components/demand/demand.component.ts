@@ -5,6 +5,7 @@ import {Sort} from '@angular/material/sort';
 import {GlobalParamsUser} from '../../storage/global-params-user';
 import {StockService} from '../stock/stock.service';
 import {EquipmentsCreateMiniService} from '../equipments_create_mini/equipmentsCreateMini.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-stock',
@@ -15,6 +16,7 @@ export class DemandComponent implements OnInit {
   stocks: InterFaceStocks[] = [];
 
   equipmentsList: InterFaceEquipmentsDemandStock[] = [{
+    id: null,
     name: '',
     stock: '',
     count_demand: null,
@@ -49,6 +51,7 @@ export class DemandComponent implements OnInit {
               private dopParamsService: DopParamsService,
               private equipmentsService: EquipmentsService,
               private equipmentsCreateMiniService: EquipmentsCreateMiniService,
+              private router: Router,
               public globalParamsUser: GlobalParamsUser) {
 
     this.equipmentsCreateMiniService.closeModalAddEq.subscribe(() => {
@@ -141,6 +144,11 @@ export class DemandComponent implements OnInit {
     this.type = data;
     this.getEquipments();
     this.changeShowFields();
+  }
+
+  // переход на детальную информацию
+  demandDetails(id) {
+    this.router.navigate(['/demand/' + id]);
   }
 }
 

@@ -1,0 +1,17 @@
+<div class="---page-rent-in ---row">
+  <div class="---col-12 ---col-lg-6 ---form">
+    <div class="---data-block">
+      <div class="h2 ---font-600">Данные оборудования</div>
+      <div class="---row">
+        <div class="---field ---col-12">
+          <label>Название</label>
+          <textarea class="---input" [(ngModel)]="demandInfo.name"></textarea>
+        </div>
+        <div class="---field ---col-12">
+          <label>Количество запросов: {{demandInfo.count_demand}}</label>
+        </div>
+      </div>
+      <div (click)="save()" class="---btn ---btn--fill-acent">Сохранить</div>
+    </div>
+  </div>
+</div>

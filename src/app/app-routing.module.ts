@@ -21,6 +21,7 @@ import {HireComponent} from './components/hire/hire.component';
 import {HireInfoComponent} from './components/hire-info/hireInfo.component';
 import {HireLesaComponent} from './components/lesa_hire/hire-lesa.component';
 import {DemandComponent} from './components/demand/demand.component';
+import {DemandInfoComponent} from './components/demand_info/demand_info.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,9 @@ const routes: Routes = [
   }, {
     path: 'demand',
     component: DemandComponent
+  }, {
+    path: 'demand/:id',
+    component: DemandInfoComponent
   }, {
     path: 'sets',
     component: SetsComponent
