@@ -74,7 +74,6 @@ export class StockComponent implements OnInit {
     profit_end: '',
     degree_wear_start: null,
     degree_wear_end: null,
-    confirmed: '',
     lesa: false
   };
 
@@ -222,7 +221,6 @@ export class StockComponent implements OnInit {
       profit_end: this.filters.profit_end,
       degree_wear_start: this.filters.degree_wear_start,
       degree_wear_end: this.filters.degree_wear_end,
-      confirmed: this.filters.confirmed,
       lesa: this.filters.lesa
     }).then((data: InterFaceEquipmentsStock[]) => {
         this.equipmentsList = data;
@@ -260,7 +258,6 @@ export class StockComponent implements OnInit {
       profit_end: '',
       degree_wear_start: null,
       degree_wear_end: null,
-      confirmed: '',
       lesa: false
     };
 

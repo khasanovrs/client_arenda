@@ -81,7 +81,7 @@ export class DemandComponent implements OnInit {
     for (const value of this.activeFields) {
       this.activeFieldsTables[value.code] = value.flag = 1;
 
-      if (['user', 'client', 'coment', 'date_create'].indexOf(value.code) !== -1 && this.type === 'eq') {
+      if (['user', 'client', 'coment', 'date_create', 'stock'].indexOf(value.code) !== -1 && this.type === 'eq') {
         this.activeFieldsTables[value.code] = value.flag = 0;
       }
 
