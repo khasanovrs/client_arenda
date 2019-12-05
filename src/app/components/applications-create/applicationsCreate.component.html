@@ -203,12 +203,12 @@
                             <span class="---prod-item__title ---font-600">{{equipment.name}}</span>
                             <span style="color: red" (click)="deleteEquipment(i)">Удалить</span>
                         </span>
-          <div (click)="showInsertSum(equipment.id)" *ngIf="application.equipments.length!=0"
+          <div (click)="showInsertSum(equipment.id)" *ngIf="application.equipments.length!=0 && application.status.val!==3"
                class="---btn ---btn--fill-acent">Добавить
             платеж
           </div>
 
-          <span class="---prod-item__thumb ---d-inline-flex">
+          <span class="---prod-item__thumb ---d-inline-flex" *ngIf="application.status.val!==3">
                             <span class="---thumb-item" *ngIf="lesa===false">
                                 За единицу<br>
                                 <span class="---font-600">{{equipment.price | digitsNumbers}} ₽</span>
