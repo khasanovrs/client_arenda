@@ -25,9 +25,19 @@ export class DemandComponent implements OnInit {
     coment: '',
     branch: '',
     date_create: '',
+    checked: false
   }];
 
-  // тип отображения,зявки или оборудования
+  // массив для объединения
+  unification = [];
+
+  // список названий
+  unificationList = [];
+
+  // показ формы для объединения
+  showUnification = false;
+
+  // тип отображения,заявки или оборудования
   type = 'eq';
 
   // отображение окна добавления нового оборудования
@@ -41,6 +51,9 @@ export class DemandComponent implements OnInit {
   };
 
   sortedData: InterFaceEquipmentsDemandStock[];
+
+  // название при объединении
+  new_name = '';
 
   // список активных полей
   activeFields: InterFaceActiveFields[] = [];
@@ -149,6 +162,20 @@ export class DemandComponent implements OnInit {
   // переход на детальную информацию
   demandDetails(id) {
     this.router.navigate(['/demand/' + id]);
+  }
+
+  checkedChange(data) {
+    const ss = this.unification.indexOf(data.id);
+    if (ss === -1) {
+      this.unification.push(data.id);
+    } else {
+      this.unification.splice(ss, 1);
+    }
+  }
+
+  changeShowUnification() {
+    this.unificationList = this.equipmentsList.filter(item => this.unification.indexOf(item.id) !== -1);
+    this.showUnification = true;
   }
 }
 

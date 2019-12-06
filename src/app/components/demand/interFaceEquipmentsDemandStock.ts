@@ -8,4 +8,5 @@ interface InterFaceEquipmentsDemandStock {
   coment: string;
   branch: string;
   date_create: string;
+  checked: boolean;
 }

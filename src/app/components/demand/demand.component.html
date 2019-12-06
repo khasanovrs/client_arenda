@@ -39,12 +39,17 @@
         <div (click)="addNewEquipments.show=true" class="---btn ---btn--fill-acent">
           Создать оборудование
         </div>
+
+        <div (click)="changeShowUnification()" *ngIf="unification.length>1" class="---btn ---btn--fill-acent">
+          Объединить
+        </div>
       </div>
     </div>
 
     <div class="---t-wrapper">
       <table matSort (matSortChange)="sortData($event)">
         <tr>
+          <th></th>
           <th *ngIf="type === 'eq'"></th>
           <ng-container *ngFor="let activeField of activeFields">
             <th *ngIf="activeField.flag===1" mat-sort-header="{{activeField.code}}">{{activeField.name}}</th>
@@ -53,6 +58,8 @@
 
         <tr *ngFor="let equipment of equipmentsList | paginate: { itemsPerPage: 50, currentPage: p }"
             class="cursor-pointer">
+
+          <td><input type="checkbox" (change)="checkedChange(equipment)" [checked]="equipment.checked"></td>
           <td *ngIf="type === 'eq'">
             <div (click)="demandDetails(equipment.id)" class="ifont ---icon-edit ---acent-icon ---radius-5"></div>
           </td>
@@ -81,6 +88,33 @@
 
     <div class="---js-close-modal ---js-close-modal-icon" (click)="addNewEquipments.show=false"></div>
 
-    <app-equipment-create-mini [branch]="1"></app-equipment-create-mini>
+    <app-equipment-create-mini></app-equipment-create-mini>
+  </div>
+</div>
+
+<div *ngIf="showUnification"
+     class="---d-flex ---modal --justify-content-center ---align-items-start ---justify-content-center">
+  <div class="---wrapper">
+    <div class="---js-close-modal ---js-close-modal-icon" (click)="showUnification=false"></div>
+    <div class="modal-body ---t-wrapper">
+      <table style="min-width: 360px;">
+        <tr>
+          <th>Название</th>
+        </tr>
+        <tr *ngFor="let extension of unificationList">
+          <td (click)="new_name=extension.name">{{extension.name}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="---row">
+      <div class="---field ---col-12 ---col-xs-6 ---col-md-4 ---col-lg-6">
+        <label>Наименование</label>
+        <input type="text" class="---input ---shadow--bg" [(ngModel)]="new_name">
+      </div>
+    </div>
+
+    <div class="---btn ---btn--fill-acent">
+      Объединить
+    </div>
   </div>
 </div>

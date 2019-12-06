@@ -9,12 +9,8 @@ import {GlobalParamsMessage} from '../message_alert/global-params-message';
   templateUrl: './equipmentsCreateMini.component.html',
 })
 export class EquipmentsCreateMiniComponent implements OnInit {
-  stocks: InterFaceStocks[] = [];
-  @Input() branch = null;
-
   newEquipments: InterFaceNewEquipmentsMini = {
-    model: '',
-    stock: null
+    model: ''
   };
 
   constructor(private equipmentsCreateMiniService: EquipmentsCreateMiniService,
@@ -24,14 +20,7 @@ export class EquipmentsCreateMiniComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dopParamsService.getStock().then((data: InterFaceStocks[]) => {
-        this.stocks = data;
-        const tmpStock = this.stocks.filter(item => item.branch_id = this.branch);
-        this.newEquipments.stock = tmpStock[0].val;
-      },
-      (error) => {
-        console.log('Ошибка при получении складов: ', error);
-      });
+
   }
 
   addEquipment() {
@@ -40,14 +29,8 @@ export class EquipmentsCreateMiniComponent implements OnInit {
       return false;
     }
 
-    if (this.newEquipments.stock === null) {
-      this.globalParamsMessage.data = {title: 'Необходимо указать склад', type: 'error', body: ''};
-      return false;
-    }
-
     this.equipmentsCreateMiniService.addEquipment({
       model: this.newEquipments.model,
-      stock: this.newEquipments.stock,
     }).then(() => {
         this.globalParamsMessage.data = {title: 'Оборудование успешно добавлено', type: 'success', body: ''};
       },
