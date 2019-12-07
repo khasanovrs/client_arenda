@@ -6,6 +6,7 @@ import {GlobalParamsUser} from '../../storage/global-params-user';
 import {StockService} from '../stock/stock.service';
 import {EquipmentsCreateMiniService} from '../equipments_create_mini/equipmentsCreateMini.service';
 import {Router} from '@angular/router';
+import {GlobalParamsMessage} from '../message_alert/global-params-message';
 
 @Component({
   selector: 'app-stock',
@@ -65,6 +66,7 @@ export class DemandComponent implements OnInit {
               private equipmentsService: EquipmentsService,
               private equipmentsCreateMiniService: EquipmentsCreateMiniService,
               private router: Router,
+              private globalParamsMessage: GlobalParamsMessage,
               public globalParamsUser: GlobalParamsUser) {
 
     this.equipmentsCreateMiniService.closeModalAddEq.subscribe(() => {
@@ -122,16 +124,6 @@ export class DemandComponent implements OnInit {
       });
   }
 
-  // очистка фильтра
-  clearFilter() {
-    this.filters = {
-      like: '',
-      stock: null
-    };
-
-    this.getEquipments();
-  }
-
   sortData(sort: Sort) {
     const data = this.equipmentsList.slice();
     if (!sort.active || sort.direction === '') {
@@ -164,6 +156,7 @@ export class DemandComponent implements OnInit {
     this.router.navigate(['/demand/' + id]);
   }
 
+  // добавление / удаление из списка
   checkedChange(data) {
     const ss = this.unification.indexOf(data.id);
     if (ss === -1) {
@@ -173,9 +166,32 @@ export class DemandComponent implements OnInit {
     }
   }
 
+  // показать объединение записей
   changeShowUnification() {
     this.unificationList = this.equipmentsList.filter(item => this.unification.indexOf(item.id) !== -1);
     this.showUnification = true;
+  }
+
+  // отправка на объединение
+  sendUnification() {
+    if (this.new_name === '') {
+      this.globalParamsMessage.data = {title: 'Необходимо указать наименование', type: 'error', body: ''};
+      return false;
+    }
+    // получение списка оборудования
+    this.equipmentsService.sendUnification({
+      unification: this.unification,
+      new_name: this.new_name
+    }).then(() => {
+        this.new_name = '';
+        this.unificationList = [];
+        this.unification = [];
+        this.showUnification = false;
+        this.getEquipments();
+      },
+      (error) => {
+        console.log('Ошибка при получении списка оборудований: ', error);
+      });
   }
 }
 

@@ -406,4 +406,20 @@ export class EquipmentsService {
         );
     });
   }
+
+  // отправка на объединение
+  public sendUnification(data) {
+    return new Promise((resolve, reject) => {
+      this.httpService.prepareQuery('api/send-unification', data)
+        .then(() => {
+            this.globalParamsMessage.data = {title: 'Записи успешно объединили', type: 'success', body: ''};
+            resolve();
+          },
+          (error) => {
+            console.log('Ошибка при получении спроса', error);
+            reject();
+          }
+        );
+    });
+  }
 }
